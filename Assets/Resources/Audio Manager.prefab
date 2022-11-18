@@ -306,14 +306,14 @@ MonoBehaviour:
   bgmSource: {fileID: 955606790758574713}
   sfxSource: {fileID: 7125236104756269496}
   bgmVolume:
-    _usage: 0
+    _usage: 2
     _value: 1
     _constant: {fileID: 0}
-    _variable: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 9ff6e892d470c4a2b9fe50e92d8bf7cd, type: 2}
     _variableInstancer: {fileID: 0}
   sfxVolume:
-    _usage: 0
+    _usage: 2
     _value: 1
     _constant: {fileID: 0}
-    _variable: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 000ba5e3eb0e6449ba5fe83875b4df03, type: 2}
     _variableInstancer: {fileID: 0}
