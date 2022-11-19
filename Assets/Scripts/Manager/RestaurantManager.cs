@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityAtoms.BaseAtoms;
 
 public class RestaurantManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class RestaurantManager : MonoBehaviour
             allPOI.Add(table.left);
             allPOI.Add(table.right);
         }
+        GlobalRef.I.CleanUpWords();
     }
 
     public void Spawn()

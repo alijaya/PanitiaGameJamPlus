@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a65a15e7b82684756b07e19aa782e1cc, type: 3}
-  m_Name: GlobalRef
+  m_Script: {fileID: 11500000, guid: ba615354262bb46d7add759502baf53f, type: 3}
+  m_Name: PrevHighlightedWords
   m_EditorClassIdentifier: 
-  Words: {fileID: 11400000, guid: ef79dbe6266574edf869b8c42c5de832, type: 2}
-  PrevHighlightedWords: {fileID: 11400000, guid: 5302c34a494f94fa194a998fc7488051, type: 2}
+  _developerDescription: 
+  Cleared: {fileID: 0}
+  _startCleared: 0
+  Added: {fileID: 0}
+  Removed: {fileID: 0}
+  list: []

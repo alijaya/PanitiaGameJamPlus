@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityAtoms.BaseAtoms;
 
 namespace RS.Typing.Core {
     public class WordObject : MonoBehaviour {
@@ -12,19 +13,20 @@ namespace RS.Typing.Core {
         [SerializeField] private TMP_Text text;
         [SerializeField] private UnityEvent wordCompleted;
 
-        private static readonly List<WordObject> Words = new ();
-        private static readonly List<WordObject> PrevHighlightedWords = new ();
+        //private static readonly List<WordObject> Words = new ();
+        //private static readonly List<WordObject> PrevHighlightedWords = new ();
 
         private string _word;
         private static string _typedWord;
 
         private void Start() {
-            Words.Add(this);
+            //Words.Add(this);
+            GlobalRef.I.Words.Add(this.gameObject);
             Setup();
         }
 
         private void Setup() {
-            _word = WordSpawner.Instance.GetRandomWord(WordDifficult.Normal);
+            _word = WordSpawner.I.GetRandomWord(WordDifficult.Normal);
             text.text = _word;
         }
 
@@ -38,21 +40,21 @@ namespace RS.Typing.Core {
 
         private void Action(string s) {
             if (string.IsNullOrEmpty(s)) {
-                PrevHighlightedWords.Clear();
+                GlobalRef.I.PrevHighlightedWords.Clear();
                 _typedWord = "";
                 WordMatched?.Invoke(_typedWord.Length, false);
                 return;
             }
 
-            var highlightedWord = Words.Where(x => x.GetWord().StartsWith(s)).ToArray();
+            var highlightedWord = GlobalRef.I.Words.Where(x => x.GetComponent<WordObject>().GetWord().StartsWith(s)).ToArray();
             if (highlightedWord.Length > 0) {
                 AttemptInput(s);
             }
             else {
-                if (PrevHighlightedWords.Count > 0) {
+                if (GlobalRef.I.PrevHighlightedWords.Count > 0) {
                     KeyInput.Instance.ResetText(_typedWord);
 
-                    if (PrevHighlightedWords.Contains(this) && _word.StartsWith(_typedWord)) {
+                    if (GlobalRef.I.PrevHighlightedWords.Contains(this.gameObject) && _word.StartsWith(_typedWord)) {
                         WordMatched?.Invoke(_typedWord.Length, false);
                     }
                 }
@@ -66,7 +68,7 @@ namespace RS.Typing.Core {
             if (_word.StartsWith(value)) {
                 _typedWord = value;
                 WordMatched?.Invoke(_typedWord.Length, true);
-                PrevHighlightedWords.Add(this);
+                GlobalRef.I.PrevHighlightedWords.Add(this.gameObject);
             }
 
             if (_word.Equals(value)) {
@@ -77,7 +79,7 @@ namespace RS.Typing.Core {
         }
         
         private void Reset() {
-            PrevHighlightedWords.Clear();
+            GlobalRef.I.PrevHighlightedWords.Clear();
             _typedWord = "";
             KeyInput.Instance.ResetText();
             WordMatched?.Invoke(_typedWord.Length, false);
@@ -88,7 +90,7 @@ namespace RS.Typing.Core {
         }
 
         public bool IsHighlighted() {
-            return PrevHighlightedWords.Contains(this);
+            return GlobalRef.I.PrevHighlightedWords.Contains(this.gameObject);
         }
         
     }

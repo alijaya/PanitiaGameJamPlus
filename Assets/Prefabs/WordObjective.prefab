@@ -374,6 +374,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Words: {fileID: 11400000, guid: ef79dbe6266574edf869b8c42c5de832, type: 2}
+  PrevHighlightedWords: {fileID: 11400000, guid: 5302c34a494f94fa194a998fc7488051, type: 2}
 --- !u!114 &3200965281918894973
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace RS.Typing.Core {
-    public class WordSpawner : Singleton<WordSpawner> {
+    public class WordSpawner : SingletonMB<WordSpawner> {
         [SerializeField] private TextAsset wordsFile;
         [SerializeField] private int easyThreshold;
         [SerializeField] private int normalThreshold;
@@ -14,8 +14,8 @@ namespace RS.Typing.Core {
         private List<string> _normalWordBank;
         private List<string> _hardWordBank;
 
-        protected override void Awake() {
-            base.Awake();
+        protected override void SingletonAwakened() {
+            base.SingletonAwakened();
             _easyWordBank = wordsFile.text.Split("\n").Where(word => word.Length < easyThreshold).ToList();
             _normalWordBank = wordsFile.text.Split("\n").Where(word => word.Length > easyThreshold && word.Length < normalThreshold).ToList();
             _hardWordBank = wordsFile.text.Split("\n").Where(word => word.Length > normalThreshold && word.Length < hardThreshold).ToList();

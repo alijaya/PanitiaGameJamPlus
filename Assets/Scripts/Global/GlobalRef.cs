@@ -8,5 +8,12 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu]
 public class GlobalRef : SingletonSO<GlobalRef>
 {
-    public int globalInt = 5; // example of global stuff
+    public GameObjectValueList Words;
+    public GameObjectValueList PrevHighlightedWords;
+
+    public void CleanUpWords()
+    {
+        Words.Clear();
+        PrevHighlightedWords.Clear();
+    }
 }
