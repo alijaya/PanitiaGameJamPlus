@@ -3,16 +3,18 @@ using UnityEngine;
 
 namespace RS.Typing.Core {
     public class ItemTray : Singleton<ItemTray> {
-        [SerializeField] private ItemSO[] itemList;
-        [SerializeField] private Item itemUIPrefab;
+        [SerializeField] private Item[] itemList;
+        [SerializeField] private ItemSO[] itemDataList;
         private readonly Dictionary<ItemSO, Item> itemTray = new ();
 
         protected override void Awake() {
             base.Awake();
-            foreach (var itemSo in itemList) {
-                var itemUI = Instantiate(itemUIPrefab, transform);
-                itemUI.Setup(itemSo);
-                itemTray.Add(itemSo, itemUI);
+            for (var i = 0; i < itemList.Length; i++) {
+                var item = itemList[i];
+                var itemData = itemDataList[i];
+                
+                item.Setup(itemData);
+                itemTray[itemData] = item;
             }
         }
 
