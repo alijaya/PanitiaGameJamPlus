@@ -10,7 +10,7 @@ public class MovementController : MonoBehaviour
     public float speed = 1;
     private Transform target;
     private Vector3 targetPosition;
-    public bool IsMoving { get; private set; }
+    public bool IsMoving { get; private set; } = false;
 
     public SpriteRenderer sprite;
 
@@ -27,13 +27,7 @@ public class MovementController : MonoBehaviour
 
     private float t = 0;
 
-    private float direction = 1; // 1 = right, -1 = left
-
-    private void Start()
-    {
-        t = 0;
-        IsMoving = false;
-    }
+    private bool isFaceLeft = false;
 
     public void GoTo(Vector3 position)
     {
@@ -61,6 +55,43 @@ public class MovementController : MonoBehaviour
         OnStart.Invoke();
     }
 
+    public void SetFaceLeft(bool animated = true)
+    {
+        SetFacing(true, animated);
+    }
+
+    public void SetFaceRight(bool animated = true)
+    {
+        SetFacing(false, animated);
+    }
+
+    public void SetFacing(bool left, bool animated = true)
+    {
+        var yRot = 0f;
+        if (left) yRot = 180f;
+
+        if (animated)
+        {
+            if (isFaceLeft != left)
+            {
+                DOTween.To(() => sprite.transform.localEulerAngles.y, (value) =>
+                {
+                    var rot = sprite.transform.localEulerAngles;
+                    rot.y = value;
+                    sprite.transform.localEulerAngles = rot;
+                }, yRot, rotateDuration);
+            }
+        }
+        else
+        {
+            var angle = sprite.transform.localEulerAngles;
+            angle.y = yRot;
+            sprite.transform.localEulerAngles = angle;
+        }
+
+        isFaceLeft = left;
+    }
+
     public void Stop()
     {
         if (IsMoving)
@@ -82,7 +113,7 @@ public class MovementController : MonoBehaviour
             UpdatePosition();
         }
 
-        if (Vector3.Distance(targetPosition, transform.position) <= 0.001) // epsilon
+        if (Vector3.Distance(targetPosition, transform.position) <= 0.000001) // epsilon
         {
             target = null;
             targetPosition.Set(0, 0, 0);
@@ -109,22 +140,9 @@ public class MovementController : MonoBehaviour
         rotation.z = bobRotate * Mathf.Sin(t * bobFreq * 2 * Mathf.PI);
 
         var newDirection = Mathf.Sign(normalizedDelta.x);
-        if (newDirection * direction < 0)
-        {
-            var yRot = 0f;
-            if (newDirection < 0) yRot = 180f;
-            DOTween.To(() => sprite.transform.localEulerAngles.y, (value) =>
-            {
-                var rot = sprite.transform.localEulerAngles;
-                rot.y = value;
-                sprite.transform.localEulerAngles = rot;
-            }, yRot, rotateDuration);
-        }
+
         sprite.transform.localEulerAngles = rotation;
 
-        if (Mathf.Abs(newDirection) > 0)
-        {
-            direction = newDirection;
-        }
+        SetFacing(newDirection < 0);
     }
 }
