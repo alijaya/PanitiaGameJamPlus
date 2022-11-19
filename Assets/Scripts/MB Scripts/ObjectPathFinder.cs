@@ -23,6 +23,7 @@ public class ObjectPathFinder : MonoBehaviour
     private void Awake()
     {
         movement = GetComponent<MovementController>();
+        IsMoving = false;
     }
 
     private void OnEnable()
@@ -37,12 +38,6 @@ public class ObjectPathFinder : MonoBehaviour
         movement.OnInterrupted.RemoveListener(OnMovementInterrupted);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        IsMoving = false;
-    }
-
     public void GoTo(Vector3 position)
     {
         if (IsMoving)
@@ -53,7 +48,7 @@ public class ObjectPathFinder : MonoBehaviour
         target = null;
         targetPosition = position;
         IsMoving = true;
-        path = Pathfinding.I.FindPath(transform.position, targetPosition);
+        path = Pathfinding.I.FindPath(this.transform.position, targetPosition);
         currentPathIndex = 0;
         OnStart.Invoke();
         GoToCurrentWaypoint();
@@ -69,7 +64,7 @@ public class ObjectPathFinder : MonoBehaviour
         target = transform;
         targetPosition = target.position;
         IsMoving = true;
-        path = Pathfinding.I.FindPath(transform.position, targetPosition);
+        path = Pathfinding.I.FindPath(this.transform.position, targetPosition);
         currentPathIndex = 0;
         OnStart.Invoke();
         GoToCurrentWaypoint();
