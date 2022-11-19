@@ -788,6 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 1278959051}
+  lockedWord: {fileID: 0}
 --- !u!114 &1278959051
 MonoBehaviour:
   m_ObjectHideFlags: 0
