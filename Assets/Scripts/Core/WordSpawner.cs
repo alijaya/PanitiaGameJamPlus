@@ -43,9 +43,9 @@ namespace RS.Typing.Core {
         public string GetRandomWord(WordDifficulty difficulty, bool uniqueStart = false) {
             var random = new System.Random();
 
-            var bank = GetBank(difficulty)
-                .Where(w => _usedWords.All(uw => !w.StartsWith(uw[0]))) // ga boleh yang kata depannya udah ada
-                .Except(_usedWords); // ga boleh yang udah dipake
+            var bank = GetBank(difficulty).Except(_usedWords); // ga boleh yang udah dipake
+
+            if (uniqueStart) bank = bank.Where(w => _usedWords.All(uw => !w.StartsWith(uw[0]))); // ga boleh yang kata depannya udah ada
 
             if (bank.Count() > 0)
             {

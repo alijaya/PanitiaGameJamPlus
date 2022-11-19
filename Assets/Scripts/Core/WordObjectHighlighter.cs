@@ -25,15 +25,34 @@ namespace RS.Typing.Core {
                 return;
             }
 
-            const string endTag = "</color>";
-            var word = _wordObject.GetWord().Insert(highlightedIndex, endTag);
+            //const string endTag = "</color>";
+            //var word = _wordObject.GetWord().Insert(highlightedIndex, endTag);
 
-            if (!isCurrentlyMatched) {
-                word = word.Insert(highlightedIndex + endTag.Length,
-                    $"<color=#{ColorUtility.ToHtmlStringRGB(wrongHighlightedColor)}>");
-            }
-            
-            text.text = $"<color=#{ColorUtility.ToHtmlStringRGB(highlightedColor)}>{word}";
+            //if (!isCurrentlyMatched) {
+            //    word = word.Insert(highlightedIndex + endTag.Length,
+            //        $"<color=#{ColorUtility.ToHtmlStringRGB(wrongHighlightedColor)}>");
+            //}
+
+            //text.text = $"<color=#{ColorUtility.ToHtmlStringRGB(highlightedColor)}>{word}";
+
+            var word = _wordObject.GetWord();
+            var matchedChars = word.Substring(0, highlightedIndex);
+            var nextChar = highlightedIndex < word.Length ? word.Substring(highlightedIndex, 1) : "";
+            var restChars = highlightedIndex < word.Length ? word.Substring(highlightedIndex + 1) : "";
+
+            var resultWord = "";
+            resultWord += wrapColor(matchedChars, highlightedColor);
+            if (isCurrentlyMatched) resultWord += nextChar; 
+            else resultWord += wrapColor(nextChar, wrongHighlightedColor);
+            resultWord += restChars;
+
+            text.text = resultWord;
+        }
+
+        private string wrapColor(string value, Color color)
+        {
+            if (value == "") return "";
+            return $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{value}</color>";
         }
 
         public void ResetState() {
