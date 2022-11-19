@@ -4,17 +4,15 @@ using UnityEngine.Events;
 
 namespace RS.Typing.Core {
     public class Order : MonoBehaviour {
-        [SerializeField] private ItemSO[] orderedItemInit; // for testing only
         [SerializeField] private Item itemPrefab;
         [SerializeField] private Transform itemContainerTransform;
         
         [SerializeField] private UnityEvent orderCompleted;
 
         private readonly List<KeyValuePair<ItemSO, Item>> _orderedItems = new ();
-        
 
-        private void Awake() {
-            foreach (var itemSo in orderedItemInit) {
+        public void Setup(IEnumerable<ItemSO> items) {
+            foreach (var itemSo in items) {
                 var item = Instantiate(itemPrefab, itemContainerTransform);
                 item.Setup(itemSo);
                 _orderedItems.Add(new KeyValuePair<ItemSO, Item>(itemSo, item));

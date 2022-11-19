@@ -29,13 +29,15 @@ public class RestaurantManager : MonoBehaviour
         GlobalRef.I.CleanUpWords();
     }
 
-    public void Spawn()
+    public void Spawn(IEnumerable<ItemSO> order = null)
     {
         var seat = GetAvailableSeat();
         if (seat)
         {
             var customer = Instantiate(customerPrefabs.GetRandom(), door.position, Quaternion.identity);
             customer.Setup(door, seat);
+            if (order != null) customer.SetOder(order); 
+            
             currentCustomers.Add(customer);
         }
     }

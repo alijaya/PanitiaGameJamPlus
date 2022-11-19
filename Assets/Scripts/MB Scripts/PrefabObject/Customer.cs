@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using RS.Typing.Core;
 
 [RequireComponent(typeof(ObjectPathFinder), typeof(MovementController))]
 public class Customer : MonoBehaviour
@@ -40,6 +41,11 @@ public class Customer : MonoBehaviour
 
         pathfinder.OnReached.AddListener(OnReachSeating);
         pathfinder.GoTo(this.targetPosition.transform);
+    }
+
+    public void SetOder(IEnumerable<ItemSO> items) {
+        var order = orderUI.GetComponent<Order>();
+        order.Setup(items);
     }
 
     public void Leave()
