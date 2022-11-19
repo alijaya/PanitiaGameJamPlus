@@ -18,7 +18,7 @@ public static class ListExtension
         }  
     }
 
-    public static T ChooseRandom<T>(this IList<T> list)
+    public static T GetRandom<T>(this IList<T> list)
     {
         if (list.Count == 0) return default(T);
         return list[rng.Next(list.Count)];

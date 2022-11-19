@@ -45,3 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: TypingUI
+    uniqueID: 2553493491
+    locked: 0
+  - name: HUD
+    uniqueID: 3690427581
+    locked: 0
