@@ -83,7 +83,7 @@ public class Customer : MonoBehaviour
     private void OnReachDoor()
     {
         pathfinder.OnReached.RemoveListener(OnReachDoor);
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     public void Seat() { 

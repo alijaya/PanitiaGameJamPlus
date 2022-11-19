@@ -13,21 +13,22 @@ namespace RS.Typing.Core {
         [SerializeField] private TMP_Text text;
         [SerializeField] private UnityEvent wordCompleted;
 
-        //private static readonly List<WordObject> Words = new ();
-        //private static readonly List<WordObject> PrevHighlightedWords = new ();
-
         private string _word;
         private static string _typedWord;
 
         private void Start() {
-            //Words.Add(this);
             GlobalRef.I.Words.Add(this.gameObject);
             Setup();
         }
 
         private void Setup() {
-            _word = WordSpawner.I.GetRandomWord(WordDifficult.Normal);
+            _word = WordSpawner.I.GetRandomWord(WordDifficulty.Normal, true);
             text.text = _word;
+        }
+
+        private void OnDestroy()
+        {
+            GlobalRef.I.Words.Remove(this.gameObject);
         }
 
         private void OnEnable() {
@@ -71,7 +72,9 @@ namespace RS.Typing.Core {
                 GlobalRef.I.PrevHighlightedWords.Add(this.gameObject);
             }
 
-            if (_word.Equals(value)) {
+            if (_word.Equals(value))
+            {
+                WordSpawner.I.ReleaseWord(_word);
                 wordCompleted?.Invoke();
                 Reset();
                 Setup();
