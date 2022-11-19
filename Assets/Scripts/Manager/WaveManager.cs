@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using Random = System.Random;
@@ -19,7 +20,6 @@ public class WaveManager : MonoBehaviour {
     
     private float _warmupDuration = 5f; // minimal delay to spawn other customer
     private float _timerCounter;
-
     private bool _timerRunning;
 
     private void Awake() {
@@ -41,20 +41,30 @@ public class WaveManager : MonoBehaviour {
         
         if (_timerCounter > 0) {
             _timerCounter -= Time.deltaTime;
-            
-            if (_customerCounter >= customerPerShift) {
-                return;
-            }
-            
-            if (_timerCounter < _customerSequence[_customerCounter]) {
-                SpawnCustomer();
-                _customerCounter++;
+            if (_timerCounter < closingTime) return;
+
+            var seq = _customerCounter < customerPerShift?
+                _customerSequence[_customerCounter] : _customerSequence[customerPerShift-1] - _warmupDuration *
+                (_customerCounter - customerPerShift);
+
+            if (_timerCounter < seq) {
+                var orderWeight = new[] {7, 3}; // 70% chance spawn 1 customer, 30% chance spawn 2 customer
+                var spawnCount = GetRandomWeight(orderWeight);
+                SpawnCustomer(spawnCount);
+                _customerCounter += spawnCount;
             }
         }
         else {
             _timerRunning = false;
             _timerCounter = 0;
+            EndShift();
         }
+
+        timeLeftVariable.Value = _timerCounter;
+    }
+
+    private void EndShift() {
+        
     }
 
     private void SetCustomerSequence() {
@@ -72,33 +82,35 @@ public class WaveManager : MonoBehaviour {
         _customerSequence = sequence.ToArray();
     }
 
-    private void SpawnCustomer() {
-        var order = new List<ItemSO>();
+    private void SpawnCustomer(int amount = 1) {
+        var orderWeight = new[] { 4, 6}; // 40% chance 1 item order, 60% chance 2 item order
+        for (var j = 0; j < amount; j++) {
+            var order = new List<ItemSO>();
 
-        for (var i = 0; i < GetOrderCount(); i++) {
-            order.Add(items.GetRandom());
+            for (var i = 0; i < GetRandomWeight(orderWeight); i++) {
+                order.Add(items.GetRandom());
+            }
+            _manager.Spawn(order);    
         }
-        
-        _manager.Spawn(order);
     }
 
-    private int GetOrderCount() {
-        var orderWeight = new[] { 4, 6}; // 40% chance 1 item order, 60% chance 2 item order
+    private int GetRandomWeight(IEnumerable<int> weights) {
+        var currentWeight = weights.ToArray();
         
         var rnd = new Random();
         var totalWeight = new List<int>();
-        foreach (var t in orderWeight) {
+        foreach (var t in currentWeight) {
             var last = totalWeight.Count > 0 ? totalWeight[^1] : 0;
             var weight = checked(last + t);
             totalWeight.Add(weight);
         }
 
         var totalRandom = rnd.Next(totalWeight[^1]);
-        for (var i = 0; i < orderWeight.Length; i++) {
-            if (orderWeight[i] > totalRandom) {
+        for (var i = 0; i < currentWeight.Length; i++) {
+            if (currentWeight[i] > totalRandom) {
                 return i + 1;
             }
-            totalRandom -= orderWeight[i];
+            totalRandom -= currentWeight[i];
         }
 
         return 0;
