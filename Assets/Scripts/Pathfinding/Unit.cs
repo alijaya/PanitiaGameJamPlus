@@ -11,6 +11,9 @@ public class Unit : MonoBehaviour// , IPointerClickHandler
     Vector2[] path;
     int targetIndex;
 
+    public Transform fireEffect;
+    Vector3 worldPosition;
+
     void Start() {
         StartCoroutine (RefreshPath ());
     }
@@ -19,6 +22,12 @@ public class Unit : MonoBehaviour// , IPointerClickHandler
         //Check for mouse click 
          if (Input.GetMouseButtonDown(0))
          {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = Camera.main.nearClipPlane;
+            worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+            Instantiate(fireEffect, worldPosition, Quaternion.identity);
+
+
             GameObject hitObject = null;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D raycastHit = Physics2D.Raycast(ray.origin, Vector2.zero, Mathf.Infinity);
