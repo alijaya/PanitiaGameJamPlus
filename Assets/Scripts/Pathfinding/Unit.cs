@@ -63,7 +63,11 @@ public class Unit : MonoBehaviour// , IPointerClickHandler
                     currentWaypoint = path [targetIndex];
                 }
 
-                transform.position = Vector2.MoveTowards (transform.position, currentWaypoint, speed * Time.deltaTime);
+                var diff = currentWaypoint - (Vector2) transform.position;
+                diff.Normalize();
+                diff.y *= .5f;
+                var scaling = diff.magnitude;
+                transform.position = Vector2.MoveTowards (transform.position, currentWaypoint, speed * scaling * Time.deltaTime);
                 yield return null;
 
             }
