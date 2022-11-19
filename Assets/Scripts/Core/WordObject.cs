@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,12 +7,13 @@ namespace RS.Typing.Core {
     public class WordObject : MonoBehaviour {
         public string testString;
         public static event EventHandler<bool> WordMatched;
-        private static WordObject _lockedWordObject;
-        
+
         [SerializeField] private TMP_Text text;
         [SerializeField] private UnityEvent wordCompleted;
 
         private IDisposable _inputCall;
+
+        private static KeyValuePair<WordObject, string> _previous;
 
         private string _word;
 
@@ -32,35 +34,32 @@ namespace RS.Typing.Core {
             KeyInput.KeyDown -= Action;
         }
 
-        private void Action(string s) {
-            Debug.Log($"from: {gameObject}, debug:{_lockedWordObject}");
-            if (_lockedWordObject == null) {
-                if (s.Length == 1) AttemptInput(s);
-            } else if (_lockedWordObject == this) {
-                if (s.Length == 1) AttemptInput(s);    
-            }
+        private void Action(string s, WordObject wordObject) {
+            if (wordObject != null && wordObject != this) return;
+            
+            AttemptInput(s, wordObject);
         }
 
-        private void AttemptInput(string c) {
-            if (_word == "") return;
+        private void AttemptInput(string c, bool isNull) {
             if (!_word.StartsWith(c)) {
-                if (_lockedWordObject) Error();
+                if (isNull) Error();
                 return;
             }
-            
-            _lockedWordObject = this;
+
+            KeyInput.Instance.lockedWord = this;
             _word = _word.Remove(0, 1);
             text.text = _word;
 
             WordMatched?.Invoke(_word == "" ? null: this, true);
-            CheckEmpty();
-        }
-        private void CheckEmpty() {
-            if (_word == "") {
-                wordCompleted?.Invoke();
-                Setup(testString);
-                _lockedWordObject = null;
+            if (CheckEmpty()) {
+                KeyInput.Instance.lockedWord = null;
             }
+        }
+        private bool CheckEmpty() {
+            if (_word != "") return false;
+            wordCompleted?.Invoke();
+            Setup(testString);
+            return true;
         }
 
         private void Error() {
