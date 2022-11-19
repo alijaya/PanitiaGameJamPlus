@@ -4088,6 +4088,7 @@ GameObject:
   m_Component:
   - component: {fileID: 637981136}
   - component: {fileID: 637981135}
+  - component: {fileID: 637981138}
   - component: {fileID: 637981137}
   m_Layer: 0
   m_Name: player
@@ -4113,6 +4114,18 @@ MonoBehaviour:
   bobRotate: 5
   bobFreq: 0.7
   rotateDuration: 0.3
+  OnReached:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInterrupted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStop:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &637981136
 Transform:
   m_ObjectHideFlags: 0
@@ -4141,6 +4154,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b876837e958334d9b9cdb6c0ce829a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &637981138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637981134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc3b6c94c4c64b16a86449b9abc4c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnReached:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInterrupted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStop:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &643004381
 PrefabInstance:
   m_ObjectHideFlags: 0

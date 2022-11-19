@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ClickToMove : MonoBehaviour
 {
-    private MovementController movement;
+    private ObjectPathFinder movement;
 
     private void Awake()
     {
-        movement = GetComponent<MovementController>();
+        movement = GetComponent<ObjectPathFinder>();
     }
 
     // Update is called once per frame

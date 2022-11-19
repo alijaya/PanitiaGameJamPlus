@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using DG.Tweening;
+using System;
 
 public class MovementController : MonoBehaviour
 {
@@ -18,6 +20,11 @@ public class MovementController : MonoBehaviour
 
     public float rotateDuration = .3f;
 
+    public UnityEvent OnReached;
+    public UnityEvent OnInterrupted;
+    public UnityEvent OnStop;
+    public UnityEvent OnStart;
+
     private float t = 0;
 
     private float direction = 1; // 1 = right, -1 = left
@@ -30,16 +37,40 @@ public class MovementController : MonoBehaviour
 
     public void GoTo(Vector3 position)
     {
+        if (IsMoving)
+        {
+            OnInterrupted.Invoke();
+            OnStop.Invoke();
+        }
         target = null;
         targetPosition = position;
         IsMoving = true;
+        OnStart.Invoke();
     }
 
     public void GoTo(Transform transform)
     {
+        if (IsMoving)
+        {
+            OnInterrupted.Invoke();
+            OnStop.Invoke();
+        }
         target = transform;
         targetPosition = target.position;
         IsMoving = true;
+        OnStart.Invoke();
+    }
+
+    public void Stop()
+    {
+        if (IsMoving)
+        {
+            target = null;
+            targetPosition.Set(0, 0, 0);
+            IsMoving = false;
+            OnInterrupted.Invoke();
+            OnStop.Invoke();
+        }
     }
 
     // Update is called once per frame
@@ -56,6 +87,8 @@ public class MovementController : MonoBehaviour
             target = null;
             targetPosition.Set(0, 0, 0);
             IsMoving = false;
+            OnReached.Invoke();
+            OnStop.Invoke();
         }
     }
 
