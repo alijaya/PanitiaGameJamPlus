@@ -17,4 +17,10 @@ public static class ListExtension
             list[n] = value;  
         }  
     }
+
+    public static T ChooseRandom<T>(this IList<T> list)
+    {
+        if (list.Count == 0) return default(T);
+        return list[rng.Next(list.Count)];
+    }
 }

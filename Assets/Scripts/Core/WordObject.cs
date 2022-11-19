@@ -1,84 +1,96 @@
 ﻿using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Utilities;
+using UnityEngine.Events;
 
 namespace RS.Typing.Core {
     public class WordObject : MonoBehaviour {
-        public static event EventHandler<bool> WordMatched;
+        public class WordObjectArgs : EventArgs {
+            public string Word;
+            public bool IsMatch;
+            public int HighlightedIndex;
+        }
+        public static event EventHandler<WordObjectArgs> WordMatched;
 
         [SerializeField] private TMP_Text text;
-        [SerializeField] private float knockBackTime;
-        
-        private static WordObject _lockedWordObject;
-        private Action _wordDestroyed;
+        [SerializeField] private UnityEvent wordCompleted;
+
         private IDisposable _inputCall;
 
-        private float _speed;
         private string _word;
-        private bool _attacked;
+        private int _highlightedIndex;
 
-        public void Setup(string word, Vector3 position, Action onDestroy) {
-            _word = word;
-            _speed = Mathf.Clamp(1.5f - word.Length * 0.075f, 0.25f, float.MaxValue);
-            _wordDestroyed = onDestroy;
-            
+        private void Start() {
+            Setup();
+        }
+
+        private void Setup() {
+            _word = WordSpawner.Instance.GetRandomWord(WordDifficult.Normal);
             text.text = _word;
-            transform.position = position;
+        }
+
+        private void OnEnable() {
+            KeyInput.KeyDown += Action;
+        }
+
+        private void OnDisable() {
+            KeyInput.KeyDown -= Action;
+        }
+
+        private void Action(string s, WordObject wordObject) {
+            if (wordObject != null && wordObject != this) return;
             
-            _inputCall = InputSystem.onAnyButtonPress.Call(Action);
-
-            var player = GameObject.FindGameObjectWithTag("Player");
-            StartCoroutine(MoveToOtherTransform(player.transform));
+            if (s == "") return;
+            if (s != null) {
+                AttemptInput(s[0], wordObject);
+            }
+            else {
+                Reset();
+            }
         }
 
-        private void Action(InputControl ctrl) {
-            if (ctrl.name.Length == 1) AttemptInput(ctrl.name);
-        }
-
-        private void AttemptInput(string c) {
-            if (_lockedWordObject != null && _lockedWordObject != this) return;
-            if (!_word.StartsWith(c)) {
-                Error();
+        private void AttemptInput(char c, bool hasReference) {
+            if (_word[_highlightedIndex] != c) {
+                if (hasReference) Error();
                 return;
             }
-            
-            _lockedWordObject = this;
 
-            _word = _word.Remove(0, 1);
-            
-            text.text = _word;
-            _attacked = true;
-            
-            WordMatched?.Invoke(_word == "" ? null: this, true);
+            KeyInput.Instance.lockedWord = this;
+            _highlightedIndex++;
+
+            WordMatched?.Invoke(_highlightedIndex > _word.Length ? null: this, new WordObjectArgs{
+                Word = _word,
+                HighlightedIndex = _highlightedIndex,
+                IsMatch = true
+            });
             CheckEmpty();
-
         }
         private void CheckEmpty() {
-            if (_word == "") {
-                _lockedWordObject = null;
-                _inputCall.Dispose();
-                _wordDestroyed?.Invoke();
-            }
+            if (_highlightedIndex < _word.Length) return;
+            wordCompleted?.Invoke();
+            Reset();
+            Setup();
+        }
+
+        private void Reset() {
+            _highlightedIndex = 0;
+            KeyInput.Instance.lockedWord = null;
+            WordMatched?.Invoke(null, new WordObjectArgs{
+                Word = _word,
+            });
         }
 
         private void Error() {
-            WordMatched?.Invoke(this, false);
+            WordMatched?.Invoke(this, new WordObjectArgs{
+                Word = _word,
+                HighlightedIndex = _highlightedIndex,
+                IsMatch = false
+            });
         }
 
-        private IEnumerator MoveToOtherTransform(Transform otherTransform) {
-            while (transform.position != otherTransform.position) {
-                var direction = otherTransform.position - transform.position;
-                transform.Translate(direction.normalized * (Time.deltaTime * _speed));
-
-                if (_attacked) {
-                    yield return new WaitForSeconds(knockBackTime);
-                    _attacked = false;
-                }
-                yield return null;
-            }
+        public string GetWord() {
+            return _word;
         }
+        
     }
 }

@@ -1,13 +1,12 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RS.Typing.Core {
     public class WordObjectHighlighter : MonoBehaviour {
-        [SerializeField] private TMP_Text text;
-        [SerializeField] private Material highlightedTextMaterial;
-        [SerializeField] private Material defaultTextMaterial;
-        [SerializeField] private Image backgroundTextImage;
+        [SerializeField] private TextMeshProUGUI text;
+        
+        [SerializeField] private Color highlightedColor;
+        [SerializeField] private Color wrongHighlightedColor;
 
         private WordObject _wordObject;
 
@@ -20,16 +19,23 @@ namespace RS.Typing.Core {
             WordObject.WordMatched -= WordObjectOnWordMatched;
         }
 
-        private void WordObjectOnWordMatched(object sender, bool isMatch) {
+        private void WordObjectOnWordMatched(object sender, WordObject.WordObjectArgs wordObjectArgs) {
             if (sender is WordObject wordObject && wordObject == _wordObject) {
-                text.fontMaterial = isMatch ? highlightedTextMaterial : defaultTextMaterial;
-                backgroundTextImage.enabled = isMatch;
+                const string endTag = "</color>";
+                var word = wordObjectArgs.Word.Insert(wordObjectArgs.HighlightedIndex, endTag);
+                if (!wordObjectArgs.IsMatch) {
+                    word = word.Insert(wordObjectArgs.HighlightedIndex + endTag.Length, $"<color=#{ColorUtility.ToHtmlStringRGB(wrongHighlightedColor)}>");
+                }
+                
+                text.text = $"<color=#{ColorUtility.ToHtmlStringRGB(highlightedColor)}>{word}";
+            }
+            else {
+                ResetState();
             }
         }
 
-        private void OnDisable() {
-            text.fontMaterial = defaultTextMaterial;
-            backgroundTextImage.enabled = false;
+        public void ResetState() {
+            text.text = _wordObject.GetWord();
         }
     }
 }
