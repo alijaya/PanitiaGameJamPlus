@@ -42,7 +42,7 @@ public class SingletonMB<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_instance == null)
             {
-                if (IsDestroyed) return null;
+                //if (IsDestroyed) return null;
 
                 _instance = FindExistingInstance() ?? CreateNewInstance();
             }
