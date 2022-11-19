@@ -15,7 +15,7 @@ namespace RS.Typing.Core {
 
         private int _currentWords;
 
-        private void Awake() {
+        /*private void Awake() {
             _wordBank = wordsFile.text.Split("\n").Where(word => word.Length> 3).ToList();
             WordObject.WordMatched += WordObjectOnWordMatched;
         }
@@ -47,7 +47,7 @@ namespace RS.Typing.Core {
             var words = GetRandomWords(amount).ToArray();
             for (var i = 0; i < amount; i++) {
                 var word = _pool.Get();
-                /*word.Setup(words[i], GetRandomPosition(), ()=> _pool.Release(word));*/
+                /*word.Setup(words[i], GetRandomPosition(), ()=> _pool.Release(word));#1#
             }
             _currentWords = amount;
         }
@@ -77,6 +77,6 @@ namespace RS.Typing.Core {
                 words.Add(word);
             }
             return words;
-        }
+        }*/
     }
 }
