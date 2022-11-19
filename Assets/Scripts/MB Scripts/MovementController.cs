@@ -48,7 +48,7 @@ public class MovementController : MonoBehaviour
             dx += 1;
         }
         var d = Mathf.Sqrt(dx * dx + dy * dy);
-        transform.Translate(dx * speedDelta, dy * speedDelta, 0);
+        transform.Translate(dx * speedDelta, dy * .5f * speedDelta, 0);
 
         t += d * speedDelta;
 
