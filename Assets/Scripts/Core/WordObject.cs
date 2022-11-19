@@ -8,7 +8,7 @@ using UnityAtoms.BaseAtoms;
 
 namespace RS.Typing.Core {
     public class WordObject : MonoBehaviour {
-        public event Action<int, bool> WordMatched;
+        public UnityEvent<int, bool> WordMatched;
 
         [SerializeField] private TMP_Text text;
         [SerializeField] private UnityEvent wordCompleted;
@@ -22,7 +22,7 @@ namespace RS.Typing.Core {
         }
 
         private void Setup() {
-            _word = WordSpawner.I.GetRandomWord(WordDifficulty.Normal);
+            _word = WordSpawner.I.GetRandomWord(WordDifficulty.Normal, true);
             text.text = _word;
         }
 
@@ -43,7 +43,7 @@ namespace RS.Typing.Core {
             if (string.IsNullOrEmpty(s)) {
                 GlobalRef.I.PrevHighlightedWords.Clear();
                 _typedWord = "";
-                WordMatched?.Invoke(_typedWord.Length, false);
+                WordMatched.Invoke(_typedWord.Length, false);
                 return;
             }
 
@@ -56,7 +56,7 @@ namespace RS.Typing.Core {
                     KeyInput.Instance.ResetText(_typedWord); // kita undo text yang diketik, seolah2 ga ngetik apa2
 
                     if (GlobalRef.I.PrevHighlightedWords.Contains(this.gameObject) && _word.StartsWith(_typedWord)) { // kalau object ini salah satunya
-                        WordMatched?.Invoke(_typedWord.Length, false); // trigger event match tapi salah
+                        WordMatched.Invoke(_typedWord.Length, false); // trigger event match tapi salah
                     }
                 }
                 else { // kalau sebelumnya ga ada yang di highlight, artinya dari awal dah salah ketik, reset aja jadi kosongan
@@ -68,7 +68,7 @@ namespace RS.Typing.Core {
         private void AttemptInput(string value) {
             if (_word.StartsWith(value)) { // kalau depannya sama
                 _typedWord = value; // yes simpen aja tulisannya, karena valid
-                WordMatched?.Invoke(_typedWord.Length, true); // trigger match
+                WordMatched.Invoke(_typedWord.Length, true); // trigger match
                 if (!GlobalRef.I.PrevHighlightedWords.Contains(this.gameObject)) // kalau blom ada di list
                 {
                     GlobalRef.I.PrevHighlightedWords.Add(this.gameObject); // tambah object ini karena match
@@ -77,7 +77,7 @@ namespace RS.Typing.Core {
             else // kalau di attempt ga bisa, artinya udah pindah ke lain hati highlightnya, ada yang match tapi bukan disini
             {
                 GlobalRef.I.PrevHighlightedWords.Remove(this.gameObject);
-                WordMatched?.Invoke(0, false);
+                WordMatched.Invoke(0, false);
             }
 
             if (_word.Equals(value))
@@ -93,7 +93,7 @@ namespace RS.Typing.Core {
             GlobalRef.I.PrevHighlightedWords.Clear();
             _typedWord = "";
             KeyInput.Instance.ResetText();
-            WordMatched?.Invoke(_typedWord.Length, false);
+            WordMatched.Invoke(_typedWord.Length, false);
         }
 
         public string GetWord() {

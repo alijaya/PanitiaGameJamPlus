@@ -12,11 +12,11 @@ namespace RS.Typing.Core {
 
         private void Awake() {
             _wordObject = GetComponent<WordObject>();
-            _wordObject.WordMatched += WordObjectOnWordMatched;
+            _wordObject.WordMatched.AddListener(WordObjectOnWordMatched);
         }
 
         private void OnDestroy() {
-            _wordObject.WordMatched -= WordObjectOnWordMatched;
+            _wordObject.WordMatched.RemoveListener(WordObjectOnWordMatched);
         }
 
         private void WordObjectOnWordMatched(int highlightedIndex, bool isCurrentlyMatched) {
