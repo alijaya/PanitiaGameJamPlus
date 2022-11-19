@@ -10,8 +10,14 @@ public class KeyInput : Singleton<KeyInput> {
     
     public void DebugShow(string value) {
         if (Input.anyKeyDown) {
-            if (value !="") KeyDown?.Invoke(value, lockedWord);  
+            KeyDown?.Invoke(value, lockedWord);  
         }
         inputField.text = "";
+    }
+
+    public void Update() {
+        if (Input.GetKeyDown(KeyCode.Backspace)) {
+            DebugShow(null);
+        }
     }
 }

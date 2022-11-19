@@ -1,9 +1,10 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using TMPro;
+using UnityEngine;
 
 namespace RS.Typing.Core {
     public class WordObjectHighlighter : MonoBehaviour {
-        [SerializeField] private Image backgroundTextImage;
+        [SerializeField] private TextMeshProUGUI text;
+        
         [SerializeField] private Color highlightedColor;
         [SerializeField] private Color wrongHighlightedColor;
 
@@ -18,9 +19,15 @@ namespace RS.Typing.Core {
             WordObject.WordMatched -= WordObjectOnWordMatched;
         }
 
-        private void WordObjectOnWordMatched(object sender, bool isMatch) {
+        private void WordObjectOnWordMatched(object sender, WordObject.WordObjectArgs wordObjectArgs) {
             if (sender is WordObject wordObject && wordObject == _wordObject) {
-                backgroundTextImage.color = isMatch ? highlightedColor : wrongHighlightedColor;
+                const string endTag = "</color>";
+                var word = wordObjectArgs.Word.Insert(wordObjectArgs.HighlightedIndex, endTag);
+                if (!wordObjectArgs.IsMatch) {
+                    word = word.Insert(wordObjectArgs.HighlightedIndex + endTag.Length, $"<color=#{ColorUtility.ToHtmlStringRGB(wrongHighlightedColor)}>");
+                }
+                
+                text.text = $"<color=#{ColorUtility.ToHtmlStringRGB(highlightedColor)}>{word}";
             }
             else {
                 ResetState();
@@ -28,7 +35,7 @@ namespace RS.Typing.Core {
         }
 
         public void ResetState() {
-            backgroundTextImage.color = Color.black;
+            text.text = _wordObject.GetWord();
         }
     }
 }
