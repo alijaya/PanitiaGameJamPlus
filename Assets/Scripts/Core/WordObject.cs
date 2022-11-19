@@ -2,9 +2,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Utilities;
-
 namespace RS.Typing.Core {
     public class WordObject : MonoBehaviour {
         public string testString;
@@ -12,7 +9,7 @@ namespace RS.Typing.Core {
         private static WordObject _lockedWordObject;
         
         [SerializeField] private TMP_Text text;
-        [SerializeField] private UnityEvent wordDestroyed;
+        [SerializeField] private UnityEvent wordCompleted;
 
         private IDisposable _inputCall;
 
@@ -25,19 +22,29 @@ namespace RS.Typing.Core {
         public void Setup(string word) {
             _word = word;
             text.text = _word;
-
-            _inputCall = InputSystem.onAnyButtonPress.Call(Action);
         }
 
-        private void Action(InputControl ctrl) {
-            if (_lockedWordObject != null && _lockedWordObject != this) return;
-            if (ctrl.name.Length == 1) AttemptInput(ctrl.name);
+        private void OnEnable() {
+            KeyInput.KeyDown += Action;
+        }
+
+        private void OnDisable() {
+            KeyInput.KeyDown -= Action;
+        }
+
+        private void Action(string s) {
+            Debug.Log($"from: {gameObject}, debug:{_lockedWordObject}");
+            if (_lockedWordObject == null) {
+                if (s.Length == 1) AttemptInput(s);
+            } else if (_lockedWordObject == this) {
+                if (s.Length == 1) AttemptInput(s);    
+            }
         }
 
         private void AttemptInput(string c) {
             if (_word == "") return;
             if (!_word.StartsWith(c)) {
-                Error();
+                if (_lockedWordObject) Error();
                 return;
             }
             
@@ -50,11 +57,9 @@ namespace RS.Typing.Core {
         }
         private void CheckEmpty() {
             if (_word == "") {
-                _lockedWordObject = null;
-                _inputCall.Dispose();
-                wordDestroyed?.Invoke();
-                
+                wordCompleted?.Invoke();
                 Setup(testString);
+                _lockedWordObject = null;
             }
         }
 
