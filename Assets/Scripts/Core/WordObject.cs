@@ -1,28 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+
 namespace RS.Typing.Core {
     public class WordObject : MonoBehaviour {
-        public string testString;
-        public static event EventHandler<bool> WordMatched;
+        public class WordObjectArgs : EventArgs {
+            public string Word;
+            public bool IsMatch;
+            public int HighlightedIndex;
+        }
+        public static event EventHandler<WordObjectArgs> WordMatched;
 
         [SerializeField] private TMP_Text text;
         [SerializeField] private UnityEvent wordCompleted;
 
         private IDisposable _inputCall;
 
-        private static KeyValuePair<WordObject, string> _previous;
-
         private string _word;
+        private int _highlightedIndex;
 
         private void Start() {
-            Setup(testString);
+            Setup();
         }
 
-        public void Setup(string word) {
-            _word = word;
+        private void Setup() {
+            _word = WordSpawner.Instance.GetRandomWord(WordDifficult.Normal);
             text.text = _word;
         }
 
@@ -37,33 +40,56 @@ namespace RS.Typing.Core {
         private void Action(string s, WordObject wordObject) {
             if (wordObject != null && wordObject != this) return;
             
-            AttemptInput(s, wordObject);
+            if (s == "") return;
+            if (s != null) {
+                AttemptInput(s[0], wordObject);
+            }
+            else {
+                Reset();
+            }
         }
 
-        private void AttemptInput(string c, bool isNull) {
-            if (!_word.StartsWith(c)) {
-                if (isNull) Error();
+        private void AttemptInput(char c, bool hasReference) {
+            if (_word[_highlightedIndex] != c) {
+                if (hasReference) Error();
                 return;
             }
 
             KeyInput.Instance.lockedWord = this;
-            _word = _word.Remove(0, 1);
-            text.text = _word;
+            _highlightedIndex++;
 
-            WordMatched?.Invoke(_word == "" ? null: this, true);
-            if (CheckEmpty()) {
-                KeyInput.Instance.lockedWord = null;
-            }
+            WordMatched?.Invoke(_highlightedIndex > _word.Length ? null: this, new WordObjectArgs{
+                Word = _word,
+                HighlightedIndex = _highlightedIndex,
+                IsMatch = true
+            });
+            CheckEmpty();
         }
-        private bool CheckEmpty() {
-            if (_word != "") return false;
+        private void CheckEmpty() {
+            if (_highlightedIndex < _word.Length) return;
             wordCompleted?.Invoke();
-            Setup(testString);
-            return true;
+            Reset();
+            Setup();
+        }
+
+        private void Reset() {
+            _highlightedIndex = 0;
+            KeyInput.Instance.lockedWord = null;
+            WordMatched?.Invoke(null, new WordObjectArgs{
+                Word = _word,
+            });
         }
 
         private void Error() {
-            WordMatched?.Invoke(this, false);
+            WordMatched?.Invoke(this, new WordObjectArgs{
+                Word = _word,
+                HighlightedIndex = _highlightedIndex,
+                IsMatch = false
+            });
+        }
+
+        public string GetWord() {
+            return _word;
         }
         
     }

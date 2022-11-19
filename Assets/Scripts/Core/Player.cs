@@ -7,11 +7,11 @@ namespace RS.Typing.Core {
 
         private float _timeRefresh = float.MaxValue;
         private void Awake() {
-            WordObject.WordMatched += WordObjectOnWordMatched;
+            /*WordObject.WordMatched += WordObjectOnWordMatched;*/
         }
 
         private void OnDestroy() {
-            WordObject.WordMatched -= WordObjectOnWordMatched;
+            /*WordObject.WordMatched -= WordObjectOnWordMatched;*/
         }
 
         private void WordObjectOnWordMatched(object sender, bool isMatched) {

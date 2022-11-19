@@ -1,66 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Pool;
-using Random = UnityEngine.Random;
 
 namespace RS.Typing.Core {
-    public class WordSpawner : SingletonMB<WordSpawner> {
+    public class WordSpawner : Singleton<WordSpawner> {
         [SerializeField] private TextAsset wordsFile;
-        [SerializeField] private WordObject wordObjectPrefab;
-        [SerializeField] private int wordsPerWave = 4;
-        
-        private List<string> _wordBank;
-        private ObjectPool<WordObject> _pool;
+        [SerializeField] private int easyThreshold;
+        [SerializeField] private int normalThreshold;
+        [SerializeField] private int hardThreshold;
 
-        private int _currentWords;
+        private List<string> _easyWordBank;
+        private List<string> _normalWordBank;
+        private List<string> _hardWordBank;
 
-        /*private void Awake() {
-            _wordBank = wordsFile.text.Split("\n").Where(word => word.Length> 3).ToList();
-            WordObject.WordMatched += WordObjectOnWordMatched;
+        protected override void Awake() {
+            base.Awake();
+            _easyWordBank = wordsFile.text.Split("\n").Where(word => word.Length < easyThreshold).ToList();
+            _normalWordBank = wordsFile.text.Split("\n").Where(word => word.Length > easyThreshold && word.Length < normalThreshold).ToList();
+            _hardWordBank = wordsFile.text.Split("\n").Where(word => word.Length > normalThreshold && word.Length < hardThreshold).ToList();
         }
 
-        private void Start() {
-            _pool = new ObjectPool<WordObject>(
-                () => Instantiate(wordObjectPrefab, GetRandomPosition(), Quaternion.identity),
-                word => {
-                    word.gameObject.SetActive(true);
-                }, 
-                word => word.gameObject.SetActive(false), 
-                word => Destroy(word.gameObject), true, 50, 100);
-            SpawnWords(wordsPerWave);
-        }
+        public string GetRandomWord(WordDifficult difficult) {
+            var random = new System.Random();
+            var word = difficult switch {
+                WordDifficult.Easy => _easyWordBank.ElementAt(random.Next(0, _easyWordBank.Count)),
+                WordDifficult.Normal => _normalWordBank.ElementAt(random.Next(0, _normalWordBank.Count)),
+                WordDifficult.Hard => _hardWordBank.ElementAt(random.Next(0, _hardWordBank.Count)),
+                _ => throw new ArgumentOutOfRangeException(nameof(difficult), difficult, null)
+            };
 
-        private void OnDestroy() {
-            WordObject.WordMatched -= WordObjectOnWordMatched;
-        }
-
-        private void WordObjectOnWordMatched(object wordObject, bool isMatched) {
-            if (wordObject != null || !isMatched) return; // null : word object is already deleted/destroyed
-            _currentWords--;
-            if (_currentWords <= 0) {
-                SpawnWords(wordsPerWave);
-            }
-        }
-
-        private void SpawnWords(int amount) {
-            var words = GetRandomWords(amount).ToArray();
-            for (var i = 0; i < amount; i++) {
-                var word = _pool.Get();
-                /*word.Setup(words[i], GetRandomPosition(), ()=> _pool.Release(word));#1#
-            }
-            _currentWords = amount;
-        }
-
-        private Vector3 GetRandomPosition() {
-            var randInt = Random.Range(0, transform.childCount);
-            var position = transform.GetChild(randInt).position;
-            
-            while (Physics2D.OverlapCircle(position, 1f)) {
-                randInt = Random.Range(0, transform.childCount);
-                position = transform.GetChild(randInt).position;
-            }
-            return position;
+            return word;
         }
 
         private IEnumerable<string> GetRandomWords(int amount) {
@@ -69,7 +39,7 @@ namespace RS.Typing.Core {
 
             while (words.Count < amount) {
                 var startingChars = words.Select(s => s[0]);
-                var word = _wordBank.ElementAt(random.Next(0, _wordBank.Count));
+                var word = _normalWordBank.ElementAt(random.Next(0, _normalWordBank.Count));
                 
                 if (words.Contains(word)) continue;
                 if (startingChars.Any(c => c == word[0])) continue;
@@ -77,6 +47,13 @@ namespace RS.Typing.Core {
                 words.Add(word);
             }
             return words;
-        }*/
+        }
+
+    }
+
+    public enum WordDifficult {
+        Easy,
+        Normal,
+        Hard
     }
 }
