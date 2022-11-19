@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 3681030629704313537}
   - component: {fileID: 3681030629704313538}
   - component: {fileID: 5342011627674444340}
+  - component: {fileID: 2421635557648151317}
   m_Layer: 5
   m_Name: OrderInstance
   m_TagString: Untagged
@@ -256,23 +257,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73eea0fc658403aa54f7d0bbc26d386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testString: restrain
   text: {fileID: 3681030629823318487}
-  wordDestroyed:
+  wordCompleted:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5342011627674444340}
-        m_TargetAssemblyTypeName: RS.Typing.Core.Order, Assembly-CSharp
-        m_MethodName: AttemptCompleteOrder
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &5342011627674444340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,9 +273,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b5007234da43b48d7b0b135b2f246f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderedItemInit: []
+  orderedItemInit:
+  - {fileID: 11400000, guid: 303f95164ae83c74b8205f1f2376bd3a, type: 2}
+  - {fileID: 11400000, guid: 3373b7e4e74bcba45b38c1bef7c3d59a, type: 2}
   itemPrefab: {fileID: 8604933251422218319, guid: 6f14fc61bd7192e468bd079a06be6506, type: 3}
   itemContainerTransform: {fileID: 3681030628607822056}
+--- !u!114 &2421635557648151317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681030629704313549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f3e2899368a7f45879c64190af69e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 3681030629823318487}
+  highlightedColor: {r: 0.79607844, g: 0.78039217, b: 0.2, a: 1}
+  wrongHighlightedColor: {r: 0.88235295, g: 0.28235295, b: 0.28235295, a: 1}
 --- !u!1 &3681030629823318485
 GameObject:
   m_ObjectHideFlags: 0

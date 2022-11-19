@@ -115,8 +115,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordsFile: {fileID: 4900000, guid: a163e0dd165655c42a49ccd56ed4e944, type: 3}
-  wordObjectPrefab: {fileID: 9160252651887709253, guid: 1edba51da74a8e948a09d7f1e2f9c4c4, type: 3}
-  wordsPerWave: 4
+  easyThreshold: 3
+  normalThreshold: 6
+  hardThreshold: 8
 --- !u!1 &5462807585176750418
 GameObject:
   m_ObjectHideFlags: 0
