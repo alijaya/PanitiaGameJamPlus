@@ -12,26 +12,28 @@ namespace RS.Typing.Core {
 
         private void Awake() {
             _wordObject = GetComponent<WordObject>();
-            WordObject.WordMatched += WordObjectOnWordMatched;
+            _wordObject.WordMatched += WordObjectOnWordMatched;
         }
 
         private void OnDestroy() {
-            WordObject.WordMatched -= WordObjectOnWordMatched;
+            _wordObject.WordMatched -= WordObjectOnWordMatched;
         }
 
-        private void WordObjectOnWordMatched(object sender, WordObject.WordObjectArgs wordObjectArgs) {
-            if (sender is WordObject wordObject && wordObject == _wordObject) {
-                const string endTag = "</color>";
-                var word = wordObjectArgs.Word.Insert(wordObjectArgs.HighlightedIndex, endTag);
-                if (!wordObjectArgs.IsMatch) {
-                    word = word.Insert(wordObjectArgs.HighlightedIndex + endTag.Length, $"<color=#{ColorUtility.ToHtmlStringRGB(wrongHighlightedColor)}>");
-                }
-                
-                text.text = $"<color=#{ColorUtility.ToHtmlStringRGB(highlightedColor)}>{word}";
-            }
-            else {
+        private void WordObjectOnWordMatched(int highlightedIndex, bool isCurrentlyMatched) {
+            if (highlightedIndex == 0) {
                 ResetState();
+                return;
             }
+
+            const string endTag = "</color>";
+            var word = _wordObject.GetWord().Insert(highlightedIndex, endTag);
+
+            if (!isCurrentlyMatched) {
+                word = word.Insert(highlightedIndex + endTag.Length,
+                    $"<color=#{ColorUtility.ToHtmlStringRGB(wrongHighlightedColor)}>");
+            }
+            
+            text.text = $"<color=#{ColorUtility.ToHtmlStringRGB(highlightedColor)}>{word}";
         }
 
         public void ResetState() {

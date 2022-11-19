@@ -1,23 +1,24 @@
 ﻿using System;
-using RS.Typing.Core;
 using TMPro;
 using UnityEngine;
 
 public class KeyInput : Singleton<KeyInput> {
     [SerializeField]private TMP_InputField inputField;
-    public static event Action<string, WordObject> KeyDown;
-    public WordObject lockedWord;
-    
+    public static event Action<string> KeyDown;
+
     public void DebugShow(string value) {
         if (Input.anyKeyDown) {
-            KeyDown?.Invoke(value, lockedWord);  
+            KeyDown?.Invoke(value?.ToLower());
         }
-        inputField.text = "";
     }
 
     public void Update() {
-        if (Input.GetKeyDown(KeyCode.Backspace)) {
-            DebugShow(null);
+        if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape)) {
+            ResetText();
         }
+    }
+
+    public void ResetText(string value = "") {
+        inputField.text = value;
     }
 }

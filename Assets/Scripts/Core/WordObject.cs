@@ -1,26 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace RS.Typing.Core {
     public class WordObject : MonoBehaviour {
-        public class WordObjectArgs : EventArgs {
-            public string Word;
-            public bool IsMatch;
-            public int HighlightedIndex;
-        }
-        public static event EventHandler<WordObjectArgs> WordMatched;
+        public event Action<int, bool> WordMatched;
 
         [SerializeField] private TMP_Text text;
         [SerializeField] private UnityEvent wordCompleted;
 
-        private IDisposable _inputCall;
+        private static readonly List<WordObject> Words = new ();
+        private static readonly List<WordObject> PrevHighlightedWords = new ();
 
         private string _word;
-        private int _highlightedIndex;
+        private static string _typedWord;
 
         private void Start() {
+            Words.Add(this);
             Setup();
         }
 
@@ -37,59 +36,59 @@ namespace RS.Typing.Core {
             KeyInput.KeyDown -= Action;
         }
 
-        private void Action(string s, WordObject wordObject) {
-            if (wordObject != null && wordObject != this) return;
-            
-            if (s == "") return;
-            if (s != null) {
-                AttemptInput(s[0], wordObject);
-            }
-            else {
-                Reset();
-            }
-        }
-
-        private void AttemptInput(char c, bool hasReference) {
-            if (_word[_highlightedIndex] != c) {
-                if (hasReference) Error();
+        private void Action(string s) {
+            if (string.IsNullOrEmpty(s)) {
+                PrevHighlightedWords.Clear();
+                _typedWord = "";
+                WordMatched?.Invoke(_typedWord.Length, false);
                 return;
             }
 
-            KeyInput.Instance.lockedWord = this;
-            _highlightedIndex++;
+            var highlightedWord = Words.Where(x => x.GetWord().StartsWith(s)).ToArray();
+            if (highlightedWord.Length > 0) {
+                AttemptInput(s);
+            }
+            else {
+                if (PrevHighlightedWords.Count > 0) {
+                    KeyInput.Instance.ResetText(_typedWord);
 
-            WordMatched?.Invoke(_highlightedIndex > _word.Length ? null: this, new WordObjectArgs{
-                Word = _word,
-                HighlightedIndex = _highlightedIndex,
-                IsMatch = true
-            });
-            CheckEmpty();
-        }
-        private void CheckEmpty() {
-            if (_highlightedIndex < _word.Length) return;
-            wordCompleted?.Invoke();
-            Reset();
-            Setup();
+                    if (PrevHighlightedWords.Contains(this) && _word.StartsWith(_typedWord)) {
+                        WordMatched?.Invoke(_typedWord.Length, false);
+                    }
+                }
+                else {
+                    KeyInput.Instance.ResetText();    
+                }
+            }
         }
 
+        private void AttemptInput(string value) {
+            if (_word.StartsWith(value)) {
+                _typedWord = value;
+                WordMatched?.Invoke(_typedWord.Length, true);
+                PrevHighlightedWords.Add(this);
+            }
+
+            if (_word.Equals(value)) {
+                wordCompleted?.Invoke();
+                Reset();
+                Setup();
+            }
+        }
+        
         private void Reset() {
-            _highlightedIndex = 0;
-            KeyInput.Instance.lockedWord = null;
-            WordMatched?.Invoke(null, new WordObjectArgs{
-                Word = _word,
-            });
-        }
-
-        private void Error() {
-            WordMatched?.Invoke(this, new WordObjectArgs{
-                Word = _word,
-                HighlightedIndex = _highlightedIndex,
-                IsMatch = false
-            });
+            PrevHighlightedWords.Clear();
+            _typedWord = "";
+            KeyInput.Instance.ResetText();
+            WordMatched?.Invoke(_typedWord.Length, false);
         }
 
         public string GetWord() {
             return _word;
+        }
+
+        public bool IsHighlighted() {
+            return PrevHighlightedWords.Contains(this);
         }
         
     }

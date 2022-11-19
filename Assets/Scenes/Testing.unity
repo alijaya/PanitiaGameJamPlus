@@ -339,11 +339,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5462807584870904360, guid: 2b05f5be3454a414fabba867fe185da2, type: 3}
       propertyPath: hardThreshold
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5462807584870904360, guid: 2b05f5be3454a414fabba867fe185da2, type: 3}
       propertyPath: normalThreshold
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5462807584870904361, guid: 2b05f5be3454a414fabba867fe185da2, type: 3}
       propertyPath: m_RootOrder
@@ -888,7 +888,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 1278959051}
-  lockedWord: {fileID: 0}
 --- !u!114 &1278959051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,14 +936,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 5
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 5
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
