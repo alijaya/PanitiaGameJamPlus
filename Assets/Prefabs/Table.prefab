@@ -214,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopDirection: 1
   isChair: 1
+  seatHeight: 0.5
   occupyObject: {fileID: 0}
 --- !u!1 &3547340070058744759
 GameObject:
@@ -261,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopDirection: 2
   isChair: 1
+  seatHeight: 0.5
   occupyObject: {fileID: 0}
 --- !u!1 &3547340070340812287
 GameObject:
@@ -297,6 +299,7 @@ Transform:
   - {fileID: 8053197950824623044}
   - {fileID: 7260305358081540057}
   - {fileID: 1641887171226513990}
+  - {fileID: 3173369113705896845}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -315,6 +318,64 @@ MonoBehaviour:
   left: {fileID: 7427667515013658253}
   right: {fileID: 6215342860191120485}
   chef: {fileID: 8952220532338499695}
+--- !u!1 &3877657886916179965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3173369113705896845}
+  - component: {fileID: 9218012922068335478}
+  m_Layer: 8
+  m_Name: Obstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3173369113705896845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877657886916179965}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3547340070340812288}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &9218012922068335478
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877657886916179965}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.5}
+  m_EdgeRadius: 0
 --- !u!1 &6486102921830847580
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,4 +506,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopDirection: 0
   isChair: 0
+  seatHeight: 0.5
   occupyObject: {fileID: 0}

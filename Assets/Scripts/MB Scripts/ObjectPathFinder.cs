@@ -11,7 +11,7 @@ public class ObjectPathFinder : MonoBehaviour
     private Vector2[] path;
     private int currentPathIndex;
 
-    public bool IsMoving { get; private set; }
+    public bool IsMoving { get; private set; } = false;
 
     public UnityEvent OnReached;
     public UnityEvent OnInterrupted;
@@ -23,7 +23,6 @@ public class ObjectPathFinder : MonoBehaviour
     private void Awake()
     {
         movement = GetComponent<MovementController>();
-        IsMoving = false;
     }
 
     private void OnEnable()

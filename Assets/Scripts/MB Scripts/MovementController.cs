@@ -10,7 +10,7 @@ public class MovementController : MonoBehaviour
     public float speed = 1;
     private Transform target;
     private Vector3 targetPosition;
-    public bool IsMoving { get; private set; }
+    public bool IsMoving { get; private set; } = false;
 
     public SpriteRenderer sprite;
 
@@ -28,12 +28,6 @@ public class MovementController : MonoBehaviour
     private float t = 0;
 
     private bool isFaceLeft = false;
-
-    private void Awake()
-    {
-        t = 0;
-        IsMoving = false;
-    }
 
     public void GoTo(Vector3 position)
     {

@@ -14,7 +14,8 @@ public class Customer : MonoBehaviour
     private MovementController movement;
     private SpriteRenderer sprite;
 
-    private bool isSeating = false;
+    public bool IsSeating { get; private set; } = false;
+    public bool IsArrived { get; private set; } = false;
 
     private void Awake()
     {
@@ -47,6 +48,8 @@ public class Customer : MonoBehaviour
                 break;
 
         }
+
+        IsArrived = true;
         if (targetPosition.isChair)
         {
             Seat();
@@ -55,18 +58,18 @@ public class Customer : MonoBehaviour
     }
 
     public void Seat() { 
-        if (!isSeating)
+        if (!IsSeating)
         {
-            isSeating = true;
+            IsSeating = true;
             sprite.transform.DOLocalMoveY(targetPosition.seatHeight, seatingDuration);
         }
     }
 
     public void UnSeat()
     {
-        if (isSeating)
+        if (IsSeating)
         {
-            isSeating = false;
+            IsSeating = false;
             sprite.transform.DOLocalMoveY(0, seatingDuration);
         }
     }
