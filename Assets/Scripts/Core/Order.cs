@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RS.Typing.Core {
     public class Order : MonoBehaviour {
         [SerializeField] private ItemSO[] orderedItemInit; // for testing only
         [SerializeField] private Item itemPrefab;
         [SerializeField] private Transform itemContainerTransform;
+        
+        [SerializeField] private UnityEvent orderCompleted;
 
         private readonly List<KeyValuePair<ItemSO, Item>> _orderedItems = new ();
+        
 
         private void Awake() {
             foreach (var itemSo in orderedItemInit) {
@@ -31,8 +35,10 @@ namespace RS.Typing.Core {
                 _orderedItems.Remove(item);
             }
 
-            
-            if (_orderedItems.Count == 0) Destroy(gameObject); 
+
+            if (_orderedItems.Count == 0) {
+                orderCompleted?.Invoke();
+            }
         }
     }
 }
