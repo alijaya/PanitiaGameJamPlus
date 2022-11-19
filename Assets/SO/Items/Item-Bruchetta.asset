@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2e98788a27448d9a2982449bc27108a, type: 3}
-  m_Name: Item3
+  m_Name: Item-Bruchetta
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  itemIcon: {fileID: 21300000, guid: 8cae319770d2a614581ce56e4f18ea2a, type: 3}

@@ -23,12 +23,20 @@ namespace RS.Typing.Core {
 
         public string GetRandomWord(WordDifficult difficult) {
             var random = new System.Random();
-            var word = difficult switch {
-                WordDifficult.Easy => _easyWordBank.ElementAt(random.Next(0, _easyWordBank.Count)),
-                WordDifficult.Normal => _normalWordBank.ElementAt(random.Next(0, _normalWordBank.Count)),
-                WordDifficult.Hard => _hardWordBank.ElementAt(random.Next(0, _hardWordBank.Count)),
-                _ => throw new ArgumentOutOfRangeException(nameof(difficult), difficult, null)
-            };
+            var word = "";
+            switch (difficult)
+            {
+                case WordDifficult.Easy: 
+                    word = _easyWordBank.GetRandom();
+                    break;
+                case WordDifficult.Hard:
+                    word = _hardWordBank.GetRandom();
+                    break;
+                case WordDifficult.Normal:
+                default:
+                    word = _normalWordBank.GetRandom();
+                    break;
+            }
 
             return word;
         }

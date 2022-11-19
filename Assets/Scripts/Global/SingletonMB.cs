@@ -195,6 +195,8 @@ public class SingletonMB<T> : MonoBehaviour where T : MonoBehaviour
         // is kept in the scene instead of being discarded after the game exists play mode.
         // (Unity bug?)
         IsDestroyed = true;
+        IsAwakened = false;
+        IsStarted = false;
 
         PrintLog(string.Format(
             "Destroy() Singleton with type {0} in the GameObject {1}",
