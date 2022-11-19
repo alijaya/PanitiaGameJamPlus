@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(ObjectPathFinder), typeof(MovementController))]
-public class Costumer : MonoBehaviour
+public class Customer : MonoBehaviour
 {
     public PointOfInterest targetPosition { get; private set; }
 
+    public float seatingDuration = .5f;
+
     private ObjectPathFinder pathfinder;
     private MovementController movement;
+    private SpriteRenderer sprite;
+
+    private bool isSeating = false;
 
     private void Awake()
     {
         pathfinder = GetComponent<ObjectPathFinder>();
         movement = GetComponent<MovementController>();
+        sprite = movement.sprite;
     }
 
     public void Setup(PointOfInterest targetPosition)
@@ -40,6 +47,27 @@ public class Costumer : MonoBehaviour
                 break;
 
         }
+        if (targetPosition.isChair)
+        {
+            Seat();
+        }
         targetPosition = null;
+    }
+
+    public void Seat() { 
+        if (!isSeating)
+        {
+            isSeating = true;
+            sprite.transform.DOLocalMoveY(targetPosition.seatHeight, seatingDuration);
+        }
+    }
+
+    public void UnSeat()
+    {
+        if (isSeating)
+        {
+            isSeating = false;
+            sprite.transform.DOLocalMoveY(0, seatingDuration);
+        }
     }
 }

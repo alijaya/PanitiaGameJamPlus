@@ -9,7 +9,7 @@ public class RestaurantManager : MonoBehaviour
     public CounterTable counterTable;
     public List<Table> tables;
 
-    public Costumer costumerPrefab;
+    public List<Customer> customerPrefabs;
 
     private List<PointOfInterest> allPOI;
 
@@ -29,7 +29,7 @@ public class RestaurantManager : MonoBehaviour
         var seat = GetAvailableSeat();
         if (seat)
         {
-            var costumer = Instantiate(costumerPrefab, door.position, Quaternion.identity);
+            var costumer = Instantiate(customerPrefabs.ChooseRandom(), door.position, Quaternion.identity);
             costumer.Setup(seat);
         }
     }
@@ -38,7 +38,7 @@ public class RestaurantManager : MonoBehaviour
     {
         var availablePOI = allPOI.FindAll(poi => !poi.occupyObject);
         if (availablePOI.Count == 0) return null;
-        return availablePOI[Random.Range(0, availablePOI.Count)];
+        return availablePOI.ChooseRandom();
     }
 
     private void Update()

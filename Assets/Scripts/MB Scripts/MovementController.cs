@@ -119,7 +119,7 @@ public class MovementController : MonoBehaviour
             UpdatePosition();
         }
 
-        if (Vector3.Distance(targetPosition, transform.position) <= 0.001) // epsilon
+        if (Vector3.Distance(targetPosition, transform.position) <= 0.000001) // epsilon
         {
             target = null;
             targetPosition.Set(0, 0, 0);
