@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
 namespace RS.Typing.Core {
-    public class WordSpawner : MonoBehaviour {
+    public class WordSpawner : SingletonMB<WordSpawner> {
         [SerializeField] private TextAsset wordsFile;
         [SerializeField] private WordObject wordObjectPrefab;
         [SerializeField] private int wordsPerWave = 4;
@@ -47,7 +47,7 @@ namespace RS.Typing.Core {
             var words = GetRandomWords(amount).ToArray();
             for (var i = 0; i < amount; i++) {
                 var word = _pool.Get();
-                word.Setup(words[i], GetRandomPosition(), ()=> _pool.Release(word));
+                /*word.Setup(words[i], GetRandomPosition(), ()=> _pool.Release(word));*/
             }
             _currentWords = amount;
         }
