@@ -1,13 +1,11 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace RS.Typing.Core {
     public class WordObjectHighlighter : MonoBehaviour {
-        [SerializeField] private TMP_Text text;
-        [SerializeField] private Material highlightedTextMaterial;
-        [SerializeField] private Material defaultTextMaterial;
         [SerializeField] private Image backgroundTextImage;
+        [SerializeField] private Color highlightedColor;
+        [SerializeField] private Color wrongHighlightedColor;
 
         private WordObject _wordObject;
 
@@ -22,14 +20,15 @@ namespace RS.Typing.Core {
 
         private void WordObjectOnWordMatched(object sender, bool isMatch) {
             if (sender is WordObject wordObject && wordObject == _wordObject) {
-                text.fontMaterial = isMatch ? highlightedTextMaterial : defaultTextMaterial;
-                backgroundTextImage.enabled = isMatch;
+                backgroundTextImage.color = isMatch ? highlightedColor : wrongHighlightedColor;
+            }
+            else {
+                ResetState();
             }
         }
 
-        private void OnDisable() {
-            text.fontMaterial = defaultTextMaterial;
-            backgroundTextImage.enabled = false;
+        public void ResetState() {
+            backgroundTextImage.color = Color.black;
         }
     }
 }
