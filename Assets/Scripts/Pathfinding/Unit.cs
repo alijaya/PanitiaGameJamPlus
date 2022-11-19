@@ -19,15 +19,12 @@ public class Unit : MonoBehaviour// , IPointerClickHandler
         //Check for mouse click 
          if (Input.GetMouseButtonDown(0))
          {
-            print("t");
             GameObject hitObject = null;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D raycastHit = Physics2D.Raycast(ray.origin, Vector2.zero, Mathf.Infinity);
             if (raycastHit != null && raycastHit.collider != null) {
-                print("s");
                 if(raycastHit.transform.gameObject.tag=="Target")
                      {  
-                        print("c");
                         hitObject = raycastHit.collider.gameObject;
                         target = hitObject.transform;
                      }
