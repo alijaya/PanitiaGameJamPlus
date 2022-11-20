@@ -80,7 +80,7 @@ public class GlobalRef : SingletonSO<GlobalRef>
 
     public void PlaySFX_FoodReady()
     {
-        AudioManager.I.PlaySFX(SFX_FoodReady);
+        AudioManager.I.PlaySFX(SFX_FoodReady, 0.3f);
     }
 
     public void PlaySFX_FoodServed()
@@ -95,7 +95,7 @@ public class GlobalRef : SingletonSO<GlobalRef>
 
     public void PlaySFX_CustomerOrder()
     {
-        AudioManager.I.PlaySFX(SFX_CustomerOrder, 0.5f);
+        AudioManager.I.PlaySFX(SFX_CustomerOrder, 0.3f);
     }
 
     public void PlaySFX_CustomerHappy()
