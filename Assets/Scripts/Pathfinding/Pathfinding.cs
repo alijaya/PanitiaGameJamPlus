@@ -8,15 +8,9 @@ using System;
 public class Pathfinding : SingletonMB<Pathfinding> {
 
     GridA grid;
-    static Pathfinding instance;
     
     void Awake() {
         grid = GetComponent<GridA>();
-        instance = this;
-    }
-
-    public static Vector2[] RequestPath(Vector2 from, Vector2 to) {
-        return instance.FindPath (from, to);
     }
 
     public Vector2[] FindPath(Vector2 from, Vector2 to) {
