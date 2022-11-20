@@ -24,7 +24,6 @@ namespace RS.Typing.Core {
         private void Awake() {
             if (needChefToMove) {
                 _chef = FindObjectOfType<ChefTasks>();
-            
                 if (_chef) wordCompletedDelegate.AddListener(_chef.AddTask);
                 wordCompletedDelegate.AddListener(Call);
             }
@@ -107,6 +106,7 @@ namespace RS.Typing.Core {
                 KeyInput.Instance.SetEnable(false);
                 WordSpawner.I.ReleaseWord(_word); // balikin kata2nya
                 wordCompletedDelegate?.Invoke(wordCompleted);
+                if (!needChefToMove) wordCompleted?.Invoke();
             }
         }
 

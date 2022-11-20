@@ -20,6 +20,7 @@ public class KeyInput : Singleton<KeyInput> {
     }
 
     private void SceneManagerOnsceneLoaded(Scene arg0, LoadSceneMode arg1) {
+        EventSystem.current.SetSelectedGameObject(gameObject);
         _enabled = true;
     }
 

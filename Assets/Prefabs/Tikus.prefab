@@ -202,6 +202,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: needChefToMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: objectiveTransform
       value: 
       objectReference: {fileID: 907623044283177130}
