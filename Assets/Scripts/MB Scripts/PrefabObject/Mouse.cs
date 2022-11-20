@@ -7,6 +7,7 @@ public class Mouse : MonoBehaviour {
     private Item _targetedItem;
 
     public Transform doorTransform;
+    private bool _hasItem;
     private void Awake() {
         pathfinder = GetComponent<ObjectPathFinder>();
         movement = GetComponent<MovementController>();
@@ -21,8 +22,15 @@ public class Mouse : MonoBehaviour {
     }
 
     private void OnReachObjective() {
+        if (_targetedItem.StackSize == 0) {
+            _targetedItem = ItemTray.Instance.GetRandomItem();
+            MoveTo(_targetedItem.transform);
+            return;
+        }
+        
         pathfinder.OnReached.RemoveListener(OnReachObjective);
         _targetedItem.ReduceStack();
+        _hasItem = true;
         pathfinder.OnReached.AddListener(OnReachDoor);
         pathfinder.GoTo(doorTransform);
     }
@@ -36,5 +44,9 @@ public class Mouse : MonoBehaviour {
 
     private void MoveTo(Transform objectiveTransform) {
         pathfinder.GoTo(objectiveTransform);
+    }
+
+    public void OnDestroyedByWord() {
+        if (_hasItem) _targetedItem.AddStack();
     }
 }

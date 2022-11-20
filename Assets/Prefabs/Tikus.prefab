@@ -102,7 +102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7924921492390663814
 Transform:
   m_ObjectHideFlags: 0
@@ -199,18 +199,30 @@ PrefabInstance:
       objectReference: {fileID: 907623044283177130}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6065772963924327630}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4265167600321304290}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
@@ -218,11 +230,23 @@ PrefabInstance:
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnDestroyedByWord
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Mouse, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3669399906329752366, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
@@ -275,11 +299,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345906916963212397, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -10.229996
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8345906916963212397, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -3.6899986
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
