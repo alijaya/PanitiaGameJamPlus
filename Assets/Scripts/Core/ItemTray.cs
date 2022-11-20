@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -45,6 +46,11 @@ namespace RS.Typing.Core {
             foreach (var (_, itemObject) in itemTray) {
                 itemObject.SetStackSize(0);
             }
+        }
+        
+        public Item GetRandomItem() {
+            var stackedItem = itemTray.Where(x => x.Value.StackSize > 0);
+            return stackedItem.GetRandom().Value;
         }
     }
 }
