@@ -52,5 +52,9 @@ namespace RS.Typing.Core {
             var stackedItem = itemTray.Where(x => x.Value.StackSize > 0);
             return stackedItem.GetRandom().Value;
         }
+
+        public Dictionary<ItemSO, Item> GetItemTray() {
+            return itemTray;
+        }
     }
 }
