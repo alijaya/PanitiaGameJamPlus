@@ -7,6 +7,7 @@ public class KeyInput : Singleton<KeyInput> {
     [SerializeField]private TMP_InputField inputField;
     public static event Action<string> KeyDown;
 
+    private bool _enabled = true;
 
     private void Start()
     {
@@ -14,7 +15,7 @@ public class KeyInput : Singleton<KeyInput> {
     }
 
     public void DebugShow(string value) {
-        if (Input.anyKeyDown) {
+        if (Input.anyKeyDown && _enabled) {
             KeyDown?.Invoke(value?.ToLower());
         }
     }
@@ -22,10 +23,15 @@ public class KeyInput : Singleton<KeyInput> {
     public void Update() {
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape)) {
             ResetText();
+            DebugShow("");
         }
     }
 
     public void ResetText(string value = "") {
         inputField.text = value;
+    }
+
+    public void SetEnable(bool value) {
+        _enabled = value;
     }
 }
