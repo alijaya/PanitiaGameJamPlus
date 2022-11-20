@@ -59,7 +59,8 @@ namespace RS.Typing.Core {
         public string GetRandomWord(WordDifficulty difficulty, bool uniqueStart = false) {
             var random = new System.Random();
 
-            var bank = GetBank(difficulty).Except(_usedWords); // ga boleh yang udah dipake
+            var allBank = GetBank(difficulty).Except(_usedWords); // ga boleh yang udah dipake
+            var bank = allBank;
 
             if (uniqueStart) bank = bank.Where(w => _usedWords.All(uw => !w.StartsWith(uw[0]))); // ga boleh yang kata depannya udah ada
 
@@ -72,6 +73,7 @@ namespace RS.Typing.Core {
             }
             else
             {
+                Debug.Log(allBank.Count() + " " + _usedWords.Count());
                 return "aliganteng"; // ga ada yang mungkin, sad :(
             }
         }
