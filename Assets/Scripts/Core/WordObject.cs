@@ -21,12 +21,12 @@ namespace RS.Typing.Core {
 
         private void Awake() {
             _chef = FindObjectOfType<ChefTasks>();
-            wordCompletedDelegate.AddListener(_chef.AddTask);
+            if (_chef) wordCompletedDelegate.AddListener(_chef.AddTask);
             wordCompletedDelegate.AddListener(Call);
         }
 
         private void Call(UnityEvent arg0) {
-            _chef.MoveTo(objectiveTransform);
+            if (_chef) _chef.MoveTo(objectiveTransform);
         }
 
         private void Start() {
@@ -42,7 +42,7 @@ namespace RS.Typing.Core {
         private void OnDestroy()
         {
             GlobalRef.I.Words.Remove(this.gameObject);
-            wordCompletedDelegate.RemoveListener(_chef.AddTask);
+            if (_chef) wordCompletedDelegate.RemoveListener(_chef.AddTask);
             wordCompletedDelegate.RemoveListener(Call);
         }
 
