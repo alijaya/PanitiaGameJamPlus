@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3725453694816239246}
   - component: {fileID: 3725453694816239251}
   - component: {fileID: 4934272503315658157}
+  - component: {fileID: 1143826340061307961}
   m_Layer: 0
   m_Name: Chef
   m_TagString: Untagged
@@ -98,6 +99,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d94fc45fb40354bbd9ba0dfedfa1bcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1143826340061307961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725453694816239247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 516124ddf6ed97742ad1f62d31354a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3725453695623309392

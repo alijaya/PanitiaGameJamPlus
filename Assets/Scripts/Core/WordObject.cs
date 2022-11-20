@@ -13,17 +13,22 @@ namespace RS.Typing.Core {
         [SerializeField] private TMP_Text text;
         public UnityEvent wordCompleted;
         public UnityEvent<UnityEvent> wordCompletedDelegate;
-
         [SerializeField] private Transform objectiveTransform;
+
+        public bool needChefToMove = true;
         private ChefTasks _chef;
-        
+
         private string _word;
         private static string _typedWord;
 
         private void Awake() {
-            _chef = FindObjectOfType<ChefTasks>();
-            if (_chef) wordCompletedDelegate.AddListener(_chef.AddTask);
-            wordCompletedDelegate.AddListener(Call);
+            if (needChefToMove) {
+                _chef = FindObjectOfType<ChefTasks>();
+            
+                if (_chef) wordCompletedDelegate.AddListener(_chef.AddTask);
+                wordCompletedDelegate.AddListener(Call);
+            }
+            
             wordCompleted.AddListener(WordComplete);
         }
 

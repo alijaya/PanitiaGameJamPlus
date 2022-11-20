@@ -2,12 +2,26 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class KeyInput : Singleton<KeyInput> {
     [SerializeField]private TMP_InputField inputField;
     public static event Action<string> KeyDown;
 
     private bool _enabled = true;
+
+    protected override void Awake() {
+        base.Awake();
+        SceneManager.sceneLoaded += SceneManagerOnsceneLoaded;
+    }
+
+    private void OnDestroy() {
+        SceneManager.sceneLoaded -= SceneManagerOnsceneLoaded;
+    }
+
+    private void SceneManagerOnsceneLoaded(Scene arg0, LoadSceneMode arg1) {
+        _enabled = true;
+    }
 
     private void Start()
     {
