@@ -33,6 +33,9 @@ public class RestaurantManager : MonoBehaviour
 
     private void Start()
     {
+        GlobalRef.I.totalSales.Value = 0;
+        GlobalRef.I.totalCustomerServed.Value = 0;
+        GlobalRef.I.PlayBGM_Gameplay();
         waveManager.StartWave();
     }
 

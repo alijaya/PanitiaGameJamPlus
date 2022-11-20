@@ -340,9 +340,9 @@ MonoBehaviour:
   orderCompleted:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Customer, Assembly-CSharp
-        m_MethodName: Leave
+      - m_Target: {fileID: 11400000, guid: 7ea7aaad8206d4b418e33d12fd76980e, type: 2}
+        m_TargetAssemblyTypeName: GlobalRef, Assembly-CSharp
+        m_MethodName: PlaySFX_CustomerHappy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -355,9 +355,9 @@ MonoBehaviour:
   orderFailed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RS.Typing.Core.WordObject, Assembly-CSharp
-        m_MethodName: Reset
+      - m_Target: {fileID: 11400000, guid: 7ea7aaad8206d4b418e33d12fd76980e, type: 2}
+        m_TargetAssemblyTypeName: GlobalRef, Assembly-CSharp
+        m_MethodName: PlaySFX_CustomerAngry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

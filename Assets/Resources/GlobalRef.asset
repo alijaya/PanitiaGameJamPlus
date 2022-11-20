@@ -12,5 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65a15e7b82684756b07e19aa782e1cc, type: 3}
   m_Name: GlobalRef
   m_EditorClassIdentifier: 
+  timeLeft:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 1809e5ed8f1668c4c8e5d31e8dee42e6, type: 2}
+    _variableInstancer: {fileID: 0}
+  totalCustomerServed:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: d036eee1feffb4246b13266f1be79858, type: 2}
+    _variableInstancer: {fileID: 0}
+  totalSales:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 5f706da51548efa4a81548c6fa68c402, type: 2}
+    _variableInstancer: {fileID: 0}
   Words: {fileID: 11400000, guid: ef79dbe6266574edf869b8c42c5de832, type: 2}
   PrevHighlightedWords: {fileID: 11400000, guid: 5302c34a494f94fa194a998fc7488051, type: 2}
+  BGM_MainMenu: {fileID: 8300000, guid: bec8346a5bb788d44be8e393c69733d9, type: 3}
+  BGM_Gameplay: {fileID: 8300000, guid: 08cd93b79564fd942bc7c09ceaaf0e35, type: 3}
+  SFX_Typing: {fileID: 8300000, guid: e878eff58dad64a99b4571173ab550f5, type: 3}
+  SFX_TypingError: {fileID: 8300000, guid: 750c50e89dbe848a9a8eb2f32d38b47d, type: 3}
+  SFX_Served: {fileID: 8300000, guid: c7703a768d13c4666a767feb35d48970, type: 3}
+  SFX_CustomerEnter: {fileID: 8300000, guid: 7d2d1c859b4c44a68b9247d3c57befaf, type: 3}
+  SFX_CustomerHappy: {fileID: 8300000, guid: 280c4c6b10c5b485da40a194b4dcff9e, type: 3}
+  SFX_CustomerAngry: {fileID: 8300000, guid: 5647801369aa0417989acb1f09ecdcbe, type: 3}
