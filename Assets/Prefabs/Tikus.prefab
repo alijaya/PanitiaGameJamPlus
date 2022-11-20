@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7924921492390663814}
   - component: {fileID: 3428740512836058841}
   - component: {fileID: 5377994419880862156}
+  - component: {fileID: 4265167600321304290}
   m_Layer: 0
   m_Name: Tikus
   m_TagString: Untagged
@@ -131,9 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e84d6bddcaa2465e86c838cab0fdd44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  sprite: {fileID: 0}
-  bobRotate: 10
+  speed: 3
+  sprite: {fileID: 1392469914151568217}
+  bobRotate: 4
   bobFreq: 0.3
   rotateDuration: 0.3
   OnReached:
@@ -172,6 +173,19 @@ MonoBehaviour:
   OnStart:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4265167600321304290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6065772963924327630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4555a54fb6460a8f91c43ef15508d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorTransform: {fileID: 0}
 --- !u!1001 &4930154909886421411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -179,6 +193,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7924921492390663814}
     m_Modifications:
+    - target: {fileID: 1675276639192870366, guid: 052e21f6d3aa24d09bd2a55caf5cd2cc, type: 3}
+      propertyPath: objectiveTransform
+      value: 
+      objectReference: {fileID: 907623044283177130}
     - target: {fileID: 1675276639192870366, guid: 052e21f6d3aa24d09bd2a55caf5cd2cc, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.size
       value: 1
