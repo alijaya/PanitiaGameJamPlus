@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityAtoms.BaseAtoms;
 using Eflatun.SceneReference;
 using UnityEngine.SceneManagement;
+using RS.Typing.Core;
 
 [CreateAssetMenu]
 public class GlobalRef : SingletonSO<GlobalRef>

@@ -516,7 +516,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: d036eee1feffb4246b13266f1be79858, type: 2}
     - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
       propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
       propertyPath: orderCompleted.m_PersistentCalls.m_Calls.Array.size
@@ -531,6 +531,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
+      propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
       propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3590634226806082415}
@@ -538,6 +542,10 @@ PrefabInstance:
       propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 11400000, guid: 7ea7aaad8206d4b418e33d12fd76980e, type: 2}
+    - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
+      propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 9057103479035520658}
     - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
       propertyPath: orderCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -563,12 +571,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
+      propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
       propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Leave
       objectReference: {fileID: 0}
     - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
       propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: PlaySFX_CustomerAngry
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
+      propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ResetText
       objectReference: {fileID: 0}
     - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
       propertyPath: orderCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -595,6 +611,10 @@ PrefabInstance:
       value: GlobalRef, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
+      propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: RS.Typing.Core.Order, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
       propertyPath: orderCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Customer, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -608,6 +628,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
       propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}
+      propertyPath: orderFailed.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5342011627674444340, guid: e1dfd264869d6864ea5065271da3b71c, type: 3}

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Events;
@@ -123,6 +121,10 @@ namespace RS.Typing.Core {
 
         public void SetTimerRunning(bool value) {
             _timerRunning = value;
+        }
+
+        public void ResetText() {
+            KeyInput.Instance.ResetText();
         }
     }
 }
