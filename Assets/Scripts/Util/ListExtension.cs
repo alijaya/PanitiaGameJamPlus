@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public static class ListExtension
 {
@@ -18,9 +19,9 @@ public static class ListExtension
         }  
     }
 
-    public static T ChooseRandom<T>(this IList<T> list)
+    public static T GetRandom<T>(this IEnumerable<T> list)
     {
-        if (list.Count == 0) return default(T);
-        return list[rng.Next(list.Count)];
+        if (list.Count() == 0) return default(T);
+        return list.ElementAt(rng.Next(list.Count()));
     }
 }

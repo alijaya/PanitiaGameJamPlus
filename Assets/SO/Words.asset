@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2e98788a27448d9a2982449bc27108a, type: 3}
-  m_Name: Item1
+  m_Script: {fileID: 11500000, guid: ba615354262bb46d7add759502baf53f, type: 3}
+  m_Name: Words
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: -2135585597343286014, guid: eed45a33cd08446c8b88325cf82fc52f, type: 3}
+  _developerDescription: 
+  Cleared: {fileID: 0}
+  _startCleared: 0
+  Added: {fileID: 0}
+  Removed: {fileID: 0}
+  list: []

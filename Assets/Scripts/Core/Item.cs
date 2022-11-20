@@ -6,6 +6,7 @@ namespace RS.Typing.Core {
     public class Item: MonoBehaviour {
         [SerializeField] private Image itemImage;
         [SerializeField] private TextMeshProUGUI itemCountText;
+        [SerializeField] private Color highlightedColor;
 
         public int StackSize {
             get;
@@ -21,6 +22,10 @@ namespace RS.Typing.Core {
             itemCountText.text = StackSize.ToString();
         }
 
+        public void SetHighlight(bool value) {
+            itemImage.color = value ? highlightedColor : Color.white;
+        }
+
         public void AddStack() {
             StackSize++;
             RefreshUI();
@@ -28,6 +33,11 @@ namespace RS.Typing.Core {
 
         public void ReduceStack() {
             StackSize--;
+            RefreshUI();
+        }
+
+        public void SetStackSize(int value) {
+            StackSize = value;
             RefreshUI();
         }
     }

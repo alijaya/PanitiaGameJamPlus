@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65a15e7b82684756b07e19aa782e1cc, type: 3}
   m_Name: GlobalRef
   m_EditorClassIdentifier: 
-  globalInt: 5
+  Words: {fileID: 11400000, guid: ef79dbe6266574edf869b8c42c5de832, type: 2}
+  PrevHighlightedWords: {fileID: 11400000, guid: 5302c34a494f94fa194a998fc7488051, type: 2}

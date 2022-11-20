@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityAtoms.BaseAtoms;
 
 public class RestaurantManager : MonoBehaviour
 {
@@ -11,10 +12,13 @@ public class RestaurantManager : MonoBehaviour
 
     public List<Customer> customerPrefabs;
 
+    private List<Customer> currentCustomers;
+
     private List<PointOfInterest> allPOI;
 
-    private void Start()
+    private void Awake()
     {
+        currentCustomers = new List<Customer>();
         allPOI = new List<PointOfInterest>();
         allPOI.AddRange(counterTable.counterLocations);
         foreach (var table in tables)
@@ -22,15 +26,30 @@ public class RestaurantManager : MonoBehaviour
             allPOI.Add(table.left);
             allPOI.Add(table.right);
         }
+        GlobalRef.I.CleanUpWords();
     }
 
-    public void Spawn()
+    public void Spawn(IEnumerable<ItemSO> order = null)
     {
         var seat = GetAvailableSeat();
         if (seat)
         {
-            var costumer = Instantiate(customerPrefabs.ChooseRandom(), door.position, Quaternion.identity);
-            costumer.Setup(seat);
+            var customer = Instantiate(customerPrefabs.GetRandom(), door.position, Quaternion.identity);
+            customer.Setup(door, seat);
+            if (order != null) customer.SetOder(order); 
+            
+            currentCustomers.Add(customer);
+        }
+    }
+
+    public void RandomLeave()
+    {
+        var arrivedCustomers = currentCustomers.FindAll(c => c.IsArrived);
+        if (arrivedCustomers.Count > 0)
+        {
+            var customer = arrivedCustomers.GetRandom();
+            currentCustomers.Remove(customer);
+            customer.Leave();
         }
     }
 
@@ -38,7 +57,7 @@ public class RestaurantManager : MonoBehaviour
     {
         var availablePOI = allPOI.FindAll(poi => !poi.occupyObject);
         if (availablePOI.Count == 0) return null;
-        return availablePOI.ChooseRandom();
+        return availablePOI.GetRandom();
     }
 
     private void Update()
