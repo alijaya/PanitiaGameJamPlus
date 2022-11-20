@@ -15,6 +15,10 @@ public class GlobalRef : SingletonSO<GlobalRef>
     public GameObjectValueList Words;
     public GameObjectValueList PrevHighlightedWords;
 
+    public SceneReference Scene_MainMenu;
+    public SceneReference Scene_Gameplay;
+    public SceneReference Scene_Report;
+
     public AudioClip BGM_MainMenu;
     public AudioClip BGM_Gameplay;
     public AudioClip SFX_Typing;
@@ -28,6 +32,21 @@ public class GlobalRef : SingletonSO<GlobalRef>
     {
         Words.Clear();
         PrevHighlightedWords.Clear();
+    }
+
+    public void GoToScene_MainMenu()
+    {
+        SceneManager.LoadScene(Scene_MainMenu.Name);
+    }
+
+    public void GoToScene_Gameplay()
+    {
+        SceneManager.LoadScene(Scene_Gameplay.Name);
+    }
+
+    public void GoToScene_Report()
+    {
+        SceneManager.LoadScene(Scene_Report.Name);
     }
 
     public void PlayBGM_MainMenu()

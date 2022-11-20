@@ -32,6 +32,15 @@ MonoBehaviour:
     _variableInstancer: {fileID: 0}
   Words: {fileID: 11400000, guid: ef79dbe6266574edf869b8c42c5de832, type: 2}
   PrevHighlightedWords: {fileID: 11400000, guid: 5302c34a494f94fa194a998fc7488051, type: 2}
+  Scene_MainMenu:
+    sceneAsset: {fileID: 102900000, guid: 1201be10b9d6446588b6cfdb1f89def5, type: 3}
+    sceneAssetGuidHex: 1201be10b9d6446588b6cfdb1f89def5
+  Scene_Gameplay:
+    sceneAsset: {fileID: 102900000, guid: b21f591c420a386478ebcb6619b363c6, type: 3}
+    sceneAssetGuidHex: b21f591c420a386478ebcb6619b363c6
+  Scene_Report:
+    sceneAsset: {fileID: 102900000, guid: 4b4473a1b21534c09bef23f949826b28, type: 3}
+    sceneAssetGuidHex: 4b4473a1b21534c09bef23f949826b28
   BGM_MainMenu: {fileID: 8300000, guid: bec8346a5bb788d44be8e393c69733d9, type: 3}
   BGM_Gameplay: {fileID: 8300000, guid: 08cd93b79564fd942bc7c09ceaaf0e35, type: 3}
   SFX_Typing: {fileID: 8300000, guid: e878eff58dad64a99b4571173ab550f5, type: 3}
