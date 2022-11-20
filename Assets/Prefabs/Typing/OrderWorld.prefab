@@ -368,6 +368,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   moodImage: {fileID: 7812314342775599874}
+  pie: {fileID: 1966945753539413444}
   moods:
   - {fileID: 21300000, guid: 945ee476728af444babf4d05567de110, type: 3}
   - {fileID: 21300000, guid: 5f2640892d567564f93b8f56144a5eca, type: 3}
@@ -455,7 +456,7 @@ GameObject:
   - component: {fileID: 7993926305273932453}
   - component: {fileID: 1966945753539413444}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.2901961}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -517,8 +518,8 @@ MonoBehaviour:
   Arc: 1
   ArcSteps: 100
   ArcRotation: 90
-  Progress: 0.624
-  ProgressColor: {r: 1, g: 1, b: 1, a: 0}
+  Progress: 0
+  ProgressColor: {r: 0, g: 0, b: 0, a: 0.5019608}
   Fill: 1
   Thickness: 5
   Padding: 0
@@ -556,6 +557,14 @@ PrefabInstance:
     - target: {fileID: 1675276639192870366, guid: 052e21f6d3aa24d09bd2a55caf5cd2cc, type: 3}
       propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143707835054825734, guid: 052e21f6d3aa24d09bd2a55caf5cd2cc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143707835054825734, guid: 052e21f6d3aa24d09bd2a55caf5cd2cc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5143707835075491362, guid: 052e21f6d3aa24d09bd2a55caf5cd2cc, type: 3}
       propertyPath: m_Name

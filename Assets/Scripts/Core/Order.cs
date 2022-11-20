@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.UI.Extensions;
 
 namespace RS.Typing.Core {
     public class Order : MonoBehaviour {
@@ -18,6 +19,7 @@ namespace RS.Typing.Core {
         [SerializeField] private UnityEvent orderFailed;
 
         public Image moodImage;
+        public UICircle pie;
         public List<Sprite> moods;
 
         private readonly List<KeyValuePair<ItemSO, OrderItem>> _orderedItems = new List<KeyValuePair<ItemSO, OrderItem>>();
@@ -96,19 +98,21 @@ namespace RS.Typing.Core {
 
         private void Update() {
             if (!_timerRunning) return;
-            
-            if (_timeRemaining > 0) {
-                _timeRemaining -= Time.deltaTime;    
-            }
-            else {
+
+            _timeRemaining -= Time.deltaTime;
+
+            var timeElapsed = orderTimeout - _timeRemaining;
+            var percentage = Mathf.Clamp01(timeElapsed / orderTimeout);
+            moodImage.sprite = moods[Mathf.Clamp(Mathf.FloorToInt(percentage * moods.Count), 0, moods.Count-1)];
+            pie.SetProgress((percentage * moods.Count) % 1);
+
+
+            if (_timeRemaining <= 0)
+            {
                 _timeRemaining = 0;
                 _timerRunning = false;
                 orderFailed?.Invoke();
             }
-
-            var timeElapsed = orderTimeout - _timeRemaining;
-            var percentage = timeElapsed / orderTimeout;
-            moodImage.sprite = moods[Mathf.FloorToInt(percentage * 3)];
         }
     }
 }
