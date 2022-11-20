@@ -48,6 +48,10 @@ namespace RS.Typing.Core {
 
         private void OnDestroy()
         {
+            if (GlobalRef.I.PrevHighlightedWords.Count == 1 && GlobalRef.I.PrevHighlightedWords[0] == this.gameObject)
+            {
+                KeyInput.Instance.ResetText();
+            }
             GlobalRef.I.Words.Remove(this.gameObject);
             if (_chef) wordCompletedDelegate.RemoveListener(_chef.AddTask);
             wordCompletedDelegate.RemoveListener(Call);
