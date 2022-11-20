@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Events;
@@ -47,22 +48,13 @@ namespace RS.Typing.Core {
         }
 
         public void Setup(IEnumerable<ItemSO> items) {
-            var stackSize = new Dictionary<ItemSO, int>();
-            foreach (var itemSo in items) {
-                stackSize[itemSo] = 0;
-            }
-            
-            foreach (var itemSo in items) {
+            foreach (var itemData in items) {
                 var item = Instantiate(itemPrefab, itemContainerTransform);
-                item.Setup(itemSo);
-                if (ItemTray.Instance.IsItemInTray(itemSo)) {
-                    stackSize[itemSo] += 1;
-                } 
-                item.SetHighlight(stackSize[itemSo] > 0);
-                
-                _orderedItems.Add(new KeyValuePair<ItemSO, OrderItem>(itemSo, item));
+                item.Setup(itemData);
+                _orderedItems.Add(new KeyValuePair<ItemSO, OrderItem>(itemData, item));
             }
-            
+
+            CheckItemReady();
             StartTimer();
         }
 
@@ -112,6 +104,18 @@ namespace RS.Typing.Core {
                 _timeRemaining = 0;
                 _timerRunning = false;
                 orderFailed.Invoke();
+            }
+        }
+
+        private void CheckItemReady() {
+            var stackSize = new Dictionary<ItemSO, int>();
+            foreach (var item in ItemTray.Instance.GetItemTray()) {
+                stackSize[item.Key] = item.Value.StackSize;
+            }
+            
+            foreach (var (itemData, itemObject) in _orderedItems) {
+                itemObject.SetHighlight(ItemTray.Instance.GetItemTray().ContainsKey(itemData) && stackSize[itemData] > 0);
+                stackSize[itemData]--;
             }
         }
     }
