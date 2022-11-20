@@ -12,7 +12,7 @@ public class Customer : MonoBehaviour
 
     public float seatingDuration = .5f;
 
-    public Canvas orderUI;
+    public GameObject orderUI;
 
     private ObjectPathFinder pathfinder;
     private MovementController movement;

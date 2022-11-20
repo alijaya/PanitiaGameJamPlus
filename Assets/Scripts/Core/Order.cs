@@ -12,13 +12,13 @@ namespace RS.Typing.Core {
         [SerializeField] private IntVariable totalCustomerServed;
         [Tooltip("Duration to fulfill the order")]
         [SerializeField] private float orderTimeout;
-        [SerializeField] private Item itemPrefab;
+        [SerializeField] private OrderItem itemPrefab;
         [SerializeField] private Transform itemContainerTransform;
         
         [SerializeField] private UnityEvent orderCompleted;
         [SerializeField] private UnityEvent orderFailed;
 
-        private readonly List<KeyValuePair<ItemSO, Item>> _orderedItems = new ();
+        private readonly List<KeyValuePair<ItemSO, OrderItem>> _orderedItems = new List<KeyValuePair<ItemSO, OrderItem>>();
 
         private float _timeRemaining;
         private bool _timerRunning;
@@ -56,14 +56,14 @@ namespace RS.Typing.Core {
                 } 
                 item.SetHighlight(stackSize[itemSo] > 0);
                 
-                _orderedItems.Add(new KeyValuePair<ItemSO, Item>(itemSo, item));
+                _orderedItems.Add(new KeyValuePair<ItemSO, OrderItem>(itemSo, item));
             }
             
             StartTimer();
         }
 
         public void AttemptCompleteOrder() {
-            var temp = new List<KeyValuePair<ItemSO, Item>>();
+            var temp = new List<KeyValuePair<ItemSO, OrderItem>>();
             foreach (var t in _orderedItems) {
                 var item = t.Key;
                 var itemUI = t.Value;

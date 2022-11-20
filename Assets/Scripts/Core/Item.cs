@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace RS.Typing.Core {
     public class Item: MonoBehaviour {
-        [SerializeField] private Image itemImage;
+        [SerializeField] private SpriteRenderer itemImage;
         [SerializeField] private TextMeshProUGUI itemCountText;
         [SerializeField] private Color highlightedColor;
 
