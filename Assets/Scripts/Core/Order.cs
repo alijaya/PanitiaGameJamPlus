@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
@@ -53,8 +54,6 @@ namespace RS.Typing.Core {
                 item.Setup(itemData);
                 _orderedItems.Add(new KeyValuePair<ItemSO, OrderItem>(itemData, item));
             }
-
-            CheckItemReady();
             StartTimer();
         }
 
@@ -107,6 +106,10 @@ namespace RS.Typing.Core {
             }
         }
 
+        private void LateUpdate() {
+            CheckItemReady();
+        }
+
         private void CheckItemReady() {
             var stackSize = new Dictionary<ItemSO, int>();
             foreach (var item in ItemTray.Instance.GetItemTray()) {
@@ -117,6 +120,10 @@ namespace RS.Typing.Core {
                 itemObject.SetHighlight(ItemTray.Instance.GetItemTray().ContainsKey(itemData) && stackSize[itemData] > 0);
                 stackSize[itemData]--;
             }
+        }
+
+        public void SetTimerRunning(bool value) {
+            _timerRunning = value;
         }
     }
 }
