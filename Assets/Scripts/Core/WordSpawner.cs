@@ -19,7 +19,23 @@ namespace RS.Typing.Core {
 
         protected override void SingletonAwakened() {
             base.SingletonAwakened();
-            _allWordBank = wordsFile.text.ToLower().Replace("\r", "").Split("\n").Where(w => !String.IsNullOrEmpty(w)).ToList();
+            _allWordBank = wordsFile.text.ToLower().Replace("\r", "").Split("\n").Where(w => !String.IsNullOrEmpty(w) && w.Length >= 3).ToList();
+
+            // add all possible 1 char
+            for (var ch = 'a'; ch <= 'z'; ch++)
+            {
+                _allWordBank.Add(ch.ToString());
+            }
+
+            // add all possible 2 char
+            for (var ch1 = 'a'; ch1 <= 'z'; ch1++)
+            {
+                for (var ch2 = 'a'; ch2 <= 'z'; ch2++)
+                {
+                    _allWordBank.Add(ch1 + "" + ch2);
+                }
+            }
+
             _easyWordBank = _allWordBank.Where(word => word.Length <= easyThreshold).ToList();
             _normalWordBank = _allWordBank.Where(word => word.Length > easyThreshold && word.Length <= normalThreshold).ToList();
             _hardWordBank = _allWordBank.Where(word => word.Length > normalThreshold && word.Length <= hardThreshold).ToList();
