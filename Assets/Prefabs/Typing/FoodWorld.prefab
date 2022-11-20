@@ -81,7 +81,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 3603490467125453102}
   itemCountText: {fileID: 4250981991180468493}
-  highlightedColor: {r: 0, g: 0, b: 0, a: 0}
+  StackSizeChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7172551560735298742
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,30 +326,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916942547784, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916942547784, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212396, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-      propertyPath: m_fontSize
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212396, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

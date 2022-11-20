@@ -2,6 +2,7 @@
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using DG.Tweening;
 
 namespace RS.Typing.Core {
@@ -15,6 +16,9 @@ namespace RS.Typing.Core {
         
         [SerializeField] private UnityEvent orderCompleted;
         [SerializeField] private UnityEvent orderFailed;
+
+        public Image moodImage;
+        public List<Sprite> moods;
 
         private readonly List<KeyValuePair<ItemSO, OrderItem>> _orderedItems = new List<KeyValuePair<ItemSO, OrderItem>>();
 
@@ -101,6 +105,10 @@ namespace RS.Typing.Core {
                 _timerRunning = false;
                 orderFailed?.Invoke();
             }
+
+            var timeElapsed = orderTimeout - _timeRemaining;
+            var percentage = timeElapsed / orderTimeout;
+            moodImage.sprite = moods[Mathf.FloorToInt(percentage * 3)];
         }
     }
 }
