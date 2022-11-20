@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 69cbc0495cac79240839059f422430c6, type: 3}
   itemIconColor: {fileID: 21300000, guid: e42c28d6f6ba4ea4f967ad17380b5998, type: 3}
-  itemCost: 0
+  itemCost: 10

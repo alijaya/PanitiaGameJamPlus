@@ -86,7 +86,7 @@ namespace RS.Typing.Core {
 
 
             if (_orderedItems.Count == 0) {
-                orderCompleted?.Invoke();
+                orderCompleted.Invoke();
                 totalCustomerServed.Value++;
             }
         }
@@ -111,7 +111,7 @@ namespace RS.Typing.Core {
             {
                 _timeRemaining = 0;
                 _timerRunning = false;
-                orderFailed?.Invoke();
+                orderFailed.Invoke();
             }
         }
     }
