@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,10 +23,39 @@ namespace RS.Typing.Core {
         private float _timeRemaining;
         private bool _timerRunning;
 
+        private void OnEnable() {
+            ItemTray.Instance.ItemTrayUpdated += ItemTrayOnItemTrayUpdated;
+        }
+
+        private void OnDisable() {
+            ItemTray.Instance.ItemTrayUpdated -= ItemTrayOnItemTrayUpdated;
+        }
+
+        private void ItemTrayOnItemTrayUpdated(Dictionary<ItemSO, Item> itemTray) {
+            var stackSize = new Dictionary<ItemSO, int>();
+            foreach (var item in itemTray) {
+                stackSize[item.Key] = item.Value.StackSize;
+            }
+            foreach (var (itemData, itemObject) in _orderedItems) {
+                itemObject.SetHighlight(itemTray.ContainsKey(itemData) && stackSize[itemData] > 0);
+                stackSize[itemData]--;
+            }
+        }
+
         public void Setup(IEnumerable<ItemSO> items) {
+            var stackSize = new Dictionary<ItemSO, int>();
+            foreach (var itemSo in items) {
+                stackSize[itemSo] = 0;
+            }
+            
             foreach (var itemSo in items) {
                 var item = Instantiate(itemPrefab, itemContainerTransform);
                 item.Setup(itemSo);
+                if (ItemTray.Instance.IsItemInTray(itemSo)) {
+                    stackSize[itemSo] += 1;
+                } 
+                item.SetHighlight(stackSize[itemSo] > 0);
+                
                 _orderedItems.Add(new KeyValuePair<ItemSO, Item>(itemSo, item));
             }
             
@@ -45,7 +76,7 @@ namespace RS.Typing.Core {
 
             foreach (var item in temp) {
                 _orderedItems.Remove(item);
-                var itemCost = 5; // TODO - Adding item cost to ItemSO
+                var itemCost = item.Key.GetItemCost(); // TODO - Adding item cost to ItemSO
                 totalSales.Value += itemCost;
             }
 

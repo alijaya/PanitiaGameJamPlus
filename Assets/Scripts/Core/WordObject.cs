@@ -10,6 +10,7 @@ namespace RS.Typing.Core {
     public class WordObject : MonoBehaviour {
         public UnityEvent<int, bool> WordMatched;
 
+        [SerializeField] private string typo;
         [SerializeField] private TMP_Text text;
         [SerializeField] private UnityEvent wordCompleted;
 
@@ -22,7 +23,7 @@ namespace RS.Typing.Core {
         }
 
         private void Setup() {
-            _word = WordSpawner.I.GetRandomWord(WordDifficulty.Normal, true);
+            _word = string.IsNullOrEmpty(typo) ? WordSpawner.I.GetRandomWord(WordDifficulty.Normal, true) : typo;
             text.text = _word;
         }
 
@@ -88,8 +89,8 @@ namespace RS.Typing.Core {
                 Setup();
             }
         }
-        
-        private void Reset() {
+
+        public void Reset() {
             GlobalRef.I.PrevHighlightedWords.Clear();
             _typedWord = "";
             KeyInput.Instance.ResetText();

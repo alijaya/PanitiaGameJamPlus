@@ -437,14 +437,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b5007234da43b48d7b0b135b2f246f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderedItemInit:
-  - {fileID: 11400000, guid: 303f95164ae83c74b8205f1f2376bd3a, type: 2}
-  - {fileID: 11400000, guid: 3373b7e4e74bcba45b38c1bef7c3d59a, type: 2}
+  totalSales: {fileID: 11400000, guid: 5f706da51548efa4a81548c6fa68c402, type: 2}
+  totalCustomerServed: {fileID: 11400000, guid: d036eee1feffb4246b13266f1be79858, type: 2}
+  orderTimeout: 6.5
   itemPrefab: {fileID: 8604933251422218319, guid: 6f14fc61bd7192e468bd079a06be6506, type: 3}
   itemContainerTransform: {fileID: 3681030628607822056}
   orderCompleted:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Customer, Assembly-CSharp
+        m_MethodName: Leave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  orderFailed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3681030629704313538}
+        m_TargetAssemblyTypeName: RS.Typing.Core.WordObject, Assembly-CSharp
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2421635557648151317
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ namespace RS.Typing.Core {
         [SerializeField] private Item[] itemList;
         [SerializeField] private ItemSO[] itemDataList;
         private readonly Dictionary<ItemSO, Item> itemTray = new ();
+        public event System.Action<Dictionary<ItemSO, Item>> ItemTrayUpdated;
 
         protected override void Awake() {
             base.Awake();
@@ -20,12 +21,24 @@ namespace RS.Typing.Core {
 
         public void AddItemToTray(ItemSO item) {
             itemTray[item].AddStack();
+            ItemTrayUpdated?.Invoke(itemTray);
         }
 
         public bool TryRemoveFromTray(ItemSO item) {
             if (itemTray[item].StackSize == 0) return false;
             itemTray[item].ReduceStack();
+            ItemTrayUpdated?.Invoke(itemTray);
             return true;
+        }
+
+        public bool IsItemInTray(ItemSO item) {
+            return (itemTray.ContainsKey(item) && itemTray[item].StackSize > 0);
+        }
+
+        public void ClearTray() {
+            foreach (var (_, itemObject) in itemTray) {
+                itemObject.SetStackSize(0);
+            }
         }
     }
 }

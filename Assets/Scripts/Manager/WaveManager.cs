@@ -1,9 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using RS.Typing.Core;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = System.Random;
 
 public class WaveManager : MonoBehaviour {
@@ -13,10 +13,12 @@ public class WaveManager : MonoBehaviour {
     [SerializeField] private float closingTime = 10f; // waktu sebelum tutup ( tidak spawn customer lagi)
     [SerializeField] private int customerPerShift = 10;
 
+    [SerializeField] private UnityEvent onShiftEnd;
+
     private RestaurantManager _manager;
 
     private float[] _customerSequence;
-    private int _customerCounter ;
+    private int _customerCounter;
     
     private float _warmupDuration = 5f; // minimal delay to spawn other customer
     private float _timerCounter;
@@ -26,21 +28,20 @@ public class WaveManager : MonoBehaviour {
         _manager = GetComponentInParent<RestaurantManager>();
     }
 
-    private void Start() {
-       
-    }
-
     public void StartWave() {
+        ItemTray.Instance.ClearTray();
         SetCustomerSequence();
+
+        _customerCounter = 0;
         _timerCounter = shiftDuration;
         _timerRunning = true;
     }
 
     private void Update() {
         if (!_timerRunning) return;
-        
         if (_timerCounter > 0) {
             _timerCounter -= Time.deltaTime;
+            timeLeftVariable.Value = _timerCounter;
             if (_timerCounter < closingTime) return;
 
             var seq = _customerCounter < customerPerShift?
@@ -59,12 +60,10 @@ public class WaveManager : MonoBehaviour {
             _timerCounter = 0;
             EndShift();
         }
-
-        timeLeftVariable.Value = _timerCounter;
     }
 
     private void EndShift() {
-        
+        onShiftEnd?.Invoke();
     }
 
     private void SetCustomerSequence() {

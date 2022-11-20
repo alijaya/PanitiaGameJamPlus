@@ -62,6 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 8604933251716964076}
   itemCountText: {fileID: 8604933253037745487}
+  highlightedColor: {r: 0.0990566, g: 1, b: 0.18048705, a: 1}
 --- !u!1 &8604933251716963986
 GameObject:
   m_ObjectHideFlags: 0
