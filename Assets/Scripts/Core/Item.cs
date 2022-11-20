@@ -1,12 +1,12 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace RS.Typing.Core {
     public class Item: MonoBehaviour {
         [SerializeField] private SpriteRenderer itemImage;
         [SerializeField] private TextMeshProUGUI itemCountText;
-        [SerializeField] private Color highlightedColor;
 
         private ItemSO item;
 
@@ -14,10 +14,12 @@ namespace RS.Typing.Core {
             get;
             private set;
         }
+
+        public UnityEvent StackSizeChanged;
         
         public void Setup(ItemSO item) {
             this.item = item;
-            itemImage.sprite = item.GetItemIcon();
+            itemImage.sprite = item.GetItemIconColor();
             StackSize = 0;
         }
 
@@ -25,24 +27,22 @@ namespace RS.Typing.Core {
             itemCountText.text = StackSize.ToString();
         }
 
-        public void SetHighlight(bool value) {
-            //itemImage.color = value ? highlightedColor : Color.white;
-            itemImage.sprite = value ? item.GetItemIconColor() : item.GetItemIcon();
-        }
-
         public void AddStack() {
             StackSize++;
             RefreshUI();
+            StackSizeChanged.Invoke();
         }
 
         public void ReduceStack() {
             StackSize--;
             RefreshUI();
+            StackSizeChanged.Invoke();
         }
 
         public void SetStackSize(int value) {
             StackSize = value;
             RefreshUI();
+            StackSizeChanged.Invoke();
         }
     }
 }

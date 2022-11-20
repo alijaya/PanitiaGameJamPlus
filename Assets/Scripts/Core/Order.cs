@@ -24,11 +24,11 @@ namespace RS.Typing.Core {
         private bool _timerRunning;
 
         private void OnEnable() {
-            ItemTray.Instance.ItemTrayUpdated += ItemTrayOnItemTrayUpdated;
+            ItemTray.Instance.ItemTrayUpdated.AddListener(ItemTrayOnItemTrayUpdated);
         }
 
         private void OnDisable() {
-            ItemTray.Instance.ItemTrayUpdated -= ItemTrayOnItemTrayUpdated;
+            ItemTray.Instance.ItemTrayUpdated.RemoveListener(ItemTrayOnItemTrayUpdated);
         }
 
         private void ItemTrayOnItemTrayUpdated(Dictionary<ItemSO, Item> itemTray) {
