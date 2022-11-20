@@ -1,4 +1,5 @@
-﻿using RS.Typing.Core;
+﻿using System;
+using RS.Typing.Core;
 using UnityEngine;
 
 public class Mouse : MonoBehaviour {
@@ -48,5 +49,9 @@ public class Mouse : MonoBehaviour {
 
     public void OnDestroyedByWord() {
         if (_hasItem) _targetedItem.AddStack();
+    }
+
+    private void OnDisable() {
+        Destroy(gameObject);
     }
 }
