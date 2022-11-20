@@ -12,8 +12,8 @@ namespace RS.Typing.Core {
 
         [SerializeField] private string typo;
         [SerializeField] private TMP_Text text;
-        [SerializeField] private UnityEvent wordCompleted;
-        [SerializeField] private UnityEvent<UnityEvent> wordCompletedDelegate;
+        public UnityEvent wordCompleted;
+        public UnityEvent<UnityEvent> wordCompletedDelegate;
 
         private string _word;
         private static string _typedWord;

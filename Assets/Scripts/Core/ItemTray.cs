@@ -5,7 +5,7 @@ namespace RS.Typing.Core {
     public class ItemTray : Singleton<ItemTray> {
         [SerializeField] private Item[] itemList;
         [SerializeField] private ItemSO[] itemDataList;
-        private readonly Dictionary<ItemSO, Item> itemTray = new ();
+        private readonly Dictionary<ItemSO, Item> itemTray = new Dictionary<ItemSO, Item>();
         public event System.Action<Dictionary<ItemSO, Item>> ItemTrayUpdated;
 
         protected override void Awake() {

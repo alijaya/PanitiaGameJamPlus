@@ -1,18 +1,13 @@
 using RS.Typing.Core;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Eflatun.SceneReference;
 
 public class MainMenu : MonoBehaviour {
-    [SerializeField] private WordObject _startWordObject;
-    private WordObject[] wordObjects;
-    private void Awake() {
-        wordObjects = FindObjectsOfType<WordObject>();
-        SetEnableWordObjects(false);
-        _startWordObject.enabled = true;
-    }
+    public SceneReference gameplayScene;
 
-    public void SetEnableWordObjects(bool value) {
-        foreach (var wordObject in wordObjects) {
-            wordObject.enabled = value;
-        }
+    public void OnStartTyped()
+    {
+        SceneManager.LoadScene(gameplayScene.Name);
     }
 }

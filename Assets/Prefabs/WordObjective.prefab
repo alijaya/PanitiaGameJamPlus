@@ -534,46 +534,10 @@ MonoBehaviour:
   text: {fileID: 5143707835054825735}
   wordCompleted:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3200965281918894973}
-        m_TargetAssemblyTypeName: RS.Typing.Core.WordObjectHighlighter, Assembly-CSharp
-        m_MethodName: ResetState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RS.Typing.Core.ItemTray, Assembly-CSharp
-        m_MethodName: AddItemToTray
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 303f95164ae83c74b8205f1f2376bd3a, type: 2}
-          m_ObjectArgumentAssemblyTypeName: ItemSO, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   wordCompletedDelegate:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3200965281918894973}
-        m_TargetAssemblyTypeName: RS.Typing.Core.WordObjectHighlighter, Assembly-CSharp
-        m_MethodName: ResetState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &3200965281918894973
 MonoBehaviour:
   m_ObjectHideFlags: 0

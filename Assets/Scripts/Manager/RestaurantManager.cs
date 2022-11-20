@@ -16,6 +16,8 @@ public class RestaurantManager : MonoBehaviour
 
     private List<PointOfInterest> allPOI;
 
+    public WaveManager waveManager;
+
     private void Awake()
     {
         currentCustomers = new List<Customer>();
@@ -27,6 +29,11 @@ public class RestaurantManager : MonoBehaviour
             allPOI.Add(table.right);
         }
         GlobalRef.I.CleanUpWords();
+    }
+
+    private void Start()
+    {
+        waveManager.StartWave();
     }
 
     public void Spawn(IEnumerable<ItemSO> order = null)
