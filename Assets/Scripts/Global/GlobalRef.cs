@@ -21,6 +21,7 @@ public class GlobalRef : SingletonSO<GlobalRef>
 
     public AudioClip BGM_MainMenu;
     public AudioClip BGM_Gameplay;
+    public AudioClip BGM_Report;
     public AudioClip SFX_Typing;
     public AudioClip SFX_TypingError;
     public AudioClip SFX_Served;
@@ -57,6 +58,11 @@ public class GlobalRef : SingletonSO<GlobalRef>
     public void PlayBGM_Gameplay()
     {
         AudioManager.I.PlayBGM(BGM_Gameplay);
+    }
+
+    public void PlayBGM_Report()
+    {
+        AudioManager.I.PlayBGM(BGM_Report, true, false);
     }
 
     public void PlaySFX_Typing()

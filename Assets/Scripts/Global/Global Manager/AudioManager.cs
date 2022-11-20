@@ -38,7 +38,7 @@ public class AudioManager : SingletonMB<AudioManager>
         sfxSource.PlayOneShot(clip, volumeScale);
     }
 
-    public void PlayBGM(AudioClip clip, bool playFromBeginning = false)
+    public void PlayBGM(AudioClip clip, bool playFromBeginning = false, bool loop = true)
     {
         if (clip != bgmSource.clip)
         {

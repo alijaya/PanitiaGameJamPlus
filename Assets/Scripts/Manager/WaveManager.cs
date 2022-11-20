@@ -58,6 +58,7 @@ public class WaveManager : MonoBehaviour {
         else {
             _timerRunning = false;
             _timerCounter = 0;
+            timeLeftVariable.Value = _timerCounter;
             EndShift();
         }
     }

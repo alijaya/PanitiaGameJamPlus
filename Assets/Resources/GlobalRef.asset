@@ -43,6 +43,7 @@ MonoBehaviour:
     sceneAssetGuidHex: 4b4473a1b21534c09bef23f949826b28
   BGM_MainMenu: {fileID: 8300000, guid: bec8346a5bb788d44be8e393c69733d9, type: 3}
   BGM_Gameplay: {fileID: 8300000, guid: 08cd93b79564fd942bc7c09ceaaf0e35, type: 3}
+  BGM_Report: {fileID: 8300000, guid: 60cb5da74afe2cb41a53e4503456a622, type: 3}
   SFX_Typing: {fileID: 8300000, guid: e878eff58dad64a99b4571173ab550f5, type: 3}
   SFX_TypingError: {fileID: 8300000, guid: 750c50e89dbe848a9a8eb2f32d38b47d, type: 3}
   SFX_Served: {fileID: 8300000, guid: c7703a768d13c4666a767feb35d48970, type: 3}
