@@ -42,6 +42,7 @@ namespace RS.Typing.Core {
 
         private void Setup() {
             _word = string.IsNullOrEmpty(typo) ? WordSpawner.I.GetRandomWord(difficulty, true) : typo;
+            if (_word == null) _word = "aligg";
             text.text = _word;
         }
 
