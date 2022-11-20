@@ -198,25 +198,45 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 907623044283177130}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4265167600321304290}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDestroyedByWord
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 6065772963924327630}
+      objectReference: {fileID: 4265167600321304290}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 4265167600321304290}
+      objectReference: {fileID: 6065772963924327630}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -227,19 +247,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-      propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnDestroyedByWord
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Mouse, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: Mouse, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Mouse, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompletedDelegate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
