@@ -75,7 +75,6 @@ namespace RS.Typing.Core {
                 totalSales.Value += itemCost;
             }
 
-            GlobalRef.I.PlaySFX_FoodServed();
             if (_orderedItems.Count == 0) {
                 orderCompleted.Invoke();
                 totalCustomerServed.Value++;

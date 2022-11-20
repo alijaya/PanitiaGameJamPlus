@@ -254,10 +254,14 @@ PrefabInstance:
       objectReference: {fileID: 4180786141166097367}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
@@ -265,7 +269,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7411407690711764038}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 7ea7aaad8206d4b418e33d12fd76980e, type: 2}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
@@ -273,11 +285,23 @@ PrefabInstance:
       value: AddStack
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlaySFX_FoodReady
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: RS.Typing.Core.Item, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GlobalRef, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: wordCompleted.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3669399906329752366, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
