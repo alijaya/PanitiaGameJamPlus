@@ -98,6 +98,7 @@ namespace RS.Typing.Core {
             }
 
             if (_word.Equals(value)) {
+                KeyInput.Instance.SetEnable(false);
                 WordSpawner.I.ReleaseWord(_word); // balikin kata2nya
                 wordCompletedDelegate?.Invoke(wordCompleted);
             }
@@ -106,6 +107,8 @@ namespace RS.Typing.Core {
         private void WordComplete() {
             Reset();
             Setup();
+            
+            KeyInput.Instance.SetEnable(true);
         }
 
         public void Reset() {
