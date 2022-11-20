@@ -8,12 +8,15 @@ namespace RS.Typing.Core {
         [SerializeField] private TextMeshProUGUI itemCountText;
         [SerializeField] private Color highlightedColor;
 
+        private ItemSO item;
+
         public int StackSize {
             get;
             private set;
         }
         
         public void Setup(ItemSO item) {
+            this.item = item;
             itemImage.sprite = item.GetItemIcon();
             StackSize = 0;
         }
@@ -23,7 +26,8 @@ namespace RS.Typing.Core {
         }
 
         public void SetHighlight(bool value) {
-            itemImage.color = value ? highlightedColor : Color.white;
+            //itemImage.color = value ? highlightedColor : Color.white;
+            itemImage.sprite = value ? item.GetItemIconColor() : item.GetItemIcon();
         }
 
         public void AddStack() {

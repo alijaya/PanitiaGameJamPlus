@@ -15,6 +15,7 @@ namespace RS.Typing.Core {
                 var itemData = itemDataList[i];
                 
                 item.Setup(itemData);
+                item.SetHighlight(true); // supaya berwarna
                 itemTray[itemData] = item;
             }
         }
