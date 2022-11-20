@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityAtoms.BaseAtoms;
 
 namespace RS.Typing.Core {
     public class WordObject : MonoBehaviour {
@@ -15,8 +13,21 @@ namespace RS.Typing.Core {
         public UnityEvent wordCompleted;
         public UnityEvent<UnityEvent> wordCompletedDelegate;
 
+        [SerializeField] private Transform objectiveTransform;
+        private ChefTasks _chef;
+        
         private string _word;
         private static string _typedWord;
+
+        private void Awake() {
+            _chef = FindObjectOfType<ChefTasks>();
+            wordCompletedDelegate.AddListener(_chef.AddTask);
+            wordCompletedDelegate.AddListener(Call);
+        }
+
+        private void Call(UnityEvent arg0) {
+            _chef.MoveTo(objectiveTransform);
+        }
 
         private void Start() {
             GlobalRef.I.Words.Add(this.gameObject);
@@ -31,6 +42,8 @@ namespace RS.Typing.Core {
         private void OnDestroy()
         {
             GlobalRef.I.Words.Remove(this.gameObject);
+            wordCompletedDelegate.RemoveListener(_chef.AddTask);
+            wordCompletedDelegate.RemoveListener(Call);
         }
 
         private void OnEnable() {
