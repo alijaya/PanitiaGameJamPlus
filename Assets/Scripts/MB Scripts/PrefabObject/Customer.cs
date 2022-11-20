@@ -39,11 +39,12 @@ public class Customer : MonoBehaviour
 
         targetPosition.occupyObject = gameObject;
 
+        GlobalRef.I.PlaySFX_CustomerEnter();
         pathfinder.OnReached.AddListener(OnReachSeating);
         pathfinder.GoTo(this.targetPosition.transform);
     }
 
-    public void SetOder(IEnumerable<ItemSO> items) {
+    public void SetOrder(IEnumerable<ItemSO> items) {
         var order = orderUI.GetComponent<Order>();
         order.Setup(items);
     }
@@ -83,6 +84,7 @@ public class Customer : MonoBehaviour
         {
             Seat();
         }
+        GlobalRef.I.PlaySFX_CustomerOrder();
         orderUI.gameObject.SetActive(true);
     }
 

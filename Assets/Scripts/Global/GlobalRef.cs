@@ -24,10 +24,13 @@ public class GlobalRef : SingletonSO<GlobalRef>
     public AudioClip BGM_Report;
     public AudioClip SFX_Typing;
     public AudioClip SFX_TypingError;
-    public AudioClip SFX_Served;
+    public AudioClip SFX_FoodReady;
+    public AudioClip SFX_FoodServed;
     public AudioClip SFX_CustomerEnter;
+    public AudioClip SFX_CustomerOrder;
     public AudioClip SFX_CustomerHappy;
     public AudioClip SFX_CustomerAngry;
+    public AudioClip SFX_Shot;
 
     public void CleanUpWords()
     {
@@ -75,14 +78,24 @@ public class GlobalRef : SingletonSO<GlobalRef>
         AudioManager.I.PlaySFX(SFX_TypingError);
     }
 
-    public void PlaySFX_Served()
+    public void PlaySFX_FoodReady()
     {
-        AudioManager.I.PlaySFX(SFX_Served);
+        AudioManager.I.PlaySFX(SFX_FoodReady);
+    }
+
+    public void PlaySFX_FoodServed()
+    {
+        AudioManager.I.PlaySFX(SFX_FoodServed);
     }
 
     public void PlaySFX_CustomerEnter()
     {
         AudioManager.I.PlaySFX(SFX_CustomerEnter);
+    }
+
+    public void PlaySFX_CustomerOrder()
+    {
+        AudioManager.I.PlaySFX(SFX_CustomerOrder);
     }
 
     public void PlaySFX_CustomerHappy()
@@ -93,5 +106,10 @@ public class GlobalRef : SingletonSO<GlobalRef>
     public void PlaySFX_CustomerAngry()
     {
         AudioManager.I.PlaySFX(SFX_CustomerAngry);
+    }
+
+    public void PlaySFX_Shot()
+    {
+        AudioManager.I.PlaySFX(SFX_Shot);
     }
 }

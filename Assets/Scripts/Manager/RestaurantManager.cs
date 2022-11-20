@@ -46,7 +46,7 @@ public class RestaurantManager : MonoBehaviour
         {
             var customer = Instantiate(customerPrefabs.GetRandom(), door.position, Quaternion.identity);
             customer.Setup(door, seat);
-            if (order != null) customer.SetOder(order); 
+            if (order != null) customer.SetOrder(order); 
             
             currentCustomers.Add(customer);
         }
