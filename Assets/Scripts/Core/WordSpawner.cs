@@ -15,7 +15,7 @@ namespace RS.Typing.Core {
         private List<string> _normalWordBank;
         private List<string> _hardWordBank;
 
-        private HashSet<string> _usedWords;
+        //private HashSet<string> _usedWords;
 
         protected override void SingletonAwakened() {
             base.SingletonAwakened();
@@ -39,7 +39,7 @@ namespace RS.Typing.Core {
             _easyWordBank = _allWordBank.Where(word => word.Length <= easyThreshold).ToList();
             _normalWordBank = _allWordBank.Where(word => word.Length > easyThreshold && word.Length <= normalThreshold).ToList();
             _hardWordBank = _allWordBank.Where(word => word.Length > normalThreshold && word.Length <= hardThreshold).ToList();
-            _usedWords = new HashSet<string>();
+            //_usedWords = new HashSet<string>();
         }
 
         public List<string> GetBank(WordDifficulty difficulty)
@@ -59,28 +59,32 @@ namespace RS.Typing.Core {
         public string GetRandomWord(WordDifficulty difficulty, bool uniqueStart = false) {
             var random = new System.Random();
 
-            var allBank = GetBank(difficulty).Except(_usedWords); // ga boleh yang udah dipake
+            var usedWords = GlobalRef.I.Words.Select(go => go.GetComponent<WordObject>().GetWord()).Where(w => !String.IsNullOrEmpty(w));
+            var allBank = GetBank(difficulty).Except(usedWords); // ga boleh yang udah dipake
             var bank = allBank;
 
-            if (uniqueStart) bank = bank.Where(w => _usedWords.All(uw => !w.StartsWith(uw[0]))); // ga boleh yang kata depannya udah ada
+            if (uniqueStart) bank = bank.Where(w => usedWords.All(uw => !w.StartsWith(uw[0]))); // ga boleh yang kata depannya udah ada
 
             if (bank.Count() > 0)
             {
                 var word = bank.GetRandom();
-                _usedWords.Add(word);
+                //_usedWords.Add(word);
 
                 return word;
             }
             else
             {
-                Debug.Log(allBank.Count() + " " + _usedWords.Count());
+                //foreach (var w in _usedWords)
+                //{
+                //    Debug.Log(w);
+                //}
                 return "aliganteng"; // ga ada yang mungkin, sad :(
             }
         }
 
         public void ReleaseWord(string word) // sudah pake dibalikin ya
         {
-            _usedWords.Remove(word);
+            //_usedWords.RemoveWhere(w => w == word);
         }
 
         private IEnumerable<string> GetRandomWords(int amount) {
@@ -101,7 +105,7 @@ namespace RS.Typing.Core {
 
         public void ReleaseAllWords()
         {
-            _usedWords.Clear();
+            //_usedWords.Clear();
         }
     }
 
