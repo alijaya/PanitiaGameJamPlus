@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 namespace RS.Typing.Core {
     public class WordObject : MonoBehaviour {
+        public WordDifficulty difficulty = WordDifficulty.Normal;
         public UnityEvent<int, bool> WordMatched;
 
         [SerializeField] private string typo;
@@ -36,7 +37,7 @@ namespace RS.Typing.Core {
         }
 
         private void Setup() {
-            _word = string.IsNullOrEmpty(typo) ? WordSpawner.I.GetRandomWord(WordDifficulty.Normal, true) : typo;
+            _word = string.IsNullOrEmpty(typo) ? WordSpawner.I.GetRandomWord(difficulty, true) : typo;
             text.text = _word;
         }
 
