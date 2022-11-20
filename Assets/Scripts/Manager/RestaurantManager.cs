@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityAtoms.BaseAtoms;
+using RS.Typing.Core;
 
 public class RestaurantManager : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class RestaurantManager : MonoBehaviour
     {
         GlobalRef.I.totalSales.Value = 0;
         GlobalRef.I.totalCustomerServed.Value = 0;
+        WordSpawner.I.ReleaseAllWords();
         GlobalRef.I.PlayBGM_Gameplay();
         waveManager.StartWave();
     }

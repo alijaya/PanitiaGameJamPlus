@@ -72,7 +72,7 @@ namespace RS.Typing.Core {
             }
             else
             {
-                return null; // ga ada yang mungkin, sad :(
+                return "aliganteng"; // ga ada yang mungkin, sad :(
             }
         }
 
@@ -97,6 +97,10 @@ namespace RS.Typing.Core {
             return words;
         }
 
+        public void ReleaseAllWords()
+        {
+            _usedWords.Clear();
+        }
     }
 
     public enum WordDifficulty {
