@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -69,8 +70,18 @@ namespace RS.Typing.Core {
                 return;
             }
 
-            var highlightedWord = GlobalRef.I.Words.Where(x => x.GetComponent<WordObject>().GetWord().StartsWith(s)).ToArray();
-            if (highlightedWord.Length > 0) { // kalau ada yang depannya sama dengan yang kita tulis
+            IEnumerable<WordObject> GetHighlighted() {
+                foreach (var word in GlobalRef.I.Words) {
+                    if (!word.TryGetComponent(out WordObject wordObject)) continue;
+                    if (wordObject.GetWord().StartsWith(s)) {
+                        yield return wordObject;
+                    }
+                }
+            }
+
+            var highlightedWord = GetHighlighted();
+            
+            if (highlightedWord.Any()) { // kalau ada yang depannya sama dengan yang kita tulis
                 AttemptInput(s);
             }
             else { // kalau ga ada yang sama sekali
