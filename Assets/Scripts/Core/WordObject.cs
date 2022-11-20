@@ -23,6 +23,7 @@ namespace RS.Typing.Core {
             _chef = FindObjectOfType<ChefTasks>();
             if (_chef) wordCompletedDelegate.AddListener(_chef.AddTask);
             wordCompletedDelegate.AddListener(Call);
+            wordCompleted.AddListener(WordComplete);
         }
 
         private void Call(UnityEvent arg0) {
@@ -44,6 +45,7 @@ namespace RS.Typing.Core {
             GlobalRef.I.Words.Remove(this.gameObject);
             if (_chef) wordCompletedDelegate.RemoveListener(_chef.AddTask);
             wordCompletedDelegate.RemoveListener(Call);
+            wordCompleted.RemoveListener(WordComplete);
         }
 
         private void OnEnable() {
@@ -95,13 +97,15 @@ namespace RS.Typing.Core {
                 WordMatched.Invoke(0, false);
             }
 
-            if (_word.Equals(value))
-            {
+            if (_word.Equals(value)) {
                 WordSpawner.I.ReleaseWord(_word); // balikin kata2nya
                 wordCompletedDelegate?.Invoke(wordCompleted);
-                Reset();
-                Setup();
             }
+        }
+
+        private void WordComplete() {
+            Reset();
+            Setup();
         }
 
         public void Reset() {
