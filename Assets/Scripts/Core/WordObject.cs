@@ -13,6 +13,7 @@ namespace RS.Typing.Core {
         [SerializeField] private string typo;
         [SerializeField] private TMP_Text text;
         [SerializeField] private UnityEvent wordCompleted;
+        [SerializeField] private UnityEvent<UnityEvent> wordCompletedDelegate;
 
         private string _word;
         private static string _typedWord;
@@ -84,7 +85,7 @@ namespace RS.Typing.Core {
             if (_word.Equals(value))
             {
                 WordSpawner.I.ReleaseWord(_word); // balikin kata2nya
-                wordCompleted?.Invoke();
+                wordCompletedDelegate?.Invoke(wordCompleted);
                 Reset();
                 Setup();
             }
