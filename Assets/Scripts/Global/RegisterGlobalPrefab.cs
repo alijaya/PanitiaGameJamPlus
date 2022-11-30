@@ -8,7 +8,7 @@ public class RegisterGlobalPrefab : SingletonSO<RegisterGlobalPrefab>
 {
     public List<GameObject> globalPrefabs;
 
-    [RuntimeInitializeOnLoadMethod]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void OnBeforeSceneLoadRuntime()
     {
         var autoRuntimeInit = I;

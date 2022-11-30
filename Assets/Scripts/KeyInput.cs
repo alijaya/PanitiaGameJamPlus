@@ -1,53 +1,75 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class KeyInput : Singleton<KeyInput> {
-    [SerializeField]private TMP_InputField inputField;
-    public static event Action<string> KeyDown;
+public class KeyInput : SingletonMB<KeyInput> {
 
-    private bool _enabled = true;
+    public string CurrentText { get; private set; } = "";
+    public event Action<string> CurrentTextChanged;
 
-    protected override void Awake() {
-        base.Awake();
-        SceneManager.sceneLoaded += SceneManagerOnsceneLoaded;
-    }
-
-    private void OnDestroy() {
-        SceneManager.sceneLoaded -= SceneManagerOnsceneLoaded;
-    }
-
-    private void SceneManagerOnsceneLoaded(Scene arg0, LoadSceneMode arg1) {
-        EventSystem.current.SetSelectedGameObject(gameObject);
-        ResetText();
-        _enabled = true;
-    }
-
-    private void Start()
+    protected override void SingletonAwakened()
     {
-        EventSystem.current.SetSelectedGameObject(this.gameObject);
+        SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
     }
 
-    public void DebugShow(string value) {
-        if (Input.anyKeyDown && _enabled) {
-            KeyDown?.Invoke(value?.ToLower());
-        }
+    protected override void SingletonDestroyed()
+    {
+        SceneManager.sceneLoaded -= SceneManagerOnSceneLoaded;
+    }
+
+    private void OnEnable() {
+        Keyboard.current.onTextInput += TypeChar;
+        OnSceneLoaded();
+    }
+
+    private void OnDisable() {
+        Keyboard.current.onTextInput -= TypeChar;
+    }
+
+    private void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode arg1) {
+        OnSceneLoaded();
+    }
+
+    private void OnSceneLoaded()
+    {
+        ResetText();
     }
 
     public void Update() {
-        if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape)) {
+        if (Keyboard.current.backspaceKey.wasPressedThisFrame || Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
             ResetText();
-            DebugShow("");
         }
     }
 
-    public void ResetText(string value = "") {
-        inputField.text = value;
+    public void SetText(string value = "")
+    {
+        if (CurrentText != value)
+        {
+            CurrentText = value;
+            //Debug.Log(CurrentText);
+            CurrentTextChanged?.Invoke(CurrentText);
+        }
     }
 
-    public void SetEnable(bool value) {
-        _enabled = value;
+    public void TypeChar(char value)
+    {
+        SetText(CurrentText + value);
+    }
+
+    public void TypeString(string value)
+    {
+        SetText(CurrentText + value);
+    }
+
+    public void ResetText() {
+        SetText("");
+    }
+
+    public void DeleteChar(int count = 1)
+    {
+        SetText(CurrentText.Remove(CurrentText.Length - count));
     }
 }
