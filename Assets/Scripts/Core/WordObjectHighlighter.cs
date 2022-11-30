@@ -12,54 +12,27 @@ namespace RS.Typing.Core {
 
         private void Awake() {
             _wordObject = GetComponent<WordObject>();
-            _wordObject.wordCompleted.AddListener(ResetState);
-            _wordObject.WordMatched.AddListener(WordObjectOnWordMatched);
+        }
+        private string WrapColor(string value, Color color) {
+            return value == "" ? "" : $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{value}</color>";
         }
 
-        private void OnDestroy()
-        {
-            _wordObject.wordCompleted.RemoveListener(ResetState);
-            _wordObject.WordMatched.RemoveListener(WordObjectOnWordMatched);
-        }
-
-        private void WordObjectOnWordMatched(int highlightedIndex, bool isCurrentlyMatched) {
-            if (highlightedIndex == 0) {
-                ResetState();
-                return;
-            }
-
-            //const string endTag = "</color>";
-            //var word = _wordObject.GetWord().Insert(highlightedIndex, endTag);
-
-            //if (!isCurrentlyMatched) {
-            //    word = word.Insert(highlightedIndex + endTag.Length,
-            //        $"<color=#{ColorUtility.ToHtmlStringRGB(wrongHighlightedColor)}>");
-            //}
-
-            //text.text = $"<color=#{ColorUtility.ToHtmlStringRGB(highlightedColor)}>{word}";
-
-            var word = _wordObject.GetWord();
-            var matchedChars = word.Substring(0, highlightedIndex);
-            var nextChar = highlightedIndex < word.Length ? word.Substring(highlightedIndex, 1) : "";
-            var restChars = highlightedIndex < word.Length ? word.Substring(highlightedIndex + 1) : "";
-
+        public void Highlight(int position, bool isCurrentlyMatched) {
+            var word = _wordObject.Text;
+            var matchedChars = word[..position];
+            var nextChar = position < word.Length ? word.Substring(position, 1) : "";
+            var restChars = position < word.Length ? word[(position + 1)..] : "";
+            
             var resultWord = "";
-            resultWord += wrapColor(matchedChars, highlightedColor);
+            resultWord += WrapColor(matchedChars, highlightedColor);
             if (isCurrentlyMatched) resultWord += nextChar; 
-            else resultWord += wrapColor(nextChar, wrongHighlightedColor);
+            else resultWord += WrapColor(nextChar, wrongHighlightedColor);
             resultWord += restChars;
-
             text.text = resultWord;
         }
 
-        private string wrapColor(string value, Color color)
-        {
-            if (value == "") return "";
-            return $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{value}</color>";
-        }
-
         public void ResetState() {
-            text.text = _wordObject.GetWord();
+            text.text = _wordObject.Text;
         }
     }
 }

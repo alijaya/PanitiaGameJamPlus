@@ -1,40 +1,63 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+
 
 public class ChefTasks : MonoBehaviour {
-    private readonly List<UnityEvent> tasks = new ();
-    
+
     private ObjectPathFinder pathfinder;
     private MovementController movement;
+
+    private readonly Queue<KeyValuePair<Transform,Action>> _actionsQueue = new ();
+
+    private bool _isReached;
 
     private void Awake() {
         pathfinder = GetComponent<ObjectPathFinder>();
         movement = GetComponent<MovementController>();
     }
-    private void OnReachObjective() {
+
+    private void OnEnable() {
+        pathfinder.OnReached.AddListener(OnReachObjective);
+    }
+
+    private void OnDisable() {
         pathfinder.OnReached.RemoveListener(OnReachObjective);
-        DoTask();
     }
 
-    private void DoTask() {
-        if (tasks.Count < 1) return;
-        tasks[0]?.Invoke();
-        tasks.RemoveAt(0);
+    private void OnReachObjective() {
+        _isReached = true;
     }
 
-    public void AddTask(UnityEvent task) {
-        tasks.Add(task);
+    private void Start() {
+        StartCoroutine(DoTask());
     }
-    
 
-    public void MoveTo(Transform objectiveTransform) {
+    private IEnumerator DoTask() {
+        while (true) {
+            yield return new WaitUntil(() => _actionsQueue.Count > 0);
+            
+            var task = _actionsQueue.Dequeue();
+            var taskLocation = task.Key;
+            MoveTo(taskLocation);
+            
+            yield return new WaitUntil(() => _isReached);
+            task.Value();
+        }
+    }
+
+    public void AddTask(KeyValuePair<Transform,Action> task) {
+        _actionsQueue.Enqueue(task);
+    }
+
+    private void MoveTo(Transform objectiveTransform) {
+        _isReached = false;
         var dist = Vector2.Distance(objectiveTransform.position, transform.position);
         if (dist < .1f) {
-            DoTask();
+            _isReached = true;
         }
         else {
-            pathfinder.OnReached.AddListener(OnReachObjective);
             pathfinder.GoTo(objectiveTransform);    
         }
         
