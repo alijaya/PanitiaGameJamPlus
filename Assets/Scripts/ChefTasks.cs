@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 public class ChefTasks : MonoBehaviour {
 
     private ObjectPathFinder pathfinder;
@@ -39,10 +37,11 @@ public class ChefTasks : MonoBehaviour {
             yield return new WaitUntil(() => _actionsQueue.Count > 0);
             
             var task = _actionsQueue.Dequeue();
-            var taskLocation = task.Key;
-            MoveTo(taskLocation);
-            
-            yield return new WaitUntil(() => _isReached);
+            if (task.Key != null) {
+                var taskLocation = task.Key;
+                MoveTo(taskLocation);
+                yield return new WaitUntil(() => _isReached);    
+            }
             task.Value();
         }
     }
