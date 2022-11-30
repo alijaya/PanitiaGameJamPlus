@@ -23,7 +23,7 @@ namespace RS.Typing.Core {
         }
 
         private void Update() {
-            if (Keyboard.current.backspaceKey.wasPressedThisFrame) {
+            if (Keyboard.current.backspaceKey.wasPressedThisFrame && _focusedWordObject) {
                 _focusedWordObject.Reset();
                 _focusedWordObject = null;
                 _position = 0;
