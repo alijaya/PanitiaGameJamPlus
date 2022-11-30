@@ -40,9 +40,10 @@ namespace RS.Typing.Core {
             AnyNewWordObjectGenerated?.Invoke(this, EventArgs.Empty);
         }
         public void WordComplete() {
-            Reset();
-            Setup();
             _chef.AddTask(new KeyValuePair<Transform, Action>(objectiveTransform, () => {
+                Reset();
+                Setup();
+                
                 onWordCompleted?.Invoke();
             }));
         }
