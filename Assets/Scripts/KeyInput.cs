@@ -12,6 +12,7 @@ public class KeyInput : SingletonMB<KeyInput> {
     protected override void SingletonAwakened()
     {
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+        OnSceneLoaded();
     }
 
     protected override void SingletonDestroyed()
@@ -21,7 +22,6 @@ public class KeyInput : SingletonMB<KeyInput> {
 
     private void OnEnable() {
         Keyboard.current.onTextInput += TypeChar;
-        OnSceneLoaded();
     }
 
     private void OnDisable() {
@@ -34,6 +34,7 @@ public class KeyInput : SingletonMB<KeyInput> {
 
     private void OnSceneLoaded()
     {
+        this.enabled = true;
         ResetText();
     }
 
