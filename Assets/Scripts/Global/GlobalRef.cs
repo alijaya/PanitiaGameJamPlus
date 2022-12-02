@@ -5,6 +5,7 @@ using UnityAtoms.BaseAtoms;
 using Eflatun.SceneReference;
 using UnityEngine.SceneManagement;
 using RS.Typing.Core;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu]
 public class GlobalRef : SingletonSO<GlobalRef>
