@@ -8,16 +8,17 @@ namespace RS.Typing.Core {
         [SerializeField] private Color highlightedColor;
         [SerializeField] private Color wrongHighlightedColor;
 
-        private WordObject _wordObject;
+        private WordObjectBase _wordObject;
 
         private void Awake() {
-            _wordObject = GetComponent<WordObject>();
+            _wordObject = GetComponent<WordObjectBase>();
         }
         private string WrapColor(string value, Color color) {
             return value == "" ? "" : $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{value}</color>";
         }
 
         public void Highlight(int position, bool isCurrentlyMatched) {
+            if (position == 0) return;
             var word = _wordObject.Text;
             var matchedChars = word[..position];
             var nextChar = position < word.Length ? word.Substring(position, 1) : "";

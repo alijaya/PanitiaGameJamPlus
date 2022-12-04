@@ -6,65 +6,72 @@ using UnityEngine.InputSystem;
 
 namespace RS.Typing.Core { 
     public class WordPrompt : MonoBehaviour {
-        private readonly List<WordObject> _wordObjectList = new ();
-        private WordObject _focusedWordObject;
-        
-        private int _position;
+        private readonly List<WordObjectBase> _wordObjectList = new ();
+        private List<WordObjectBase> _focused = new ();
 
         private void OnEnable() {
-            WordObject.AnyNewWordObjectGenerated += OnAnyNewWordObjectGenerated;
-            WordObject.AnyWordObjectDestroyed += OnAnyWordObjectDestroyed;
+            WordObjectBase.AnyNewWordObjectGenerated += OnAnyNewWordObjectGenerated;
+            WordObjectBase.AnyWordObjectDestroyed += OnAnyWordObjectDestroyed;
             Keyboard.current.onTextInput += OnTextInput;
+
+            WordObjectBase.OnCompleted = () => {
+                ResetAllWordObject();
+                _focused.Clear();
+            };
         }
         private void OnDisable() {
-            WordObject.AnyNewWordObjectGenerated -= OnAnyNewWordObjectGenerated;
-            WordObject.AnyWordObjectDestroyed -= OnAnyWordObjectDestroyed;
+            WordObjectBase.AnyNewWordObjectGenerated -= OnAnyNewWordObjectGenerated;
+            WordObjectBase.AnyWordObjectDestroyed -= OnAnyWordObjectDestroyed;
             Keyboard.current.onTextInput -= OnTextInput;
         }
 
         private void Update() {
-            if (Keyboard.current.backspaceKey.wasPressedThisFrame && _focusedWordObject) {
-                _focusedWordObject.Reset();
-                _focusedWordObject = null;
-                _position = 0;
-            }
+            if (!Keyboard.current.backspaceKey.wasPressedThisFrame) return;
+            ResetAllWordObject();
+            _focused.Clear();
         }
 
         private void OnAnyNewWordObjectGenerated(object sender, EventArgs e) {
-            var wordObject = (WordObject)sender;
+            var wordObject = (WordObjectBase)sender;
             if (_wordObjectList.Contains(wordObject)) return;
             _wordObjectList.Add(wordObject);
         }
 
         private void OnAnyWordObjectDestroyed(object sender, EventArgs e) {
-            var wordObject = (WordObject)sender;
+            var wordObject = (WordObjectBase)sender;
             if (!_wordObjectList.Contains(wordObject)) return;
             _wordObjectList.Remove(wordObject);
         }
 
         private void OnTextInput(char ch) {
-            if (_focusedWordObject == null) {
-                _focusedWordObject = _wordObjectList.FirstOrDefault(x => x.Text.StartsWith(ch));
-            }
-
-            if (_focusedWordObject == null) {
-                // no word started with ch
+            if (HandlePassiveWordObjectInput(ch)) return;
+            
+            if (_focused.Count == 1) {
+                _focused[0].TryMatch(ch, true);
                 return;
             }
+            
+            // Getting new matched words
+            var matched = _wordObjectList.
+                Where(wordObject => wordObject is not WordObjectPassive).
+                Where(wordObject => wordObject.TryMatch(ch, false)).ToList();
 
-            if (_focusedWordObject.Text[_position] == ch) {
-                ++_position;
-                _focusedWordObject.Highlight(_position, true);
-                if (_position == _focusedWordObject.Text.Length) {
-                    // Word Complete
-                    _focusedWordObject.WordComplete();
-                    _focusedWordObject = null;
-                    _position = 0;
+            if (matched.Count == 1) {
+                foreach (var wordObjectBase in _focused.Except(matched)) {
+                    wordObjectBase.Reset();
                 }
             }
-            else {
-                // HighlightError
-                _focusedWordObject.Highlight(_position, false);
+            
+            _focused = matched;
+        }
+
+        private bool HandlePassiveWordObjectInput(char ch) {
+            return _wordObjectList.OfType<WordObjectPassive>().Any(wordObjectBase => wordObjectBase.TryMatch(ch, false));
+        }
+
+        private void ResetAllWordObject() {
+            foreach (var wordObject in _focused) {
+                wordObject.Reset();
             }
         }
     }
