@@ -1,5 +1,5 @@
 ﻿using System;
-using RS.Typing.Core;
+using Core;
 using UnityEngine;
 
 public class Mouse : MonoBehaviour {

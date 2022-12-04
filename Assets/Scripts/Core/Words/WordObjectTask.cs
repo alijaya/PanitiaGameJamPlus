@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RS.Typing.Core {
+namespace Core.Words {
     public class WordObjectTask : WordObjectBase {
         [SerializeField] private Transform objectiveTransform;
         private ChefTasks _chef;

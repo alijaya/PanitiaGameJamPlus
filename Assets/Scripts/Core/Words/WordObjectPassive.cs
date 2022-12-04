@@ -1,4 +1,4 @@
-namespace RS.Typing.Core {
+namespace Core.Words {
     public class WordObjectPassive : WordObjectBase {
         protected override void WordComplete() {
             Setup();

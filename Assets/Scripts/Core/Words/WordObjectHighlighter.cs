@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace RS.Typing.Core {
+namespace Core.Words {
     public class WordObjectHighlighter : MonoBehaviour {
         [SerializeField] private TextMeshProUGUI text;
         

@@ -4,8 +4,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace RS.Typing.Core { 
-    public class WordPrompt : MonoBehaviour {
+namespace Core.Words { 
+    public class WordPrompt : SingletonMB<WordPrompt> {
         private readonly List<WordObjectBase> _wordObjectList = new ();
         private List<WordObjectBase> _focused = new ();
 
@@ -13,11 +13,6 @@ namespace RS.Typing.Core {
             WordObjectBase.AnyNewWordObjectGenerated += OnAnyNewWordObjectGenerated;
             WordObjectBase.AnyWordObjectDestroyed += OnAnyWordObjectDestroyed;
             Keyboard.current.onTextInput += OnTextInput;
-
-            WordObjectBase.OnCompleted = () => {
-                ResetAllWordObject();
-                _focused.Clear();
-            };
         }
         private void OnDisable() {
             WordObjectBase.AnyNewWordObjectGenerated -= OnAnyNewWordObjectGenerated;
@@ -27,8 +22,7 @@ namespace RS.Typing.Core {
 
         private void Update() {
             if (!Keyboard.current.backspaceKey.wasPressedThisFrame) return;
-            ResetAllWordObject();
-            _focused.Clear();
+            ResetFocused();
         }
 
         private void OnAnyNewWordObjectGenerated(object sender, EventArgs e) {
@@ -69,10 +63,11 @@ namespace RS.Typing.Core {
             return _wordObjectList.OfType<WordObjectPassive>().Any(wordObjectBase => wordObjectBase.TryMatch(ch, false));
         }
 
-        private void ResetAllWordObject() {
+        public void ResetFocused() {
             foreach (var wordObject in _focused) {
                 wordObject.Reset();
             }
+            _focused.Clear();
         }
     }
 }

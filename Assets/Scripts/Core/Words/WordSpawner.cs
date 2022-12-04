@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace RS.Typing.Core {
+namespace Core.Words {
     public class WordSpawner : SingletonMB<WordSpawner> {
         [SerializeField] private TextAsset wordsFile;
         [SerializeField] private int easyThreshold;

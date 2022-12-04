@@ -1,9 +1,8 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
 
-namespace RS.Typing.Core {
+namespace Core {
     public class Item: MonoBehaviour {
         [SerializeField] private SpriteRenderer itemImage;
         [SerializeField] private TextMeshProUGUI itemCountText;

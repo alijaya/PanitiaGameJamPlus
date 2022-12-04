@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace RS.Typing.Core {
+namespace Core.Words {
     [DisallowMultipleComponent]
     public abstract class WordObjectBase : MonoBehaviour {
         public WordDifficulty difficulty = WordDifficulty.Normal;
@@ -17,8 +17,6 @@ namespace RS.Typing.Core {
         public string Text { get; protected set; }
         protected int Position;
 
-        public static Action OnCompleted;
-        
         public static event EventHandler AnyNewWordObjectGenerated;
         public static event EventHandler AnyWordObjectDestroyed;
 
@@ -48,7 +46,7 @@ namespace RS.Typing.Core {
 
         protected virtual void WordComplete() {
             onWordCompleted?.Invoke();
-            OnCompleted?.Invoke();
+            WordPrompt.I.ResetFocused();
         }
 
         public abstract bool TryMatch(char ch, bool isFocused);

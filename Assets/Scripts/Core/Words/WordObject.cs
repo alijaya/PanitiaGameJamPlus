@@ -1,5 +1,5 @@
 ﻿
-namespace RS.Typing.Core {
+namespace Core.Words {
     public class WordObject : WordObjectBase {
         public override bool TryMatch(char ch, bool isFocused) {
             if (char.IsWhiteSpace(Text[Position])) {

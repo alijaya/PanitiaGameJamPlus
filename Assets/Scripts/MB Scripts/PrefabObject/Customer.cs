@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using DG.Tweening;
-using RS.Typing.Core;
 
 [RequireComponent(typeof(ObjectPathFinder), typeof(MovementController))]
 public class Customer : MonoBehaviour
