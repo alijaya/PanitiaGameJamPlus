@@ -5,7 +5,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-[RequireComponent(typeof(MovementController2))]
+[RequireComponent(typeof(MovementController2), typeof(CustomCoordinate))]
 public class PathFinder2 : MonoBehaviour
 {
     private Vector2[] path;
@@ -16,22 +16,36 @@ public class PathFinder2 : MonoBehaviour
     public bool IsMoving { get; private set; }
 
     private MovementController2 movement;
+    private CustomCoordinate coordinate;
 
     private void Awake()
     {
         movement = GetComponent<MovementController2>();
+        coordinate = GetComponent<CustomCoordinate>();
     }
 
-    public async UniTask GoTo(Transform target, CancellationToken ct = default)
+    public async UniTask GoToWorld(Transform target, CancellationToken ct = default)
+    {
+        await GoToWorld(target.position, ct);
+    }
+
+    public async UniTask GoToWorld(Vector3 target, CancellationToken ct = default)
+    {
+        await GoTo(CustomCoordinate.WorldToGameCoordinate(target), ct);
+    }
+
+    // This is in Game World Coordinate
+    public async UniTask GoTo(CustomCoordinate target, CancellationToken ct = default)
     {
         await GoTo(target.position, ct);
     }
 
+    // This is in Game World Coordinate
     public async UniTask GoTo(Vector3 target, CancellationToken ct = default)
     {
         Stop();
 
-        path = Pathfinding.I.FindPath(this.transform.position, target);
+        path = Pathfinding.I.FindPath(coordinate.position, target);
         currentPathIndex = 0;
 
         IsMoving = true;

@@ -27,6 +27,6 @@ public class ActionWalkTo : AsyncAction
 
         if (pathFinder == null) Failure();
 
-        await pathFinder.GoTo(target.Value);
+        await pathFinder.GoToWorld(target.Value);
     }
 }

@@ -49,7 +49,6 @@ public class CustomCoordinateEditor : Editor
         {
             Undo.RecordObjects(recordObjects, "Change CustomCoordinate X");
             customCoordinate.localPosition += Vector3.right * Vector3.Dot(newPosX - pos, xAxis);
-            customCoordinate.Update();
         }
 
         Handles.color = Handles.yAxisColor;
@@ -59,7 +58,6 @@ public class CustomCoordinateEditor : Editor
         {
             Undo.RecordObjects(recordObjects, "Change CustomCoordinate Y");
             customCoordinate.localPosition += Vector3.up * Vector3.Dot(newPosY - pos, yAxis);
-            customCoordinate.Update();
         }
 
         Handles.color = Handles.zAxisColor;
@@ -69,7 +67,6 @@ public class CustomCoordinateEditor : Editor
         {
             Undo.RecordObjects(recordObjects, "Change CustomCoordinate Z");
             customCoordinate.localPosition += Vector3.forward * Vector3.Dot(newPosZ - pos, zAxis);
-            customCoordinate.Update();
         }
     }
 

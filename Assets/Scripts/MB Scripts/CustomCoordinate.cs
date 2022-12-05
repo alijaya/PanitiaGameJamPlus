@@ -2,18 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Sirenix.OdinInspector;
 
 [ExecuteAlways]
 public class CustomCoordinate : MonoBehaviour
 {
-    public readonly static Matrix4x4 matTransform = new Matrix4x4(new Vector4(1, 0, 0, 0), new Vector4(0, 0.5f, 0, 0), new Vector4(0, Mathf.Sqrt(3) / 2, -Mathf.Sqrt(3) / 2, 0), new Vector4(0, 0, 0, 1));
+    public readonly static Vector3 axisX = new Vector3(1, 0, 0);
+    public readonly static Vector3 axisY = new Vector3(0, 0.1f, 0);
+    public readonly static Vector3 axisZ = new Vector3(0, Mathf.Sqrt(3) / 2, -Mathf.Sqrt(3) / 2);
+    public readonly static Matrix4x4 matTransform = new Matrix4x4(axisX, axisY, axisZ, new Vector4(0, 0, 0, 1));
+    public readonly static Matrix4x4 matITransform = matTransform.inverse;
 
-    private Vector3 _lastLocalPosition;
+    public static Vector3 WorldToGameCoordinate(Vector3 pos)
+    {
+        return matITransform.MultiplyPoint3x4(pos);
+    }
+
+    public static Vector3 GameToWorldCoordinate(Vector3 pos)
+    {
+        return matTransform.MultiplyPoint3x4(pos);
+    }
+
     private Vector3 _lastPosition;
     private CustomCoordinate _lastParent;
-    private Vector3 _lastParentPosition;
 
-    public Vector3 localPosition;
+    [SerializeField]
+    private Vector3 _lastLocalPosition;
+
+    public Vector3 localPosition
+    {
+        get
+        {
+            return _lastLocalPosition;
+        }
+        set
+        {
+            _lastLocalPosition = value;
+            OnPositionChanged();
+        }
+    }
 
     public event Action<Vector3> positionChanged;
 
@@ -31,8 +58,7 @@ public class CustomCoordinate : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    public void Update()
+    private void Update()
     {
         // If parent changed
         // Recalculate localPosition
@@ -49,20 +75,25 @@ public class CustomCoordinate : MonoBehaviour
             {
                 _lastParent.positionChanged += parentPositionChanged;
                 parentPositionChanged(_lastParent.position);
-            } else
+            }
+            else
             {
                 parentPositionChanged(Vector3.zero);
             }
             position = _lastPosition;
         }
+        OnPositionChanged();
+    }
 
+    private void OnPositionChanged()
+    {
         // If localPosition changed
         // Recalculate position
         // If parent position changed
         // Recalculate position
 
         var curPos = position; // cache
-        transform.position = matTransform.MultiplyPoint3x4(curPos);
+        transform.position = GameToWorldCoordinate(curPos);
         if (_lastPosition != curPos)
         {
             _lastPosition = curPos;

@@ -8,6 +8,7 @@ using System;
 using System.Threading;
 using Sirenix.OdinInspector;
 
+[RequireComponent(typeof(CustomCoordinate))]
 public class MovementController2 : MonoBehaviour
 {
     public Transform sprite;
@@ -26,6 +27,8 @@ public class MovementController2 : MonoBehaviour
     private Tween bobTween;
     private bool bobDirection = true;
 
+    private CustomCoordinate coordinate;
+
     public bool IsMoving
     {
         get
@@ -34,17 +37,34 @@ public class MovementController2 : MonoBehaviour
         }
     }
 
-    public async UniTask GoTo(Transform target, CancellationToken ct = default)
+    private void Awake()
+    {
+        coordinate = GetComponent<CustomCoordinate>();
+    }
+
+    public async UniTask GoToWorld(Transform target, CancellationToken ct = default)
+    {
+        await GoToWorld(target.position, ct);
+    }
+
+    public async UniTask GoToWorld(Vector3 target, CancellationToken ct = default)
+    {
+        await GoTo(CustomCoordinate.WorldToGameCoordinate(target), ct);
+    }
+
+    // This is in Game World Coordinate
+    public async UniTask GoTo(CustomCoordinate target, CancellationToken ct = default)
     {
         await GoTo(target.position, ct);
     }
 
+    // This is in Game World Coordinate
     public async UniTask GoTo(Vector3 target, CancellationToken ct = default)
     {
         Stop();
 
-        movementTween = transform.DOMove(target, speed).SetSpeedBased().SetEase(Ease.Linear)
-            .OnComplete(() =>
+        movementTween = DOTween.To(() => coordinate.position, v => coordinate.position = v, target, speed).SetSpeedBased().SetEase(Ease.Linear)
+        .OnComplete(() =>
         {
             movementTween = null;
         });
