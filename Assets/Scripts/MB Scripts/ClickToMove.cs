@@ -5,11 +5,11 @@ using Cysharp.Threading.Tasks;
 
 public class ClickToMove : MonoBehaviour
 {
-    private MovementController2 movement;
+    private PathFinder2 movement;
 
     private void Awake()
     {
-        movement = GetComponent<MovementController2>();
+        movement = GetComponent<PathFinder2>();
     }
 
     // Update is called once per frame

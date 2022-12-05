@@ -3,45 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
+using Cysharp.Threading.Tasks;
 
-[TaskCategory("Custom")]
+[TaskName("Walk To")]
+[TaskCategory("Game")]
 [TaskDescription("Walk Customer")]
-public class ActionWalkTo : Action
+public class ActionWalkTo : AsyncAction
 {
     public SharedGameObject targetGameObject;
     public SharedTransform target;
 
-    private ObjectPathFinder pathFinder;
+    private PathFinder2 pathFinder;
     private GameObject prevGameObject;
 
-    private bool done = false;
-    private bool error = false;
-
-    public override void OnStart()
+    public async override UniTask Progress()
     {
         var currentGameObject = GetDefaultGameObject(targetGameObject.Value);
         if (currentGameObject != prevGameObject)
         {
-            pathFinder = currentGameObject.GetComponent<ObjectPathFinder>();
+            pathFinder = currentGameObject.GetComponent<PathFinder2>();
             prevGameObject = currentGameObject;
         }
 
-        if (pathFinder == null) error = true;
+        if (pathFinder == null) Failure();
 
-        if (error) return;
-        pathFinder.OnReached.AddListener(OnReached);
-        pathFinder.GoTo(target.Value);
+        await pathFinder.GoTo(target.Value);
     }
-
-    public void OnReached()
-    {
-        pathFinder.OnReached.RemoveListener(OnReached);
-        done = true;
-    }
-
-    public override TaskStatus OnUpdate()
-    {
-        return error ? TaskStatus.Failure : done ? TaskStatus.Success : TaskStatus.Running;
-    }
-
 }

@@ -34,17 +34,14 @@ public class MovementController2 : MonoBehaviour
         }
     }
 
-    public async UniTask GoTo(Transform target)
+    public async UniTask GoTo(Transform target, CancellationToken ct = default)
     {
-        await GoTo(target.position);
+        await GoTo(target.position, ct);
     }
 
-    public async UniTask GoTo(Vector3 target)
+    public async UniTask GoTo(Vector3 target, CancellationToken ct = default)
     {
-        if (movementTween != null)
-        {
-            movementTween.Kill();
-        }
+        Stop();
 
         movementTween = transform.DOMove(target, speed).SetSpeedBased().SetEase(Ease.Linear)
             .OnComplete(() =>
@@ -55,28 +52,28 @@ public class MovementController2 : MonoBehaviour
         StartBobbing().Forget();
 
         // onKill
-        await movementTween;
+        await movementTween.WithCancellation(ct);
     }
 
-    public async UniTask SetFaceLeft(bool animated = true)
+    public async UniTask SetFaceLeft(bool animated = true, CancellationToken ct = default)
     {
-        await SetFacing(true, animated);
+        await SetFacing(true, animated, ct);
     }
 
-    public async UniTask SetFaceRight(bool animated = true)
+    public async UniTask SetFaceRight(bool animated = true, CancellationToken ct = default)
     {
-        await SetFacing(false, animated);
+        await SetFacing(false, animated, ct);
     }
 
-    public async UniTask SetFacing(float deltaX, bool animated = true)
+    public async UniTask SetFacing(float deltaX, bool animated = true, CancellationToken ct = default)
     {
         if (deltaX != 0)
         {
-            await SetFacing(deltaX < 0, animated);
+            await SetFacing(deltaX < 0, animated, ct);
         }
     }
 
-    public async UniTask SetFacing(bool left, bool animated = true)
+    public async UniTask SetFacing(bool left, bool animated = true, CancellationToken ct = default)
     {
         var yRot = 0f;
         if (left) yRot = 180f;
@@ -100,7 +97,7 @@ public class MovementController2 : MonoBehaviour
             });
 
             // onKill
-            await flipTween;
+            await flipTween.WithCancellation(ct);
         }
         else
         {
@@ -119,7 +116,7 @@ public class MovementController2 : MonoBehaviour
         }
     }
 
-    private async UniTask StartBobbing()
+    private async UniTask StartBobbing(CancellationToken ct = default)
     {
         // if it's still on going, then do nothing, continue the last one
         if (bobTween != null) return;
@@ -135,7 +132,7 @@ public class MovementController2 : MonoBehaviour
             }, bobDirection ? bobRotate : -bobRotate, bobSpeed).SetSpeedBased().SetEase(easeHalfWaveFun);
 
             // onKill
-            await bobTween;
+            await bobTween.WithCancellation(ct);
             bobDirection = !bobDirection;
         }
 
