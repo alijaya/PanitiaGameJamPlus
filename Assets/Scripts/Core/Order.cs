@@ -124,7 +124,7 @@ namespace RS.Typing.Core {
         }
 
         public void ResetText() {
-            KeyInput.Instance.ResetText();
+            KeyInput.I.ResetText();
         }
     }
 }

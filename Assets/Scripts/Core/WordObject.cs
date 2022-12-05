@@ -50,7 +50,7 @@ namespace RS.Typing.Core {
         {
             if (GlobalRef.I.PrevHighlightedWords.Count == 1 && GlobalRef.I.PrevHighlightedWords[0] == this.gameObject)
             {
-                KeyInput.Instance.ResetText();
+                KeyInput.I.ResetText();
             }
             GlobalRef.I.Words.Remove(this.gameObject);
             if (_chef) wordCompletedDelegate.RemoveListener(_chef.AddTask);
@@ -59,11 +59,11 @@ namespace RS.Typing.Core {
         }
 
         private void OnEnable() {
-            KeyInput.KeyDown += Action;
+            KeyInput.I.CurrentTextChanged += Action;
         }
 
         private void OnDisable() {
-            KeyInput.KeyDown -= Action;
+            KeyInput.I.CurrentTextChanged -= Action;
         }
 
         private void Action(string s) { // ini kok kayak fungsi global, tapi ada di setiap instance? butuh refactor kah?
@@ -84,20 +84,20 @@ namespace RS.Typing.Core {
             }
 
             var highlightedWord = GetHighlighted();
-            
+
             if (highlightedWord.Any()) { // kalau ada yang depannya sama dengan yang kita tulis
                 AttemptInput(s);
             }
             else { // kalau ga ada yang sama sekali
                 if (GlobalRef.I.PrevHighlightedWords.Count > 0) { // kalau sebelumnya udah ada yang di highlight, artinya kita salah ngetik di tengah2
-                    KeyInput.Instance.ResetText(_typedWord); // kita undo text yang diketik, seolah2 ga ngetik apa2
+                    KeyInput.I.SetText(_typedWord); // kita undo text yang diketik, seolah2 ga ngetik apa2
 
                     if (GlobalRef.I.PrevHighlightedWords.Contains(this.gameObject) && _word.StartsWith(_typedWord)) { // kalau object ini salah satunya
                         WordMatched.Invoke(_typedWord.Length, false); // trigger event match tapi salah
                     }
                 }
                 else { // kalau sebelumnya ga ada yang di highlight, artinya dari awal dah salah ketik, reset aja jadi kosongan
-                    KeyInput.Instance.ResetText();
+                    KeyInput.I.ResetText();
                 }
             }
         }
@@ -118,7 +118,7 @@ namespace RS.Typing.Core {
             }
 
             if (_word.Equals(value)) {
-                KeyInput.Instance.SetEnable(false);
+                KeyInput.I.enabled = false;
                 WordSpawner.I.ReleaseWord(_word); // balikin kata2nya
                 wordCompletedDelegate?.Invoke(wordCompleted);
                 if (!needChefToMove) wordCompleted?.Invoke();
@@ -129,13 +129,13 @@ namespace RS.Typing.Core {
             Reset();
             Setup();
             
-            KeyInput.Instance.SetEnable(true);
+            KeyInput.I.enabled = true;
         }
 
         public void Reset() {
             GlobalRef.I.PrevHighlightedWords.Clear();
             _typedWord = "";
-            KeyInput.Instance.ResetText();
+            KeyInput.I.ResetText();
             WordMatched.Invoke(_typedWord.Length, false);
         }
 
