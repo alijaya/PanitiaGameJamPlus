@@ -14,13 +14,13 @@ public class MovementController2 : MonoBehaviour
     public Transform sprite;
 
     [SuffixLabel("unit / s", true)]
-    public float speed = 1;
+    public float speed = 5;
     [SuffixLabel("turn / s", true)]
-    public float rotateSpeed = 1;
+    public float rotateSpeed = 2;
     [SuffixLabel("degree", true)]
     public float bobRotate = 10;
     [SuffixLabel("degree / s", true)]
-    public float bobSpeed = 10;
+    public float bobSpeed = 40;
 
     private Tween movementTween;
     private Tween flipTween;
