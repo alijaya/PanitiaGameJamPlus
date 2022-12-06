@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Core.Words {
     public class WordSpawner : SingletonMB<WordSpawner> {
+        public static readonly string InvalidWord = "aliganteng";
+
         [SerializeField] private TextAsset wordsFile;
         [SerializeField] private int easyThreshold;
         [SerializeField] private int normalThreshold;
@@ -78,7 +80,7 @@ namespace Core.Words {
                 //{
                 //    Debug.Log(w);
                 //}
-                return "aliganteng"; // ga ada yang mungkin, sad :(
+                return InvalidWord; // ga ada yang mungkin, sad :(
             }
         }
 

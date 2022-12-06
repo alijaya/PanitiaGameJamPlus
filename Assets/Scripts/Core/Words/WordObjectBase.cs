@@ -2,18 +2,22 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 namespace Core.Words {
     [DisallowMultipleComponent]
-    public abstract class WordObjectBase : MonoBehaviour {
-        public WordDifficulty difficulty = WordDifficulty.Normal;
+    public abstract class WordObjectBase : SerializedMonoBehaviour
+    {
+        public ITextGenerator TextGenerator;
 
-        [Tooltip("Leave it empty to generate random text")]
-        [SerializeField] private string preDefinedText;
+        //public WordDifficulty difficulty = WordDifficulty.Normal;
+
+        //[Tooltip("Leave it empty to generate random text")]
+        //[SerializeField] private string preDefinedText;
         [SerializeField] protected TMP_Text text;
         [SerializeField] protected UnityEvent onWordCompleted;
 
-        private WordObjectHighlighter _highlighter; //shouldn't referencing this
+        private WordObjectHighlighter _highlighter;
         public string Text { get; protected set; }
         protected int Position;
 
@@ -38,8 +42,9 @@ namespace Core.Words {
        
         protected void Setup() {
             enabled = true;
-            Text = string.IsNullOrEmpty(preDefinedText) ? WordSpawner.I.GetRandomWord(difficulty, true) : preDefinedText;
-            if (Text == null) Text = "aligg";
+            Text = TextGenerator?.Generate() ?? WordSpawner.InvalidWord;
+            //Text = string.IsNullOrEmpty(preDefinedText) ? WordSpawner.I.GetRandomWord(difficulty, true) : preDefinedText;
+            //if (Text == null) Text = "aligg";
             text.text = Text;
             AnyNewWordObjectGenerated?.Invoke(this, EventArgs.Empty);
         }

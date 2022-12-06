@@ -234,8 +234,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5143707835075491363}
-  - component: {fileID: 1675276639192870366}
   - component: {fileID: 3200965281918894973}
+  - component: {fileID: 1675276639192870366}
   m_Layer: 0
   m_Name: WordUI
   m_TagString: Untagged
@@ -265,30 +265,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1675276639192870366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5143707835075491362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e73eea0fc658403aa54f7d0bbc26d386, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WordMatched:
-    m_PersistentCalls:
-      m_Calls: []
-  typo: 
-  text: {fileID: 5143707835054825735}
-  wordCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  wordCompletedDelegate:
-    m_PersistentCalls:
-      m_Calls: []
-  objectiveTransform: {fileID: 0}
 --- !u!114 &3200965281918894973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,3 +280,31 @@ MonoBehaviour:
   text: {fileID: 5143707835054825735}
   highlightedColor: {r: 0.79607844, g: 0.78039217, b: 0.2, a: 1}
   wrongHighlightedColor: {r: 0.88235295, g: 0.28235295, b: 0.28235295, a: 1}
+--- !u!114 &1675276639192870366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143707835075491362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73eea0fc658403aa54f7d0bbc26d386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: TextGenerator
+      Entry: 6
+      Data: 
+  text: {fileID: 5143707835054825735}
+  onWordCompleted:
+    m_PersistentCalls:
+      m_Calls: []

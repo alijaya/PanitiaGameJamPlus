@@ -134,42 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &154573493 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8345906916942547785, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-  m_PrefabInstance: {fileID: 1217379552}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &154573497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154573493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b59f533a5ca4d99bf3d8abbf9cf0bde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  difficulty: 1
-  preDefinedText: activate
-  text: {fileID: 787398803}
-  onWordCompleted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 601260769}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  objectiveTransform: {fileID: 1878646986}
 --- !u!1001 &519566055
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,9 +141,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-      propertyPath: preDefinedText
-      value: thread
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.ConstantTextGenerator,
+        Assembly-CSharp","Text":"thread"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"TextGenerator.Text","value":{"$id":0,"$type":"System.String,
+        mscorlib","thread"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3669399906329752366, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: m_Name
@@ -229,14 +211,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
 --- !u!1 &601260769 stripped
@@ -244,6 +218,40 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
   m_PrefabInstance: {fileID: 998411713}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &601260771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601260769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24312c8cbbc43e19d5238c875cdb08d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: TextGenerator
+      Entry: 7
+      Data: 0|Core.Words.ConstantTextGenerator, Assembly-CSharp
+    - Name: Text
+      Entry: 1
+      Data: the more word we add
+    - Name: 
+      Entry: 8
+      Data: 
+  text: {fileID: 1455304968}
+  onWordCompleted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &787398803 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8345906916963212396, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
@@ -262,6 +270,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: preDefinedText
       value: the more word the more wiser
@@ -324,6 +336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+    - {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
 --- !u!1001 &1123405217
 PrefabInstance:
@@ -389,6 +402,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: preDefinedText
       value: task
@@ -451,7 +468,76 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+    - {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+--- !u!1 &1277492807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1277492810}
+  - component: {fileID: 1277492809}
+  - component: {fileID: 1277492808}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1277492808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277492807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1277492809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277492807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1277492810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277492807}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1455304968 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8345906916963212396, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
@@ -463,29 +549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1488779156 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8345906916942547785, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-  m_PrefabInstance: {fileID: 998411713}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1488779160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488779156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b24312c8cbbc43e19d5238c875cdb08d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  difficulty: 1
-  preDefinedText: the more word
-  text: {fileID: 1455304968}
-  onWordCompleted:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &1745636589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -493,9 +556,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-      propertyPath: preDefinedText
-      value: throw
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.ConstantTextGenerator,
+        Assembly-CSharp","Text":"three"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"TextGenerator.Text","value":{"$id":0,"$type":"System.String,
+        mscorlib","three"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3669399906329752366, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: m_Name
@@ -507,11 +588,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.07
+      value: 1.51
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.88
+      value: -1.26
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -545,6 +626,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8345906916942547784, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345906916942547784, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345906916942547784, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.021
+      objectReference: {fileID: 0}
     - target: {fileID: 8345906916963212397, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -562,6 +655,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
     - target: {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
       propertyPath: preDefinedText
       value: task
@@ -624,32 +721,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2562343830902706357, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+    - {fileID: 2154621195480170345, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+--- !u!1 &1827669016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+  m_PrefabInstance: {fileID: 1217379552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1878646986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4499829072411170291, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
   m_PrefabInstance: {fileID: 1217379552}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1951609264 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8345906916942547785, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
-  m_PrefabInstance: {fileID: 1758483034}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1951609266
+--- !u!114 &1878646987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951609264}
+  m_GameObject: {fileID: 1827669016}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b59f533a5ca4d99bf3d8abbf9cf0bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 1
-  preDefinedText: deactivate
-  text: {fileID: 135837063}
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: TextGenerator
+      Entry: 7
+      Data: 0|Core.Words.ConstantTextGenerator, Assembly-CSharp
+    - Name: Text
+      Entry: 1
+      Data: activate
+    - Name: 
+      Entry: 8
+      Data: 
+  text: {fileID: 787398803}
   onWordCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -663,9 +777,9 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-  objectiveTransform: {fileID: 2108699071}
+  objectiveTransform: {fileID: 1878646986}
 --- !u!1 &2000127484
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,11 +898,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2095048519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
+  m_PrefabInstance: {fileID: 1758483034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2108699071 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4499829072411170291, guid: 9f65ff435c24a4e51bca70e39669f9a3, type: 3}
   m_PrefabInstance: {fileID: 1758483034}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2108699072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095048519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b59f533a5ca4d99bf3d8abbf9cf0bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: TextGenerator
+      Entry: 7
+      Data: 0|Core.Words.ConstantTextGenerator, Assembly-CSharp
+    - Name: Text
+      Entry: 1
+      Data: deactivate
+    - Name: 
+      Entry: 8
+      Data: 
+  text: {fileID: 135837063}
+  onWordCompleted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 601260769}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  objectiveTransform: {fileID: 2108699071}
 --- !u!1001 &2117531840
 PrefabInstance:
   m_ObjectHideFlags: 0
