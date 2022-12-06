@@ -8,7 +8,7 @@ using Sirenix.OdinInspector;
 public class CustomCoordinate : MonoBehaviour
 {
     public readonly static Vector3 axisX = new Vector3(1, 0, 0);
-    public readonly static Vector3 axisY = new Vector3(0, 0.1f, 0);
+    public readonly static Vector3 axisY = new Vector3(0, 0.5f, 0);
     public readonly static Vector3 axisZ = new Vector3(0, Mathf.Sqrt(3) / 2, -Mathf.Sqrt(3) / 2);
     public readonly static Matrix4x4 matTransform = new Matrix4x4(axisX, axisY, axisZ, new Vector4(0, 0, 0, 1));
     public readonly static Matrix4x4 matITransform = matTransform.inverse;

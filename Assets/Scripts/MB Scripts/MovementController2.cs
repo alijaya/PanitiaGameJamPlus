@@ -42,23 +42,25 @@ public class MovementController2 : MonoBehaviour
         coordinate = GetComponent<CustomCoordinate>();
     }
 
+    // This is in World Coordinate
     public async UniTask GoToWorld(Transform target, CancellationToken ct = default)
     {
         await GoToWorld(target.position, ct);
     }
 
+    // This is in World Coordinate
     public async UniTask GoToWorld(Vector3 target, CancellationToken ct = default)
     {
         await GoTo(CustomCoordinate.WorldToGameCoordinate(target), ct);
     }
 
-    // This is in Game World Coordinate
+    // This is in Game Coordinate
     public async UniTask GoTo(CustomCoordinate target, CancellationToken ct = default)
     {
         await GoTo(target.position, ct);
     }
 
-    // This is in Game World Coordinate
+    // This is in Game Coordinate
     public async UniTask GoTo(Vector3 target, CancellationToken ct = default)
     {
         Stop();

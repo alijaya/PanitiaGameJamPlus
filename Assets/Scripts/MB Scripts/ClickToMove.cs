@@ -17,7 +17,9 @@ public class ClickToMove : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            movement.GoToWorld(Util.Get2DMousePosition()).Forget();
+            var mouse = Util.Get2DMousePosition();
+            Debug.Log(mouse);
+            movement.GoToWorld(mouse).Forget();
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {

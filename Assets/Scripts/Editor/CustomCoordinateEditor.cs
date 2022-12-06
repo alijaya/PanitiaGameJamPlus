@@ -30,9 +30,9 @@ public class CustomCoordinateEditor : Editor
         customCoordinate = target as CustomCoordinate;
         transform = customCoordinate.transform;
         pos = transform.position;
-        xAxis = CustomCoordinate.matTransform.GetColumn(0);
-        yAxis = CustomCoordinate.matTransform.GetColumn(1);
-        zAxis = CustomCoordinate.matTransform.GetColumn(2);
+        xAxis = CustomCoordinate.axisX;
+        yAxis = CustomCoordinate.axisY;
+        zAxis = CustomCoordinate.axisZ;
         var tempColor = Handles.color;
         DrawPositionHandles();
         Handles.color = tempColor;
