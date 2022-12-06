@@ -17,8 +17,6 @@ namespace Core.Words {
         private List<string> _normalWordBank;
         private List<string> _hardWordBank;
 
-        //private HashSet<string> _usedWords;
-
         protected override void SingletonAwakened() {
             base.SingletonAwakened();
             _allWordBank = wordsFile.text.ToLower().Replace("\r", "").Split("\n").Where(w => !String.IsNullOrEmpty(w) && w.Length >= 3).ToList();
@@ -41,7 +39,6 @@ namespace Core.Words {
             _easyWordBank = _allWordBank.Where(word => word.Length <= easyThreshold).ToList();
             _normalWordBank = _allWordBank.Where(word => word.Length > easyThreshold && word.Length <= normalThreshold).ToList();
             _hardWordBank = _allWordBank.Where(word => word.Length > normalThreshold && word.Length <= hardThreshold).ToList();
-            //_usedWords = new HashSet<string>();
         }
 
         public List<string> GetBank(WordDifficulty difficulty)
@@ -70,23 +67,13 @@ namespace Core.Words {
             if (bank.Count() > 0)
             {
                 var word = bank.GetRandom();
-                //_usedWords.Add(word);
 
                 return word;
             }
             else
             {
-                //foreach (var w in _usedWords)
-                //{
-                //    Debug.Log(w);
-                //}
                 return InvalidWord; // ga ada yang mungkin, sad :(
             }
-        }
-
-        public void ReleaseWord(string word) // sudah pake dibalikin ya
-        {
-            //_usedWords.RemoveWhere(w => w == word);
         }
 
         private IEnumerable<string> GetRandomWords(int amount) {
@@ -103,11 +90,6 @@ namespace Core.Words {
                 words.Add(word);
             }
             return words;
-        }
-
-        public void ReleaseAllWords()
-        {
-            //_usedWords.Clear();
         }
     }
 

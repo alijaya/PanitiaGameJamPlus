@@ -10,10 +10,6 @@ namespace Core.Words {
     {
         public ITextGenerator TextGenerator;
 
-        //public WordDifficulty difficulty = WordDifficulty.Normal;
-
-        //[Tooltip("Leave it empty to generate random text")]
-        //[SerializeField] private string preDefinedText;
         [SerializeField] protected TMP_Text text;
         [SerializeField] protected UnityEvent onWordCompleted;
 
@@ -21,8 +17,8 @@ namespace Core.Words {
         public string Text { get; protected set; }
         protected int Position;
 
-        public static event EventHandler AnyNewWordObjectGenerated;
-        public static event EventHandler AnyWordObjectDestroyed;
+        public static event Action<WordObjectBase> AnyNewWordObjectGenerated;
+        public static event Action<WordObjectBase> AnyWordObjectDestroyed;
 
         #region MonobehaviorLifeCycle
 
@@ -35,7 +31,7 @@ namespace Core.Words {
         }
 
         private void OnDestroy() {
-            AnyWordObjectDestroyed?.Invoke(this, EventArgs.Empty);
+            AnyWordObjectDestroyed?.Invoke(this);
         }
 
         #endregion
@@ -43,10 +39,8 @@ namespace Core.Words {
         protected void Setup() {
             enabled = true;
             Text = TextGenerator?.Generate() ?? WordSpawner.InvalidWord;
-            //Text = string.IsNullOrEmpty(preDefinedText) ? WordSpawner.I.GetRandomWord(difficulty, true) : preDefinedText;
-            //if (Text == null) Text = "aligg";
             text.text = Text;
-            AnyNewWordObjectGenerated?.Invoke(this, EventArgs.Empty);
+            AnyNewWordObjectGenerated?.Invoke(this);
         }
 
         protected virtual void WordComplete() {
@@ -56,7 +50,7 @@ namespace Core.Words {
 
         public abstract bool TryMatch(char ch, bool isFocused);
 
-        public void Reset() {
+        public void ResetState() {
             Position = 0;
             _highlighter.ResetState();
         }

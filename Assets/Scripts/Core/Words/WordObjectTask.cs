@@ -13,7 +13,7 @@ namespace Core.Words {
 
         protected override void WordComplete() {
             _chef.AddTask(new KeyValuePair<Transform, System.Action>(objectiveTransform, () => {
-                Reset();
+                ResetState();
                 Setup();
                 base.WordComplete();
             }));

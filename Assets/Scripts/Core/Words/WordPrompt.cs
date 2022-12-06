@@ -21,18 +21,15 @@ namespace Core.Words {
         }
 
         private void Update() {
-            if (!Keyboard.current.backspaceKey.wasPressedThisFrame) return;
-            ResetFocused();
+            if (Keyboard.current.backspaceKey.wasPressedThisFrame) ResetFocused();
         }
 
-        private void OnAnyNewWordObjectGenerated(object sender, EventArgs e) {
-            var wordObject = (WordObjectBase)sender;
+        private void OnAnyNewWordObjectGenerated(WordObjectBase wordObject) {
             if (_wordObjectList.Contains(wordObject)) return;
             _wordObjectList.Add(wordObject);
         }
 
-        private void OnAnyWordObjectDestroyed(object sender, EventArgs e) {
-            var wordObject = (WordObjectBase)sender;
+        private void OnAnyWordObjectDestroyed(WordObjectBase wordObject) {
             if (!_wordObjectList.Contains(wordObject)) return;
             _wordObjectList.Remove(wordObject);
         }
@@ -52,7 +49,7 @@ namespace Core.Words {
 
             if (matched.Count == 1) {
                 foreach (var wordObjectBase in _focused.Except(matched)) {
-                    wordObjectBase.Reset();
+                    wordObjectBase.ResetState();
                 }
             }
             
@@ -65,7 +62,7 @@ namespace Core.Words {
 
         public void ResetFocused() {
             foreach (var wordObject in _focused) {
-                wordObject.Reset();
+                wordObject.ResetState();
             }
             _focused.Clear();
         }
