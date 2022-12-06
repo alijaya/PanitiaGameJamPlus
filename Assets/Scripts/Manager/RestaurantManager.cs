@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityAtoms.BaseAtoms;
-using RS.Typing.Core;
 
 public class RestaurantManager : MonoBehaviour
 {

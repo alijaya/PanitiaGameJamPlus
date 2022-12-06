@@ -1,8 +1,7 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RS.Typing.Core
+namespace Core
 {
     public class OrderItem : MonoBehaviour
     {

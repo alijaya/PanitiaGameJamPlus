@@ -1,7 +1,8 @@
+using Core.Words;
 using DG.Tweening;
 using UnityEngine;
 
-namespace RS.Typing.Core {
+namespace Core {
     public class Player : MonoBehaviour {
         [SerializeField] private float angleOffset = 90f;
 

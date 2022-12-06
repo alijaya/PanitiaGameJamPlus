@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace RS.Typing.Core {
+namespace Core.Words {
     public class WordSpawner : SingletonMB<WordSpawner> {
         [SerializeField] private TextAsset wordsFile;
         [SerializeField] private int easyThreshold;
@@ -59,7 +59,7 @@ namespace RS.Typing.Core {
         public string GetRandomWord(WordDifficulty difficulty, bool uniqueStart = false) {
             var random = new System.Random();
 
-            var usedWords = GlobalRef.I.Words.Select(go => go.GetComponent<WordObject>().GetWord()).Where(w => !String.IsNullOrEmpty(w));
+            var usedWords = GlobalRef.I.Words.Select(go => go.GetComponent<WordObject>().Text).Where(w => !String.IsNullOrEmpty(w));
             var allBank = GetBank(difficulty).Except(usedWords); // ga boleh yang udah dipake
             var bank = allBank;
 

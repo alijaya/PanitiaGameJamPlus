@@ -1,4 +1,3 @@
-using RS.Typing.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Eflatun.SceneReference;
