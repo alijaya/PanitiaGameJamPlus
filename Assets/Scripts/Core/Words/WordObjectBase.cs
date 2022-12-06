@@ -38,9 +38,15 @@ namespace Core.Words {
        
         protected void Setup() {
             enabled = true;
-            Text = TextGenerator?.Generate() ?? WordSpawner.InvalidWord;
-            text.text = Text;
+            GenerateText();
             AnyNewWordObjectGenerated?.Invoke(this);
+        }
+
+        [Button]
+        public void GenerateText(float difficulty = 0)
+        {
+            Text = TextGenerator?.Generate(difficulty) ?? WordSpawner.InvalidWord;
+            text.text = Text;
         }
 
         protected virtual void WordComplete() {
