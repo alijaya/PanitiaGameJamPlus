@@ -61,6 +61,11 @@ namespace Core.Words {
             _highlighter.ResetState();
         }
 
+        public void NotifyError()
+        {
+
+        }
+
         protected void Highlight(int position, bool isCurrentlyMatched) => _highlighter.Highlight(position, isCurrentlyMatched);
     }
 }

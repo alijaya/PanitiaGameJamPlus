@@ -8,9 +8,14 @@ namespace Core.Words
     {
         public string Text;
 
-        public string Generate(float difficulty = 0)
+        public string Generate()
         {
             return Text;
+        }
+
+        public string Generate(float difficulty)
+        {
+            return Generate();
         }
     }
 }

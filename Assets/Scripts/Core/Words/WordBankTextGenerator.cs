@@ -4,18 +4,18 @@ using UnityEngine;
 
 namespace Core.Words
 {
-    public class DictionaryTextGenerator : ITextGenerator
+    public class WordBankTextGenerator : ITextGenerator
     {
-        public WordDifficulty Difficulty = WordDifficulty.Normal;
+        public WordBankSO WordBank;
 
         public string Generate()
         {
-            return WordSpawner.I.GetRandomWord(Difficulty, true);
+            return WordBank.GetRandom();
         }
 
         public string Generate(float difficulty)
         {
-            return Generate();
+            return WordBank.GetRandomByDifficulty(difficulty);
         }
     }
 }

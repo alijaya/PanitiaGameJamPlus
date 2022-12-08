@@ -5,8 +5,6 @@ using Cysharp.Threading.Tasks;
 
 public class CallChefToHere : MonoBehaviour
 {
-    public Transform location;
-
     private ChefTasks2 chef;
 
     private void Awake()
@@ -16,6 +14,6 @@ public class CallChefToHere : MonoBehaviour
 
     public async UniTask Go()
     {
-        await chef.GoTo(location);
+        await chef.GoToWorld(transform);
     }
 }

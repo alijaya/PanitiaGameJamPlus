@@ -16,7 +16,15 @@ namespace Core.Words
         public static readonly string number = "0123456789";
         public static readonly string symbol = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
-        public string Generate(float difficulty = 4)
+        public float DifficultyMin = 1;
+        public float DifficultyMax = 10;
+
+        public string Generate()
+        {
+            return Generate(Random.Range(DifficultyMin, DifficultyMax));
+        }
+
+        public string Generate(float difficulty)
         {
             var pool = "";
             if (IncludeLowerCase) pool += lowerCase;
@@ -28,7 +36,7 @@ namespace Core.Words
             if (pool.Length == 0) pool = lowerCase;
 
             var result = "";
-            var length = Mathf.RoundToInt(difficulty > 0 ? difficulty : 4);
+            var length = Mathf.RoundToInt(difficulty);
             for (var i = 0; i < length; i++)
             {
                 result += pool.GetRandom();
