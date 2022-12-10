@@ -71,7 +71,7 @@ public class MovementController2 : MonoBehaviour
             movementTween = null;
         });
         SetFacing(target.x - transform.position.x).Forget();
-        StartBobbing().Forget();
+        StartBobbing(ct).Forget();
 
         // onKill
         await movementTween.WithCancellation(ct);

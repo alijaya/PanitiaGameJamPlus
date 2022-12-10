@@ -105,12 +105,13 @@ public abstract class SerializableCallbackBase : ISerializationCallbackReceiver 
 
 [System.Serializable]
 public struct Arg {
-	public enum ArgType { Unsupported, Bool, Int, Float, String, Object }
+	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, Any }
 	public bool boolValue;
 	public int intValue;
 	public float floatValue;
 	public string stringValue;
 	public Object objectValue;
+	public object anyValue;
 	public ArgType argType;
 	public string _typeName;
 
@@ -130,6 +131,8 @@ public struct Arg {
 				return stringValue;
 			case ArgType.Object:
 				return objectValue;
+			case ArgType.Any:
+				return anyValue;
 			default:
 				return null;
 		}
@@ -147,6 +150,8 @@ public struct Arg {
 				return typeof(string);
 			case ArgType.Object:
 				return typeof(Object);
+			case ArgType.Any:
+				return typeof(object);
 			default:
 				return null;
 		}
@@ -158,6 +163,7 @@ public struct Arg {
 		else if (type == typeof(float)) return ArgType.Float;
 		else if (type == typeof(String)) return ArgType.String;
 		else if (typeof(Object).IsAssignableFrom(type)) return ArgType.Object;
+		else if (typeof(object).IsAssignableFrom(type)) return ArgType.Any;
 		else return ArgType.Unsupported;
 	}
 

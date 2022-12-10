@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 
 [Serializable]
 public class IntFunc : SerializableCallback<int> { }
@@ -13,4 +14,4 @@ public class StringFunc : SerializableCallback<string> { }
 [Serializable]
 public class BoolFunc : SerializableCallback<bool> { }
 [Serializable]
-public class UniTaskFunc : SerializableCallback<UniTask> { }
+public class UniTaskFunc : SerializableCallback<CancellationToken, UniTask> { }

@@ -18,22 +18,22 @@ public class ChefTasks2 : MonoBehaviour {
 
     public async UniTask GoToWorld(Transform target, CancellationToken ct = default)
     {
-        await asyncQueue.Queue(() => pathfinder.GoToWorld(target, ct));
+        await asyncQueue.Queue(() => pathfinder.GoToWorld(target, ct), ct);
     }
 
     public async UniTask GoToWorld(Vector3 target, CancellationToken ct = default)
     {
-        await asyncQueue.Queue(() => pathfinder.GoToWorld(target, ct));
+        await asyncQueue.Queue(() => pathfinder.GoToWorld(target, ct), ct);
     }
 
     public async UniTask GoTo(CustomCoordinate target, CancellationToken ct = default)
     {
-        await asyncQueue.Queue(() => pathfinder.GoTo(target, ct));
+        await asyncQueue.Queue(() => pathfinder.GoTo(target, ct), ct);
     }
 
     public async UniTask GoTo(Vector3 target, CancellationToken ct = default)
     {
-        await asyncQueue.Queue(() => pathfinder.GoTo(target, ct));
+        await asyncQueue.Queue(() => pathfinder.GoTo(target, ct), ct);
     }
 
 }

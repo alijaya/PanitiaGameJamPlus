@@ -8,6 +8,8 @@ namespace Core.Words.Modifier
     {
         public string Modify(string text)
         {
+            if (text.Length == 1) return text;
+
             char[] chars = text.ToCharArray();
 
             // swap two adjacent char

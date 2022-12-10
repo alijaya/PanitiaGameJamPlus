@@ -5,11 +5,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using Sirenix.OdinInspector;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 
 namespace Core.Words
 {
     [DisallowMultipleComponent]
-    public class WordObject2 : SerializedMonoBehaviour
+    public class WordObject2 : MonoBehaviour
     {
         public static float RandomMin = 1;
         public static float RandomMax = 10;
@@ -17,6 +18,7 @@ namespace Core.Words
         public enum WordObjectState
         {
             None,
+            Disabled,
             Matched,
             Unmatched,
             OthersMatched,
@@ -30,20 +32,46 @@ namespace Core.Words
             Regenerate,
         }
 
-        public CompleteAction WhenComplete = CompleteAction.Regenerate;
+        [SerializeField] private bool _receiveInput = true;
+        public bool ReceiveInput
+        {
+            get
+            {
+                return _receiveInput;
+            }
+            set
+            {
+                if (_receiveInput != value)
+                {
+                    _receiveInput = value;
+                    UpdateRegistration();
+                }
+            }
+        }
 
+        public UnityEvent<WordObjectState> OnStateChanged;
+
+        [FoldoutGroup("Text Generation")]
         [InlineButton("GenerateTextRandomDifficulty", "Generate")]
         [SerializeReference]
         public Generator.ITextGenerator TextGenerator;
 
+        [FoldoutGroup("Text Generation")]
         [SerializeReference]
         public List<Modifier.ITextModifier> TextModifiers = new();
 
-        public UnityEvent OnWordImmediateCompleted;
-        public UniTaskFunc CompleteCheck;
-        public UnityEvent OnWordCompleted;
 
-        public UnityEvent<WordObjectState> OnStateChanged;
+        [FoldoutGroup("Word Complete")]
+        public CompleteAction WhenComplete = CompleteAction.Regenerate;
+
+        [FoldoutGroup("Word Complete")]
+        public UnityEvent OnWordImmediateCompleted;
+
+        [FoldoutGroup("Word Complete")]
+        public UniTaskFunc CompleteCheck;
+
+        [FoldoutGroup("Word Complete")]
+        public UnityEvent OnWordCompleted;
 
         public TMP_Text text;
 
@@ -55,8 +83,11 @@ namespace Core.Words
             }
             private set
             {
-                _text = value;
-                UpdateRegistration();
+                if (_text != value)
+                {
+                    _text = value;
+                    UpdateRegistration();
+                }
             }
         }
         private int _position = 0;
@@ -67,8 +98,11 @@ namespace Core.Words
             }
             private set
             {
-                _position = value;
-                UpdateRegistration();
+                if (_position != value)
+                {
+                    _position = value;
+                    UpdateRegistration();
+                }
             }
         }
         public bool LastMatched { get; private set; } = false;
@@ -87,21 +121,8 @@ namespace Core.Words
             }
         }
 
-        private bool _receiveInput = true;
-        public bool ReceiveInput
-        {
-            get
-            {
-                return _receiveInput;
-            }
-            set
-            {
-                _receiveInput = value;
-                UpdateRegistration();
-            }
-        }
-
         private bool _registered = false;
+        private CancellationTokenSource completeCheckCancel;
 
         #region MonobehaviorLifeCycle
 
@@ -119,6 +140,8 @@ namespace Core.Words
         private void OnDisable()
         {
             UpdateRegistration();
+            // invoke cancel the complete check
+            completeCheckCancel?.Cancel();
         }
 
         #endregion
@@ -140,6 +163,7 @@ namespace Core.Words
                 WordTracker.I.OnTextInput.RemoveListener(TextInput);
                 WordTracker.I.OnStateChanged.RemoveListener(HandleWordTrackerState);
             }
+            UpdateState();
         }
 
         protected void Setup()
@@ -175,10 +199,11 @@ namespace Core.Words
 
         private void SkipWhiteSpace()
         {
-            while (Position < Text.Length && char.IsWhiteSpace(Text[Position]))
+            while (_position < Text.Length && char.IsWhiteSpace(Text[Position]))
             {
-                Position++;
+                _position++;
             }
+            if (Position != _position) Position = _position;
         }
 
         public void TextInput(char ch)
@@ -187,21 +212,20 @@ namespace Core.Words
             // needs the last state to be none or already progressing
             if (WordTracker.I.IsStateNone || Position > 0)
             {
-
                 // skip before
                 SkipWhiteSpace();
 
                 LastMatched = Position >= Text.Length || Text[Position] == ch;
-                WordTracker.I.NotifyMatch(this, LastMatched);
 
                 if (LastMatched)
                 {
+                    if (completeCheckCancel == null) completeCheckCancel = new CancellationTokenSource();
+
+                    WordTracker.I.NotifyMatch(this);
                     Position++;
 
                     // skip after
                     SkipWhiteSpace();
-
-                    State = WordObjectState.Matched;
 
                     if (Position == Text.Length)
                     {
@@ -213,18 +237,22 @@ namespace Core.Words
 
         private async UniTask WordComplete()
         {
-            State = WordObjectState.Completed;
             OnWordImmediateCompleted.Invoke();
             WordTracker.I.NotifyComplete(this); // this is immediate
 
-            // wait for async
+            var success = true;
+            // wait for async, it could be cancelled tho
+            // for example the text dissappear before the chef reach it
             if (CompleteCheck != null)
             {
-                await CompleteCheck.Invoke();
+                success = ! await CompleteCheck.Invoke(completeCheckCancel.Token).SuppressCancellationThrow();
             }
+            completeCheckCancel.Dispose();
+            completeCheckCancel = null;
 
             // do stuff if it's really executed
-            OnWordCompleted.Invoke();
+            // only execute when really success
+            if (success) OnWordCompleted.Invoke();
 
             if (WhenComplete == CompleteAction.Regenerate)
             {
@@ -239,43 +267,54 @@ namespace Core.Words
         {
             Position = 0;
             LastMatched = false;
-            if (WordTracker.I.IsStateNone)
-            {
-                State = WordObjectState.None;
-            }
-            else
-            {
-                State = WordObjectState.OthersMatched;
-            }
+            UpdateState();
         }
 
         public void HandleWordTrackerState(WordTracker.WordTrackerState wordTrackerState)
         {
+            // will reset if the global is none
             if (WordTracker.I.IsStateNone)
             {
                 ResetState();
                 return;
             }
 
-            if (!LastMatched) // only care when LastMatched is false
+            // will reset if global match something else and this is doesn't match anything
+            if (!WordTracker.I.IsStateError && !LastMatched)
             {
-                if (WordTracker.I.IsStateError) // will invoke unmatch if the global doesn't match anything
-                {
-                    if (Position > 0) // will invoke if we actually in the middle
-                    {
-                        State = WordObjectState.Unmatched;
-                    }
-                    else // if not, it means we are in the beginning, we are good, reset again
-                    {
-                        ResetState();
-                    }
-                } else
-                {
-                    // will reset, if currently not matched, and the global matches something else
-                    ResetState();
-                }
-            } // if matched, we don't care about it
+                ResetState();
+                return;
+            }
+
+            UpdateState();
         }
 
+        public void UpdateState()
+        {
+            if (!ReceiveInput)
+            {
+                State = WordObjectState.Disabled;
+                return;
+            } else if (Position == 0)
+            {
+                if (WordTracker.I.IsStateNone)
+                {
+                    State = WordObjectState.None;
+                }
+                else
+                {
+                    State = WordObjectState.OthersMatched;
+                }
+            } else if (Position >= Text.Length)
+            {
+                State = WordObjectState.Completed;
+            } else if (!LastMatched && WordTracker.I.IsStateError)
+            {
+                State = WordObjectState.Unmatched;
+            } else
+            {
+                State = WordObjectState.Matched;
+            }
+        }
     }
 }

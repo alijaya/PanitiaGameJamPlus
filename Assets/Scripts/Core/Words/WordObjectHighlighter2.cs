@@ -41,11 +41,13 @@ namespace Core.Words {
         }
 
         public void HandleStateChanged(WordObject2.WordObjectState state) {
+            if (QuitUtil.isQuitting) return;
 
             var word = wordObject.Text;
             var position = wordObject.Position;
 
-            if (state == WordObject2.WordObjectState.OthersMatched)
+            // fade if others matched, disabled, or completed
+            if (state == WordObject2.WordObjectState.OthersMatched || state == WordObject2.WordObjectState.Disabled || state == WordObject2.WordObjectState.Completed)
             {
                 fadeTween?.Kill();
                 fadeTween = canvasGroup.DOFade(dim, .3f);

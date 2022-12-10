@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class CallChefToHere : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class CallChefToHere : MonoBehaviour
         chef = FindObjectOfType<ChefTasks2>();
     }
 
-    public async UniTask Go()
+    public async UniTask Go(CancellationToken ct = default)
     {
-        await chef.GoToWorld(transform);
+        await chef.GoToWorld(transform, ct);
     }
 }
