@@ -13,10 +13,10 @@ namespace Core.Dish {
         public UnityEvent onRequestFullFilled;
 
         private void Start() {
-            foreach (var dish in requestedDishes) {
-                text.text += dish.name;
+            for (var i = 0; i < requestedDishes.Length; i++) {
+                text.text += requestedDishes[i].name;
 
-                if (dish != requestedDishes[^1]) {
+                if (i != requestedDishes.Length -1) {
                     text.text += " + ";
                 }
             }
