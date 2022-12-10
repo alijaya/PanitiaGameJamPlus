@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,10 @@ namespace Core.Dish {
         private DishItemSO _dishItem;
         
         public int SlotIndex { get; set; }
+
+        private void Start() {
+            text.text = "";
+        }
 
         private void RefreshUI() {
             text.text = _dishItem? _dishItem.name : "";

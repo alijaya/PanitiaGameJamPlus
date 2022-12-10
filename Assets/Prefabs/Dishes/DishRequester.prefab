@@ -575,69 +575,26 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
-    - {fileID: 6758712654015941829}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: TextGenerator
-      Entry: 7
-      Data: 0|Core.Words.WordBankTextGenerator, Assembly-CSharp
-    - Name: WordBank
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: CompleteCheck
-      Entry: 7
-      Data: 1|System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib
-    - Name: target
-      Entry: 10
-      Data: 1
-    - Name: declaringType
-      Entry: 7
-      Data: 2|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: CallChefToHere, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: methodName
-      Entry: 1
-      Data: Go
-    - Name: delegateType
-      Entry: 7
-      Data: 3|System.RuntimeType, mscorlib
-    - Name: 
-      Entry: 1
-      Data: System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: signature
-      Entry: 7
-      Data: 4|System.Type[], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   WhenComplete: 2
+  TextGenerator:
+    rid: 3415647409331503104
+  TextModifiers: []
   OnWordImmediateCompleted:
     m_PersistentCalls:
       m_Calls: []
+  CompleteCheck:
+    _target: {fileID: 6758712654015941829}
+    _methodName: Go
+    _args: []
+    _dynamic: 0
+    _typeName: UniTaskFunc, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    dirty: 0
   OnWordCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -657,6 +614,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   text: {fileID: 2086583351832830853}
+  references:
+    version: 2
+    RefIds:
+    - rid: 3415647409331503104
+      type: {class: WordBankTextGenerator, ns: Core.Words.Generator, asm: Assembly-CSharp}
+      data:
+        WordBank: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
 --- !u!114 &6758712654015941829
 MonoBehaviour:
   m_ObjectHideFlags: 0
