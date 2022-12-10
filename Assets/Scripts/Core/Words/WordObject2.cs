@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,10 +33,14 @@ namespace Core.Words
         public CompleteAction WhenComplete = CompleteAction.Regenerate;
 
         [InlineButton("GenerateTextRandomDifficulty", "Generate")]
-        public ITextGenerator TextGenerator;
+        [SerializeReference]
+        public Generator.ITextGenerator TextGenerator;
+
+        [SerializeReference]
+        public List<Modifier.ITextModifier> TextModifiers = new();
 
         public UnityEvent OnWordImmediateCompleted;
-        public Func<UniTask> CompleteCheck;
+        public UniTaskFunc CompleteCheck;
         public UnityEvent OnWordCompleted;
 
         public UnityEvent<WordObjectState> OnStateChanged;
@@ -155,8 +160,16 @@ namespace Core.Words
             UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(text);
 #endif
 
-            if (difficulty <= 0) Text = TextGenerator?.Generate() ?? WordSpawner.InvalidWord;
-            else Text = TextGenerator?.Generate(difficulty) ?? WordSpawner.InvalidWord;
+            var curText = "";
+            if (difficulty <= 0) curText = TextGenerator?.Generate() ?? WordSpawner.InvalidWord;
+            else curText = TextGenerator?.Generate(difficulty) ?? WordSpawner.InvalidWord;
+
+            foreach (var modifier in TextModifiers)
+            {
+                curText = modifier.Modify(curText);
+            }
+
+            Text = curText;
             text.text = Text;
         }
 
@@ -207,7 +220,7 @@ namespace Core.Words
             // wait for async
             if (CompleteCheck != null)
             {
-                await CompleteCheck();
+                await CompleteCheck.Invoke();
             }
 
             // do stuff if it's really executed
