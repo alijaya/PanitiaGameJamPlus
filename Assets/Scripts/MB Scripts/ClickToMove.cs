@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using Util;
 
 public class ClickToMove : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class ClickToMove : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var mouse = Util.Get2DMousePosition();
+            var mouse = MouseUtil.Get2DMousePosition();
             movement.GoToWorld(mouse).Forget();
         }
         if (Input.GetKeyDown(KeyCode.Tab))
