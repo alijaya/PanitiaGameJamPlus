@@ -5,21 +5,15 @@ using System;
 using Sirenix.OdinInspector;
 using Cysharp.Threading.Tasks;
 
-public class DelegateField : SerializedMonoBehaviour
+public class DelegateField : MonoBehaviour
 {
-    public Func<UniTask> fun;
+    public BoolFunc fun;
 
-    private async UniTask Start()
-    {
-        if (fun != null)
-        {
-            await fun();
-        }
-        Debug.Log("Hey!");
-    }
+    [SerializeReference]
+    public ITest inter;
 
-    public async UniTask Wait()
-    {
-        await UniTask.Delay(TimeSpan.FromSeconds(2));
-    }
+    public List<BoolFunc> funs;
+
+    [SerializeReference]
+    public List<ITest> inters;
 }

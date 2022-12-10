@@ -123,24 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &257396993 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-  m_PrefabInstance: {fileID: 1991583525}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &257396994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 257396993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &283656082
+--- !u!1001 &26267106
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -148,361 +131,134 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextGenerator
+      value: 1433981107307544648
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._target
+      value: 
+      objectReference: {fileID: 26267108}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._methodName
+      value: Go
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.data[0]
+      value: 1433981107307544616
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544587]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544593]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544608]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544609]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544616]
+      value: Assembly-CSharp Core.Words.Modifier.SwapTextModifier
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544641]
+      value: Assembly-CSharp Core.Words.Generator.RandomTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544648]
+      value: Assembly-CSharp Core.Words.Generator.WordBankTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544587].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544593].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544608].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544609].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544648].WordBank
+      value: 
+      objectReference: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"CompleteCheck","value":{"$id":0,"$type":"System.Func`1[[Cysharp.Threading.Tasks.UniTask,
-        UniTask]], mscorlib","target":$eref:0,"declaringType":{"$id":1,"$type":"System.RuntimeType,
-        mscorlib","CallChefToHere, Assembly-CSharp"},"methodName":"Go","delegateType":{"$id":2,"$type":"System.RuntimeType,
-        mscorlib","System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib"},"signature":{"$id":3,"$type":"System.Type[],
-        mscorlib","$rlength":0,"$rcontent":[]}}'
+      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.Generator.ConstantTextGenerator,
+        Assembly-CSharp","Text":"handler"}'
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.RandomTextGenerator,
-        Assembly-CSharp","IncludeLowerCase":true,"IncludeUpperCase":false,"IncludeNumber":false,"IncludeSymbol":false,"DifficultyMin":3,"DifficultyMax":3}'
+      value: '"path":"TextGenerator.Text","value":{"$id":0,"$type":"System.String,
+        mscorlib","handler"}'
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"TextGenerator.DifficultyMax","value":{"$id":0,"$type":"System.Single,
-        mscorlib",3}'
+      propertyPath: managedReferences[1433981107307544641].DifficultyMax
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"TextGenerator.DifficultyMin","value":{"$id":0,"$type":"System.Single,
-        mscorlib",3}'
+      propertyPath: managedReferences[1433981107307544641].DifficultyMin
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"TextGenerator.IncludeLowerCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",true}'
+      propertyPath: managedReferences[1433981107307544641].IncludeNumber
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"TextGenerator.IncludeNumber","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
+      propertyPath: managedReferences[1433981107307544641].IncludeSymbol
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"TextGenerator.IncludeSymbol","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
+      propertyPath: managedReferences[1433981107307544641].IncludeLowerCase
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"TextGenerator.IncludeUpperCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
+      propertyPath: managedReferences[1433981107307544641].IncludeUpperCase
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 283656084}
     - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_Name
-      value: WordWorld2 (2)
+      value: WordWorld2 (12)
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_text
-      value: wbr
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
---- !u!1 &283656083 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-  m_PrefabInstance: {fileID: 283656082}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &283656084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283656083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &287362227
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"CompleteCheck","value":{"$id":0,"$type":"System.Func`1[[Cysharp.Threading.Tasks.UniTask,
-        UniTask]], mscorlib","target":$eref:0,"declaringType":{"$id":1,"$type":"System.RuntimeType,
-        mscorlib","CallChefToHere, Assembly-CSharp"},"methodName":"Go","delegateType":{"$id":2,"$type":"System.RuntimeType,
-        mscorlib","System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib"},"signature":{"$id":3,"$type":"System.Type[],
-        mscorlib","$rlength":0,"$rcontent":[]}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.RandomTextGenerator,
-        Assembly-CSharp","IncludeLowerCase":true,"IncludeUpperCase":false,"IncludeNumber":false,"IncludeSymbol":false,"DifficultyMin":3,"DifficultyMax":3}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"TextGenerator.DifficultyMax","value":{"$id":0,"$type":"System.Single,
-        mscorlib",3}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"TextGenerator.DifficultyMin","value":{"$id":0,"$type":"System.Single,
-        mscorlib",3}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"TextGenerator.IncludeLowerCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",true}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"TextGenerator.IncludeNumber","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"TextGenerator.IncludeSymbol","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"TextGenerator.IncludeUpperCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 287362229}
-    - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_Name
-      value: WordWorld2 (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_text
-      value: icn
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
---- !u!1 &287362228 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-  m_PrefabInstance: {fileID: 287362227}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &287362229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 287362228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &317480986 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-  m_PrefabInstance: {fileID: 947349151}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &317480990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317480986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &383289816
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"CompleteCheck","value":{"$id":0,"$type":"System.Func`1[[Cysharp.Threading.Tasks.UniTask,
-        UniTask]], mscorlib","target":$eref:0,"declaringType":{"$id":1,"$type":"System.RuntimeType,
-        mscorlib","CallChefToHere, Assembly-CSharp"},"methodName":"Go","delegateType":{"$id":2,"$type":"System.RuntimeType,
-        mscorlib","System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib"},"signature":{"$id":3,"$type":"System.Type[],
-        mscorlib","$rlength":0,"$rcontent":[]}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.ConstantTextGenerator,
-        Assembly-CSharp","Text":"ganteng"}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"TextGenerator.Text","value":{"$id":0,"$type":"System.String,
-        mscorlib","ganteng"}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 383289818}
-    - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_Name
-      value: WordWorld2 (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.59
-      objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.66
+      value: -2.16
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -538,7 +294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_text
-      value: ganteng
+      value: ahndler
       objectReference: {fileID: 0}
     - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_SizeDelta.x
@@ -550,35 +306,226 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
---- !u!1 &383289817 stripped
+--- !u!1 &26267107 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-  m_PrefabInstance: {fileID: 383289816}
+  m_PrefabInstance: {fileID: 26267106}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &383289818
+--- !u!114 &26267108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 383289817}
+  m_GameObject: {fileID: 26267107}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &632925414 stripped
+--- !u!1001 &342207833
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextGenerator
+      value: 1433981107307544649
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._target
+      value: 
+      objectReference: {fileID: 342207835}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._methodName
+      value: Go
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.data[0]
+      value: 1433981107307544615
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544589]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544595]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544606]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544607]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544615]
+      value: Assembly-CSharp Core.Words.Modifier.SuffixPrefixTextModifier
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544642]
+      value: Assembly-CSharp Core.Words.Generator.RandomTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544649]
+      value: Assembly-CSharp Core.Words.Generator.WordBankTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544589].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544595].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544606].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544607].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544615].Prefix
+      value: nyan
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544615].Suffix
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544649].WordBank
+      value: 
+      objectReference: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.Generator.ConstantTextGenerator,
+        Assembly-CSharp","Text":"handler"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"TextGenerator.Text","value":{"$id":0,"$type":"System.String,
+        mscorlib","handler"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544642].DifficultyMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544642].DifficultyMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544642].IncludeNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544642].IncludeSymbol
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544642].IncludeLowerCase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544642].IncludeUpperCase
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_Name
+      value: WordWorld2 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_text
+      value: handlernyan
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+--- !u!1 &342207834 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-  m_PrefabInstance: {fileID: 1268992399}
+  m_PrefabInstance: {fileID: 342207833}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &632925415
+--- !u!114 &342207835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 632925414}
+  m_GameObject: {fileID: 342207834}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
@@ -646,9 +593,81 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextGenerator
+      value: 1433981107307544650
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._target
+      value: 
+      objectReference: {fileID: 705027337}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._methodName
+      value: Go
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.data[0]
+      value: 1433981107307544599
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544591]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544597]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544599]
+      value: Assembly-CSharp Core.Words.Modifier.ChangeCaseTextModifier
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544600]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544601]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544643]
+      value: Assembly-CSharp Core.Words.Generator.RandomTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544650]
+      value: Assembly-CSharp Core.Words.Generator.WordBankTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544591].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544597].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544600].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544601].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544599].CaseType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544650].WordBank
+      value: 
+      objectReference: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
       value: 3
@@ -663,37 +682,73 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.ConstantTextGenerator,
-        Assembly-CSharp","Text":"banget"}'
+      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.Generator.ConstantTextGenerator,
+        Assembly-CSharp","Text":"handler"}'
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[2]
       value: '"path":"TextGenerator.Text","value":{"$id":0,"$type":"System.String,
-        mscorlib","banget"}'
+        mscorlib","handler"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544643].DifficultyMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544643].DifficultyMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544643].IncludeNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544643].IncludeSymbol
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544643].IncludeLowerCase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544643].IncludeUpperCase
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: OnWordImmediateCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: OnWordImmediateCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
       value: 
       objectReference: {fileID: 705027337}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: OnWordImmediateCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_Name
       value: WordWorld2 (8)
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.67
+      value: 2.71
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.76
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -729,7 +784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_text
-      value: banget
+      value: haNdLer
       objectReference: {fileID: 0}
     - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_SizeDelta.x
@@ -753,547 +808,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705027336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &802121225
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"CompleteCheck","value":{"$id":0,"$type":"System.Func`1[[Cysharp.Threading.Tasks.UniTask,
-        UniTask]], mscorlib","target":$eref:0,"declaringType":{"$id":1,"$type":"System.RuntimeType,
-        mscorlib","CallChefToHere, Assembly-CSharp"},"methodName":"Go","delegateType":{"$id":2,"$type":"System.RuntimeType,
-        mscorlib","System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib"},"signature":{"$id":3,"$type":"System.Type[],
-        mscorlib","$rlength":0,"$rcontent":[]}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.WordBankTextGenerator,
-        Assembly-CSharp","WordBank":$eref:1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"TextGenerator.WordBank","value":$eref:1'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 802121227}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
-    - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_Name
-      value: WordWorld2 (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_text
-      value: clean
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
---- !u!1 &802121226 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-  m_PrefabInstance: {fileID: 802121225}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &802121227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802121226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &947349151
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"CompleteCheck","value":{"$id":0,"$type":"System.Func`1[[Cysharp.Threading.Tasks.UniTask,
-        UniTask]], mscorlib","target":$eref:0,"declaringType":{"$id":1,"$type":"System.RuntimeType,
-        mscorlib","CallChefToHere, Assembly-CSharp"},"methodName":"Go","delegateType":{"$id":2,"$type":"System.RuntimeType,
-        mscorlib","System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib"},"signature":{"$id":3,"$type":"System.Type[],
-        mscorlib","$rlength":0,"$rcontent":[]}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.RandomTextGenerator,
-        Assembly-CSharp","IncludeLowerCase":true,"IncludeUpperCase":false,"IncludeNumber":false,"IncludeSymbol":false,"DifficultyMin":3,"DifficultyMax":3}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"TextGenerator.DifficultyMax","value":{"$id":0,"$type":"System.Single,
-        mscorlib",3}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"TextGenerator.DifficultyMin","value":{"$id":0,"$type":"System.Single,
-        mscorlib",3}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"TextGenerator.IncludeLowerCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",true}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"TextGenerator.IncludeNumber","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"TextGenerator.IncludeSymbol","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"TextGenerator.IncludeUpperCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 317480990}
-    - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_Name
-      value: WordWorld2 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_text
-      value: nqt
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
---- !u!1001 &983373177
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"CompleteCheck","value":{"$id":0,"$type":"System.Func`1[[Cysharp.Threading.Tasks.UniTask,
-        UniTask]], mscorlib","target":$eref:0,"declaringType":{"$id":1,"$type":"System.RuntimeType,
-        mscorlib","CallChefToHere, Assembly-CSharp"},"methodName":"Go","delegateType":{"$id":2,"$type":"System.RuntimeType,
-        mscorlib","System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib"},"signature":{"$id":3,"$type":"System.Type[],
-        mscorlib","$rlength":0,"$rcontent":[]}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.RandomTextGenerator,
-        Assembly-CSharp","IncludeLowerCase":true,"IncludeUpperCase":true,"IncludeNumber":false,"IncludeSymbol":false,"DifficultyMin":3,"DifficultyMax":5}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"TextGenerator.DifficultyMax","value":{"$id":0,"$type":"System.Single,
-        mscorlib",5}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"TextGenerator.DifficultyMin","value":{"$id":0,"$type":"System.Single,
-        mscorlib",3}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"TextGenerator.IncludeLowerCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",true}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"TextGenerator.IncludeNumber","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"TextGenerator.IncludeSymbol","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"TextGenerator.IncludeUpperCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",true}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 983373179}
-    - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_Name
-      value: WordWorld2 (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_text
-      value: nOnOL
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
---- !u!1 &983373178 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-  m_PrefabInstance: {fileID: 983373177}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &983373179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983373178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &1108143002
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"CompleteCheck","value":{"$id":0,"$type":"System.Func`1[[Cysharp.Threading.Tasks.UniTask,
-        UniTask]], mscorlib","target":$eref:0,"declaringType":{"$id":1,"$type":"System.RuntimeType,
-        mscorlib","CallChefToHere, Assembly-CSharp"},"methodName":"Go","delegateType":{"$id":2,"$type":"System.RuntimeType,
-        mscorlib","System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib"},"signature":{"$id":3,"$type":"System.Type[],
-        mscorlib","$rlength":0,"$rcontent":[]}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.RandomTextGenerator,
-        Assembly-CSharp","IncludeLowerCase":false,"IncludeUpperCase":true,"IncludeNumber":true,"IncludeSymbol":false,"DifficultyMin":5,"DifficultyMax":7}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"TextGenerator.DifficultyMax","value":{"$id":0,"$type":"System.Single,
-        mscorlib",7}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"TextGenerator.DifficultyMin","value":{"$id":0,"$type":"System.Single,
-        mscorlib",5}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"TextGenerator.IncludeLowerCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"TextGenerator.IncludeNumber","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",true}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"TextGenerator.IncludeSymbol","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"TextGenerator.IncludeUpperCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",true}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 1108143004}
-    - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_Name
-      value: WordWorld2 (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_RootOrder
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_text
-      value: 2PCWO
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
---- !u!1 &1108143003 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-  m_PrefabInstance: {fileID: 1108143002}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1108143004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1108143003}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
@@ -1356,7 +870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08a612482f571411a8ffb5ad3d0f09e4, type: 3}
---- !u!1001 &1171015072
+--- !u!1001 &1289960855
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1364,327 +878,134 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.Prefab
+      propertyPath: TextGenerator
+      value: 1433981107307544651
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._target
       value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      objectReference: {fileID: 1289960857}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"CompleteCheck","value":{"$id":0,"$type":"System.Func`1[[Cysharp.Threading.Tasks.UniTask,
-        UniTask]], mscorlib","target":$eref:0,"declaringType":{"$id":1,"$type":"System.RuntimeType,
-        mscorlib","CallChefToHere, Assembly-CSharp"},"methodName":"Go","delegateType":{"$id":2,"$type":"System.RuntimeType,
-        mscorlib","System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib"},"signature":{"$id":3,"$type":"System.Type[],
-        mscorlib","$rlength":0,"$rcontent":[]}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.RandomTextGenerator,
-        Assembly-CSharp","IncludeLowerCase":false,"IncludeUpperCase":false,"IncludeNumber":false,"IncludeSymbol":true,"DifficultyMin":3,"DifficultyMax":3}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"TextGenerator.DifficultyMax","value":{"$id":0,"$type":"System.Single,
-        mscorlib",3}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"TextGenerator.DifficultyMin","value":{"$id":0,"$type":"System.Single,
-        mscorlib",3}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"TextGenerator.IncludeLowerCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"TextGenerator.IncludeNumber","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"TextGenerator.IncludeSymbol","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",true}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"TextGenerator.IncludeUpperCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      propertyPath: TextModifiers.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 1988687634}
-    - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_Name
-      value: WordWorld2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_text
-      value: '&=_'
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
---- !u!1001 &1201481640
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._methodName
+      value: Go
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.data[0]
+      value: 1433981107307544614
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544592]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544598]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544604]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544605]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544614]
+      value: Assembly-CSharp Core.Words.Modifier.ReverseTextModifier
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544644]
+      value: Assembly-CSharp Core.Words.Generator.RandomTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544651]
+      value: Assembly-CSharp Core.Words.Generator.WordBankTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544592].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544598].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544604].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544605].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544651].WordBank
+      value: 
+      objectReference: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"CompleteCheck","value":{"$id":0,"$type":"System.Func`1[[Cysharp.Threading.Tasks.UniTask,
-        UniTask]], mscorlib","target":$eref:0,"declaringType":{"$id":1,"$type":"System.RuntimeType,
-        mscorlib","CallChefToHere, Assembly-CSharp"},"methodName":"Go","delegateType":{"$id":2,"$type":"System.RuntimeType,
-        mscorlib","System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib"},"signature":{"$id":3,"$type":"System.Type[],
-        mscorlib","$rlength":0,"$rcontent":[]}}'
+      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.Generator.ConstantTextGenerator,
+        Assembly-CSharp","Text":"handler"}'
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.RandomTextGenerator,
-        Assembly-CSharp","IncludeLowerCase":false,"IncludeUpperCase":false,"IncludeNumber":true,"IncludeSymbol":false,"DifficultyMin":5,"DifficultyMax":7}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"TextGenerator.DifficultyMax","value":{"$id":0,"$type":"System.Single,
-        mscorlib",7}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"TextGenerator.DifficultyMin","value":{"$id":0,"$type":"System.Single,
-        mscorlib",5}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"TextGenerator.IncludeLowerCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"TextGenerator.IncludeNumber","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",true}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"TextGenerator.IncludeSymbol","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"TextGenerator.IncludeUpperCase","value":{"$id":0,"$type":"System.Boolean,
-        mscorlib",false}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 1201481642}
-    - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_Name
-      value: WordWorld2 (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_text
-      value: 6104540
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
---- !u!1 &1201481641 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-  m_PrefabInstance: {fileID: 1201481640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1201481642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201481641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &1268992399
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"CompleteCheck","value":{"$id":0,"$type":"System.Func`1[[Cysharp.Threading.Tasks.UniTask,
-        UniTask]], mscorlib","target":$eref:0,"declaringType":{"$id":1,"$type":"System.RuntimeType,
-        mscorlib","CallChefToHere, Assembly-CSharp"},"methodName":"Go","delegateType":{"$id":2,"$type":"System.RuntimeType,
-        mscorlib","System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib"},"signature":{"$id":3,"$type":"System.Type[],
-        mscorlib","$rlength":0,"$rcontent":[]}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.ConstantTextGenerator,
-        Assembly-CSharp","Text":"yes"}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
       value: '"path":"TextGenerator.Text","value":{"$id":0,"$type":"System.String,
-        mscorlib","yes"}'
+        mscorlib","handler"}'
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      propertyPath: managedReferences[1433981107307544644].DifficultyMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544644].DifficultyMin
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 632925415}
+      propertyPath: managedReferences[1433981107307544644].IncludeNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544644].IncludeSymbol
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544644].IncludeLowerCase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544644].IncludeUpperCase
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_Name
       value: WordWorld2 (10)
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.62
+      value: 3.02
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.19
+      value: 0.59
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1720,7 +1041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_text
-      value: yes
+      value: reldnah
       objectReference: {fileID: 0}
     - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1732,24 +1053,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
---- !u!1 &1988687630 stripped
+--- !u!1 &1289960856 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-  m_PrefabInstance: {fileID: 1171015072}
+  m_PrefabInstance: {fileID: 1289960855}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1988687634
+--- !u!114 &1289960857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988687630}
+  m_GameObject: {fileID: 1289960856}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1991583525
+--- !u!1001 &1357772824
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1757,54 +1078,146 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.Prefab
+      propertyPath: TextGenerator
+      value: 1433981107307544647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._target
       value: 
-      objectReference: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      objectReference: {fileID: 1357772826}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"CompleteCheck","value":{"$id":0,"$type":"System.Func`1[[Cysharp.Threading.Tasks.UniTask,
-        UniTask]], mscorlib","target":$eref:0,"declaringType":{"$id":1,"$type":"System.RuntimeType,
-        mscorlib","CallChefToHere, Assembly-CSharp"},"methodName":"Go","delegateType":{"$id":2,"$type":"System.RuntimeType,
-        mscorlib","System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib"},"signature":{"$id":3,"$type":"System.Type[],
-        mscorlib","$rlength":0,"$rcontent":[]}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.ConstantTextGenerator,
-        Assembly-CSharp","Text":"ali"}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"TextGenerator.Text","value":{"$id":0,"$type":"System.String,
-        mscorlib","ali"}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      propertyPath: TextModifiers.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
+      propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 257396994}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._methodName
+      value: Go
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.data[0]
+      value: 1433981107307544618
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544588]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544594]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544610]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544611]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544612]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544618]
+      value: Assembly-CSharp Core.Words.Modifier.ChangeCaseTextModifier
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544640]
+      value: Assembly-CSharp Core.Words.Generator.RandomTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544647]
+      value: Assembly-CSharp Core.Words.Generator.WordBankTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544588].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544594].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544610].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544611].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544612].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544618].CaseType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544647].WordBank
+      value: 
+      objectReference: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.Generator.ConstantTextGenerator,
+        Assembly-CSharp","Text":"handler"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"TextGenerator.Text","value":{"$id":0,"$type":"System.String,
+        mscorlib","handler"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544640].DifficultyMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544640].DifficultyMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544640].IncludeNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544640].IncludeSymbol
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544640].IncludeLowerCase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544640].IncludeUpperCase
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_Name
-      value: WordWorld2 (9)
+      value: WordWorld2 (14)
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -0.26
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.38
+      value: -2.51
       objectReference: {fileID: 0}
     - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1840,7 +1253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_text
-      value: ali
+      value: HANDLER
       objectReference: {fileID: 0}
     - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1852,6 +1265,223 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+--- !u!1 &1357772825 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+  m_PrefabInstance: {fileID: 1357772824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1357772826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357772825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &1670916880
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextGenerator
+      value: 1433981107307544652
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._target
+      value: 
+      objectReference: {fileID: 1670916882}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._methodName
+      value: Go
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.data[0]
+      value: 1433981107307544613
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544590]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544596]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544602]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544603]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544613]
+      value: Assembly-CSharp Core.Words.Modifier.PalindromTextModifier
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544645]
+      value: Assembly-CSharp Core.Words.Generator.RandomTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544652]
+      value: Assembly-CSharp Core.Words.Generator.WordBankTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544590].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544596].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544602].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544603].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544652].WordBank
+      value: 
+      objectReference: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.Generator.ConstantTextGenerator,
+        Assembly-CSharp","Text":"handler"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"TextGenerator.Text","value":{"$id":0,"$type":"System.String,
+        mscorlib","handler"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544645].DifficultyMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544645].DifficultyMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544645].IncludeNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544645].IncludeSymbol
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544645].IncludeLowerCase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544645].IncludeUpperCase
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_Name
+      value: WordWorld2 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_text
+      value: handlerreldnah
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+--- !u!1 &1670916881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+  m_PrefabInstance: {fileID: 1670916880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1670916882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670916881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2000127484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,6 +1600,214 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2030754752
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextGenerator
+      value: 1433981107307544653
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._target
+      value: 
+      objectReference: {fileID: 2030754754}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: CompleteCheck._methodName
+      value: Go
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: TextModifiers.Array.data[0]
+      value: 1433981107307544617
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544588]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544594]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544610]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544611]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544617]
+      value: Assembly-CSharp Core.Words.Modifier.ReplaceTextModifier
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544646]
+      value: Assembly-CSharp Core.Words.Generator.RandomTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544653]
+      value: Assembly-CSharp Core.Words.Generator.WordBankTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544588].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544594].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544610].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544611].Text
+      value: handler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544617].ToText
+      value: nya
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544617].FromText
+      value: n
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544653].WordBank
+      value: 
+      objectReference: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"TextGenerator","value":{"$id":0,"$type":"Core.Words.Generator.ConstantTextGenerator,
+        Assembly-CSharp","Text":"handler"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"TextGenerator.Text","value":{"$id":0,"$type":"System.String,
+        mscorlib","handler"}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544646].DifficultyMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544646].DifficultyMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544646].IncludeNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544646].IncludeSymbol
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544646].IncludeLowerCase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: managedReferences[1433981107307544646].IncludeUpperCase
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_Name
+      value: WordWorld2 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499829072411170291, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345906916963212396, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_text
+      value: hanyadler
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345906916963212397, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+--- !u!1 &2030754753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3669399906329752366, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+  m_PrefabInstance: {fileID: 2030754752}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2030754754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030754753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fe11a9ff9b24956a9d0a59bafc79fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3725453694720659600
 GameObject:
   m_ObjectHideFlags: 0

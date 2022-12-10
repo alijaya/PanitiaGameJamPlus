@@ -8,7 +8,7 @@ namespace Core.Words {
     [DisallowMultipleComponent]
     public abstract class WordObjectBase : SerializedMonoBehaviour
     {
-        public ITextGenerator TextGenerator;
+        public Generator.ITextGenerator TextGenerator;
 
         [SerializeField] protected TMP_Text text;
         [SerializeField] protected UnityEvent onWordCompleted;

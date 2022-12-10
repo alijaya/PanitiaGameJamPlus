@@ -72,17 +72,21 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: TextGenerator
-      Entry: 6
-      Data: 
-    - Name: CompleteCheck
-      Entry: 6
-      Data: 
+    SerializationNodes: []
   WhenComplete: 2
+  TextGenerator:
+    rid: -2
+  TextModifiers: []
   OnWordImmediateCompleted:
     m_PersistentCalls:
       m_Calls: []
+  CompleteCheck:
+    _target: {fileID: 0}
+    _methodName: 
+    _args: []
+    _dynamic: 0
+    _typeName: UniTaskFunc, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    dirty: 0
   OnWordCompleted:
     m_PersistentCalls:
       m_Calls: []
@@ -90,6 +94,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   text: {fileID: 8345906916963212396}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &4310600727648310693
 GameObject:
   m_ObjectHideFlags: 0

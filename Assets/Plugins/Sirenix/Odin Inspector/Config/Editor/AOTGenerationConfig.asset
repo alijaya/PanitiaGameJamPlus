@@ -12,9 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 1726182683, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
   m_Name: AOTGenerationConfig
   m_EditorClassIdentifier: 
-  automateBeforeBuilds: 0
+  automateBeforeBuilds: 1
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
-  automateForPlatforms: 0900000014000000
-  lastScan: 0
-  supportSerializedTypes: []
+  automateForPlatforms: 090000001400000002000000
+  lastScan: 638062000743275020
+  supportSerializedTypes:
+  - TypeName: System.Func`1[[Cysharp.Threading.Tasks.UniTask, UniTask]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Core.Words.Generator.ITextGenerator, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Cysharp.Threading.Tasks.UniTask, UniTask
+    IsCustom: 0
+    Emit: 1
