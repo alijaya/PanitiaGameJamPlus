@@ -14,6 +14,7 @@ namespace Core.Dish {
             base.SingletonStarted();
             for (var i = 0; i < traySize; i++) {
                 var slot = Instantiate(traySlotPrefab, trayTransform);
+                slot.SlotIndex = i;
                 _slots.Add(slot);
             }
         }
@@ -34,6 +35,10 @@ namespace Core.Dish {
             if (HasDish(dishItem, out var traySlots)) {
                 traySlots[0].CleanTray();
             }
+        }
+
+        public void TakeDish(int slotIndex) {
+            _slots.First(x => x.SlotIndex == slotIndex).CleanTray();
         }
     }
 }

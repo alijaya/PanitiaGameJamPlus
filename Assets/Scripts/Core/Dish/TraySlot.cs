@@ -1,11 +1,15 @@
+using TMPro;
 using UnityEngine;
 
 namespace Core.Dish {
     public class TraySlot : MonoBehaviour {
+        [SerializeField] private TextMeshProUGUI text;
         private DishItemSO _dishItem;
+        
+        public int SlotIndex { get; set; }
 
         private void RefreshUI() {
-            
+            text.text = _dishItem? _dishItem.name : "";
         }
 
         public void AddItem(DishItemSO item) {
@@ -19,6 +23,7 @@ namespace Core.Dish {
 
         public void CleanTray() {
             _dishItem = null;
+            RefreshUI();
         }
     }
 }

@@ -25,7 +25,6 @@ namespace Core.Dish {
             _inputtedIngredients.Add(ingredientItem);
             
             if (finalDish) {
-                Debug.Log(finalDish);
                 ItemTray.I.AddItemToTray(finalDish);
                 _ingredientOrder = 0;
                 _inputtedIngredients.Clear();

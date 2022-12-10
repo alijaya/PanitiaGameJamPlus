@@ -1459,6 +1459,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3047980518795140957, guid: 18dd0a2d0ac03b74db60d8fc95eedb7c, type: 3}
+      propertyPath: traySize
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3842311945254272886, guid: 18dd0a2d0ac03b74db60d8fc95eedb7c, type: 3}
       propertyPath: m_Name
       value: Dish Mechanic
@@ -1782,7 +1786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 3725453694720659602}
-  speed: 5
+  speed: 10
   rotateSpeed: 2
   bobRotate: 10
   bobSpeed: 40

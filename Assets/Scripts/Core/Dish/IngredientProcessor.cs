@@ -44,10 +44,17 @@ namespace Core.Dish {
         public void PickOutput() {
             _tokenSource?.Cancel();
             if (_output) {
-                Debug.Log(_output);
                 onOutputPicked?.Invoke(_output);
+
+                if (_output is DishItemSO dish) {
+                    ItemTray.I.AddItemToTray(dish);
+                }
             }
 
+            Reset();
+        }
+
+        private void Reset() {
             _output = null;
             onStageChanged?.Invoke(_output);
         }
