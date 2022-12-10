@@ -47,7 +47,7 @@ namespace Core.Dish {
                 onOutputPicked?.Invoke(_output);
 
                 if (_output is DishItemSO dish) {
-                    ItemTray.I.AddItemToTray(dish);
+                    ItemTray.I.TryAddItemToTray(dish);
                 }
             }
 

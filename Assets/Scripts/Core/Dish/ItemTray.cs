@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,11 +20,19 @@ namespace Core.Dish {
             }
         }
 
-        public void AddItemToTray(DishItemSO dishItem) {
+        private void AddItemToTray(DishItemSO dishItem) {
             var slot = _slots.First(slot => slot.GetDish() == null);
-            if (slot == null) return;
-            
             slot.AddItem(dishItem);
+        }
+
+        public bool TryAddItemToTray(DishItemSO dishItemSo) {
+            try {
+                AddItemToTray(dishItemSo);
+                return true;
+            }
+            catch (InvalidOperationException e) {
+                return false;
+            }
         }
 
         public bool HasDish(DishItemSO dishItem, out TraySlot[] traySlots) {
