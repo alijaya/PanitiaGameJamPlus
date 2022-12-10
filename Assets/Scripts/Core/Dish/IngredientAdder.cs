@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,10 +6,13 @@ using UnityEngine.Events;
 namespace Core.Dish {
     public class IngredientAdder : MonoBehaviour {
         [SerializeField] private IngredientItemSO ingredientItem;
+
+        [SerializeField] private UnityEvent<IngredientItemSO> onIngredientAdded;
+
         [SerializeField] private UnityEvent onRecipeAvailable;
         [SerializeField] private UnityEvent onRecipeNotAvailable;
 
-        private RecipeChecker _checker;
+        /*private RecipeChecker _checker;
         private bool _isBaseIngredient;
 
         private void Awake() {
@@ -40,15 +42,15 @@ namespace Core.Dish {
             else {
                 onRecipeAvailable?.Invoke();
             }
-        }
+        }*/
 
         public void AddIngredient() {
-            _checker.AddIngredient(ingredientItem);
+            onIngredientAdded?.Invoke(ingredientItem);
         }
 
         private void OnValidate() {
             if (ingredientItem) {
-                name = ingredientItem.GetName() == "" ? ingredientItem.name : ingredientItem.GetName();
+                name = ingredientItem.GetItemName() == "" ? ingredientItem.name : ingredientItem.GetItemName();
             }
         }
     }

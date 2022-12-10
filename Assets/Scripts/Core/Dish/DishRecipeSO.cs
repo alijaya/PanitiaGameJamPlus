@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace Core.Dish {
-    [CreateAssetMenu(fileName = "Dish Recipe", menuName = "Dish Recipe", order = 0)]
+    [CreateAssetMenu(fileName = "Dish Recipe", menuName = "Dish/Recipe", order = 0)]
     public class DishRecipeSO : ScriptableObject {
         [SerializeField] private Recipe recipe;
         public Recipe GetRecipe() => recipe;
