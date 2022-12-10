@@ -67,27 +67,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5c35e65b5c54863aae078f225928f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  WhenComplete: 2
+  _receiveInput: 1
+  OnStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
   TextGenerator:
     rid: 3415647409331503107
   TextModifiers: []
+  WhenComplete: 2
   OnWordImmediateCompleted:
     m_PersistentCalls:
       m_Calls: []
   CompleteCheck:
     _target: {fileID: 2415281886515273628}
     _methodName: Go
-    _args: []
-    _dynamic: 0
+    _args:
+    - boolValue: 0
+      intValue: 0
+      floatValue: 0
+      stringValue: 
+      objectValue: {fileID: 0}
+      argType: 6
+      _typeName: System.Threading.CancellationToken, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+    _dynamic: 1
     _typeName: UniTaskFunc, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     dirty: 0
   OnWordCompleted:
@@ -105,9 +108,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
   text: {fileID: 5933017567518470077}
   references:
     version: 2

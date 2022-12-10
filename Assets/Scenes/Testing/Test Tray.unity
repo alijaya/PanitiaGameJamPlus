@@ -248,7 +248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859062243068958606, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Name
-      value: Ing_Meat
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: ingredientItem
@@ -543,7 +543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859062243068958606, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Name
-      value: Ing_Strawberryjam
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: ingredientItem
@@ -661,7 +661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859062243068958606, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Name
-      value: Ing_PeanutButter
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: ingredientItem
@@ -779,7 +779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859062243068958606, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Name
-      value: Ing_Pickles
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: ingredientItem
@@ -892,7 +892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859062243068958606, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Name
-      value: Ing_Roti
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: ingredientItem
@@ -1644,10 +1644,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2415281887435125327, guid: 0d835309331a5944c9bd1d38395063be, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415281887435125327, guid: 0d835309331a5944c9bd1d38395063be, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3515282734973256550, guid: 0d835309331a5944c9bd1d38395063be, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 3515282734973256550, guid: 0d835309331a5944c9bd1d38395063be, type: 3}
+    - target: {fileID: 5933017567518470076, guid: 0d835309331a5944c9bd1d38395063be, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5933017567518470076, guid: 0d835309331a5944c9bd1d38395063be, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d835309331a5944c9bd1d38395063be, type: 3}
 --- !u!114 &5434463199426881856 stripped
@@ -1668,14 +1684,63 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1998600803}
     m_Modifications:
+    - target: {fileID: 5624367057009724059, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624367057009724059, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624367057030983092, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624367057030983092, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624367057334394814, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624367057334394814, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5624367058138637163, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 5624367058138637163, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+    - target: {fileID: 5624367058206475200, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624367058206475200, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624367058865237959, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: CompleteCheck._dynamic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5624367058865237959, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 5624367058865237959, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+    - target: {fileID: 5624367058865237959, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: CompleteCheck._args.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624367058865237959, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: CompleteCheck._args.Array.data[0].argType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624367058865237959, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
+      propertyPath: CompleteCheck._args.Array.data[0]._typeName
+      value: System.Threading.CancellationToken, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      objectReference: {fileID: 0}
     - target: {fileID: 5624367058865238009, guid: 2f4185e19048f6e498096bc2ab2bd016, type: 3}
       propertyPath: serializationData.Prefab
       value: 

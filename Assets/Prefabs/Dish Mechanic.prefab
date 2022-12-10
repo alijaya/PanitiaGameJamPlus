@@ -430,7 +430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859062243068958606, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Name
-      value: Ing_SteakMeat
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: ingredientItem
