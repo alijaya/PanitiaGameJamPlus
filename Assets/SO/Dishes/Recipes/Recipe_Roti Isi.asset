@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1e6a848cf7443e98cfb935126bfd33, type: 3}
+  m_Name: Recipe_Roti Isi
+  m_EditorClassIdentifier: 
+  recipe:
+    and:
+    - or:
+      - ingredient: {fileID: 11400000, guid: be68e255a6091b946ac2e57209b2a80b, type: 2}
+        dishItem: {fileID: 0}
+    - or:
+      - ingredient: {fileID: 11400000, guid: d5415f679f51c764f9a289cdc0a4c28d, type: 2}
+        dishItem: {fileID: 11400000, guid: 87e029bfd7f8e55409d9b2522546d8ef, type: 2}
+      - ingredient: {fileID: 11400000, guid: 576e55efb8bc7874284e7a7aabd96c77, type: 2}
+        dishItem: {fileID: 11400000, guid: 957d751a50ca27d4b98fcd338852d06e, type: 2}
