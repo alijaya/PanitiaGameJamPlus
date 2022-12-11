@@ -6,11 +6,11 @@ using Util;
 
 public class ClickToMove : MonoBehaviour
 {
-    private ChefTasks2 movement;
+    private Chef movement;
 
     private void Awake()
     {
-        movement = GetComponent<ChefTasks2>();
+        movement = GetComponent<Chef>();
     }
 
     // Update is called once per frame

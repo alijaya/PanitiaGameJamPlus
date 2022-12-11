@@ -4,18 +4,18 @@ using UnityEngine;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 
-[RequireComponent(typeof(PathFinder2), typeof(MovementController2), typeof(CustomCoordinate))]
+[RequireComponent(typeof(PathFinder), typeof(MovementController), typeof(CustomCoordinate))]
 public class Mouse : MonoBehaviour {
-    private PathFinder2 pathfinder;
-    private MovementController2 movement;
+    private PathFinder pathfinder;
+    private MovementController movement;
     private CustomCoordinate coordinate;
     private Item _targetedItem;
 
     public Transform doorTransform;
     private bool _hasItem;
     private void Awake() {
-        pathfinder = GetComponent<PathFinder2>();
-        movement = GetComponent<MovementController2>();
+        pathfinder = GetComponent<PathFinder>();
+        movement = GetComponent<MovementController>();
         coordinate = GetComponent<CustomCoordinate>();
     }
 

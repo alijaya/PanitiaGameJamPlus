@@ -10,7 +10,7 @@ using System.Threading;
 namespace Core.Words
 {
     [DisallowMultipleComponent]
-    public class WordObject2 : MonoBehaviour
+    public class WordObject : MonoBehaviour
     {
         public static string InvalidWord = "aliganteng";
         public static float RandomMin = 1;

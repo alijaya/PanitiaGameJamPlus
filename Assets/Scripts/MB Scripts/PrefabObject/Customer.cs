@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
 
-[RequireComponent(typeof(PathFinder2), typeof(MovementController2), typeof(CustomCoordinate))]
+[RequireComponent(typeof(PathFinder), typeof(MovementController), typeof(CustomCoordinate))]
 public class Customer : MonoBehaviour
 {
     public Transform door { get; private set; }
@@ -14,8 +14,8 @@ public class Customer : MonoBehaviour
 
     public GameObject orderUI;
 
-    private PathFinder2 pathfinder;
-    private MovementController2 movement;
+    private PathFinder pathfinder;
+    private MovementController movement;
     private CustomCoordinate coordinate;
     public SpriteRenderer sprite;
 
@@ -24,8 +24,8 @@ public class Customer : MonoBehaviour
 
     private void Awake()
     {
-        pathfinder = GetComponent<PathFinder2>();
-        movement = GetComponent<MovementController2>();
+        pathfinder = GetComponent<PathFinder>();
+        movement = GetComponent<MovementController>();
         coordinate = GetComponent<CustomCoordinate>();
     }
 

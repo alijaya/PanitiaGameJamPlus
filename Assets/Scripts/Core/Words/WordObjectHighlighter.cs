@@ -3,15 +3,15 @@ using UnityEngine;
 using DG.Tweening;
 
 namespace Core.Words {
-    [RequireComponent(typeof(WordObject2))]
-    public class WordObjectHighlighter2 : MonoBehaviour {
+    [RequireComponent(typeof(WordObject))]
+    public class WordObjectHighlighter : MonoBehaviour {
 
         public Color highlightedColor;
         public Color wrongHighlightedColor;
         public float dim = .3f;
         public float scale = 1.5f;
 
-        private WordObject2 wordObject;
+        private WordObject wordObject;
         private TMP_Text text;
 
         public Transform transformGroup;
@@ -22,7 +22,7 @@ namespace Core.Words {
         private Tween shakeTween;
 
         private void Awake() {
-            wordObject = GetComponent<WordObject2>();
+            wordObject = GetComponent<WordObject>();
             text = wordObject.text;
         }
 
@@ -40,14 +40,14 @@ namespace Core.Words {
             return value == "" ? "" : $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{value}</color>";
         }
 
-        public void HandleStateChanged(WordObject2.WordObjectState state) {
+        public void HandleStateChanged(WordObject.WordObjectState state) {
             if (!this || !isActiveAndEnabled || QuitUtil.isQuitting) return;
 
             var word = wordObject.Text;
             var position = wordObject.Position;
 
             // fade if others matched, disabled, or completed
-            if (state == WordObject2.WordObjectState.OthersMatched || state == WordObject2.WordObjectState.Disabled || state == WordObject2.WordObjectState.Completed)
+            if (state == WordObject.WordObjectState.OthersMatched || state == WordObject.WordObjectState.Disabled || state == WordObject.WordObjectState.Completed)
             {
                 fadeTween?.Kill();
                 fadeTween = canvasGroup.DOFade(dim, .3f);
@@ -57,7 +57,7 @@ namespace Core.Words {
                 fadeTween = canvasGroup.DOFade(1, .3f);
             }
 
-            if (state == WordObject2.WordObjectState.Matched || state == WordObject2.WordObjectState.Unmatched)
+            if (state == WordObject.WordObjectState.Matched || state == WordObject.WordObjectState.Unmatched)
             {
                 scaleTween?.Kill();
                 scaleTween = transformGroup.DOScale(scale, .3f);
@@ -67,19 +67,19 @@ namespace Core.Words {
                 scaleTween = transformGroup.DOScale(1, .3f);
             }
 
-            if (state == WordObject2.WordObjectState.Unmatched)
+            if (state == WordObject.WordObjectState.Unmatched)
             {
                 shakeTween?.Kill(true);
                 shakeTween = transformGroup.DOShakePosition(.3f, .2f, 20, 0);
             }
 
-            if (state == WordObject2.WordObjectState.None || state == WordObject2.WordObjectState.OthersMatched)
+            if (state == WordObject.WordObjectState.None || state == WordObject.WordObjectState.OthersMatched)
             {
                 // reset
                 text.text = word;
             } else
             {
-                var isCurrentlyMatched = state != WordObject2.WordObjectState.Unmatched;
+                var isCurrentlyMatched = state != WordObject.WordObjectState.Unmatched;
 
                 var matchedChars = word[..position];
                 var nextChar = position < word.Length ? word.Substring(position, 1) : "";

@@ -1,18 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 
-public class Chef : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+[RequireComponent(typeof(PathFinder))]
+public class Chef : MonoBehaviour {
+
+    private PathFinder pathfinder;
+
+    private AsyncQueue asyncQueue = new();
+
+    private void Awake() {
+        pathfinder = GetComponent<PathFinder>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public async UniTask GoToWorld(Transform target, CancellationToken ct = default)
     {
-        
+        await asyncQueue.Queue(() => pathfinder.GoToWorld(target, ct), ct);
     }
+
+    public async UniTask GoToWorld(Vector3 target, CancellationToken ct = default)
+    {
+        await asyncQueue.Queue(() => pathfinder.GoToWorld(target, ct), ct);
+    }
+
+    public async UniTask GoTo(CustomCoordinate target, CancellationToken ct = default)
+    {
+        await asyncQueue.Queue(() => pathfinder.GoTo(target, ct), ct);
+    }
+
+    public async UniTask GoTo(Vector3 target, CancellationToken ct = default)
+    {
+        await asyncQueue.Queue(() => pathfinder.GoTo(target, ct), ct);
+    }
+
 }

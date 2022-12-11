@@ -9,7 +9,7 @@ using System.Threading;
 using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(CustomCoordinate))]
-public class MovementController2 : MonoBehaviour
+public class MovementController : MonoBehaviour
 {
     public Transform sprite;
 

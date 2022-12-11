@@ -19,11 +19,11 @@ namespace Core.Words
             UniqueError,
         };
 
-        private HashSet<WordObject2> _wordList = new();
+        private HashSet<WordObject> _wordList = new();
 
-        private HashSet<WordObject2> _matched = new();
+        private HashSet<WordObject> _matched = new();
 
-        public WordObject2 LastCompletedWord { get; private set; }
+        public WordObject LastCompletedWord { get; private set; }
 
         private WordTrackerState _state = WordTrackerState.None;
         public WordTrackerState State
@@ -93,12 +93,12 @@ namespace Core.Words
             if (Keyboard.current.backspaceKey.wasPressedThisFrame) HandleResetInput();
         }
 
-        public void RegisterWord(WordObject2 word)
+        public void RegisterWord(WordObject word)
         {
             _wordList.Add(word);
         }
 
-        public void UnregisterWord(WordObject2 word)
+        public void UnregisterWord(WordObject word)
         {
             _wordList.Remove(word);
 
@@ -123,12 +123,12 @@ namespace Core.Words
             return _wordList.All(wo => wo.Text[0] != word[0]);
         }
 
-        public void NotifyMatch(WordObject2 wordObject)
+        public void NotifyMatch(WordObject wordObject)
         {
             _matched.Add(wordObject);
         }
 
-        public void NotifyComplete(WordObject2 wordObject)
+        public void NotifyComplete(WordObject wordObject)
         {
             if (LastCompletedWord == null)
             {
