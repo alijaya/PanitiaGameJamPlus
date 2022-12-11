@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4c000c0d743433781618f5dd0d0a475, type: 3}
-  m_Name: Dish_Sandwich
+  m_Name: Dish_Burned
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemIconColor: {fileID: 0}

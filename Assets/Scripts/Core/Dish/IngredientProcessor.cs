@@ -7,6 +7,7 @@ using UnityEngine.Events;
 namespace Core.Dish {
     public class IngredientProcessor : MonoBehaviour {
         [SerializeField] private DishProcessSO[] processes;
+        [SerializeField] private DishItemSO burnedDish;
         [SerializeField] private UnityEvent<TrayItemSO> onStageChanged;
         [SerializeField] private UnityEvent<TrayItemSO> onOutputPicked;
 
@@ -43,7 +44,7 @@ namespace Core.Dish {
 
         public void PickOutput() {
             _tokenSource?.Cancel();
-            if (_output) {
+            if (_output || _output != burnedDish) {
                 onOutputPicked?.Invoke(_output);
 
                 if (_output is DishItemSO dish) {
@@ -54,12 +55,13 @@ namespace Core.Dish {
             Reset();
         }
 
+        public bool IsIngredientValid(IngredientItemSO ingredientItem) {
+            return processes.Any(x => x.GetInput() == ingredientItem);
+        }
+
         private void Reset() {
             _output = null;
             onStageChanged?.Invoke(_output);
         }
-        
-        
-
     }
 }

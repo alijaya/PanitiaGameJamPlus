@@ -25,6 +25,11 @@ namespace Core.Dish {
             slot.AddItem(dishItem);
         }
 
+        public void AddIngredientToTray(IEnumerable<IngredientItemSO> ingredientItem) {
+            var slot = _slots.First(slot => slot.GetDish() == null);
+            slot.ShowIngredients(ingredientItem.ToArray());
+        }
+
         public bool TryAddItemToTray(DishItemSO dishItemSo) {
             try {
                 AddItemToTray(dishItemSo);
@@ -34,6 +39,7 @@ namespace Core.Dish {
                 return false;
             }
         }
+        
 
         public bool HasDish(DishItemSO dishItem, out TraySlot[] traySlots) {
             traySlots = _slots.Where(x => x.GetDish() == dishItem).ToArray();
