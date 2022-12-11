@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -20,6 +19,17 @@ namespace Core.Dish {
         public void AddItem(DishItemSO item) {
             _dishItem = item;
             RefreshUI();
+        }
+
+        public void ShowIngredients(IngredientItemSO[] ingredients) {
+            text.text = "";
+            for (var i = 0; i < ingredients.Length; i++) {
+                text.text += ingredients[i].name;
+
+                if (i != ingredients.Length -1) {
+                    text.text += " + ";
+                }
+            } 
         }
 
         public DishItemSO GetDish() {

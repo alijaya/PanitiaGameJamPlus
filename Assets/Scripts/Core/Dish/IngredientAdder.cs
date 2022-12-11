@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq;  
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -51,6 +51,7 @@ namespace Core.Dish {
         private void OnValidate() {
             if (ingredientItem) {
                 name = ingredientItem.GetItemName() == "" ? ingredientItem.name : ingredientItem.GetItemName();
+                GetComponentInChildren<TrayItemUI>().Setup(ingredientItem);
             }
         }
     }

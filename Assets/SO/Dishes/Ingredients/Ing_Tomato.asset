@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4c000c0d743433781618f5dd0d0a475, type: 3}
-  m_Name: Dish_Bruchetta
+  m_Script: {fileID: 11500000, guid: 93022965d9dc4759a444ad384e590a90, type: 3}
+  m_Name: Ing_Tomato
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 5b147bf4fa71360428e0755a85c5ed55, type: 3}
-  itemIconColor: {fileID: 21300000, guid: 7be786902b82f3645b440fd4a93f8659, type: 3}
-  itemName: Tiramisu
+  itemIcon: {fileID: 0}
+  itemIconColor: {fileID: 0}
+  itemName: 

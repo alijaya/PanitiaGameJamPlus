@@ -18,8 +18,8 @@ namespace Core.Dish {
     [System.Serializable]
     public class Recipe {
         [SerializeField] private Disjunction[] and;
-        public bool Check(int ingredientOrder, IngredientItemSO ingredientItem, out DishItemSO finalDish) {
-            return and[ingredientOrder].Check(ingredientItem, out finalDish);
+        public bool Check(int ingredientOrder, IngredientItemSO ingredientItem, out TrayItemSO finalOutput) {
+            return and[ingredientOrder].Check(ingredientItem, out finalOutput);
         }
 
         public IngredientItemSO GetBaseIngredient() => and[0].GetBaseIngredient();
@@ -33,11 +33,11 @@ namespace Core.Dish {
         private class Disjunction {
             [SerializeField] private Predicate[] or;
 
-            public bool Check(IngredientItemSO ingredientItem, out DishItemSO finalDish) {
+            public bool Check(IngredientItemSO ingredientItem, out TrayItemSO finalOutput) {
                 foreach (var predicate in or) {
-                    if (predicate.Check(ingredientItem, out finalDish)) return true;
+                    if (predicate.Check(ingredientItem, out finalOutput)) return true;
                 }
-                finalDish = null;
+                finalOutput = null;
                 return false;
             }
 
@@ -50,15 +50,15 @@ namespace Core.Dish {
         [System.Serializable]
         private class Predicate {
             [SerializeField] private IngredientItemSO ingredient;
-            [SerializeField] private DishItemSO dishItem;
+            [SerializeField] private TrayItemSO output;
 
-            public bool Check(IngredientItemSO ingredientItem, out DishItemSO finalDish) {
+            public bool Check(IngredientItemSO ingredientItem, out TrayItemSO finalOutput) {
                 if (ingredientItem == ingredient) {
-                    finalDish = dishItem;
+                    finalOutput = output;
                     return true;
                 }
 
-                finalDish = null;
+                finalOutput = null;
                 return false;
                 
             }
