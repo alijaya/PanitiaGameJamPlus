@@ -42,6 +42,18 @@ public class MovementController : MonoBehaviour
         coordinate = GetComponent<CustomCoordinate>();
     }
 
+    private void OnDisable()
+    {
+        // stop mid way
+        movementTween?.Kill();
+
+        // complete the flip
+        flipTween?.Complete();
+
+        // complete the bob
+        bobTween?.Complete();
+    }
+
     // This is in World Coordinate
     public async UniTask GoToWorld(Transform target, CancellationToken ct = default)
     {
@@ -65,16 +77,25 @@ public class MovementController : MonoBehaviour
     {
         Stop();
 
-        movementTween = DOTween.To(() => coordinate.position, v => coordinate.position = v, target, speed).SetSpeedBased().SetEase(Ease.Linear)
-        .OnComplete(() =>
-        {
-            movementTween = null;
-        });
+        movementTween = DOTween.To(() => coordinate.position, v => coordinate.position = v, target, speed).SetSpeedBased().SetEase(Ease.Linear);
+
         SetFacing(target.x - transform.position.x).Forget();
         StartBobbing().Forget();
 
-        // onKill
+        // wait when it's completed or killed
         await movementTween.WithCancellation(ct);
+
+        // if stopped not complete, means stop prematurely
+        // check if stopped by the caller from CancellationToken
+        // if not it means stopped internally by error, Calling Stop, or object destroyed / disabled
+        // somehow IsActive is true if it's stopped prematurely, and false when completed
+        if ((movementTween == null || movementTween.IsActive()) && !ct.IsCancellationRequested)
+        {
+            movementTween = null;
+            throw new OperationCanceledException();
+        }
+
+        movementTween = null;
     }
 
     public async UniTask SetFaceLeft(bool animated = true)
@@ -119,7 +140,7 @@ public class MovementController : MonoBehaviour
             });
 
             // onKill
-            await flipTween.WithCancellation(this.GetCancellationTokenOnDestroy());
+            await flipTween;
         }
         else
         {
@@ -131,9 +152,11 @@ public class MovementController : MonoBehaviour
 
     public void Stop()
     {
+        // force stop
         if (movementTween != null)
         {
             movementTween.Kill();
+
             movementTween = null;
         }
     }
@@ -143,7 +166,6 @@ public class MovementController : MonoBehaviour
         // if it's still on going, then do nothing, continue the last one
         if (bobTween != null) return;
 
-        var ct = this.GetCancellationTokenOnDestroy();
         bobDirection = true;
         while (IsMoving)
         {
@@ -155,8 +177,7 @@ public class MovementController : MonoBehaviour
             }, bobDirection ? bobRotate : -bobRotate, bobSpeed).SetSpeedBased().SetEase(easeHalfWaveFun);
 
             // onKill
-            await bobTween.WithCancellation(ct);
-            if (ct.IsCancellationRequested) return;
+            await bobTween;
             bobDirection = !bobDirection;
         }
 

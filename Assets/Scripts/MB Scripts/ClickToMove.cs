@@ -6,11 +6,11 @@ using Util;
 
 public class ClickToMove : MonoBehaviour
 {
-    private Chef movement;
+    private PathFinder movement;
 
     private void Awake()
     {
-        movement = GetComponent<Chef>();
+        movement = GetComponent<PathFinder>();
     }
 
     // Update is called once per frame
@@ -24,6 +24,10 @@ public class ClickToMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             Destroy(gameObject);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            movement.Stop();
         }
     }
 }

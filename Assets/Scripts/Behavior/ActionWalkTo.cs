@@ -4,6 +4,7 @@ using UnityEngine;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 
 [TaskName("Walk To")]
 [TaskCategory("Game")]
@@ -14,19 +15,21 @@ public class ActionWalkTo : AsyncAction
     public SharedTransform target;
 
     private PathFinder pathFinder;
+    private MovementController movement;
     private GameObject prevGameObject;
 
-    public async override UniTask Progress()
+    public async override UniTask<bool> Progress(CancellationToken ct)
     {
         var currentGameObject = GetDefaultGameObject(targetGameObject.Value);
         if (currentGameObject != prevGameObject)
         {
-            pathFinder = currentGameObject.GetComponent<PathFinder>();
+            movement = currentGameObject.GetComponent<MovementController>();
             prevGameObject = currentGameObject;
         }
 
-        if (pathFinder == null) Failure();
+        if (movement == null) return false;
 
-        await pathFinder.GoToWorld(target.Value);
+        await movement.GoToWorld(target.Value, ct);
+        return true;
     }
 }

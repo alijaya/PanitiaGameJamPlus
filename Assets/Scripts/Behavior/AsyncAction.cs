@@ -10,38 +10,35 @@ public abstract class AsyncAction : Action
 {
     private bool done = false;
     private bool error = false;
-    private CancellationTokenSource ct;
+
+    private CancellationTokenSource pauseToken = new CancellationTokenSource();
+
+    public override void OnPause(bool paused)
+    {
+        if (paused)
+        {
+            pauseToken.Cancel();
+        } else
+        {
+            if(pauseToken == null)
+            {
+                pauseToken.Dispose();
+            }
+            pauseToken = new CancellationTokenSource();
+        }
+    }
 
     public async override void OnStart()
     {
-        ct = new CancellationTokenSource();
         done = false;
         error = false;
-        try
-        {
-            await Progress().AttachExternalCancellation(ct.Token);
-        } catch
-        {
-            error = true;
-        }
+        var (cancel, result) = await Progress(pauseToken.Token).SuppressCancellationThrow();
+        error = cancel || !result;
         done = true;
     }
 
-    // Call Success() or return to indicate Success, will break the async
-    // Call Failure() or throw to indicate Failure, will break the async
-    public abstract UniTask Progress();
-
-    public void Success()
-    {
-        error = false;
-        ct.Cancel();
-    }
-
-    public void Failure()
-    {
-        error = true;
-        ct.Cancel();
-    }
+    // return true: success, return false: failure
+    public abstract UniTask<bool> Progress(CancellationToken ct);
 
     public override TaskStatus OnUpdate()
     {
