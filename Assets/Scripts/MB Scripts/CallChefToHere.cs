@@ -6,11 +6,11 @@ using System.Threading;
 
 public class CallChefToHere : MonoBehaviour
 {
-    private ChefTasks2 chef;
+    private Chef chef;
 
     private void Awake()
     {
-        chef = FindObjectOfType<ChefTasks2>();
+        chef = FindObjectOfType<Chef>();
     }
 
     public async UniTask Go(CancellationToken ct = default)

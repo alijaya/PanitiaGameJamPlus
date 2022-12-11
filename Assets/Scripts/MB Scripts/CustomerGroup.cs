@@ -7,7 +7,7 @@ public class CustomerGroup : MonoBehaviour
     public CustomerTypeSO customerType;
     public int count = 1;
 
-    public List<Customer2> customers = new List<Customer2>();
+    public List<Customer> customers = new List<Customer>();
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class CustomerGroup : MonoBehaviour
         for (var i = 0; i < count; i++)
         {
             var customerGO = new GameObject(customerType.name);
-            var customer = customerGO.AddComponent<Customer2>();
+            var customer = customerGO.AddComponent<Customer>();
             customers.Add(customer);
         }
     }

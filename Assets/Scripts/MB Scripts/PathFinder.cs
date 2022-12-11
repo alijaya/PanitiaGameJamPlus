@@ -5,8 +5,8 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-[RequireComponent(typeof(MovementController2))]
-public class PathFinder2 : MonoBehaviour
+[RequireComponent(typeof(MovementController))]
+public class PathFinder : MonoBehaviour
 {
     private Vector2[] path;
     private int currentPathIndex;
@@ -15,11 +15,11 @@ public class PathFinder2 : MonoBehaviour
 
     public bool IsMoving { get; private set; }
 
-    private MovementController2 movement;
+    private MovementController movement;
 
     private void Awake()
     {
-        movement = GetComponent<MovementController2>();
+        movement = GetComponent<MovementController>();
     }
 
     // This is in World Coordinate
@@ -42,6 +42,7 @@ public class PathFinder2 : MonoBehaviour
             Vector2 currentWaypoint = path[currentPathIndex++];
 
             await movement.GoToWorld(currentWaypoint, ct);
+            if (ct.IsCancellationRequested) break;
         }
         IsMoving = false;
     }

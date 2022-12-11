@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3725453694816239249}
-  - component: {fileID: 3725453694816239246}
-  - component: {fileID: 3725453694816239251}
-  - component: {fileID: 4934272503315658157}
-  - component: {fileID: 1143826340061307961}
+  - component: {fileID: 2342759133711498562}
+  - component: {fileID: 3012373483939644996}
+  - component: {fileID: 578136884373606081}
+  - component: {fileID: 3600911291453490336}
   m_Layer: 0
   m_Name: Chef
   m_TagString: Untagged
@@ -32,11 +32,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4043553450233904876}
+  - {fileID: 3725453695623309394}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3725453694816239246
+--- !u!114 &2342759133711498562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,27 +45,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3725453694816239247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e84d6bddcaa2465e86c838cab0fdd44, type: 3}
+  m_Script: {fileID: 11500000, guid: 38a65fe7872a7400eab20bda10ac6c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  sprite: {fileID: 3725453695623309395}
-  bobRotate: 5
-  bobFreq: 0.7
-  rotateDuration: 0.3
-  OnReached:
-    m_PersistentCalls:
-      m_Calls: []
-  OnInterrupted:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStop:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStart:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &3725453694816239251
+  _lastLocalPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &3012373483939644996
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,22 +58,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3725453694816239247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fc3b6c94c4c64b16a86449b9abc4c9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1926bc6168a204b45984f1c3914c2b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnReached:
-    m_PersistentCalls:
-      m_Calls: []
-  OnInterrupted:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStop:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStart:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &4934272503315658157
+  sprite: {fileID: 3725453695623309394}
+  speed: 20
+  rotateSpeed: 2
+  bobRotate: 10
+  bobSpeed: 40
+--- !u!114 &578136884373606081
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,10 +75,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3725453694816239247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94fc45fb40354bbd9ba0dfedfa1bcfd, type: 3}
+  m_Script: {fileID: 11500000, guid: 939814fe1f3164f46a9cda2c6844e413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1143826340061307961
+--- !u!114 &3600911291453490336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,7 +87,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3725453694816239247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 516124ddf6ed97742ad1f62d31354a47, type: 3}
+  m_Script: {fileID: 11500000, guid: a619f525792d840ce97e874655eddf60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3725453695623309392
@@ -138,11 +115,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3725453695623309392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 4043553450233904876}
+  m_Father: {fileID: 3725453694816239249}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3725453695623309395
@@ -197,35 +174,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!1 &5949635928633587826
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4043553450233904876}
-  m_Layer: 0
-  m_Name: Pivot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4043553450233904876
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5949635928633587826}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.05, z: -0.3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3725453695623309394}
-  m_Father: {fileID: 3725453694816239249}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

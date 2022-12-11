@@ -13,7 +13,7 @@ public class ActionWalkTo : AsyncAction
     public SharedGameObject targetGameObject;
     public SharedTransform target;
 
-    private PathFinder2 pathFinder;
+    private PathFinder pathFinder;
     private GameObject prevGameObject;
 
     public async override UniTask Progress()
@@ -21,7 +21,7 @@ public class ActionWalkTo : AsyncAction
         var currentGameObject = GetDefaultGameObject(targetGameObject.Value);
         if (currentGameObject != prevGameObject)
         {
-            pathFinder = currentGameObject.GetComponent<PathFinder2>();
+            pathFinder = currentGameObject.GetComponent<PathFinder>();
             prevGameObject = currentGameObject;
         }
 

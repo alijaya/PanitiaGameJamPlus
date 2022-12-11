@@ -116,4 +116,29 @@ public class CustomCoordinate : MonoBehaviour
         Gizmos.DrawLine(transform.position, groundWorldPos);
         Gizmos.color = tempColor;
     }
+
+    // This is in World Coordinate
+    public void SetToWorld(Transform target)
+    {
+        SetToWorld(target.position);
+    }
+
+    // This is in World Coordinate
+    public void SetToWorld(Vector3 target)
+    {
+        SetTo(CustomCoordinate.WorldToGameCoordinate(target));
+    }
+
+    // This is in Game Coordinate
+    public void SetTo(CustomCoordinate target)
+    {
+        SetTo(target.position);
+    }
+
+    // This is in Game Coordinate
+    public void SetTo(Vector3 target)
+    {
+        this.position = target;
+    }
+
 }
