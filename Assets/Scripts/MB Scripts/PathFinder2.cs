@@ -42,6 +42,7 @@ public class PathFinder2 : MonoBehaviour
             Vector2 currentWaypoint = path[currentPathIndex++];
 
             await movement.GoToWorld(currentWaypoint, ct);
+            if (ct.IsCancellationRequested) break;
         }
         IsMoving = false;
     }

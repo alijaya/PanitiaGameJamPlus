@@ -12,6 +12,7 @@ namespace Core.Words
     [DisallowMultipleComponent]
     public class WordObject2 : MonoBehaviour
     {
+        public static string InvalidWord = "aliganteng";
         public static float RandomMin = 1;
         public static float RandomMax = 10;
 
@@ -148,7 +149,8 @@ namespace Core.Words
 
         public void UpdateRegistration()
         {
-            if (isActiveAndEnabled && ReceiveInput && Position < Text.Length)
+            if (!Application.isPlaying) return;
+            if (this && isActiveAndEnabled && ReceiveInput && Position < Text.Length)
             {
                 if (_registered) return;
                 _registered = true;
@@ -185,8 +187,8 @@ namespace Core.Words
 #endif
 
             var curText = "";
-            if (difficulty <= 0) curText = TextGenerator?.Generate() ?? WordSpawner.InvalidWord;
-            else curText = TextGenerator?.Generate(difficulty) ?? WordSpawner.InvalidWord;
+            if (difficulty <= 0) curText = TextGenerator?.Generate() ?? InvalidWord;
+            else curText = TextGenerator?.Generate(difficulty) ?? InvalidWord;
 
             foreach (var modifier in TextModifiers)
             {
@@ -243,12 +245,15 @@ namespace Core.Words
             var success = true;
             // wait for async, it could be cancelled tho
             // for example the text dissappear before the chef reach it
-            if (CompleteCheck != null)
+            if (CompleteCheck.target != null)
             {
                 success = ! await CompleteCheck.Invoke(completeCheckCancel.Token).SuppressCancellationThrow();
             }
             completeCheckCancel.Dispose();
             completeCheckCancel = null;
+
+            // if somehow destroyed, just break
+            if (this == null) return;
 
             // do stuff if it's really executed
             // only execute when really success

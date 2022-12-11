@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ObjectPathFinder), typeof(MovementController))]
+[RequireComponent(typeof(PathFinder2), typeof(MovementController2))]
 public class Customer2 : MonoBehaviour
 {
-    private ObjectPathFinder pathfinder;
-    private MovementController movement;
+    private PathFinder2 pathfinder;
+    private MovementController2 movement;
     private SpriteRenderer sprite;
 
     private CustomerGroup customerGroup;
@@ -14,10 +14,9 @@ public class Customer2 : MonoBehaviour
 
     private void Awake()
     {
-        pathfinder = GetComponent<ObjectPathFinder>();
-        movement = GetComponent<MovementController>();
+        pathfinder = GetComponent<PathFinder2>();
+        movement = GetComponent<MovementController2>();
         sprite = GetComponent<SpriteRenderer>();
-        movement.sprite = sprite;
     }
 
     public void Setup(CustomerGroup customerGroup)

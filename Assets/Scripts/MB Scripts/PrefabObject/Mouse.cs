@@ -1,57 +1,58 @@
 ﻿using System;
 using Core;
 using UnityEngine;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 
+[RequireComponent(typeof(PathFinder2), typeof(MovementController2), typeof(CustomCoordinate))]
 public class Mouse : MonoBehaviour {
-    private ObjectPathFinder pathfinder;
-    private MovementController movement;
+    private PathFinder2 pathfinder;
+    private MovementController2 movement;
+    private CustomCoordinate coordinate;
     private Item _targetedItem;
 
     public Transform doorTransform;
     private bool _hasItem;
     private void Awake() {
-        pathfinder = GetComponent<ObjectPathFinder>();
-        movement = GetComponent<MovementController>();
-        _targetedItem = ItemTray.Instance.GetRandomItem();
+        pathfinder = GetComponent<PathFinder2>();
+        movement = GetComponent<MovementController2>();
+        coordinate = GetComponent<CustomCoordinate>();
     }
 
     private void Start() {
-        if (_targetedItem && _targetedItem.StackSize > 0) {
-            pathfinder.OnReached.AddListener(OnReachObjective);
-            MoveTo(_targetedItem.transform);
-        }
+        coordinate.SetToWorld(doorTransform);
+        GoToObjective(this.GetCancellationTokenOnDestroy()).Forget();
     }
 
-    private void OnReachObjective() {
-        if (_targetedItem.StackSize == 0) {
+    private async UniTask GoToObjective(CancellationToken ct) {
+
+        while (_targetedItem == null || _targetedItem.StackSize == 0) {
             _targetedItem = ItemTray.Instance.GetRandomItem();
-            MoveTo(_targetedItem.transform);
-            return;
+            await pathfinder.GoToWorld(_targetedItem.transform, ct);
+            if (ct.IsCancellationRequested) return;
         }
         
-        pathfinder.OnReached.RemoveListener(OnReachObjective);
         _targetedItem.ReduceStack();
         _hasItem = true;
-        pathfinder.OnReached.AddListener(OnReachDoor);
-        pathfinder.GoTo(doorTransform);
+        GoToDoor(ct).Forget();
     }
 
-    private void OnReachDoor()
+    private async UniTask GoToDoor(CancellationToken ct)
     {
-        pathfinder.OnReached.RemoveListener(OnReachDoor);
+        await pathfinder.GoToWorld(doorTransform, ct);
+        if (ct.IsCancellationRequested) return;
         Destroy(gameObject);
     }
 
 
-    private void MoveTo(Transform objectiveTransform) {
-        pathfinder.GoTo(objectiveTransform);
+    private async UniTask MoveTo(Transform objectiveTransform, CancellationToken ct)
+    {
+        await pathfinder.GoToWorld(objectiveTransform, ct);
     }
 
-    public void OnDestroyedByWord() {
+    public void DestroyedByWord() {
         if (_hasItem) _targetedItem.AddStack();
-    }
-
-    private void OnDisable() {
         Destroy(gameObject);
     }
+
 }
