@@ -50,12 +50,12 @@ public abstract class AsyncAction : Action
         StartAsync().Forget();
     }
 
-    //public override void OnEnd()
-    //{
-    //    pauseToken?.Cancel();
-    //    pauseToken?.Dispose();
-    //    pauseToken = null;
-    //}
+    public override void OnEnd()
+    {
+        pauseToken?.Cancel();
+        pauseToken?.Dispose();
+        pauseToken = null;
+    }
 
     // return true: success, return false: failure
     public abstract UniTask<bool> Progress(CancellationToken ct);
