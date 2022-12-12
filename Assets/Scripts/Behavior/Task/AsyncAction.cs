@@ -18,7 +18,9 @@ public abstract class AsyncAction : Action
     {
         if (paused)
         {
-            pauseToken.Cancel();
+            pauseToken?.Cancel();
+            pauseToken?.Dispose();
+            pauseToken = null;
         } else
         {
             
@@ -47,6 +49,13 @@ public abstract class AsyncAction : Action
     {
         StartAsync().Forget();
     }
+
+    //public override void OnEnd()
+    //{
+    //    pauseToken?.Cancel();
+    //    pauseToken?.Dispose();
+    //    pauseToken = null;
+    //}
 
     // return true: success, return false: failure
     public abstract UniTask<bool> Progress(CancellationToken ct);
