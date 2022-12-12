@@ -23,13 +23,13 @@ public class ActionWalkTo : AsyncAction
         var currentGameObject = GetDefaultGameObject(targetGameObject.Value);
         if (currentGameObject != prevGameObject)
         {
-            movement = currentGameObject.GetComponent<MovementController>();
+            pathFinder = currentGameObject.GetComponent<PathFinder>();
             prevGameObject = currentGameObject;
         }
 
-        if (movement == null) return false;
+        if (pathFinder == null) return false;
 
-        await movement.GoToWorld(target.Value, ct);
+        if (target.Value != null) await pathFinder.GoToWorld(target.Value, ct);
         return true;
     }
 }
