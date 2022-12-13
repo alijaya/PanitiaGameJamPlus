@@ -32,6 +32,9 @@ public class GlobalRef : SingletonSO<GlobalRef>
     public AudioClip SFX_CustomerHappy;
     public AudioClip SFX_CustomerAngry;
     public AudioClip SFX_Shot;
+    
+    // popup-test
+    public GameObject scorePopup;
 
     public void CleanUpWords()
     {

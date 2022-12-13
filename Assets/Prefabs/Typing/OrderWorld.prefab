@@ -340,9 +340,9 @@ MonoBehaviour:
   orderCompleted:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 7ea7aaad8206d4b418e33d12fd76980e, type: 2}
-        m_TargetAssemblyTypeName: GlobalRef, Assembly-CSharp
-        m_MethodName: PlaySFX_CustomerHappy
+      - m_Target: {fileID: 5342011627674444340}
+        m_TargetAssemblyTypeName: RS.Typing.Core.Order, Assembly-CSharp
+        m_MethodName: SpawnScorePopup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

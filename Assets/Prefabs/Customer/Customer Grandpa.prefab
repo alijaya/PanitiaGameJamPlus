@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 326032958523165774, guid: 58642a75cdb7c4658b0ec2309b1704e1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3725453694816239247, guid: 58642a75cdb7c4658b0ec2309b1704e1, type: 3}
       propertyPath: m_Name
       value: Customer Grandpa

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Events;
@@ -33,6 +34,11 @@ namespace RS.Typing.Core {
 
         private void OnDisable() {
             ItemTray.Instance.ItemTrayUpdated.RemoveListener(ItemTrayOnItemTrayUpdated);
+        }
+
+        private void Awake()
+        {
+            orderCompleted.AddListener(SpawnScorePopup);
         }
 
         private void ItemTrayOnItemTrayUpdated(Dictionary<ItemSO, Item> itemTray) {
@@ -125,6 +131,12 @@ namespace RS.Typing.Core {
 
         public void ResetText() {
             KeyInput.Instance.ResetText();
+        }
+        
+        // popup-test
+        public void SpawnScorePopup()
+        {
+            Instantiate(GlobalRef.I.scorePopup, transform.position, Quaternion.identity);
         }
     }
 }
