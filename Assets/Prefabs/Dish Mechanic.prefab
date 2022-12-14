@@ -64,7 +64,7 @@ Transform:
   - {fileID: 6389681281146499765}
   - {fileID: 1054109558296275031}
   m_Father: {fileID: 425997622532030422}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &553006548
 GameObject:
@@ -128,7 +128,7 @@ Transform:
   m_Children:
   - {fileID: 3804936097720491482}
   m_Father: {fileID: 425997622532030422}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &974646185
 GameObject:
@@ -166,56 +166,6 @@ Transform:
   m_Father: {fileID: 553006549}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &454460256949971906
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7690600073620177547}
-  - component: {fileID: 5443870702584657415}
-  m_Layer: 0
-  m_Name: RecipeChecker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7690600073620177547
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454460256949971906}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 425997622532030422}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5443870702584657415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454460256949971906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafd02ce9de04d8ab3acab9057d0d32a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PrintTrace: 0
-  recipes:
-  - {fileID: 11400000, guid: 67d3a42765394794d8eb9d0d60331608, type: 2}
-  onValidRecipe:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3842311945254272886
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +195,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5462648523449610422}
-  - {fileID: 7690600073620177547}
   - {fileID: 451255895}
   - {fileID: 616650503}
   m_Father: {fileID: 0}
@@ -345,7 +294,7 @@ PrefabInstance:
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: onIngredientAdded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5443870702584657415}
+      objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: onIngredientAdded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -452,9 +401,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6380431118268566800, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
+      propertyPath: m_text
+      value: Ing_Pepperoni
+      objectReference: {fileID: 0}
     - target: {fileID: 6859062243068958606, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Name
-      value: Ing_Salami
+      value: Ing_Pepperoni
       objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: ingredientItem
@@ -471,7 +424,7 @@ PrefabInstance:
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: onIngredientAdded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5443870702584657415}
+      objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: onIngredientAdded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -605,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: onIngredientAdded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5443870702584657415}
+      objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: onIngredientAdded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -739,7 +692,7 @@ PrefabInstance:
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: onIngredientAdded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5443870702584657415}
+      objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: onIngredientAdded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1002,7 +955,7 @@ PrefabInstance:
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: onIngredientAdded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5443870702584657415}
+      objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: onIngredientAdded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1156,7 +1109,7 @@ PrefabInstance:
     - target: {fileID: 9135825062067561955, guid: c6b925698535f6c4485cd03e76e0b62a, type: 3}
       propertyPath: onOutputPicked.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5443870702584657415}
+      objectReference: {fileID: 0}
     - target: {fileID: 9135825062067561955, guid: c6b925698535f6c4485cd03e76e0b62a, type: 3}
       propertyPath: onOutputPicked.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2

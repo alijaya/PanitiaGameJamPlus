@@ -12,11 +12,11 @@ namespace Core.Dish {
         [SerializeField] private UnityEvent onRecipeAvailable;
         [SerializeField] private UnityEvent onRecipeNotAvailable;
 
-        /*private RecipeChecker _checker;
+        private RecipeChecker _checker;
         private bool _isBaseIngredient;
 
         private void Awake() {
-            _checker = RecipeChecker.I;
+            _checker = GetComponentInParent<RecipeChecker>();
             _isBaseIngredient = _checker.IsBaseIngredient(ingredientItem);
             if (!_isBaseIngredient) {
                 _checker.ValidateRecipe += OnValidateRecipe;
@@ -42,10 +42,10 @@ namespace Core.Dish {
             else {
                 onRecipeAvailable?.Invoke();
             }
-        }*/
+        }
 
         public void AddIngredient() {
-            onIngredientAdded?.Invoke(ingredientItem);
+            _checker.AddIngredient(ingredientItem);
         }
 
         private void OnValidate() {

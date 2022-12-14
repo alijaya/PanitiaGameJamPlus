@@ -1,87 +1,52 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-    
+
 namespace Core.Dish {
-    public class RecipeChecker : SingletonMB<RecipeChecker> {
-        [SerializeField] private DishRecipeSO[] recipes;
-        public UnityEvent<TrayItemSO> onValidRecipe;
+    public class RecipeChecker : MonoBehaviour {
+        [SerializeField] private DishRecipeSO recipe;
+        public UnityEvent onRecipeStarted;
+        public UnityEvent<TrayItemSO> onRecipeComplete;
         public event Action<IEnumerable<IngredientItemSO>> ValidateRecipe;
+        public event Action<TrayItemSO> IngredientAdded;
+        public event Action<TrayItemSO> IngredientCombined;
+        
         private List<IngredientItemSO> _inputtedIngredients = new ();
 
-        private IEnumerable<IngredientProcessor> _processors;
-
-        private int _ingredientOrder;
-
-        protected override void SingletonAwakened() {
-            base.SingletonAwakened();
-            _processors = FindObjectsOfType<IngredientProcessor>();
-        }
+        private int _ingredientOrder = -1;
 
         public bool IsBaseIngredient(IngredientItemSO ingredientItem) {
-            var baseIngredients = recipes.Select(recipe => recipe.GetBaseIngredient()).ToList();
-            return baseIngredients.Contains(ingredientItem);
+            return recipe.GetBaseIngredient() == ingredientItem;
         }
+
         public void AddIngredient(IngredientItemSO ingredientItem) {
-            var validRecipes = GetValidRecipes(ingredientItem, out var recipeOutput).ToArray();
-            if (!validRecipes.Any()) {
-                _inputtedIngredients.Clear();
-                return;
-            }
-
-            _inputtedIngredients.Add(ingredientItem);
-            if (recipeOutput) {
-                //onValidRecipe?.Invoke(recipeOutput);
-
-                if (recipeOutput is DishItemSO dish) {
-                    ItemTray.I.TryAddItemToTray(dish);
-                } else if (recipeOutput is IngredientItemSO ingredient) {
-                    var ingredientProcessor = _processors.FirstOrDefault(x => x.IsIngredientValid(ingredient));
-                    if (ingredientProcessor) {
-                        ingredientProcessor.AddIngredient(ingredient);
+            if (_ingredientOrder >= 0 && !IsBaseIngredient(ingredientItem)) {
+                if (recipe.GetRecipe().Check(_ingredientOrder, ingredientItem, out var finalOutput)) {
+                    
+                    IngredientCombined?.Invoke(finalOutput);
+                    if (recipe.GetRecipeStep() == _ingredientOrder + 1) {
+                        onRecipeComplete?.Invoke(finalOutput);
+                    
+                        _ingredientOrder = -1;
+                        _inputtedIngredients.Clear();
+                        ValidateRecipe?.Invoke(new List<IngredientItemSO>());
+                        return;
                     }
                 }
+            } else if (IsBaseIngredient(ingredientItem)) {
+                onRecipeStarted?.Invoke();
+            }
 
-                _ingredientOrder = 0;
-                _inputtedIngredients.Clear();
-            }
-            else {
-               NextIngredient(validRecipes);
-            }
-            
-            ItemTray.I.AddIngredientToTray(_inputtedIngredients);
+            IngredientAdded?.Invoke(ingredientItem);
+            NextIngredient();
         }
         
-        private void NextIngredient(IEnumerable<DishRecipeSO> validRecipes) {
+        private void NextIngredient() {
             _ingredientOrder++;
-            List<IngredientItemSO> nextIngredients = new();
-            foreach (var recipe in validRecipes) {
-                var ingredients = recipe.GetIngredientsAt(_ingredientOrder);
-                nextIngredients.AddRange(ingredients);
-            }
+            var nextIngredients = recipe.GetIngredientsAt(_ingredientOrder);
             ValidateRecipe?.Invoke(nextIngredients);
         }
 
-        private IEnumerable<DishRecipeSO> GetValidRecipes(IngredientItemSO ingredientItem, out TrayItemSO finalOutput) {
-            finalOutput = null;
-            var validRecipes = new List<DishRecipeSO>();
-            foreach (var recipe in recipes) {
-                try {
-                    if (recipe.GetRecipe().Check(_ingredientOrder, ingredientItem, out finalOutput)) {
-                        validRecipes.Add(recipe);
-                    }
-                }
-                catch (IndexOutOfRangeException e) {
-                    Console.WriteLine(e);
-                    continue;
-                }
-                
-                if (finalOutput) break;
-            }
-
-            return validRecipes;
-        }
     }
 }

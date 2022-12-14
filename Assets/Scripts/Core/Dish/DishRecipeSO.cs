@@ -5,10 +5,11 @@ using UnityEngine;
 namespace Core.Dish {
     [CreateAssetMenu(fileName = "Dish Recipe", menuName = "Dish/Recipe", order = 0)]
     public class DishRecipeSO : ScriptableObject {
+        [SerializeField] private IngredientItemSO baseIngredient;
         [SerializeField] private Recipe recipe;
         public Recipe GetRecipe() => recipe;
-
-        public IngredientItemSO GetBaseIngredient() => recipe.GetBaseIngredient();
+        public int GetRecipeStep() => recipe.GetRecipeStep();
+        public IngredientItemSO GetBaseIngredient() => baseIngredient;
 
         public IEnumerable<IngredientItemSO> GetIngredientsAt(int ingredientOrder) =>
             recipe.GetIngredientsAt(ingredientOrder);
@@ -22,11 +23,11 @@ namespace Core.Dish {
             return and[ingredientOrder].Check(ingredientItem, out finalOutput);
         }
 
-        public IngredientItemSO GetBaseIngredient() => and[0].GetBaseIngredient();
-
         public IEnumerable<IngredientItemSO> GetIngredientsAt(int ingredientOrder) {
             return and[ingredientOrder].GetIngredients();
         }
+
+        public int GetRecipeStep() => and.Length;
 
 
         [System.Serializable]
@@ -40,8 +41,6 @@ namespace Core.Dish {
                 finalOutput = null;
                 return false;
             }
-
-            public IngredientItemSO GetBaseIngredient() => or[0].GetIngredient();
 
             public IEnumerable<IngredientItemSO> GetIngredients() {
                 return or.Select(predicate => predicate.GetIngredient());
