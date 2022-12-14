@@ -24,6 +24,11 @@ public class SeatManager : SingletonMB<SeatManager>
 
     public Seat GetAvailableSeat(CustomerGroup customerGroup)
     {
-        return seats.Where(seat => !seat.occupied && seat.count >= customerGroup.count).Aggregate((seatA, seatB) => seatA.count <= seatB.count ? seatA : seatB);
+        return GetAvailableSeat(customerGroup.count);
+    }
+
+    public Seat GetAvailableSeat(int customerCount)
+    {
+        return seats.Where(seat => !seat.occupied && seat.count >= customerCount).Aggregate((seatA, seatB) => seatA.count <= seatB.count ? seatA : seatB);
     }
 }

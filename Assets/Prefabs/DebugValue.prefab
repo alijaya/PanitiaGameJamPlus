@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4499829072411170291}
-  - component: {fileID: 5725385716472846157}
-  - component: {fileID: 1246376770050158775}
+  - component: {fileID: 2051566275553588266}
   m_Layer: 0
-  m_Name: WordObjectWorld
+  m_Name: DebugValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5725385716472846157
+--- !u!114 &2051566275553588266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,129 +42,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 3669399906329752366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e8385bc46b346f7b6ce14efdc146f5, type: 3}
+  m_Script: {fileID: 11500000, guid: ba4585dbaba324e8bbf537050458f4d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightedColor: {r: 1, g: 1, b: 0, a: 0}
-  wrongHighlightedColor: {r: 1, g: 0, b: 0, a: 0}
-  dim: 0.3
-  scale: 1.5
-  transformGroup: {fileID: 4499829072411170291}
-  canvasGroup: {fileID: 1010069891435299021}
---- !u!114 &1246376770050158775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3669399906329752366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e5c35e65b5c54863aae078f225928f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _receiveInput: 1
-  OnStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  TextGenerator:
-    rid: -2
-  TextModifiers: []
-  WhenComplete: 2
-  OnWordImmediateCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  CompleteCheck:
+  text: {fileID: 8345906916963212396}
+  stringFunc:
     _target: {fileID: 0}
     _methodName: 
     _args: []
     _dynamic: 0
-    _typeName: UniTaskFunc, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    _typeName: StringFunc, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     dirty: 0
-  OnWordCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  text: {fileID: 8345906916963212396}
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
---- !u!1 &4310600727648310693
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4762770570395566800}
-  - component: {fileID: 881792040361211653}
-  - component: {fileID: 650837779468883866}
-  m_Layer: 0
-  m_Name: UI Squircle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &4762770570395566800
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4310600727648310693}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 8345906916942547784}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &881792040361211653
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4310600727648310693}
-  m_CullTransparentMesh: 1
---- !u!114 &650837779468883866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4310600727648310693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7948ca2f24604c4aa5340622512a976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_improveResolution: 0
-  m_Resolution: 0
-  m_useNativeSize: 0
-  squircleType: 1
-  n: 4
-  delta: 1
-  quality: 0.1
-  radius: 1000
+  intFunc:
+    _target: {fileID: 0}
+    _methodName: 
+    _args: []
+    _dynamic: 0
+    _typeName: IntFunc, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    dirty: 0
+  floatFunc:
+    _target: {fileID: 0}
+    _methodName: 
+    _args: []
+    _dynamic: 0
+    _typeName: FloatFunc, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    dirty: 0
+  boolFunc:
+    _target: {fileID: 0}
+    _methodName: 
+    _args: []
+    _dynamic: 0
+    _typeName: BoolFunc, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    dirty: 0
 --- !u!1 &8345906916942547785
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +104,6 @@ RectTransform:
   m_LocalScale: {x: 0.0078125, y: 0.0078125, z: 0.0078125}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 4762770570395566800}
   - {fileID: 8345906916963212397}
   m_Father: {fileID: 4499829072411170291}
   m_RootOrder: 0
@@ -204,7 +111,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 128, y: 32}
+  m_SizeDelta: {x: 150, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &435130794584429273
 Canvas:
@@ -271,7 +178,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8345906916942547784}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -306,7 +213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: new
+  m_text: debug
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ccb4447e8ff742d9aac96b1e88b702b, type: 2}
   m_sharedMaterial: {fileID: -4732849456537824435, guid: 5ccb4447e8ff742d9aac96b1e88b702b, type: 2}
@@ -333,8 +240,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

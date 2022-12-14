@@ -13,7 +13,7 @@ public class PointOfInterest : MonoBehaviour
     }
 
     public StopDirection stopDirection;
-    public bool isChair = false;
+    public bool isSeat = false;
     public float seatHeight = .5f;
 
     public GameObject occupyObject;

@@ -321,5 +321,46 @@ namespace Core.Words
                 State = WordObjectState.Matched;
             }
         }
+
+
+        #region static util
+
+        public static (UniTask, WordObject) SpawnConstantAsync(string text, Transform parent, CancellationToken ct = default)
+        {
+            var result = GameObject.Instantiate(GlobalRef.I.WordObjectPrefab, parent);
+            result.TextGenerator = new Generator.ConstantTextGenerator()
+            {
+                Text = text
+            };
+            var utcs = new UniTaskCompletionSource();
+
+            result.OnWordCompleted.AddListener(() =>
+            {
+                Destroy(result.gameObject);
+                utcs.TrySetResult();
+            });
+
+            // I'm not sure about all of this
+            ct.Register(() =>
+            {
+                if (result) Destroy(result.gameObject);
+                // not sure about this
+                utcs.TrySetCanceled(ct);
+            });
+
+            return (utcs.Task, result);
+        }
+
+        public static WordObject SpawnConstant(string text, Transform parent)
+        {
+            var result = GameObject.Instantiate(GlobalRef.I.WordObjectPrefab, parent);
+            result.TextGenerator = new Generator.ConstantTextGenerator()
+            {
+                Text = text
+            };
+            return result;
+        }
+
+        #endregion
     }
 }

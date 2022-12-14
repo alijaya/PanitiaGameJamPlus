@@ -83,19 +83,17 @@ public class MovementController : MonoBehaviour
         StartBobbing().Forget();
 
         // wait when it's completed or killed
-        await movementTween.WithCancellation(ct);
+        var cancelled = await movementTween.WithCancellation(ct).SuppressCancellationThrow();
 
+        movementTween = null;
         // if stopped not complete, means stop prematurely
         // check if stopped by the caller from CancellationToken
         // if not it means stopped internally by error, Calling Stop, or object destroyed / disabled
         // somehow IsActive is true if it's stopped prematurely, and false when completed
-        if ((movementTween == null || movementTween.IsActive()) && !ct.IsCancellationRequested)
+        if (cancelled && !ct.IsCancellationRequested)
         {
-            movementTween = null;
-            throw new OperationCanceledException();
+            throw new OperationCanceledException(); // propagate
         }
-
-        movementTween = null;
     }
 
     public async UniTask SetFaceLeft(bool animated = true)

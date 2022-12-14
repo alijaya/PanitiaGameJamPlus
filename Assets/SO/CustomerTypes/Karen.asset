@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69ad08e5f7b24182ac2f7de57c44644, type: 3}
   m_Name: Karen
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 9f28036ec63764028af0bf356958c065, type: 3}
-  patience: 0.5
+  prefabs:
+  - {fileID: 5194379914093547094, guid: d754ff21bf0a7499dabf1bfed032c49e, type: 3}
   walkSpeed: 1.5
+  waitDuration: 0.5
   orderDuration: 1.5
   eatDuration: 1.5
   bonusTip: 1.5
