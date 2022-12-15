@@ -337,23 +337,15 @@ namespace Core.Words
             {
                 Text = text
             };
-            var utcs = new UniTaskCompletionSource();
 
-            result.OnWordCompleted.AddListener(() =>
+            async UniTask task()
             {
-                Destroy(result.gameObject);
-                utcs.TrySetResult();
-            });
-
-            // I'm not sure about all of this
-            ct.Register(() =>
-            {
+                await result.OnWordCompleted.ToUniTask(ct).SuppressCancellationThrow();
+                // suppress cancellation so will always destroy this
                 if (result) Destroy(result.gameObject);
-                // not sure about this
-                utcs.TrySetCanceled(ct);
-            });
+            }
 
-            return (utcs.Task, result);
+            return (task(), result);
         }
 
         public static WordObject SpawnConstant(string text, Transform parent)

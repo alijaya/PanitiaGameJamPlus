@@ -140,7 +140,7 @@ public class CustomerGroup : MonoBehaviour
 
         // ordering
         // create fake order, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnConstantAsync("order", transform, ct);
+        (task, wordObject) = Core.Words.WordObject.SpawnConstantAsync("order", customers[0].transform, ct);
         PlayCountdown();
         Debug.Log("ordering");
         await task;
@@ -151,7 +151,7 @@ public class CustomerGroup : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(customerType.OrderDuration), cancellationToken: ct);
 
         // create fake paying, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnConstantAsync("pay", transform, ct);
+        (task, wordObject) = Core.Words.WordObject.SpawnConstantAsync("pay", customers[0].transform, ct);
         PlayCountdown();
         Debug.Log("paying");
         await task;
@@ -165,10 +165,18 @@ public class CustomerGroup : MonoBehaviour
     {
         while (true)
         {
-            var (seat, customerGroup) = await SeatManager.I.OnSeatUnoccupied.ToUniTask(ct);
-            Debug.Log("seat unoccupied!");
-            Debug.Log(seat);
-            Debug.Log(customerGroup);
+            var (seat, lastCustomerGroup) = await SeatManager.I.OnSeatUnoccupied.ToUniTask(ct);
+
+            
+            if (seat == waitingSeat || seat.CouldSeat(this))
+            {
+                // if it's the same seat, then we go there first
+                // or if it's empty seat without anything waiting, then we go there
+
+                // unbook the waitingSeat
+                waitingSeat.UnwaitCustomerGroup();
+                return seat;
+            }
         }
     }
 

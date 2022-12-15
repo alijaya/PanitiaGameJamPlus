@@ -38,6 +38,14 @@ public class Seat : MonoBehaviour
         }
     }
 
+    public int waitCount
+    {
+        get
+        {
+            return waitLocations.Count;
+        }
+    }
+
     private void OnEnable()
     {
         SeatManager.I.RegisterSeat(this);
@@ -88,7 +96,7 @@ public class Seat : MonoBehaviour
 
     public bool CouldSeat(int customerCount)
     {
-        return !occupied && count >= customerCount;
+        return !occupied && !waitOccupied && count >= customerCount;
     }
 
     public bool CouldSeat(CustomerGroup customerGroup)

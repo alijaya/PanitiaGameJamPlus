@@ -55,7 +55,7 @@ public class SeatManager : SingletonMB<SeatManager>
 
     public Seat GetAvailableSeat()
     {
-        return seats.Where(seat => !seat.occupied).GetRandom();
+        return seats.Where(seat => !seat.occupied && !seat.waitOccupied).GetRandom();
     }
 
     public Seat GetAvailableWaitingSeat()

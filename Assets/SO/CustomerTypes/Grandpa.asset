@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 9041412637505748383, guid: 2c18bc83069a9435f98d49cce6cde29f, type: 3}
-  walkSpeed: 0.7
+  walkSpeed: 0.5
   waitDuration: 2
   orderDuration: 2
   eatDuration: 2

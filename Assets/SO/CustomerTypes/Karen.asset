@@ -15,7 +15,7 @@ MonoBehaviour:
   prefabs:
   - {fileID: 5194379914093547094, guid: d754ff21bf0a7499dabf1bfed032c49e, type: 3}
   walkSpeed: 1.5
-  waitDuration: 0.5
+  waitDuration: 0.7
   orderDuration: 1.5
   eatDuration: 1.5
   bonusTip: 1.5
