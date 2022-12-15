@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using System.Threading;
+using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -11,8 +12,6 @@ public class PathFinder : MonoBehaviour
     private Vector2[] path;
     private int currentPathIndex;
 
-    private CancellationTokenSource lastCT;
-
     public bool IsMoving { get; private set; }
 
     private MovementController movement;
@@ -20,6 +19,11 @@ public class PathFinder : MonoBehaviour
     private void Awake()
     {
         movement = GetComponent<MovementController>();
+    }
+
+    private void OnDisable()
+    {
+        Stop();
     }
 
     // This is in World Coordinate
@@ -37,13 +41,32 @@ public class PathFinder : MonoBehaviour
         currentPathIndex = 0;
 
         IsMoving = true;
-        while (IsMoving && path.Length > 0 && currentPathIndex < path.Length)
+        bool cancel = false;
+        while (path.Length > 0 && currentPathIndex < path.Length)
         {
             Vector2 currentWaypoint = path[currentPathIndex++];
 
-            await movement.GoToWorld(currentWaypoint, ct);
+            // if last waypoint, then go directly to target
+            if (currentPathIndex == path.Length)
+            {
+                currentWaypoint = target;
+            }
+
+            cancel = await movement.GoToWorld(currentWaypoint, ct).SuppressCancellationThrow();
+
+            // if stopped not complete, means stop prematurely
+            // check if stopped by the caller from CancellationToken
+            // if not it means stopped internally by error, Calling Stop, or object destroyed / disabled
+            if ((cancel || !IsMoving) && !ct.IsCancellationRequested)
+            {
+                Stop();
+                throw new OperationCanceledException();
+            }
+
+            // if requested to stop, then stop
             if (ct.IsCancellationRequested) break;
         }
+
         IsMoving = false;
     }
 

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69ad08e5f7b24182ac2f7de57c44644, type: 3}
   m_Name: Grandpa
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 6f61da6548e113048b4e31ba38c5c0b1, type: 3}
-  patience: 2
-  walkSpeed: 0.7
+  prefabs:
+  - {fileID: 9041412637505748383, guid: 2c18bc83069a9435f98d49cce6cde29f, type: 3}
+  walkSpeed: 0.5
+  waitDuration: 2
   orderDuration: 2
   eatDuration: 2
   bonusTip: 1.5

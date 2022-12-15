@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityAtoms.BaseAtoms;
 using Eflatun.SceneReference;
 using UnityEngine.SceneManagement;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu]
 public class GlobalRef : SingletonSO<GlobalRef>
@@ -31,6 +32,9 @@ public class GlobalRef : SingletonSO<GlobalRef>
     public AudioClip SFX_CustomerHappy;
     public AudioClip SFX_CustomerAngry;
     public AudioClip SFX_Shot;
+
+    [AssetSelector]
+    public Core.Words.WordObject WordObjectPrefab;
 
     public void CleanUpWords()
     {

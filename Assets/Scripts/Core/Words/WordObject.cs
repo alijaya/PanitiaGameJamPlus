@@ -31,6 +31,7 @@ namespace Core.Words
             None,
             Reset,
             Regenerate,
+            Destroy,
         }
 
         [SerializeField] private bool _receiveInput = true;
@@ -266,6 +267,10 @@ namespace Core.Words
             {
                 ResetState();
             }
+            else if (WhenComplete == CompleteAction.Destroy)
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void ResetState()
@@ -321,5 +326,38 @@ namespace Core.Words
                 State = WordObjectState.Matched;
             }
         }
+
+
+        #region static util
+
+        public static (UniTask, WordObject) SpawnConstantAsync(string text, Transform parent, CancellationToken ct = default)
+        {
+            var result = GameObject.Instantiate(GlobalRef.I.WordObjectPrefab, parent);
+            result.TextGenerator = new Generator.ConstantTextGenerator()
+            {
+                Text = text
+            };
+
+            async UniTask task()
+            {
+                await result.OnWordCompleted.ToUniTask(ct).SuppressCancellationThrow();
+                // suppress cancellation so will always destroy this
+                if (result) Destroy(result.gameObject);
+            }
+
+            return (task(), result);
+        }
+
+        public static WordObject SpawnConstant(string text, Transform parent)
+        {
+            var result = GameObject.Instantiate(GlobalRef.I.WordObjectPrefab, parent);
+            result.TextGenerator = new Generator.ConstantTextGenerator()
+            {
+                Text = text
+            };
+            return result;
+        }
+
+        #endregion
     }
 }

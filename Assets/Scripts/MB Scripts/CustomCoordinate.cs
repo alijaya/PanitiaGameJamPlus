@@ -58,6 +58,22 @@ public class CustomCoordinate : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        // cache directly
+        _lastParent = transform.parent?.GetComponentInParent<CustomCoordinate>();
+
+        if (_lastParent)
+        {
+            _lastParent.positionChanged += parentPositionChanged;
+            parentPositionChanged(_lastParent.position);
+        }
+        else
+        {
+            parentPositionChanged(Vector3.zero);
+        }
+    }
+
     private void Update()
     {
         // If parent changed
@@ -80,6 +96,8 @@ public class CustomCoordinate : MonoBehaviour
             {
                 parentPositionChanged(Vector3.zero);
             }
+
+            // set position to last position
             position = _lastPosition;
         }
         OnPositionChanged();

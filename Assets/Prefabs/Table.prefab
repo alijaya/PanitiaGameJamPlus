@@ -262,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3547340069331636935}
   - component: {fileID: 6215342860191120485}
+  - component: {fileID: 60139598146305734}
   m_Layer: 0
   m_Name: Table - Right
   m_TagString: Untagged
@@ -277,7 +278,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3547340069331636934}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -297,9 +298,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopDirection: 1
-  isChair: 1
+  isSeat: 1
   seatHeight: 0.5
   occupyObject: {fileID: 0}
+--- !u!114 &60139598146305734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547340069331636934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a65fe7872a7400eab20bda10ac6c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lastLocalPosition: {x: 1, y: -0.1, z: 0}
 --- !u!1 &3547340070058744759
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3547340070058744760}
   - component: {fileID: 7427667515013658253}
+  - component: {fileID: 7942985918096554916}
   m_Layer: 0
   m_Name: Table - Left
   m_TagString: Untagged
@@ -325,7 +340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3547340070058744759}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -345,9 +360,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopDirection: 2
-  isChair: 1
+  isSeat: 1
   seatHeight: 0.5
   occupyObject: {fileID: 0}
+--- !u!114 &7942985918096554916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547340070058744759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a65fe7872a7400eab20bda10ac6c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lastLocalPosition: {x: -1, y: -0.1, z: 0}
 --- !u!1 &3547340070340812287
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +385,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3547340070340812288}
-  - component: {fileID: 4876472630355356151}
+  - component: {fileID: 3468142667125091843}
+  - component: {fileID: 6999418254635261922}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -373,7 +402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3547340070340812287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -387,7 +416,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4876472630355356151
+--- !u!114 &3468142667125091843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -396,12 +425,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 3547340070340812287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f473c79af13e4cb08e94b2c23df157b, type: 3}
+  m_Script: {fileID: 11500000, guid: f74cbc3e877314ac28138271f88573e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 7427667515013658253}
-  right: {fileID: 6215342860191120485}
-  chef: {fileID: 8952220532338499695}
+  locations:
+  - {fileID: 7427667515013658253}
+  - {fileID: 6215342860191120485}
+--- !u!114 &6999418254635261922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547340070340812287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a65fe7872a7400eab20bda10ac6c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lastLocalPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &3877657886916179965
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3144199930571514024}
   - component: {fileID: 8952220532338499695}
+  - component: {fileID: 4940354831480793615}
   m_Layer: 0
   m_Name: Table - Chef
   m_TagString: Untagged
@@ -582,7 +625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7971898124485849308}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -602,6 +645,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopDirection: 0
-  isChair: 0
+  isSeat: 0
   seatHeight: 0.5
   occupyObject: {fileID: 0}
+--- !u!114 &4940354831480793615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7971898124485849308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a65fe7872a7400eab20bda10ac6c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lastLocalPosition: {x: 0, y: -0.5, z: 0}

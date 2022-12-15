@@ -78,7 +78,7 @@ public class Customer : MonoBehaviour
 
         }
 
-        if (targetPosition.isChair)
+        if (targetPosition.isSeat)
         {
             await Seat();
         }
