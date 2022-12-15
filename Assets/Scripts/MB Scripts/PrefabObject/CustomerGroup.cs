@@ -45,6 +45,7 @@ public class CustomerGroup : MonoBehaviour
         for (var i = 0; i < count; i++)
         {
             var customer = Instantiate(customerType.prefabs.GetRandom());
+            customer.Setup(this);
             customer.SetToWorld(spawnPoint);
             customers.Add(customer);
         }

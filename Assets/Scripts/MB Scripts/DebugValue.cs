@@ -12,6 +12,8 @@ public class DebugValue : MonoBehaviour
     public FloatFunc floatFunc;
     public BoolFunc boolFunc;
 
+    public string prefix = "";
+    public string suffix = "";
     public int decimalPlaces = 2;
     public string trueValue = "true";
     public string falseValue = "false";
@@ -21,18 +23,18 @@ public class DebugValue : MonoBehaviour
     {
         if (stringFunc.target != null)
         {
-            text.text = stringFunc.Invoke();
+            text.text = prefix + stringFunc.Invoke() + suffix;
         }
         else if (intFunc.target != null)
         {
-            text.text = intFunc.Invoke().ToString("n0");
+            text.text = prefix + intFunc.Invoke().ToString("n0") + suffix;
         }
         else if (floatFunc.target != null)
         {
-            text.text = floatFunc.Invoke().ToString("n"+decimalPlaces);
+            text.text = prefix + floatFunc.Invoke().ToString("n"+decimalPlaces) + suffix;
         } else if (boolFunc.target != null)
         {
-            text.text = boolFunc.Invoke() ? trueValue : falseValue;
+            text.text = prefix + (boolFunc.Invoke() ? trueValue : falseValue) + suffix;
         }
     }
 }

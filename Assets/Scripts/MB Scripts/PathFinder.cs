@@ -41,11 +41,18 @@ public class PathFinder : MonoBehaviour
         currentPathIndex = 0;
 
         IsMoving = true;
+        bool cancel = false;
         while (path.Length > 0 && currentPathIndex < path.Length)
         {
             Vector2 currentWaypoint = path[currentPathIndex++];
 
-            var cancel = await movement.GoToWorld(currentWaypoint, ct).SuppressCancellationThrow();
+            // if last waypoint, then go directly to target
+            if (currentPathIndex == path.Length)
+            {
+                currentWaypoint = target;
+            }
+
+            cancel = await movement.GoToWorld(currentWaypoint, ct).SuppressCancellationThrow();
 
             // if stopped not complete, means stop prematurely
             // check if stopped by the caller from CancellationToken
@@ -59,6 +66,7 @@ public class PathFinder : MonoBehaviour
             // if requested to stop, then stop
             if (ct.IsCancellationRequested) break;
         }
+
         IsMoving = false;
     }
 

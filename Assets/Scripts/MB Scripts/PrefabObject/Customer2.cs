@@ -12,14 +12,19 @@ public class Customer2 : MonoBehaviour
     private MovementController movement;
     private CustomCoordinate coordinate;
 
-    [NonSerialized]
-    public CustomerGroup customerGroup;
+    public CustomerGroup customerGroup { get; private set; }
 
     private void Awake()
     {
         pathfinder = GetComponent<PathFinder>();
         movement = GetComponent<MovementController>();
         coordinate = GetComponent<CustomCoordinate>();
+    }
+
+    public void Setup(CustomerGroup customerGroup)
+    {
+        this.customerGroup = customerGroup;
+        movement.speed = customerGroup.customerType.WalkSpeed;
     }
 
     #region movement
