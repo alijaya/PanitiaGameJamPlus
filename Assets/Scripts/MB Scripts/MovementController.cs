@@ -44,6 +44,9 @@ public class MovementController : MonoBehaviour
 
     private void OnDisable()
     {
+        // don't do anything if quitting, this cause a headache
+        if (QuitUtil.isQuitting) return;
+
         // stop mid way
         movementTween?.Kill();
 
@@ -77,22 +80,20 @@ public class MovementController : MonoBehaviour
     {
         Stop();
 
-        movementTween = DOTween.To(() => coordinate.position, v => coordinate.position = v, target, speed).SetSpeedBased().SetEase(Ease.Linear);
+        movementTween = DOTween.To(() => coordinate.position, v => coordinate.position = v, target, speed).SetSpeedBased().SetEase(Ease.Linear).SetLink(gameObject);
 
         SetFacing(target.x - transform.position.x).Forget();
         StartBobbing().Forget();
 
         // wait when it's completed or killed
-        var cancelled = await movementTween.WithCancellation(ct).SuppressCancellationThrow();
-
-        movementTween = null;
-        // if stopped not complete, means stop prematurely
-        // check if stopped by the caller from CancellationToken
-        // if not it means stopped internally by error, Calling Stop, or object destroyed / disabled
-        // somehow IsActive is true if it's stopped prematurely, and false when completed
-        if (cancelled && !ct.IsCancellationRequested)
+        try
         {
-            throw new OperationCanceledException(); // propagate
+            await movementTween.WithCancellation(ct);
+            // if it's still IsActive, it means it's killed prematurely
+            if (movementTween.IsActive()) throw new OperationCanceledException(); // propagate
+        } finally
+        {
+            movementTween = null;
         }
     }
 
@@ -131,14 +132,13 @@ public class MovementController : MonoBehaviour
                 var rot = sprite.transform.localEulerAngles;
                 rot.y = value;
                 sprite.transform.localEulerAngles = rot;
-            }, yRot, rotateSpeed * 360).SetSpeedBased().SetEase(Ease.Linear)
-                .OnComplete(() =>
-            {
-                flipTween = null;
-            });
+            }, yRot, rotateSpeed * 360).SetSpeedBased().SetEase(Ease.Linear).SetLink(sprite.gameObject);
 
             // onKill
-            await flipTween;
+            await flipTween.WithCancellation(this.GetCancellationTokenOnDestroy());
+            // if it's still IsActive, it means it's killed prematurely
+            if (flipTween.IsActive()) throw new OperationCanceledException(); // propagate
+            flipTween = null;
         }
         else
         {
@@ -172,10 +172,10 @@ public class MovementController : MonoBehaviour
                 var rot = sprite.transform.localEulerAngles;
                 rot.z = value;
                 sprite.transform.localEulerAngles = rot;
-            }, bobDirection ? bobRotate : -bobRotate, bobSpeed).SetSpeedBased().SetEase(easeHalfWaveFun);
+            }, bobDirection ? bobRotate : -bobRotate, bobSpeed).SetSpeedBased().SetEase(easeHalfWaveFun).SetLink(sprite.gameObject);
 
             // onKill
-            await bobTween;
+            await bobTween.WithCancellation(this.GetCancellationTokenOnDestroy());
             bobDirection = !bobDirection;
         }
 

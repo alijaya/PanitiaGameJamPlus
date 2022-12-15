@@ -31,6 +31,7 @@ public class CustomerGroup : MonoBehaviour
 
     private CancellationTokenSource countdownCancel;
     private Seat seat;
+    private Seat waitingSeat;
 
     public void Setup(CustomerTypeSO customerType, Transform spawnPoint)
     {
@@ -64,15 +65,49 @@ public class CustomerGroup : MonoBehaviour
         }
     }
 
+
+    // not sure mending pake State Machine atau kagak... 👀
     private async UniTask RunBehavior(CancellationToken ct)
     {
         ResetCountdown();
-        bool cancelled = false;
         // First Search The Seat
         // hopefully found one, if not... don't know, should be error :')
         // let's handle that later
 
         seat = SeatManager.I.GetAvailableSeat(this);
+
+        // If don't get any seat, well please wait to waiting point
+        if (!seat)
+        {
+            waitingSeat = SeatManager.I.GetAvailableWaitingSeat(this);
+
+            if (!waitingSeat)
+            {
+                // damn I dunno what to do lol... if you can't wait, it should be error?
+                throw new OperationCanceledException();
+            }
+
+            // booking the waiting seat
+            waitingSeat.WaitCustomerGroup(this);
+            // then move the customer
+            var goToWaitTasks = new List<UniTask>();
+            for (var i = 0; i < customers.Count; i++)
+            {
+                var customer = customers[i];
+                var position = waitingSeat.waitLocations[i];
+                goToWaitTasks.Add(AsyncUtil.DelayTask(delaySpawn * i, () => customer.GoToPOI(position, ct), ct));
+            }
+            // await all until they arrived
+            PauseCountdown();
+            Debug.Log("walking to waiting spots");
+            await UniTask.WhenAll(goToWaitTasks);
+
+            // let's wait until there's a seat available
+            // play timer
+            PlayCountdown();
+            Debug.Log("waiting for seats");
+            seat = await WaitUntilGetAvailableSeat(ct);
+        }
 
         // Second, Go To The Seat
         // like all the customer in this group, find their seat
@@ -91,12 +126,8 @@ public class CustomerGroup : MonoBehaviour
 
         // await all until they arrived
         PauseCountdown();
-        Debug.Log("entering");
-        cancelled = await UniTask.WhenAll(goToTasks).SuppressCancellationThrow();
-        if (cancelled || ct.IsCancellationRequested)
-        {
-            return; // umm something weird happened
-        }
+        Debug.Log("walking to seats");
+        await UniTask.WhenAll(goToTasks);
 
         // they all are arrived, then wait for ordering menu.
         // should play some animation and popup, but well later
@@ -130,6 +161,17 @@ public class CustomerGroup : MonoBehaviour
         LeaveBehavior(this.GetCancellationTokenOnDestroy()).Forget();
     }
 
+    private async UniTask<Seat> WaitUntilGetAvailableSeat(CancellationToken ct)
+    {
+        while (true)
+        {
+            var (seat, customerGroup) = await SeatManager.I.OnSeatUnoccupied.ToUniTask(ct);
+            Debug.Log("seat unoccupied!");
+            Debug.Log(seat);
+            Debug.Log(customerGroup);
+        }
+    }
+
     private async UniTask LeaveBehavior(CancellationToken ct)
     {
         PauseCountdown();
@@ -140,7 +182,8 @@ public class CustomerGroup : MonoBehaviour
         // First, Go To Door
 
         // unseat the seat first, so the other could take this seat
-        seat.UnseatCustomerGroup();
+        if (seat) seat.UnseatCustomerGroup();
+        if (waitingSeat) waitingSeat.UnwaitCustomerGroup();
         // then move the customer
         var goToTasks = new List<UniTask>();
         for (var i = 0; i < customers.Count; i++)

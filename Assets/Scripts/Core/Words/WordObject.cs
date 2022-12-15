@@ -31,6 +31,7 @@ namespace Core.Words
             None,
             Reset,
             Regenerate,
+            Destroy,
         }
 
         [SerializeField] private bool _receiveInput = true;
@@ -265,6 +266,10 @@ namespace Core.Words
             } else if (WhenComplete == CompleteAction.Reset)
             {
                 ResetState();
+            }
+            else if (WhenComplete == CompleteAction.Destroy)
+            {
+                Destroy(gameObject);
             }
         }
 
