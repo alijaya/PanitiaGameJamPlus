@@ -8,10 +8,6 @@ namespace Core.Dish {
         [SerializeField] private TextMeshProUGUI itemNameText;
         [SerializeField] private TextMeshProUGUI stackText;
 
-        private void Start() {
-            stackText.enabled = false;
-        }
-
         public void Setup(TrayItemSO trayItem) {
             Reset();
 
@@ -29,7 +25,7 @@ namespace Core.Dish {
         }
 
         public void SetStack(int stackSize) {
-            stackText.enabled = true;
+            stackText.enabled = stackSize >= 0;
             stackText.text = stackSize.ToString();
         }
 

@@ -4,25 +4,23 @@ namespace Core.Dish {
     public class DishPickerRefillable : DishPicker {
         [SerializeField] private int stackSize;
 
-        private int _currentStackSize;
         private void Start() {
-            _currentStackSize = stackSize;
+            currentStackSize = stackSize;
             RefreshUI();
-            itemUI.SetStack(_currentStackSize);
         }
 
         public override void AddDish() {
-            if (_currentStackSize <= 0) return;
-            if (ItemTray.I.TryAddItemToTray(dishItem)) _currentStackSize--;
+            if (currentStackSize <= 0) return;
+            if (ItemTray.I.TryAddItemToTray(dishItem)) currentStackSize--;
             onDishAvailable?.Invoke(stackSize > 0);
-            itemUI.SetStack(_currentStackSize);
+            RefreshUI();
         }
 
         public bool TryRefill() {
-            if (_currentStackSize >= stackSize) return false;
-            _currentStackSize++;
+            if (currentStackSize >= stackSize) return false;
+            currentStackSize++;
             onDishAvailable?.Invoke(stackSize > 0);
-            itemUI.SetStack(_currentStackSize);
+            RefreshUI();
             return true;
         }
         

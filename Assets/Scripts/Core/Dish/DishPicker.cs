@@ -8,6 +8,7 @@ namespace Core.Dish {
         [SerializeField] protected UnityEvent<bool> onDishAvailable;
 
         protected TrayItemUI itemUI;
+        protected int currentStackSize = -1;
 
         protected void Awake() {
             itemUI = GetComponentInChildren<TrayItemUI>();
@@ -44,6 +45,7 @@ namespace Core.Dish {
             }
             name = dishItem.GetItemName() == "" ? dishItem.name : dishItem.GetItemName();
             itemUI.Setup(dishItem);
+            itemUI.SetStack(currentStackSize);
         }
     }
 }
