@@ -2,7 +2,7 @@ using TMPro;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 
-public class Timer : MonoBehaviour {
+public class GameTimer : MonoBehaviour {
     [SerializeField] private FloatVariable timeLeftVariable;
     [SerializeField] private TextMeshProUGUI timerText;
 
