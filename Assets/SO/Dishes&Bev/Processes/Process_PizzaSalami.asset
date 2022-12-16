@@ -17,4 +17,4 @@ MonoBehaviour:
   - output: {fileID: 11400000, guid: 7ea7789fbd143454e91352832bcc30e6, type: 2}
     timeToProcess: 10
   - output: {fileID: 11400000, guid: da5fe66d4f7fd3d4a97900f7636bb1b9, type: 2}
-    timeToProcess: 3
+    timeToProcess: 5

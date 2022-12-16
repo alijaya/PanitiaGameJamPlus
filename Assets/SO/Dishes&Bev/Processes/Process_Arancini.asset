@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfac143ab1e4c23866b0c2fb9be752b, type: 3}
+  m_Name: Process_Arancini
+  m_EditorClassIdentifier: 
+  ingredientInput: {fileID: 11400000, guid: b8798a95887c3a745ac6e2a7ef136f31, type: 2}
+  stages:
+  - output: {fileID: 11400000, guid: 2d233090b33db2248abeb312a047b45e, type: 2}
+    timeToProcess: 6
+  - output: {fileID: 11400000, guid: da5fe66d4f7fd3d4a97900f7636bb1b9, type: 2}
+    timeToProcess: 5

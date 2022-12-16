@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bfac143ab1e4c23866b0c2fb9be752b, type: 3}
-  m_Name: Process_PizzaMushroom
+  m_Name: Process_Panzerroti
   m_EditorClassIdentifier: 
-  ingredientInput: {fileID: 11400000, guid: 75c060e820477b84baf76a355c89fe87, type: 2}
+  ingredientInput: {fileID: 11400000, guid: dbca4da5805756e4288140d2ed3dd5ed, type: 2}
   stages:
-  - output: {fileID: 11400000, guid: 5d53dea4c3f86e84482b4fb983c213f5, type: 2}
-    timeToProcess: 10
+  - output: {fileID: 11400000, guid: b79f09d65ddcbcd4e8696e0a4f9bf5a7, type: 2}
+    timeToProcess: 5
   - output: {fileID: 11400000, guid: da5fe66d4f7fd3d4a97900f7636bb1b9, type: 2}
-    timeToProcess: 3
+    timeToProcess: 5

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c000c0d743433781618f5dd0d0a475, type: 3}
   m_Name: Dish_PizzaMushroom
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
-  itemIconColor: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: ec2af8be4373472409d6d422c902b1e5, type: 3}
+  itemIconColor: {fileID: 21300000, guid: a0740bed07eca9e4bbb5db9cc72fd571, type: 3}
   itemName: 
