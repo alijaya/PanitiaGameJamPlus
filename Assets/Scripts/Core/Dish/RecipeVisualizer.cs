@@ -27,6 +27,12 @@ namespace Core.Dish {
         }
 
         private void CheckerOnIngredientAdded(TrayItemSO item) {
+            if (item == null) {
+                _current.Clear();
+                _currentOutput = null;
+                return;
+            }
+            
             _current.Add(item);
             RefreshUI();
             if (_current.Count == 2) {

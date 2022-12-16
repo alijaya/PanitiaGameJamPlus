@@ -13,9 +13,7 @@ namespace Core.Dish {
         }
 
         public void Setup(TrayItemSO trayItem) {
-            image.enabled = false;
-            itemNameText.enabled = false;
-            stackText.enabled = false;
+            Reset();
 
             var icon = trayItem.GetItemIconColor();
             var itemName = trayItem.GetItemName();
@@ -28,6 +26,12 @@ namespace Core.Dish {
                 itemNameText.enabled = true;
                 itemNameText.text = itemName != "" ? itemName : trayItem.name;
             }
+        }
+
+        public void Reset() {
+            image.enabled = false;
+            itemNameText.enabled = false;
+            stackText.enabled = false;
         }
     }
 }   

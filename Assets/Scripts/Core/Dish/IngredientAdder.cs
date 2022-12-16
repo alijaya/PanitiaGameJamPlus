@@ -12,20 +12,20 @@ namespace Core.Dish {
         [SerializeField] private UnityEvent onRecipeAvailable;
         [SerializeField] private UnityEvent onRecipeNotAvailable;
 
-        private RecipeChecker _checker;
+        private IIngredientReceiver _receiver;
         private bool _isBaseIngredient;
 
         private void Awake() {
-            _checker = GetComponentInParent<RecipeChecker>();
-            _isBaseIngredient = _checker.IsBaseIngredient(ingredientItem);
-            if (!_isBaseIngredient) {
-                _checker.ValidateRecipe += OnValidateRecipe;
+            _receiver = GetComponentInParent<IIngredientReceiver>();
+            _isBaseIngredient = _receiver.IsBaseIngredient(ingredientItem);
+            if (!_isBaseIngredient && _receiver is RecipeChecker checker) {
+                checker.ValidateRecipe += OnValidateRecipe;
             }
         }
 
         private void OnDestroy() {
-            if (!_isBaseIngredient) {
-                _checker.ValidateRecipe -= OnValidateRecipe;
+            if (!_isBaseIngredient && _receiver is RecipeChecker checker) {
+                checker.ValidateRecipe += OnValidateRecipe;
             }
         }
 
@@ -45,7 +45,7 @@ namespace Core.Dish {
         }
 
         public void AddIngredient() {
-            _checker.AddIngredient(ingredientItem);
+            _receiver.AddIngredient(ingredientItem);
         }
 
         private void OnValidate() {

@@ -1,67 +1,90 @@
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
+using Util;
 
 namespace Core.Dish {
-    public class IngredientProcessor : MonoBehaviour {
+    public class IngredientProcessor : MonoBehaviour,IIngredientReceiver {
         [SerializeField] private DishProcessSO[] processes;
+        [SerializeField] private DishPicker[] collectorSlots;
+        
+        [Space(10)]
         [SerializeField] private DishItemSO burnedDish;
-        [SerializeField] private UnityEvent<TrayItemSO> onStageChanged;
+        [SerializeField] private UnityEvent<bool> isSlotAvailable;
+
         [SerializeField] private UnityEvent<TrayItemSO> onOutputPicked;
 
-        private TrayItemSO _output;
-        private CancellationTokenSource _tokenSource;
+        private readonly Dictionary<DishPicker, KeyValuePair<DishProcessSO,CustomTimer>> _runningProcesses = new ();
 
-        private async void StartProcess(DishProcessSO dishProcess) {
-            _tokenSource = new CancellationTokenSource();
-            var currentStages = 0;
-            var stages = dishProcess.GetStages();
-            while (currentStages < stages.Length) {
-                var end = Time.time + stages[currentStages].timeToProcess;
-                while (Time.time < end) {
-                    if (_tokenSource.Token.IsCancellationRequested) {
-                        _tokenSource.Dispose();
-                        return;
-                    }
-                    await Task.Yield();
+        private readonly Queue<DishPicker> _pendingProcesses = new();
+
+        private void Update() {
+            var keys = new List<DishPicker>(_runningProcesses.Keys);
+            foreach (var collector in keys) {
+                var process = _runningProcesses[collector].Key;
+                var timer = _runningProcesses[collector].Value;
+                
+                // cooking timer will stop when chef attempt to pick the food or the dish is burned 
+                if (timer.IsStopped()) continue;
+                timer.DeltaTick(Time.deltaTime, out var isStageChanged, out var currentStage);
+                
+                if (isStageChanged) {
+                    var output = process.GetStages()[currentStage].output;
+                    // TODO: maybe will adding Ingredient picker in the future?
+                    if (output is DishItemSO dish) collector.SetupDish(dish == burnedDish ? null: dish);
                 }
-
-                _output = stages[currentStages].output;
-                onStageChanged?.Invoke(_output);
-                currentStages++;
             }
         }
+        private void StartProcess(DishPicker collector,DishProcessSO dishProcessSo) {
+            var stagesTime = dishProcessSo.GetStages().Select(x => x.timeToProcess);
+            collector.gameObject.SetActive(true);
+            
+            _runningProcesses[collector] = new KeyValuePair<DishProcessSO, CustomTimer>
+                (dishProcessSo, new CustomTimer(stagesTime.ToArray()));
+            _runningProcesses[collector].Value.Stop();
+            _pendingProcesses.Enqueue(collector);
+            
+            collector.SetupDish(null);
+            collector.GetComponentInChildren<TrayItemUI>().Setup(dishProcessSo.GetInput());
+        }
 
+        public void ContinueProcess() {
+            if (_pendingProcesses.TryDequeue(out var collector)) {
+                _runningProcesses[collector].Value.Continue();
+            }
+        }
+        
         public void AddIngredient(IngredientItemSO ingredientItem) {
-            var process = processes.First(x => x.GetInput() == ingredientItem);
-            if (process) {
-                StartProcess(process);
+            var freeSlot = collectorSlots.FirstOrDefault(x => !_runningProcesses.ContainsKey(x));
+            if (!freeSlot) {
+                Debug.LogWarning("No slot for this ingredient");
+                return;
             }
-            onStageChanged?.Invoke(ingredientItem);
+            
+            // find process 
+            var process = processes.FirstOrDefault(x => x.GetInput() == ingredientItem);
+            if (!process) return;
+            
+            StartProcess(freeSlot,process);
+            isSlotAvailable?.Invoke(IsSlotAvailable());
         }
-
-        public void PickOutput() {
-            _tokenSource?.Cancel();
-            if (_output || _output != burnedDish) {
-                onOutputPicked?.Invoke(_output);
-
-                if (_output is DishItemSO dish) {
-                    ItemTray.I.TryAddItemToTray(dish);
-                }
+        public void AddIngredient(TrayItemSO trayItem) {
+            if (trayItem is IngredientItemSO ingredientItem) {
+                AddIngredient(ingredientItem);
             }
-
-            Reset();
         }
-
-        public bool IsIngredientValid(IngredientItemSO ingredientItem) {
+        public void PickOutput(DishPicker collector) {
+            _runningProcesses[collector].Value.Stop();
+            _runningProcesses.Remove(collector);
+            isSlotAvailable?.Invoke(IsSlotAvailable());
+        }
+        private bool IsSlotAvailable() {
+            return !collectorSlots.All(x => _runningProcesses.ContainsKey(x));
+        }
+        public bool IsBaseIngredient(IngredientItemSO ingredientItem) {
             return processes.Any(x => x.GetInput() == ingredientItem);
         }
 
-        private void Reset() {
-            _output = null;
-            onStageChanged?.Invoke(_output);
-        }
     }
 }
