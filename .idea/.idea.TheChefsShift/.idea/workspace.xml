@@ -4,7 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d552cb8c-c358-4bc8-9f0e-f1f3e2a0e082" name="Changes" comment="" />
+    <list default="true" id="d552cb8c-c358-4bc8-9f0e-f1f3e2a0e082" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_12_2022_02_29_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_12_2022_02_29_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_06_37_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_06_37_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Font/FredokaOne-Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Font/FredokaOne-Regular SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/WordObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/WordObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/StoryManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/StoryManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/dialogue-test.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/dialogue-test.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/testStory.ink" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/testStory.ink.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/testStory.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/testStory.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/InkSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InkSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +39,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Ink/Demos/Basic Demo/Scripts/BasicInkExample.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/_dialogue-test/StoryManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Unity Projects/TheChefsShift/Assets/_outline-test/OutlineMaker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity-atoms.unity-atoms-base-atoms@4.4.5/Runtime/Events/IntEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity-atoms.unity-atoms-base-atoms@4.4.5/Runtime/Pairs/IntPair.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity-atoms.unity-atoms-base-atoms@4.4.5/Runtime/References/IntReference.cs" root0="SKIP_HIGHLIGHTING" />
@@ -30,6 +50,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.6.4/Editor/State/WindowState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Util/PrivateFieldSetter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/fb/aa6f266f/Int32.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/fc/239520fa/Action`1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

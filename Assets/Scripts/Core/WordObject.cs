@@ -9,8 +9,8 @@ namespace RS.Typing.Core {
         public WordDifficulty difficulty = WordDifficulty.Normal;
         public UnityEvent<int, bool> WordMatched;
 
-        [SerializeField] private string typo;
-        [SerializeField] private TMP_Text text;
+        [SerializeField] public string typo;
+        [SerializeField] public TMP_Text text;
         public UnityEvent wordCompleted;
         public UnityEvent<UnityEvent> wordCompletedDelegate;
         [SerializeField] private Transform objectiveTransform;
@@ -18,7 +18,7 @@ namespace RS.Typing.Core {
         public bool needChefToMove = true;
         private ChefTasks _chef;
 
-        private string _word;
+        public string _word;
         private static string _typedWord;
 
         private void Awake() {
@@ -35,12 +35,12 @@ namespace RS.Typing.Core {
             if (_chef) _chef.MoveTo(objectiveTransform);
         }
 
-        private void Start() {
+        public virtual void Start() {
             GlobalRef.I.Words.Add(this.gameObject);
             Setup();
         }
 
-        private void Setup() {
+        public virtual void Setup() {
             _word = string.IsNullOrEmpty(typo) ? WordSpawner.I.GetRandomWord(difficulty, true) : typo;
             if (_word == null) _word = "aligg";
             text.text = _word;
@@ -125,7 +125,7 @@ namespace RS.Typing.Core {
             }
         }
 
-        private void WordComplete() {
+        public virtual void WordComplete() {
             Reset();
             Setup();
             

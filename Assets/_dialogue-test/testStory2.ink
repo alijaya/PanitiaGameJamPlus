@@ -1,17 +1,17 @@
 # chef # left
-Hello there!
+Hello there
 
 # granny # right
-Hi there!
+Hi there
 
 # chef # left
-How are you today?
+How are you today
 
 # granny # right
-I'm good, thanks.
+I'm good thanks
 
 # chef # left
-Well, goodbye then.
+Well goodbye then
 
 # granny # right
-Farewell. 
+Farewell hehe

@@ -1,13 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Ink.Runtime;
+using RS.Typing.Core;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public class StoryManager : MonoBehaviour
+public class TypeStoryManager : MonoBehaviour
 {
     [Title("Ink")]
     [SerializeField] private TextAsset inkAsset;
@@ -19,6 +21,7 @@ public class StoryManager : MonoBehaviour
     [Title("UI")]
     [SerializeField] private TextMeshProUGUI leftDialogue;
     [SerializeField] private TextMeshProUGUI rightDialogue;
+    [SerializeField] private WordObject wordUI;
 
     [Title("Animation")]
     [SerializeField] private float textSpeed = 15f;
@@ -27,6 +30,9 @@ public class StoryManager : MonoBehaviour
     private Tween _typeWriterTween;
 
     private Story _inkStory;
+    public string currentText;
+
+    private Sequence _tweenSequence;
 
     private void Awake()
     {
@@ -57,6 +63,9 @@ public class StoryManager : MonoBehaviour
     private void UpdateDialogue(string newText)
     {
         Debug.Log(_inkStory.currentTags[0]);
+
+        // wordUI.typo = newText.ToLower().Replace(" ", string.Empty);
+        // currentText = newText;
         
         leftDialogue.text = "";
         rightDialogue.text = "";
@@ -74,9 +83,10 @@ public class StoryManager : MonoBehaviour
 
     private IEnumerator OutputDialogue(string newText, TextMeshProUGUI dialogue, GameObject person)
     {
+        ResetAnimation();
         person.transform.localEulerAngles = new Vector3(0f, person.transform.localEulerAngles.y, 0f);
-        Sequence tweenSequence = DOTween.Sequence();
-        tweenSequence.Append(person.transform.DOLocalRotate(new Vector3(person.transform.localEulerAngles.x, person.transform.localEulerAngles.y, -10f), 0.1f, RotateMode.FastBeyond360)
+        _tweenSequence = DOTween.Sequence();
+        _tweenSequence.Append(person.transform.DOLocalRotate(new Vector3(person.transform.localEulerAngles.x, person.transform.localEulerAngles.y, -10f), 0.1f, RotateMode.FastBeyond360)
             .SetLoops(20, LoopType.Yoyo));
         
         dialogue.maxVisibleCharacters = 0;
@@ -89,7 +99,25 @@ public class StoryManager : MonoBehaviour
         }).SetEase(easeType);
 
         yield return new WaitUntil(() => dialogue.maxVisibleCharacters == newText.Length);
+        
+        _tweenSequence.Kill();
 
-        tweenSequence.Kill();
+        // person.transform.localEulerAngles = new Vector3(0f, person.transform.localEulerAngles.y, 0f);
+        person.transform.DOLocalRotate(new Vector3(0f, person.transform.localEulerAngles.y, 0f), 0.1f,
+            RotateMode.Fast);
+        
+        // ResetAnimation();
+    }
+
+    private void ResetAnimation()
+    {
+        _tweenSequence.Kill();
+        leftPerson.transform.localEulerAngles = Vector3.zero;
+        rightPerson.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+    }
+
+    public void Test()
+    {
+        Debug.Log("Test");
     }
 }
