@@ -28,6 +28,11 @@ namespace Core.Dish {
             }
         }
 
+        public void SetStack(int stackSize) {
+            stackText.enabled = true;
+            stackText.text = stackSize.ToString();
+        }
+
         public void Reset() {
             image.enabled = false;
             itemNameText.enabled = false;

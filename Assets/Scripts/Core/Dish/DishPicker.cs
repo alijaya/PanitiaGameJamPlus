@@ -7,10 +7,10 @@ namespace Core.Dish {
         [SerializeField] protected DishItemSO dishItem;
         [SerializeField] protected UnityEvent<bool> onDishAvailable;
 
-        private TrayItemUI _itemUI;
+        protected TrayItemUI itemUI;
 
-        private void Awake() {
-            _itemUI = GetComponentInChildren<TrayItemUI>();
+        protected void Awake() {
+            itemUI = GetComponentInChildren<TrayItemUI>();
         }
 
         public virtual void AddDish() {
@@ -36,14 +36,14 @@ namespace Core.Dish {
             RefreshUI();
         }
 
-        private void RefreshUI() {
-            if (!_itemUI) return;
+        protected void RefreshUI() {
+            if (!itemUI) return;
             if (!dishItem) {
-                _itemUI.Reset();
+                itemUI.Reset();
                 return;
             }
             name = dishItem.GetItemName() == "" ? dishItem.name : dishItem.GetItemName();
-            _itemUI.Setup(dishItem);
+            itemUI.Setup(dishItem);
         }
     }
 }
