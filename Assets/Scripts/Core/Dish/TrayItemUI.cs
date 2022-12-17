@@ -8,6 +8,10 @@ namespace Core.Dish {
         [SerializeField] private TextMeshProUGUI itemNameText;
         [SerializeField] private TextMeshProUGUI stackText;
 
+        private void Awake() {
+            stackText.enabled = false;
+        }
+
         public void Setup(TrayItemSO trayItem) {
             Reset();
 
