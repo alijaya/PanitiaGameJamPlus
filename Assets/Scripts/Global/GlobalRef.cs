@@ -36,6 +36,8 @@ public class GlobalRef : SingletonSO<GlobalRef>
     // popup-test
     public GameObject scorePopup;
 
+    public WordBankSO defaultWordBank;
+
     [AssetSelector]
     public Core.Words.WordObject WordObjectPrefab;
 

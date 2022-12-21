@@ -53,4 +53,6 @@ MonoBehaviour:
   SFX_CustomerHappy: {fileID: 8300000, guid: 280c4c6b10c5b485da40a194b4dcff9e, type: 3}
   SFX_CustomerAngry: {fileID: 8300000, guid: 5647801369aa0417989acb1f09ecdcbe, type: 3}
   SFX_Shot: {fileID: 8300000, guid: b291860d4cb614026a6ed3376e57f787, type: 3}
+  scorePopup: {fileID: 0}
+  defaultWordBank: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
   WordObjectPrefab: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}

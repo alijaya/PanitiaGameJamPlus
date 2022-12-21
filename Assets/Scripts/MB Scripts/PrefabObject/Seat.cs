@@ -65,9 +65,9 @@ public class Seat : MonoBehaviour
         }
     }
 
-    public void UnseatCustomerGroup()
+    public void UnseatCustomerGroup(CustomerGroup customerGroup)
     {
-        if (this.customerGroup != null)
+        if (this.customerGroup == customerGroup)
         {
             var temp = this.customerGroup;
             this.customerGroup = null;
@@ -80,17 +80,15 @@ public class Seat : MonoBehaviour
         if (this.waitCustomerGroup == null)
         {
             this.waitCustomerGroup = customerGroup;
-            //OnSeatOccupied.Invoke(customerGroup);
         }
     }
 
-    public void UnwaitCustomerGroup()
+    public void UnwaitCustomerGroup(CustomerGroup customerGroup)
     {
-        if (this.waitCustomerGroup != null)
+        if (this.waitCustomerGroup == customerGroup)
         {
             var temp = this.waitCustomerGroup;
             this.waitCustomerGroup = null;
-            //OnSeatUnoccupied.Invoke(temp);
         }
     }
 

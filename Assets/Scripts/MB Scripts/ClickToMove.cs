@@ -47,9 +47,16 @@ public class ClickToMove : MonoBehaviour
             tween.Kill();
         }
         tween = DOTween.To(() => coordinate.position, pos => coordinate.position = pos, CustomCoordinate.WorldToGameCoordinate(mouse), 1).SetSpeedBased().SetEase(Ease.Linear).SetLink(gameObject);
-        await tween;
-        if (tween.IsActive()) throw new OperationCanceledException();
+        var cancelled = await tween.MustComplete(this.GetCancellationTokenOnDestroy()).SuppressCancellationThrow();
+        //Debug.Log(tween.IsActive());
+        //Debug.Log(tween.IsComplete());
         tween = null;
-        Debug.Log("finish");
+        if (cancelled)
+        {
+            Debug.Log("cancelled");
+        } else
+        {
+            Debug.Log("finish");
+        }
     }
 }

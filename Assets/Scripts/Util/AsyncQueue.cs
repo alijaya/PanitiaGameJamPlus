@@ -11,6 +11,8 @@ public class AsyncQueue
     private int queueHeadIndex = 0;
     private int queueTailIndex = 0;
 
+    //private AsyncLazy lastTask;
+
     public async UniTask Queue(Func<UniTask> task, CancellationToken ct = default)
     {
         // get the waiting number
@@ -20,7 +22,7 @@ public class AsyncQueue
         var cancel = await UniTask.WaitUntil(() => queueHeadIndex == currentIndex, PlayerLoopTiming.Update, ct).SuppressCancellationThrow(); // wait until we process this request
 
         // actual stuff To Do
-        if (!cancel) await task();
+        if (!cancel) await task().SuppressCancellationThrow();
         queueHeadIndex++; // advance the process number
 
         if (queueHeadIndex == queueTailIndex)
@@ -29,6 +31,15 @@ public class AsyncQueue
             queueHeadIndex = 0;
             queueTailIndex = 0;
         }
+
+        //try
+        //{
+        //    if (lastTask != null) await lastTask;
+        //} catch { }
+
+        //lastTask = UniTask.Lazy(task);
+
+        //await lastTask;
     }
 
 }

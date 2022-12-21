@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
+using DG.Tweening;
 
 public static class AsyncUtil
 {
@@ -12,6 +13,42 @@ public static class AsyncUtil
     {
         await UniTask.Delay(TimeSpan.FromSeconds(delaySeconds), cancellationToken: ct);
         await func();
+    }
+
+    public static UniTask MustComplete(this Tween tween, CancellationToken ct = default)
+    {
+        var utcs = new UniTaskCompletionSource();
+
+        var originalOnKill = tween.onKill;
+        var originalOnComplete = tween.onComplete;
+        CancellationTokenRegistration unreg = default;
+
+        void fail()
+        {
+            unreg.Dispose();
+            originalOnKill?.Invoke();
+            tween.onKill = originalOnKill;
+            tween.onComplete = originalOnComplete;
+            utcs.TrySetCanceled(ct);
+        }
+
+        void success()
+        {
+            unreg.Dispose();
+            originalOnComplete?.Invoke();
+            tween.onKill = originalOnKill;
+            tween.onComplete = originalOnComplete;
+            utcs.TrySetResult();
+        }
+
+        tween.onKill = fail;
+        tween.onComplete = success;
+
+        // just kill the tween if cancelled, if possible?
+        // not sure if this will be buggy or not lol
+        unreg = ct.Register(() => tween?.Kill());
+
+        return utcs.Task;
     }
 
     public static UniTask ToUniTask(this UnityEvent unityEvent, CancellationToken ct = default)

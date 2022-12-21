@@ -5,20 +5,48 @@ using UnityEngine.Events;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using System;
+using System.Linq;
 
 public class CustomerGroup : MonoBehaviour
 {
+    public static class CustomerState
+    {
+        public static readonly string None = "None";
+        public static readonly string GoToWait = "GoToWait";
+        public static readonly string WaitForSeat = "WaitForSeat";
+        public static readonly string GoToSeat = "GoToSeat";
+        public static readonly string GoToQueue = "GoToQueue";
+        public static readonly string WaitForCashier = "WaitForCashier";
+        public static readonly string GoToCashier = "GoToCashier";
+        public static readonly string Think = "Think";
+        public static readonly string Order = "Order";
+        public static readonly string Eat = "Eat";
+        public static readonly string Pay = "Pay";
+        public static readonly string Leave = "Leave";
+    };
+
     public static float delaySpawn = 0.3f; // seconds
 
     public CustomerTypeSO customerType;
+    public bool dineIn = true; // true: dine in, false: take out
     public int count = 1;
 
     public Transform spawnPoint;
 
+    public string state { get; private set; } = CustomerState.None;
+
     public List<Customer2> customers { get; private set; } = new List<Customer2>();
 
+    public Customer2 firstCustomer
+    {
+        get
+        {
+            return customers[0];
+        }
+    }
+
     public float countdown { get; private set; } = 0;
-    public bool countdownEnabled = false;
+    private bool countdownEnabled = false;
     public bool isTimeout
     {
         get
@@ -32,6 +60,9 @@ public class CustomerGroup : MonoBehaviour
     private CancellationTokenSource countdownCancel;
     private Seat seat;
     private Seat waitingSeat;
+    private Cashier cashier;
+    private Cashier cashierQueue;
+    private int queueNumber;
 
     public void Setup(CustomerTypeSO customerType, Transform spawnPoint)
     {
@@ -43,6 +74,8 @@ public class CustomerGroup : MonoBehaviour
     void Start()
     {
         if (!customerType) return;
+
+        if (!dineIn) count = 1; // force 1 customer if takeout
         for (var i = 0; i < count; i++)
         {
             var customer = Instantiate(customerType.prefabs.GetRandom());
@@ -53,7 +86,13 @@ public class CustomerGroup : MonoBehaviour
 
         // start the whole debacle of this algorithm
         countdownCancel = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
-        RunBehavior(countdownCancel.Token).Forget();
+        if (dineIn)
+        {
+            DineInBehavior(countdownCancel.Token).Forget();
+        } else
+        {
+            TakeOutBehavior(countdownCancel.Token).Forget();
+        }
     }
 
     private void OnDestroy()
@@ -65,14 +104,55 @@ public class CustomerGroup : MonoBehaviour
         }
     }
 
-
     // not sure mending pake State Machine atau kagak... 👀
-    private async UniTask RunBehavior(CancellationToken ct)
+    private async UniTask DineInBehavior(CancellationToken ct)
     {
         ResetCountdown();
+
         // First Search The Seat
-        // hopefully found one, if not... don't know, should be error :')
-        // let's handle that later
+
+        await FindSeat(ct);
+
+        // they all are arrived, then wait for ordering menu.
+        // should play some animation and popup, but well later
+        PauseCountdown();
+        state = CustomerState.Think;
+        await UniTask.Delay(TimeSpan.FromSeconds(customerType.OrderDuration), cancellationToken: ct);
+
+        UniTask task;
+        Core.Words.WordObject wordObject;
+
+        // ordering
+        // create fake order, and wait for interaction
+        (task, wordObject) = Core.Words.WordObject.SpawnDefaultWordBankAsync(transform, ct);
+        PlayCountdown();
+        state = CustomerState.Order;
+        await task;
+
+        // actually eating
+        PauseCountdown();
+        state = CustomerState.Eat;
+        await UniTask.Delay(TimeSpan.FromSeconds(customerType.EatDuration), cancellationToken: ct);
+
+        // finish eating, go to cashier
+        await FindCashier(ct);
+
+        // arriving at cashier
+        // create fake paying, and wait for interaction
+        (task, wordObject) = Core.Words.WordObject.SpawnDefaultWordBankAsync(transform, ct);
+        PlayCountdown();
+        state = CustomerState.Pay;
+        await task;
+
+        // done, leave, don't need to await
+        //Debug.Log("happy");
+        LeaveBehavior(this.GetCancellationTokenOnDestroy()).Forget();
+    }
+
+    private async UniTask FindSeat(CancellationToken ct)
+    {
+        // First Search The Seat
+        // hopefully found one, if not, the customer need to wait
 
         seat = SeatManager.I.GetAvailableSeat(this);
 
@@ -99,13 +179,13 @@ public class CustomerGroup : MonoBehaviour
             }
             // await all until they arrived
             PauseCountdown();
-            Debug.Log("walking to waiting spots");
+            state = CustomerState.GoToWait;
             await UniTask.WhenAll(goToWaitTasks);
 
             // let's wait until there's a seat available
             // play timer
             PlayCountdown();
-            Debug.Log("waiting for seats");
+            state = CustomerState.WaitForSeat;
             seat = await WaitUntilGetAvailableSeat(ct);
         }
 
@@ -121,18 +201,77 @@ public class CustomerGroup : MonoBehaviour
         {
             var customer = customers[i];
             var position = seat.locations[i];
-            goToTasks.Add(AsyncUtil.DelayTask(delaySpawn*i, () => customer.GoToPOI(position, ct), ct));
+            goToTasks.Add(AsyncUtil.DelayTask(delaySpawn * i, () => customer.GoToPOI(position, ct), ct));
         }
 
         // await all until they arrived
         PauseCountdown();
-        Debug.Log("walking to seats");
+        state = CustomerState.GoToSeat;
         await UniTask.WhenAll(goToTasks);
+    }
 
-        // they all are arrived, then wait for ordering menu.
+    private async UniTask<Seat> WaitUntilGetAvailableSeat(CancellationToken ct)
+    {
+        while (true)
+        {
+            Seat availableSeat;
+            // bisa jadi pas awal nunggu, mejanya langsung kosong
+            // jadi ga perlu nunggu
+            if (!waitingSeat.occupied)
+            {
+                availableSeat = waitingSeat;
+            } else
+            {
+                // kalau nggak, baru nunggu
+                availableSeat = (await SeatManager.I.OnSeatUnoccupied.ToUniTask(ct)).Item1;
+            }
+
+            if (availableSeat == waitingSeat || availableSeat.CouldSeat(this))
+            {
+                // if it's the same seat, then we go there first
+                // or if it's empty seat without anything waiting, then we go there
+
+                // unbook the waitingSeat
+                waitingSeat.UnwaitCustomerGroup(this);
+                waitingSeat = null;
+                return availableSeat;
+            }
+        }
+
+        //var utcs = new UniTaskCompletionSource<Seat>();
+
+        //void seatUnoccupiedHandler(Seat seat, CustomerGroup lastCustomerGroup)
+        //{
+        //    if (seat == waitingSeat || seat.CouldSeat(this))
+        //    {
+        //        // if it's the same seat, then we go there first
+        //        // or if it's empty seat without anything waiting, then we go there
+
+        //        // unbook the waitingSeat
+        //        waitingSeat.UnwaitCustomerGroup(this);
+        //        waitingSeat = null;
+        //        SeatManager.I.OnSeatUnoccupied.RemoveListener(seatUnoccupiedHandler);
+        //        utcs.TrySetResult(seat);
+        //    }
+        //}
+
+        //SeatManager.I.OnSeatUnoccupied.AddListener(seatUnoccupiedHandler);
+
+        //return await utcs.Task;
+    }
+
+    // not sure mending pake State Machine atau kagak... 👀
+    private async UniTask TakeOutBehavior(CancellationToken ct)
+    {
+        ResetCountdown();
+
+        // First Search The Cashier
+        await FindCashier(ct);
+
+        // has arrived, then wait for ordering menu.
         // should play some animation and popup, but well later
         PauseCountdown();
-        Debug.Log("thinking");
+        state = CustomerState.Think;
         await UniTask.Delay(TimeSpan.FromSeconds(customerType.OrderDuration), cancellationToken: ct);
 
         UniTask task;
@@ -140,58 +279,190 @@ public class CustomerGroup : MonoBehaviour
 
         // ordering
         // create fake order, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnConstantAsync("order", customers[0].transform, ct);
+        (task, wordObject) = Core.Words.WordObject.SpawnDefaultWordBankAsync(transform, ct);
         PlayCountdown();
-        Debug.Log("ordering");
+        state = CustomerState.Order;
         await task;
 
-        // actually eating
-        PauseCountdown();
-        Debug.Log("eating");
-        await UniTask.Delay(TimeSpan.FromSeconds(customerType.OrderDuration), cancellationToken: ct);
+        // no eating, directly paying
 
         // create fake paying, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnConstantAsync("pay", customers[0].transform, ct);
+        (task, wordObject) = Core.Words.WordObject.SpawnDefaultWordBankAsync(transform, ct);
         PlayCountdown();
-        Debug.Log("paying");
+        state = CustomerState.Pay;
         await task;
 
         // done, leave, don't need to await
-        Debug.Log("happy");
+        //Debug.Log("happy");
         LeaveBehavior(this.GetCancellationTokenOnDestroy()).Forget();
     }
 
-    private async UniTask<Seat> WaitUntilGetAvailableSeat(CancellationToken ct)
+    private async UniTask FindCashier(CancellationToken ct)
+    {
+        // First Search The Cashier
+        // hopefully found one, if not... the customers need to queue
+
+        cashier = CashierManager.I.GetAvailableCashier();
+
+        PointOfInterest position;
+
+        // If don't get any cashier, well we wait
+        if (!cashier)
+        {
+            cashierQueue = CashierManager.I.GetAvailableCashierQueue(); // should be always successful?
+
+            if (!cashierQueue)
+            {
+                // damn I dunno what to do lol... if you can't queue, it should be error?
+                throw new OperationCanceledException();
+            }
+
+            // booking the cashier queue
+            cashierQueue.QueueCustomerGroup(this);
+
+            // get the position
+            queueNumber = cashierQueue.queueCount - 1;
+            position = cashierQueue.queueLocations[queueNumber];
+
+            // then move the customer
+            // await until arrived
+            PauseCountdown();
+            state = CustomerState.GoToQueue;
+            await firstCustomer.GoToPOI(position, ct);
+
+            // let's wait until there's a cashier available
+            // play timer
+            PlayCountdown();
+            state = CustomerState.WaitForCashier;
+            cashier = await WaitUntilGetAvailableCashier(ct);
+        }
+
+        // Second, Go To The Cashier
+
+        // booking the cashier first, so the other doesn't take this cashier
+        cashier.OccupyCustomerGroup(this);
+        // then move the customer
+        position = cashier.location;
+
+        // await until arrived
+        PauseCountdown();
+        state = CustomerState.GoToCashier;
+        await firstCustomer.GoToPOI(position, ct);
+    }
+
+    private async UniTask<Cashier> WaitUntilGetAvailableCashier(CancellationToken ct)
     {
         while (true)
         {
-            var (seat, lastCustomerGroup) = await SeatManager.I.OnSeatUnoccupied.ToUniTask(ct);
-
-            
-            if (seat == waitingSeat || seat.CouldSeat(this))
+            Cashier availableCashier;
+            // bisa jadi pas jalan, dan nyampe dah kosong
+            // jadi langsung aja ga usah await
+            if (!cashierQueue.occupied)
             {
-                // if it's the same seat, then we go there first
-                // or if it's empty seat without anything waiting, then we go there
+                availableCashier = cashierQueue;
+            } else
+            {
+                // kalau nggak baru nunggu
+                availableCashier = (await CashierManager.I.OnCashierUnoccupied.ToUniTask(ct)).Item1;
+            }
 
-                // unbook the waitingSeat
-                waitingSeat.UnwaitCustomerGroup();
-                return seat;
+            if (availableCashier == cashierQueue)
+            {
+                // if it's the same cashier, check if we are the next in line
+                if (queueNumber == 0)
+                {
+                    // if yes, we could go
+                    cashierQueue.UnqueueCustomerGroup(this);
+                    cashierQueue = null;
+                    return availableCashier;
+                }
+                else
+                {
+                    // if no, then we advanced
+                    // should not wait, should cancel the last move tho ._., but handle it later yeah?
+                    // because if it waits, it could miss the next unoccupied event
+                    queueNumber = cashierQueue.queueCount - 1;
+                    var position = cashierQueue.queueLocations[queueNumber];
+                    firstCustomer.GoToPOI(position, ct).Forget();
+                }
+            }
+            else
+            {
+                // if it's different cashier, check if we could occupy this
+                if (availableCashier.CouldOccupy())
+                {
+                    cashierQueue.UnqueueCustomerGroup(this);
+                    cashierQueue = null;
+                    return availableCashier;
+                }
             }
         }
+
+        //var utcs = new UniTaskCompletionSource<Cashier>();
+
+        //void cashierUnoccupiedHandler(Cashier cashier, CustomerGroup lastCustomerGroup)
+        //{
+        //    if (cashier == cashierQueue)
+        //    {
+        //        // if it's the same cashier, check if we are the next in line
+        //        if (queueNumber == 0)
+        //        {
+        //            // if yes, we could go
+        //            cashierQueue.UnqueueCustomerGroup(this);
+        //            cashierQueue = null;
+        //            CashierManager.I.OnCashierUnoccupied.RemoveListener(cashierUnoccupiedHandler);
+        //            utcs.TrySetResult(cashier);
+        //        }
+        //        else
+        //        {
+        //            // if no, then we advanced
+        //            // should not wait, should cancel the last move tho ._., but handle it later yeah?
+        //            // because if it waits, it could miss the next unoccupied event
+        //            queueNumber = cashierQueue.queueCount - 1;
+        //            var position = cashierQueue.queueLocations[queueNumber];
+        //            firstCustomer.GoToPOI(position, ct).Forget();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // if it's different cashier, check if we could occupy this
+        //        if (cashier.CouldOccupy())
+        //        {
+        //            cashierQueue.UnqueueCustomerGroup(this);
+        //            cashierQueue = null;
+        //            CashierManager.I.OnCashierUnoccupied.RemoveListener(cashierUnoccupiedHandler);
+        //            utcs.TrySetResult(cashier);
+        //        }
+        //    }
+        //}
+
+        //CashierManager.I.OnCashierUnoccupied.AddListener(cashierUnoccupiedHandler);
+
+        //return await utcs.Task;
     }
 
     private async UniTask LeaveBehavior(CancellationToken ct)
     {
         PauseCountdown();
-        Debug.Log("leaving");
+        state = CustomerState.Leave;
 
         bool cancelled = false;
 
         // First, Go To Door
 
         // unseat the seat first, so the other could take this seat
-        if (seat) seat.UnseatCustomerGroup();
-        if (waitingSeat) waitingSeat.UnwaitCustomerGroup();
+        if (seat) seat.UnseatCustomerGroup(this);
+        if (waitingSeat) waitingSeat.UnwaitCustomerGroup(this);
+
+        // unoccupy the cashier, so the other could take this cashier
+        if (cashier) cashier.UnoccupyCustomerGroup(this);
+        if (cashierQueue) cashierQueue.UnqueueCustomerGroup(this);
+
+        seat = null;
+        waitingSeat = null;
+        cashier = null;
+        cashierQueue = null;
+
         // then move the customer
         var goToTasks = new List<UniTask>();
         for (var i = 0; i < customers.Count; i++)
@@ -225,6 +496,9 @@ public class CustomerGroup : MonoBehaviour
 
     private void Update()
     {
+        //var center = customers.Aggregate(Vector3.zero, (acc, customer) => acc + customer.transform.position) / customers.Count;
+        var center = firstCustomer.transform.position;
+        transform.position = center;
         if (countdownEnabled && !isTimeout)
         {
             countdown -= Time.deltaTime;

@@ -330,13 +330,10 @@ namespace Core.Words
 
         #region static util
 
-        public static (UniTask, WordObject) SpawnConstantAsync(string text, Transform parent, CancellationToken ct = default)
+        public static (UniTask, WordObject) SpawnAsync(Generator.ITextGenerator generator, Transform parent, CancellationToken ct = default)
         {
             var result = GameObject.Instantiate(GlobalRef.I.WordObjectPrefab, parent);
-            result.TextGenerator = new Generator.ConstantTextGenerator()
-            {
-                Text = text
-            };
+            result.TextGenerator = generator;
 
             async UniTask task()
             {
@@ -348,14 +345,40 @@ namespace Core.Words
             return (task(), result);
         }
 
-        public static WordObject SpawnConstant(string text, Transform parent)
+        public static (UniTask, WordObject) SpawnRandomAsync(Transform parent, CancellationToken ct = default)
         {
-            var result = GameObject.Instantiate(GlobalRef.I.WordObjectPrefab, parent);
-            result.TextGenerator = new Generator.ConstantTextGenerator()
+            return SpawnAsync(new Generator.RandomTextGenerator(), parent, ct);
+        }
+
+        public static (UniTask, WordObject) SpawnDefaultWordBankAsync(Transform parent, CancellationToken ct = default)
+        {
+            return SpawnAsync(new Generator.WordBankTextGenerator()
+            {
+                WordBank = GlobalRef.I.defaultWordBank
+            }, parent, ct);
+        }
+
+        public static (UniTask, WordObject) SpawnConstantAsync(string text, Transform parent, CancellationToken ct = default)
+        {
+            return SpawnAsync(new Generator.ConstantTextGenerator()
             {
                 Text = text
-            };
-            return result;
+            }, parent, ct);
+        }
+
+        public static WordObject Spawn(Generator.ITextGenerator generator, Transform parent)
+        {
+            return SpawnAsync(generator, parent).Item2;
+        }
+
+        public static WordObject SpawnRandom(Transform parent)
+        {
+            return SpawnRandomAsync(parent).Item2;
+        }
+
+        public static WordObject SpawnConstant(string text, Transform parent)
+        {
+            return SpawnConstantAsync(text, parent).Item2;
         }
 
         #endregion

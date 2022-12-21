@@ -74,6 +74,11 @@ MonoBehaviour:
     _dynamic: 0
     _typeName: BoolFunc, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     dirty: 0
+  prefix: 
+  suffix: 
+  decimalPlaces: 2
+  trueValue: true
+  falseValue: false
 --- !u!1 &8345906916942547785
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +221,7 @@ MonoBehaviour:
   m_text: debug
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ccb4447e8ff742d9aac96b1e88b702b, type: 2}
-  m_sharedMaterial: {fileID: -4732849456537824435, guid: 5ccb4447e8ff742d9aac96b1e88b702b, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: b288d1244ebad434c809f8a5d5ea805d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
