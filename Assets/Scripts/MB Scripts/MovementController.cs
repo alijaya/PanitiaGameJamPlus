@@ -3,84 +3,142 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
+using Sirenix.OdinInspector;
 
+[RequireComponent(typeof(CustomCoordinate))]
 public class MovementController : MonoBehaviour
 {
-    public float speed = 1;
-    private Transform target;
-    private Vector3 targetPosition;
-    public bool IsMoving { get; private set; } = false;
+    public Transform sprite;
 
-    public SpriteRenderer sprite;
+    [SuffixLabel("unit / s", true)]
+    public float speed = 5;
+    [SuffixLabel("turn / s", true)]
+    public float rotateSpeed = 2;
+    [SuffixLabel("degree", true)]
+    public float bobRotate = 10;
+    [SuffixLabel("degree / s", true)]
+    public float bobSpeed = 40;
 
-    //public float bobHeight = 0.01f;
-    public float bobRotate = 10f;
-    public float bobFreq = 0.3f;
+    private Tween movementTween;
+    private Tween flipTween;
+    private Tween bobTween;
+    private bool bobDirection = true;
 
-    public float rotateDuration = .3f;
+    public CustomCoordinate coordinate { get; private set; }
 
-    public UnityEvent OnReached;
-    public UnityEvent OnInterrupted;
-    public UnityEvent OnStop;
-    public UnityEvent OnStart;
-
-    private float t = 0;
-
-    private bool isFaceLeft = false;
-
-    public void GoTo(Vector3 position)
+    public bool IsMoving
     {
-        if (IsMoving)
+        get
         {
-            OnInterrupted.Invoke();
-            OnStop.Invoke();
+            return movementTween != null && movementTween.IsActive() && movementTween.IsPlaying();
         }
-        target = null;
-        targetPosition = position;
-        IsMoving = true;
-        OnStart.Invoke();
     }
 
-    public void GoTo(Transform transform)
+    private void Awake()
     {
-        if (IsMoving)
+        coordinate = GetComponent<CustomCoordinate>();
+    }
+
+    private void OnDisable()
+    {
+        // don't do anything if quitting, this cause a headache
+        if (QuitUtil.isQuitting) return;
+
+        // stop mid way
+        movementTween?.Kill();
+
+        // complete the flip
+        flipTween?.Complete();
+
+        // complete the bob
+        bobTween?.Complete();
+    }
+
+    // This is in World Coordinate
+    public async UniTask GoToWorld(Transform target, CancellationToken ct = default)
+    {
+        await GoToWorld(target.position, ct);
+    }
+
+    // This is in World Coordinate
+    public async UniTask GoToWorld(Vector3 target, CancellationToken ct = default)
+    {
+        await GoTo(CustomCoordinate.WorldToGameCoordinate(target), ct);
+    }
+
+    // This is in Game Coordinate
+    public async UniTask GoTo(CustomCoordinate target, CancellationToken ct = default)
+    {
+        await GoTo(target.position, ct);
+    }
+
+    // This is in Game Coordinate
+    public async UniTask GoTo(Vector3 target, CancellationToken ct = default)
+    {
+        Stop();
+
+        movementTween = DOTween.To(() => coordinate.position, v => coordinate.position = v, target, speed).SetSpeedBased().SetEase(Ease.Linear).SetLink(gameObject);
+
+        SetFacing(target.x - transform.position.x).Forget();
+        StartBobbing().Forget();
+
+        // wait when it's completed or killed
+        try
         {
-            OnInterrupted.Invoke();
-            OnStop.Invoke();
+            await movementTween.WithCancellation(ct);
+            // if it's still IsActive, it means it's killed prematurely
+            if (movementTween.IsActive()) throw new OperationCanceledException(); // propagate
+        } finally
+        {
+            movementTween = null;
         }
-        target = transform;
-        targetPosition = target.position;
-        IsMoving = true;
-        OnStart.Invoke();
     }
 
-    public void SetFaceLeft(bool animated = true)
+    public async UniTask SetFaceLeft(bool animated = true)
     {
-        SetFacing(true, animated);
+        await SetFacing(true, animated);
     }
 
-    public void SetFaceRight(bool animated = true)
+    public async UniTask SetFaceRight(bool animated = true)
     {
-        SetFacing(false, animated);
+        await SetFacing(false, animated);
     }
 
-    public void SetFacing(bool left, bool animated = true)
+    public async UniTask SetFacing(float deltaX, bool animated = true)
+    {
+        if (deltaX != 0)
+        {
+            await SetFacing(deltaX < 0, animated);
+        }
+    }
+
+    public async UniTask SetFacing(bool left, bool animated = true)
     {
         var yRot = 0f;
         if (left) yRot = 180f;
 
         if (animated)
         {
-            if (isFaceLeft != left)
+            if (flipTween != null)
             {
-                DOTween.To(() => sprite.transform.localEulerAngles.y, (value) =>
-                {
-                    var rot = sprite.transform.localEulerAngles;
-                    rot.y = value;
-                    sprite.transform.localEulerAngles = rot;
-                }, yRot, rotateDuration);
+                flipTween.Kill();
             }
+
+            flipTween = DOTween.To(() => sprite.transform.localEulerAngles.y, (value) =>
+            {
+                var rot = sprite.transform.localEulerAngles;
+                rot.y = value;
+                sprite.transform.localEulerAngles = rot;
+            }, yRot, rotateSpeed * 360).SetSpeedBased().SetEase(Ease.Linear).SetLink(sprite.gameObject);
+
+            // onKill
+            await flipTween.WithCancellation(this.GetCancellationTokenOnDestroy());
+            // if it's still IsActive, it means it's killed prematurely
+            if (flipTween.IsActive()) throw new OperationCanceledException(); // propagate
+            flipTween = null;
         }
         else
         {
@@ -88,61 +146,44 @@ public class MovementController : MonoBehaviour
             angle.y = yRot;
             sprite.transform.localEulerAngles = angle;
         }
-
-        isFaceLeft = left;
     }
 
     public void Stop()
     {
-        if (IsMoving)
+        // force stop
+        if (movementTween != null)
         {
-            target = null;
-            targetPosition.Set(0, 0, 0);
-            IsMoving = false;
-            OnInterrupted.Invoke();
-            OnStop.Invoke();
+            movementTween.Kill();
+
+            movementTween = null;
         }
     }
 
-    // Update is called once per frame
-    private void Update()
+    private async UniTask StartBobbing()
     {
-        if (IsMoving)
+        // if it's still on going, then do nothing, continue the last one
+        if (bobTween != null) return;
+
+        bobDirection = true;
+        while (IsMoving)
         {
-            if (target) targetPosition = target.position;
-            UpdatePosition();
+            bobTween = DOTween.To(() => sprite.transform.localEulerAngles.z, (value) =>
+            {
+                var rot = sprite.transform.localEulerAngles;
+                rot.z = value;
+                sprite.transform.localEulerAngles = rot;
+            }, bobDirection ? bobRotate : -bobRotate, bobSpeed).SetSpeedBased().SetEase(easeHalfWaveFun).SetLink(sprite.gameObject);
+
+            // onKill
+            await bobTween.WithCancellation(this.GetCancellationTokenOnDestroy());
+            bobDirection = !bobDirection;
         }
 
-        if (Vector3.Distance(targetPosition, transform.position) <= 0.000001) // epsilon
-        {
-            target = null;
-            targetPosition.Set(0, 0, 0);
-            IsMoving = false;
-            OnReached.Invoke();
-            OnStop.Invoke();
-        }
+        bobTween = null;
     }
 
-    private void UpdatePosition()
+    static private float easeHalfWaveFun(float time, float duration, float overshootOrAmplitude, float period)
     {
-        var speedDelta = speed * Time.deltaTime;
-
-        var delta = targetPosition - transform.position;
-        var normalizedDelta = delta.normalized;
-        var coordinateNormalizedDelta = Vector3.Scale(normalizedDelta, new Vector3(1, .5f, 0));
-        var scaling = coordinateNormalizedDelta.magnitude;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speedDelta * scaling);
-
-        t += speedDelta;
-
-        //sprite.transform.localPosition = new Vector3(0, bobHeight * Mathf.Sin(t * bobFreq * 2 * Mathf.PI), 0);
-        var rotation = sprite.transform.localEulerAngles;
-        rotation.z = bobRotate * Mathf.Sin(t * bobFreq * 2 * Mathf.PI);
-
-        var newDirection = Mathf.Sign(normalizedDelta.x);
-
-        sprite.transform.localEulerAngles = rotation;
-
-        SetFacing(newDirection < 0);
+        return Mathf.Sin(time / duration * Mathf.PI);
     }
 }

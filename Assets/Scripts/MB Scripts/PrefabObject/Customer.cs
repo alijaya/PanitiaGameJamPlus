@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using DG.Tweening;
-using RS.Typing.Core;
+using Cysharp.Threading.Tasks;
 
-[RequireComponent(typeof(ObjectPathFinder), typeof(MovementController))]
+[RequireComponent(typeof(PathFinder), typeof(MovementController), typeof(CustomCoordinate))]
 public class Customer : MonoBehaviour
 {
     public Transform door { get; private set; }
@@ -13,18 +14,19 @@ public class Customer : MonoBehaviour
 
     public GameObject orderUI;
 
-    private ObjectPathFinder pathfinder;
+    private PathFinder pathfinder;
     private MovementController movement;
-    private SpriteRenderer sprite;
+    private CustomCoordinate coordinate;
+    public SpriteRenderer sprite;
 
     public bool IsSeating { get; private set; } = false;
     public bool IsArrived { get; private set; } = false;
 
     private void Awake()
     {
-        pathfinder = GetComponent<ObjectPathFinder>();
+        pathfinder = GetComponent<PathFinder>();
         movement = GetComponent<MovementController>();
-        sprite = movement.sprite;
+        coordinate = GetComponent<CustomCoordinate>();
     }
 
     public void Setup(Transform door, PointOfInterest targetPosition)
@@ -33,14 +35,13 @@ public class Customer : MonoBehaviour
         this.targetPosition = targetPosition;
 
         orderUI.gameObject.SetActive(false);
-        movement.SetFaceLeft(false);
-        transform.position = door.position;
+        movement.SetFaceLeft(false).Forget();
+        coordinate.SetToWorld(door);
 
         targetPosition.occupyObject = gameObject;
 
         GlobalRef.I.PlaySFX_CustomerEnter();
-        pathfinder.OnReached.AddListener(OnReachSeating);
-        pathfinder.GoTo(this.targetPosition.transform);
+        GoToSeating(this.targetPosition.transform).Forget();
     }
 
     public void SetOrder(IEnumerable<ItemSO> items) {
@@ -56,57 +57,56 @@ public class Customer : MonoBehaviour
 
             IsArrived = false;
             this.targetPosition.occupyObject = null;
-            UnSeat();
-            pathfinder.OnReached.AddListener(OnReachDoor);
-            pathfinder.GoTo(this.door);
+            GoToDoor().Forget();
         }
     }
 
-    private void OnReachSeating()
+    private async UniTask GoToSeating(Transform position)
     {
-        pathfinder.OnReached.RemoveListener(OnReachSeating);
+        await pathfinder.GoToWorld(position);
+
         switch(targetPosition.stopDirection)
         {
             case PointOfInterest.StopDirection.Left:
-                movement.SetFaceLeft();
+                await movement.SetFaceLeft();
                 break;
             case PointOfInterest.StopDirection.Right:
-                movement.SetFaceRight();
+                await movement.SetFaceRight();
                 break;
             default:
                 break;
 
         }
 
-        IsArrived = true;
-        if (targetPosition.isChair)
+        if (targetPosition.isSeat)
         {
-            Seat();
+            await Seat();
         }
+
+        IsArrived = true;
         GlobalRef.I.PlaySFX_CustomerOrder();
         orderUI.gameObject.SetActive(true);
     }
 
-    private void OnReachDoor()
+    private async UniTask GoToDoor()
     {
-        pathfinder.OnReached.RemoveListener(OnReachDoor);
+        await UnSeat();
+        await pathfinder.GoToWorld(this.door);
         Destroy(gameObject);
     }
 
-    public void Seat() { 
-        if (!IsSeating)
-        {
-            IsSeating = true;
-            sprite.transform.DOLocalMoveY(targetPosition.seatHeight, seatingDuration);
-        }
+    public async UniTask Seat() {
+        var pos = movement.coordinate.position;
+        pos.z = targetPosition.seatHeight;
+        await movement.GoTo(pos);
+        IsSeating = true;
     }
 
-    public void UnSeat()
+    public async UniTask UnSeat()
     {
-        if (IsSeating)
-        {
-            IsSeating = false;
-            sprite.transform.DOLocalMoveY(0, seatingDuration);
-        }
+        var pos = movement.coordinate.position;
+        pos.z = 0;
+        await movement.GoTo(pos);
+        IsSeating = false;
     }
 }

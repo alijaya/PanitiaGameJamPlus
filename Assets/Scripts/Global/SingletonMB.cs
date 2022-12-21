@@ -40,7 +40,7 @@ public class SingletonMB<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
-            if (_instance == null)
+            if (_instance == null && !QuitUtil.isQuitting)
             {
                 //if (IsDestroyed) return null;
 
@@ -62,7 +62,7 @@ public class SingletonMB<T> : MonoBehaviour where T : MonoBehaviour
     /// </summary>
     private static T FindExistingInstance()
     {
-        T[] existingInstances = FindObjectsOfType<T>();
+        T[] existingInstances = FindObjectsOfType<T>(true);
 
         // No instance found
         if (existingInstances == null || existingInstances.Length == 0) return null;

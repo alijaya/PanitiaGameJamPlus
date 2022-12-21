@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityAtoms.BaseAtoms;
 using Eflatun.SceneReference;
 using UnityEngine.SceneManagement;
-using RS.Typing.Core;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu]
 public class GlobalRef : SingletonSO<GlobalRef>
@@ -35,6 +35,9 @@ public class GlobalRef : SingletonSO<GlobalRef>
     
     // popup-test
     public GameObject scorePopup;
+
+    [AssetSelector]
+    public Core.Words.WordObject WordObjectPrefab;
 
     public void CleanUpWords()
     {

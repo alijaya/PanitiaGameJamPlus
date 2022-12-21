@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DG.Tweening;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using DG.Tweening;
 using UnityEngine.UI.Extensions;
 
-namespace RS.Typing.Core {
+namespace Core {
     public class Order : MonoBehaviour {
         [SerializeField] private IntVariable totalSales;
         [SerializeField] private IntVariable totalCustomerServed;
@@ -34,11 +33,6 @@ namespace RS.Typing.Core {
 
         private void OnDisable() {
             ItemTray.Instance.ItemTrayUpdated.RemoveListener(ItemTrayOnItemTrayUpdated);
-        }
-
-        private void Awake()
-        {
-            orderCompleted.AddListener(SpawnScorePopup);
         }
 
         private void ItemTrayOnItemTrayUpdated(Dictionary<ItemSO, Item> itemTray) {
@@ -130,13 +124,6 @@ namespace RS.Typing.Core {
         }
 
         public void ResetText() {
-            KeyInput.Instance.ResetText();
-        }
-        
-        // popup-test
-        public void SpawnScorePopup()
-        {
-            Instantiate(GlobalRef.I.scorePopup, transform.position, Quaternion.identity);
         }
     }
 }

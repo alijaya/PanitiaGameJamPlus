@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace RS.Typing.Core {
+namespace Core {
     public class ItemTray : Singleton<ItemTray> {
         [SerializeField] private Item[] itemList;
         [SerializeField] private ItemSO[] itemDataList;
