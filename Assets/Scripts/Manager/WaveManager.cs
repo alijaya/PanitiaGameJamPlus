@@ -15,7 +15,7 @@ public class WaveManager : MonoBehaviour {
 
     [SerializeField] private UnityEvent onShiftEnd;
 
-    private RestaurantManager _manager;
+    private Transform _door;
 
     private float[] _customerSequence;
     private int _customerCounter;
@@ -24,12 +24,14 @@ public class WaveManager : MonoBehaviour {
     private float _timerCounter;
     private bool _timerRunning;
 
-    private void Awake() {
-        _manager = GetComponentInParent<RestaurantManager>();
+    public void Setup(Transform door)
+    {
+        _door = door;
     }
 
     public void StartWave() {
-        ItemTray.Instance.ClearTray();
+        //ItemTray.Instance.ClearTray();
+
         SetCustomerSequence();
 
         _customerCounter = 0;
@@ -90,7 +92,7 @@ public class WaveManager : MonoBehaviour {
             for (var i = 0; i < GetRandomWeight(orderWeight); i++) {
                 order.Add(items.GetRandom());
             }
-            _manager.Spawn(order);    
+            //_manager.Spawn(order);    
         }
     }
 

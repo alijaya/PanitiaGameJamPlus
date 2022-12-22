@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEditor.AssetImporters;
 using System.IO;
 using System.Linq;
+using UnidecodeSharpFork;
 
 // thank ChatGPT
 [ScriptedImporter(1, "wordbank")]
 public class WordBankImporter : ScriptedImporter
 {
-    public bool RemoveEmptyWord = true;
+    public bool ToUnidecode = true;
     public bool ToLowerCase = true;
+    public bool RemoveEmptyWord = true;
     public bool Sort = true;
 
     public override void OnImportAsset(AssetImportContext ctx)
@@ -20,17 +22,22 @@ public class WordBankImporter : ScriptedImporter
 
         // Remove empty line
         IEnumerable<string> filteredLines = lines;
-        if (RemoveEmptyWord)
+        if (ToUnidecode)
         {
-            filteredLines = lines.Where(line => !string.IsNullOrWhiteSpace(line));
+            filteredLines = filteredLines.Select(line => line.Unidecode());
         }
         if (ToLowerCase)
         {
-            filteredLines = lines.Select(line => line.ToLower());
+            filteredLines = filteredLines.Select(line => line.ToLower());
+        }
+        if (RemoveEmptyWord)
+        {
+            filteredLines = filteredLines.Where(line => !string.IsNullOrWhiteSpace(line));
         }
         if (Sort)
         {
-            filteredLines = lines.OrderBy(line => line);
+            // don't count spaces
+            filteredLines = filteredLines.OrderBy(line => line.Count(c => c != ' ')).ThenBy(line => line);
         }
 
         // Create a new WordBankSO ScriptableObject

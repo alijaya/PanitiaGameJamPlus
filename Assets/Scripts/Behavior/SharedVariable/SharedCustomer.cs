@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime;
 
-public class SharedCustomer : SharedVariable<Customer2>
+public class SharedCustomer : SharedVariable<Customer>
 {
-    public static implicit operator SharedCustomer(Customer2 value) { return new SharedCustomer { Value = value }; }
+    public static implicit operator SharedCustomer(Customer value) { return new SharedCustomer { Value = value }; }
 }

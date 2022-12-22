@@ -35,9 +35,9 @@ public class CustomerGroup : MonoBehaviour
 
     public string state { get; private set; } = CustomerState.None;
 
-    public List<Customer2> customers { get; private set; } = new List<Customer2>();
+    public List<Customer> customers { get; private set; } = new List<Customer>();
 
-    public Customer2 firstCustomer
+    public Customer firstCustomer
     {
         get
         {

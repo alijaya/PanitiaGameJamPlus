@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 public class CustomerTypeSO : ScriptableObject
 {
     [AssetSelector]
-    public List<Customer2> prefabs;
+    public List<Customer> prefabs;
 
     // this is relative value, 1 is normal, 0.5 is half the normal, 2 is double the normal
     public float walkSpeed = 1;
@@ -19,6 +19,15 @@ public class CustomerTypeSO : ScriptableObject
     public Vector2 foodDifficulty = Vector2.one;
     [MinMaxSlider(0, 4, true)]
     public Vector2 wordDifficulty = Vector2.one;
+
+    [FoldoutGroup("Text Generation")]
+    [SerializeReference]
+    public Core.Words.Generator.ITextGenerator TextGenerator;
+
+    [FoldoutGroup("Text Generation")]
+    [SerializeReference]
+    public List<Core.Words.Modifier.ITextModifier> TextModifiers = new();
+
 
     // in unit / seconds
     public float WalkSpeed

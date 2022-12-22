@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69ad08e5f7b24182ac2f7de57c44644, type: 3}
   m_Name: Tourist
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 96c0efa7c013be54cb10428cb076e4a3, type: 3}
-  patience: 1
+  prefabs:
+  - {fileID: 5194379914093547094, guid: 036be7d8030784d5c90c5cafb4073aba, type: 3}
   walkSpeed: 1
+  waitDuration: 1
   orderDuration: 1
   eatDuration: 1
   bonusTip: 1.5
   foodDifficulty: {x: 1, y: 1}
-  wordDifficulty: {x: 3, y: 4}
+  wordDifficulty: {x: 1, y: 1}
+  TextGenerator:
+    rid: 1433981377566212106
+  TextModifiers: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1433981377566212106
+      type: {class: WordBankTextGenerator, ns: Core.Words.Generator, asm: Assembly-CSharp}
+      data:
+        WordBank: {fileID: 4156628897070989640, guid: 0f717ef186d304507ba6be913918110e, type: 3}

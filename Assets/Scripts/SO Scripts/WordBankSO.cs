@@ -15,6 +15,6 @@ public class WordBankSO : ScriptableObject
     public string GetRandomByDifficulty(float difficulty)
     {
         var length = Mathf.RoundToInt(difficulty > 0 ? difficulty : 4);
-        return Words.Where(w => w.Length == length).GetRandom();
+        return Words.Where(w => w.Count(c => c != ' ') == length).GetRandom();
     }
 }

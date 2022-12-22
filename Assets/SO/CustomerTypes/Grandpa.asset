@@ -21,3 +21,13 @@ MonoBehaviour:
   bonusTip: 1.5
   foodDifficulty: {x: 2, y: 2}
   wordDifficulty: {x: 1, y: 1}
+  TextGenerator:
+    rid: 1433981377566212102
+  TextModifiers: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1433981377566212102
+      type: {class: WordBankTextGenerator, ns: Core.Words.Generator, asm: Assembly-CSharp}
+      data:
+        WordBank: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}

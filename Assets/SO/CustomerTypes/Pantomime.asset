@@ -10,24 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d69ad08e5f7b24182ac2f7de57c44644, type: 3}
-  m_Name: Mafia
+  m_Name: Pantomime
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 5194379914093547094, guid: 47051d27c7eb04410839d9e76f54e20b, type: 3}
-  walkSpeed: 1.5
+  - {fileID: 5194379914093547094, guid: 6123a13ee49014c50b1049389229e544, type: 3}
+  walkSpeed: 1
   waitDuration: 1
-  orderDuration: 0.5
-  eatDuration: 0.5
-  bonusTip: 2
-  foodDifficulty: {x: 1, y: 2}
+  orderDuration: 1
+  eatDuration: 1
+  bonusTip: 1.5
+  foodDifficulty: {x: 1, y: 1}
   wordDifficulty: {x: 1, y: 1}
   TextGenerator:
-    rid: 1433981377566212108
+    rid: 1433981377566212105
   TextModifiers: []
   references:
     version: 2
     RefIds:
-    - rid: 1433981377566212108
-      type: {class: WordBankTextGenerator, ns: Core.Words.Generator, asm: Assembly-CSharp}
+    - rid: 1433981377566212105
+      type: {class: RandomTextGenerator, ns: Core.Words.Generator, asm: Assembly-CSharp}
       data:
-        WordBank: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
+        IncludeLowerCase: 0
+        IncludeUpperCase: 0
+        IncludeNumber: 0
+        IncludeSymbol: 1
+        DifficultyMin: 2
+        DifficultyMax: 4
