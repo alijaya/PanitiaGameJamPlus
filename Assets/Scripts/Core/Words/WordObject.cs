@@ -330,10 +330,11 @@ namespace Core.Words
 
         #region static util
 
-        public static (UniTask, WordObject) SpawnAsync(Generator.ITextGenerator generator, Transform parent, CancellationToken ct = default)
+        public static (UniTask, WordObject) SpawnAsync(Generator.ITextGenerator generator, List<Modifier.ITextModifier> modifiers, Transform parent, CancellationToken ct = default)
         {
             var result = GameObject.Instantiate(GlobalRef.I.WordObjectPrefab, parent);
             result.TextGenerator = generator;
+            if (modifiers != null) result.TextModifiers = modifiers;
 
             async UniTask task()
             {
@@ -343,6 +344,11 @@ namespace Core.Words
             }
 
             return (task(), result);
+        }
+
+        public static (UniTask, WordObject) SpawnAsync(Generator.ITextGenerator generator, Transform parent, CancellationToken ct = default)
+        {
+            return SpawnAsync(generator, null, parent, ct);
         }
 
         public static (UniTask, WordObject) SpawnRandomAsync(Transform parent, CancellationToken ct = default)

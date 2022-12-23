@@ -55,11 +55,12 @@ public class CashierManager : SingletonMB<CashierManager>
 
     public Cashier GetAvailableCashier()
     {
-        return cashiers.Where(cashier => !cashier.occupied).GetRandom();
+        return cashiers.Where(cashier => cashier.CouldOccupy()).GetRandom();
     }
 
     public Cashier GetAvailableCashierQueue()
     {
+        // should return null if no queue available, but rare ._.
         return cashiers.Aggregate((cashierA, cashierB) => cashierA.queueCount <= cashierB.queueCount ? cashierA : cashierB);
     }
 }

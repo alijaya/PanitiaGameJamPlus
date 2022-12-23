@@ -28,7 +28,7 @@ public class CustomerGroup : MonoBehaviour
     public static float delaySpawn = 0.3f; // seconds
 
     public CustomerTypeSO customerType;
-    public bool dineIn = true; // true: dine in, false: take out
+    public bool dineIn = false; // true: dine in, false: take out
     public int count = 1;
 
     public Transform spawnPoint;
@@ -64,10 +64,40 @@ public class CustomerGroup : MonoBehaviour
     private Cashier cashierQueue;
     private int queueNumber;
 
+    static public CustomerGroup Spawn(CustomerTypeSO customerType, Transform spawnPoint)
+    {
+        return Spawn(customerType, false, 1, spawnPoint);
+    }
+
+    static public CustomerGroup Spawn(CustomerTypeSO customerType, int count, Transform spawnPoint)
+    {
+        return Spawn(customerType, true, count, spawnPoint);
+    }
+
+    static public CustomerGroup Spawn(CustomerTypeSO customerType, bool dineIn, int count, Transform spawnPoint)
+    {
+        var go = new GameObject(customerType.name);
+        var customerGroup = go.AddComponent<CustomerGroup>();
+        customerGroup.Setup(customerType, dineIn, count, spawnPoint);
+        return customerGroup;
+    }
+
     public void Setup(CustomerTypeSO customerType, Transform spawnPoint)
+    {
+        Setup(customerType, false, 1, spawnPoint);
+    }
+
+    public void Setup(CustomerTypeSO customerType, int count, Transform spawnPoint)
+    {
+        Setup(customerType, true, count, spawnPoint);
+    }
+
+    public void Setup(CustomerTypeSO customerType, bool dineIn, int count, Transform spawnPoint)
     {
         this.customerType = customerType;
         this.spawnPoint = spawnPoint;
+        this.dineIn = dineIn;
+        this.count = count;
     }
 
     // Start is called before the first frame update
@@ -124,7 +154,7 @@ public class CustomerGroup : MonoBehaviour
 
         // ordering
         // create fake order, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnDefaultWordBankAsync(transform, ct);
+        (task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers, transform, ct);
         PlayCountdown();
         state = CustomerState.Order;
         await task;
@@ -139,7 +169,7 @@ public class CustomerGroup : MonoBehaviour
 
         // arriving at cashier
         // create fake paying, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnDefaultWordBankAsync(transform, ct);
+        (task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers, transform, ct);
         PlayCountdown();
         state = CustomerState.Pay;
         await task;
@@ -222,8 +252,14 @@ public class CustomerGroup : MonoBehaviour
                 availableSeat = waitingSeat;
             } else
             {
-                // kalau nggak, baru nunggu
-                availableSeat = (await SeatManager.I.OnSeatUnoccupied.ToUniTask(ct)).Item1;
+                // kalau enggak, mungkin ada meja lain yang langsung kosong?
+                availableSeat = SeatManager.I.GetAvailableSeat(this);
+
+                if (!availableSeat)
+                {
+                    // kalau bener2 nggak ada, baru nunggu
+                    availableSeat = (await SeatManager.I.OnSeatUnoccupied.ToUniTask(ct)).Item1;
+                }
             }
 
             if (availableSeat == waitingSeat || availableSeat.CouldSeat(this))
@@ -279,7 +315,7 @@ public class CustomerGroup : MonoBehaviour
 
         // ordering
         // create fake order, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnDefaultWordBankAsync(transform, ct);
+        (task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers ,transform, ct);
         PlayCountdown();
         state = CustomerState.Order;
         await task;
@@ -287,7 +323,7 @@ public class CustomerGroup : MonoBehaviour
         // no eating, directly paying
 
         // create fake paying, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnDefaultWordBankAsync(transform, ct);
+        (task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers, transform, ct);
         PlayCountdown();
         state = CustomerState.Pay;
         await task;
@@ -362,8 +398,14 @@ public class CustomerGroup : MonoBehaviour
                 availableCashier = cashierQueue;
             } else
             {
-                // kalau nggak baru nunggu
-                availableCashier = (await CashierManager.I.OnCashierUnoccupied.ToUniTask(ct)).Item1;
+                // kalau nggak, mungkin ada cashier lain yang langsung kosong?
+                availableCashier = CashierManager.I.GetAvailableCashier();
+
+                if (!availableCashier)
+                {
+                    // kalau bener2 nggak ada, baru nunggu
+                    availableCashier = (await CashierManager.I.OnCashierUnoccupied.ToUniTask(ct)).Item1;
+                }
             }
 
             if (availableCashier == cashierQueue)
@@ -489,7 +531,7 @@ public class CustomerGroup : MonoBehaviour
         countdownCancel?.Cancel();
         countdownCancel?.Dispose();
         countdownCancel = null;
-        OnTimeout.Invoke();
+        OnTimeout?.Invoke();
 
         LeaveBehavior(this.GetCancellationTokenOnDestroy()).Forget();
     }

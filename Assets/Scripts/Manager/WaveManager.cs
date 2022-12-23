@@ -7,6 +7,10 @@ using UnityEngine.Events;
 using Random = System.Random;
 
 public class WaveManager : MonoBehaviour {
+    public bool autoStart = false;
+    public List<CustomerTypeSO> customerTypes;
+    public Transform door;
+
     [SerializeField] private ItemSO[] items;
     [SerializeField] private FloatVariable timeLeftVariable;
     [SerializeField] private float shiftDuration = 90f;
@@ -14,8 +18,6 @@ public class WaveManager : MonoBehaviour {
     [SerializeField] private int customerPerShift = 10;
 
     [SerializeField] private UnityEvent onShiftEnd;
-
-    private Transform _door;
 
     private float[] _customerSequence;
     private int _customerCounter;
@@ -26,7 +28,12 @@ public class WaveManager : MonoBehaviour {
 
     public void Setup(Transform door)
     {
-        _door = door;
+        this.door = door;
+    }
+
+    private void Start()
+    {
+        if (autoStart) StartWave();
     }
 
     public void StartWave() {
@@ -85,14 +92,26 @@ public class WaveManager : MonoBehaviour {
     }
 
     private void SpawnCustomer(int amount = 1) {
-        var orderWeight = new[] { 4, 6}; // 40% chance 1 item order, 60% chance 2 item order
+        var orderWeight = new[] { 4, 6 }; // 40% chance 1 item order, 60% chance 2 item order
+        var customerCountWeight = new[] { 2, 1, 0, 1 };
         for (var j = 0; j < amount; j++) {
             var order = new List<ItemSO>();
 
             for (var i = 0; i < GetRandomWeight(orderWeight); i++) {
                 order.Add(items.GetRandom());
             }
-            //_manager.Spawn(order);    
+
+            var customerType = customerTypes.GetRandom();
+            var customerCount = GetRandomWeight(customerCountWeight);
+            if (customerCount == 1)
+            {
+                // take out
+                CustomerGroup.Spawn(customerType, door);
+            } else
+            {
+                // dine in
+                CustomerGroup.Spawn(customerType, customerCount, door);
+            }
         }
     }
 
