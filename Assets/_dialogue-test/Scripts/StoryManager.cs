@@ -16,7 +16,7 @@ public class StoryManager : MonoBehaviour
      *  dialogue: where to display dialogue (left, right).
      *  flip: flip the character's sprite 180 degrees to the y axis.
      *  moveX: move character at x axis.
-     *  enableSequence: Chain animation tags together.
+     *  enableSequence: Chain all next animation tags together.
      * 
      */
     
@@ -24,18 +24,31 @@ public class StoryManager : MonoBehaviour
     [SerializeField] private TextAsset inkAsset;
 
     [Title("Characters")]
-    [SerializeField] private GameObject leftPerson;
-    [SerializeField] private GameObject rightPerson;
-
-    [Title("UI")]
-    [SerializeField] private TextMeshProUGUI leftDialogue;
-    [SerializeField] private TextMeshProUGUI leftName;
-    [SerializeField] private TextMeshProUGUI rightDialogue;
-    [SerializeField] private TextMeshProUGUI rightName;
+    [SerializeField] private GameObject[] characters;
 
     [Title("Animation")]
     [SerializeField] private float textSpeed = 15f;
     [SerializeField] private Ease easeType = Ease.OutCubic;
+    
+    [Title("Debugging")][Space]
+    
+    [Header("Person 1")]
+    [SerializeField] public string person1NameText = "person1";
+    [SerializeField] private GameObject person1Parent;
+    [SerializeField] private GameObject person1Sprite;
+    [SerializeField] private GameObject person1DialogueBox;
+    [SerializeField] private CanvasGroup person1CanvasGroup;
+    [SerializeField] private TextMeshProUGUI person1Name;
+    [SerializeField] private TextMeshProUGUI person1Dialogue;
+    
+    [Header(("Person 2"))]
+    [SerializeField] public string person2NameText = "person2";
+    [SerializeField] private GameObject person2Parent;
+    [SerializeField] private GameObject person2Sprite;
+    [SerializeField] private GameObject person2DialogueBox;
+    [SerializeField] private CanvasGroup person2CanvasGroup;
+    [SerializeField] private TextMeshProUGUI person2Name;
+    [SerializeField] private TextMeshProUGUI person2Dialogue;
 
     private Tween _typeWriterTween;
 
@@ -43,7 +56,6 @@ public class StoryManager : MonoBehaviour
 
     private Sequence _bobSequence;
     
-    //private Sequence _sequence;
     private bool _enableSequence = false;
     
     private void Awake()
@@ -57,8 +69,58 @@ public class StoryManager : MonoBehaviour
                 Debug.LogError(msg);
         };
         
-        // UpdateDialogue(_inkStory.Continue());
+        _inkStory.BindExternalFunction ("SetPerson1", (string personName) => {
+            SetPerson1(personName);
+        });
+        
+        _inkStory.BindExternalFunction ("SetPerson2", (string personName) => {
+            SetPerson2(personName);
+        });
+        
         ClickContinueStory();
+    }
+
+    private void SetPerson1(string personName)
+    {
+        person1NameText = personName;
+
+        foreach (GameObject character in characters)
+        {
+            if (character.name == personName)
+            {
+                person1Parent = character;
+                person1Sprite = character.GetComponentInChildren<SpriteRenderer>().gameObject;
+                person1DialogueBox = character.transform.Find("DialogueBox").gameObject;
+                person1CanvasGroup = person1DialogueBox.GetComponent<CanvasGroup>();
+                person1Name = person1DialogueBox.transform.Find("Name").GetComponent<TextMeshProUGUI>();
+                person1Dialogue = person1DialogueBox.transform.Find("Dialogue").GetComponent<TextMeshProUGUI>();
+                return;
+            }
+        }
+    }
+    
+    private void SetPerson2(string personName)
+    {
+        person2NameText = personName;
+
+        foreach (GameObject character in characters)
+        {
+            if (character.name == personName)
+            {
+                person2Parent = character;
+                person2Sprite = character.GetComponentInChildren<SpriteRenderer>().gameObject;
+                person2DialogueBox = character.transform.Find("DialogueBox").gameObject;
+                person2CanvasGroup = person2DialogueBox.GetComponent<CanvasGroup>();
+                person2Name = person2DialogueBox.transform.Find("Name").GetComponent<TextMeshProUGUI>();
+                person2Dialogue = person2DialogueBox.transform.Find("Dialogue").GetComponent<TextMeshProUGUI>();
+                return;
+            }
+        }
+    }
+
+    private string[] ParseDialogue(string dialogue)
+    {
+        return dialogue.StartsWith("NA") ? new[] { "NA" } : dialogue.Split(": ");
     }
 
     public void ClickContinueStory()
@@ -66,15 +128,7 @@ public class StoryManager : MonoBehaviour
         if (_inkStory.canContinue)
         {
             string text = _inkStory.Continue();
-            if (text.StartsWith("NA"))
-            {
-                PlayAnimationOnly();
-            }
-            else
-            {
-                UpdateDialogue(text);
-            }
-            
+            OutputDialogue(text);
         }
         else
         {
@@ -86,12 +140,55 @@ public class StoryManager : MonoBehaviour
         }
     }
 
+    private void OutputDialogue(string text)
+    {
+        person1CanvasGroup.alpha = 0f;
+        person2CanvasGroup.alpha = 0f;
+        
+        string[] splitText = ParseDialogue(text);
+
+        GameObject personGo = null;
+        CanvasGroup canvasGroup = null;
+        TextMeshProUGUI personName = null;
+        TextMeshProUGUI dialogue = null;
+
+        if (splitText[0] == person1NameText)
+        {
+            personGo = person1Sprite;
+            canvasGroup = person1CanvasGroup;
+            personName = person1Name;
+            dialogue = person1Dialogue;
+        }
+        else if (splitText[0] == person2NameText)
+        {
+            personGo = person2Sprite;
+            canvasGroup = person2CanvasGroup;
+            personName = person2Name;
+            dialogue = person2Dialogue;
+        }
+        else if (splitText[0] == "NA")
+        {
+            Debug.Log("Run animation here");
+        }
+        else
+        {
+            Debug.Log($"Character {splitText[0]} not found.");
+            return;
+        }
+
+        if (personName != null) personName.text = splitText[0];
+
+        canvasGroup.alpha = 1f;
+
+        StartCoroutine(OutputDialogue(splitText[1], dialogue, personGo));
+    }
+
     private void PlayAnimationOnly()
     {
-        leftDialogue.text = "";
-        leftName.text = "";
-        rightDialogue.text = "";
-        rightName.text = "";
+        person1Dialogue.text = "";
+        person1Name.text = "";
+        person2Dialogue.text = "";
+        person2Name.text = "";
         
         List<Tween> list = new List<Tween>();
 
@@ -115,14 +212,14 @@ public class StoryManager : MonoBehaviour
                 switch (textTag.Remove(0, 10))
                 {
                     case "left":
-                        dialoguePosition = leftDialogue;
-                        namePosition = leftName;
-                        speakingPerson = leftPerson;
+                        dialoguePosition = person1Dialogue;
+                        namePosition = person1Name;
+                        speakingPerson = person1Parent;
                         break;
                     case "right":
-                        dialoguePosition = rightDialogue;
-                        namePosition = rightName;
-                        speakingPerson = rightPerson;
+                        dialoguePosition = person2Dialogue;
+                        namePosition = person2Name;
+                        speakingPerson = person2Parent;
                         break;
                 }
             }
@@ -202,10 +299,10 @@ public class StoryManager : MonoBehaviour
 
     private void UpdateDialogue(string newText)
     {
-        leftDialogue.text = "";
-        leftName.text = "";
-        rightDialogue.text = "";
-        rightName.text = "";
+        person1Dialogue.text = "";
+        person1Name.text = "";
+        person2Dialogue.text = "";
+        person2Name.text = "";
         
         Sequence _sequence = null;
         bool isFirstSequence = true;
@@ -222,14 +319,14 @@ public class StoryManager : MonoBehaviour
                 switch (textTag.Remove(0, 10))
                 {
                     case "left":
-                        dialoguePosition = leftDialogue;
-                        namePosition = leftName;
-                        speakingPerson = leftPerson;
+                        dialoguePosition = person1Dialogue;
+                        namePosition = person1Name;
+                        speakingPerson = person1Parent;
                         break;
                     case "right":
-                        dialoguePosition = rightDialogue;
-                        namePosition = rightName;
-                        speakingPerson = rightPerson;
+                        dialoguePosition = person2Dialogue;
+                        namePosition = person2Name;
+                        speakingPerson = person2Parent;
                         break;
                 }
             }
@@ -322,7 +419,7 @@ public class StoryManager : MonoBehaviour
     private void ResetAnimation()
     {
         _bobSequence.Kill();
-        leftPerson.transform.localEulerAngles = Vector3.zero;
-        rightPerson.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+        person1Parent.transform.localEulerAngles = Vector3.zero;
+        person2Parent.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
     }
 }

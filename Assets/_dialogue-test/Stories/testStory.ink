@@ -1,26 +1,41 @@
-# dialogue: left # person: Chef
-Hello there!
+// External functions - fallbacks at end of document
+EXTERNAL SetPerson1(personName)
+EXTERNAL SetPerson2(personName)
 
-# dialogue: right # person: Karen
-Hi there!
+/* Story writing starts here */
 
-# dialogue: left # person: Chef
-How are you today?
+// Initialize actors
+~ SetPerson1("Chef")
+~ SetPerson2("Karen")
 
-# dialogue: right # person: Karen
-I'm good, thanks.
+Chef: Hello there!
 
-# dialogue: right # person: Angry Karen # flip: right
-Now leave me alone.
+Karen: Hi there!
 
-# dialogue: left # person: Chef
-Well, goodbye then.
+Chef: How are <i>you</i> today?
 
-# dialogue: right # person: Karen # flip: left
-Farewell. 
+Karen: I'm <big>good</big>, thanks.
 
-# dialogue: left # flip: left # moveX: -10
+# flip: right
+Karen: Now <size=1.5em>leave</size> me alone.
+
+Chef: Well, goodbye then.
+
+# flip: left
+Karen: Farewell. 
+
+# flip: left # moveX: -10
 NA
 
-# dialogue: right # enableSequence # flip: right # moveX: 10 # flip: left # moveX: 5
+# enableSequence # flip: right # moveX: 10 # flip: left # moveX: 5
 NA
+
+/* Story writing ends here */
+
+// Fallbacks for external functions below
+
+=== function SetPerson1(personName)
+~ return "person1"
+
+=== function SetPerson2(personName)
+~ return "person2"
