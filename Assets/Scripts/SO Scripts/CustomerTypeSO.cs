@@ -34,7 +34,7 @@ public class CustomerTypeSO : ScriptableObject
     {
         get
         {
-            return walkSpeed * 5;
+            return walkSpeed * GameBalance.I.walkSpeed;
         }
     }
 
@@ -43,7 +43,7 @@ public class CustomerTypeSO : ScriptableObject
     {
         get
         {
-            return waitDuration * 10;
+            return waitDuration * GameBalance.I.waitDuration;
         }
     }
 
@@ -52,7 +52,7 @@ public class CustomerTypeSO : ScriptableObject
     {
         get
         {
-            return orderDuration * 2;
+            return orderDuration * GameBalance.I.orderDuration;
         }
     }
 
@@ -61,7 +61,7 @@ public class CustomerTypeSO : ScriptableObject
     {
         get
         {
-            return eatDuration * 15;
+            return eatDuration * GameBalance.I.eatDuration;
         }
     }
 
@@ -70,7 +70,7 @@ public class CustomerTypeSO : ScriptableObject
     {
         get
         {
-            return bonusTip * 10;
+            return bonusTip * GameBalance.I.bonusTip;
         }
     }
 
@@ -79,7 +79,7 @@ public class CustomerTypeSO : ScriptableObject
     {
         get
         {
-            return foodDifficulty * 2;
+            return foodDifficulty * GameBalance.I.foodDifficulty;
         }
     }
 
@@ -88,7 +88,7 @@ public class CustomerTypeSO : ScriptableObject
     {
         get
         {
-            return foodDifficulty * 4;
+            return wordDifficulty * GameBalance.I.wordDifficulty;
         }
     }
 

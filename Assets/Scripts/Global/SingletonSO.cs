@@ -12,9 +12,32 @@ public abstract class SingletonSO<T> : ScriptableObject where T : ScriptableObje
         {
             if (_instance == null)
             {
-                _instance = Resources.Load(typeof(T).Name) as T;
+                _instance = LoadOrCreateInstance<T>();
             }
             return _instance;
         }
+    }
+
+    public static TInstance LoadOrCreateInstance<TInstance>() where TInstance : ScriptableObject
+    {
+        var ins = Resources.Load(typeof(TInstance).Name) as TInstance;
+
+        if (ins == null)
+        {
+#if !UNITY_EDITOR
+            // should throw error?
+            Debug.LogWarning($"Singleton {typeof(TInstance).Name} not found");
+#else
+            // actually create it
+
+            ins = CreateInstance<TInstance>();
+
+            UnityEditor.AssetDatabase.CreateAsset(ins, $"Assets/Resources/{typeof(TInstance).Name}.asset");
+            UnityEditor.AssetDatabase.SaveAssets();
+            UnityEditor.AssetDatabase.Refresh();
+#endif
+        }
+
+        return ins;
     }
 }
