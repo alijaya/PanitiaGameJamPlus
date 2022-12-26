@@ -8,10 +8,12 @@ using Random = System.Random;
 
 public class WaveManager : MonoBehaviour {
     public bool autoStart = false;
+
+    public WaveSequenceSO waveSequence;
+
     public List<CustomerTypeSO> customerTypes;
     public Transform door;
 
-    [SerializeField] private ItemSO[] items;
     [SerializeField] private FloatVariable timeLeftVariable;
     [SerializeField] private float shiftDuration = 90f;
     [SerializeField] private float closingTime = 10f; // waktu sebelum tutup ( tidak spawn customer lagi)
@@ -19,17 +21,9 @@ public class WaveManager : MonoBehaviour {
 
     [SerializeField] private UnityEvent onShiftEnd;
 
-    private float[] _customerSequence;
-    private int _customerCounter;
-    
     private float _warmupDuration = 5f; // minimal delay to spawn other customer
     private float _timerCounter;
     private bool _timerRunning;
-
-    public void Setup(Transform door)
-    {
-        this.door = door;
-    }
 
     private void Start()
     {
@@ -39,9 +33,8 @@ public class WaveManager : MonoBehaviour {
     public void StartWave() {
         //ItemTray.Instance.ClearTray();
 
-        SetCustomerSequence();
+        waveSequence.Setup();
 
-        _customerCounter = 0;
         _timerCounter = shiftDuration;
         _timerRunning = true;
     }
@@ -53,16 +46,7 @@ public class WaveManager : MonoBehaviour {
             timeLeftVariable.Value = _timerCounter;
             if (_timerCounter < closingTime) return;
 
-            var seq = _customerCounter < customerPerShift?
-                _customerSequence[_customerCounter] : _customerSequence[customerPerShift-1] - _warmupDuration *
-                (_customerCounter - customerPerShift);
-
-            if (_timerCounter < seq) {
-                var orderWeight = new[] {7, 3}; // 70% chance spawn 1 customer, 30% chance spawn 2 customer
-                var spawnCount = GetRandomWeight(orderWeight);
-                SpawnCustomer(spawnCount);
-                _customerCounter += spawnCount;
-            }
+            waveSequence.Tick(shiftDuration - _timerCounter);
         }
         else {
             _timerRunning = false;
@@ -74,45 +58,6 @@ public class WaveManager : MonoBehaviour {
 
     private void EndShift() {
         onShiftEnd?.Invoke();
-    }
-
-    private void SetCustomerSequence() {
-        var customerSeqDelay = shiftDuration / customerPerShift;
-        
-        var sequence = new List<float> { shiftDuration - _warmupDuration };
-
-        for (var i = 0; i < customerPerShift - 1; i++) {
-            var prev = sequence[i];
-            var clampedSeqDelay = Mathf.Clamp(
-                customerSeqDelay-i , _warmupDuration, customerSeqDelay);
-            sequence.Add(prev-clampedSeqDelay);
-        }
-
-        _customerSequence = sequence.ToArray();
-    }
-
-    private void SpawnCustomer(int amount = 1) {
-        var orderWeight = new[] { 4, 6 }; // 40% chance 1 item order, 60% chance 2 item order
-        var customerCountWeight = new[] { 2, 1, 0, 1 };
-        for (var j = 0; j < amount; j++) {
-            var order = new List<ItemSO>();
-
-            for (var i = 0; i < GetRandomWeight(orderWeight); i++) {
-                order.Add(items.GetRandom());
-            }
-
-            var customerType = customerTypes.GetRandom();
-            var customerCount = GetRandomWeight(customerCountWeight);
-            if (customerCount == 1)
-            {
-                // take out
-                CustomerGroup.Spawn(customerType, door);
-            } else
-            {
-                // dine in
-                CustomerGroup.Spawn(customerType, customerCount, door);
-            }
-        }
     }
 
     private int GetRandomWeight(IEnumerable<int> weights) {

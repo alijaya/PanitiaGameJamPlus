@@ -34,10 +34,13 @@ namespace Core.Words {
         private void OnDisable()
         {
             wordObject.OnStateChanged.RemoveListener(HandleStateChanged);
-            // force complete
-            fadeTween?.Complete();
-            scaleTween?.Complete();
-            shakeTween?.Complete();
+        }
+
+        private void OnDestroy()
+        {
+            fadeTween?.Kill();
+            scaleTween?.Kill();
+            shakeTween?.Kill();
         }
 
         public static string WrapColor(string value, Color color) {

@@ -131,6 +131,9 @@ public class SingletonMB<T> : MonoBehaviour where T : MonoBehaviour
     #endregion
 
     #region Unity3d Messages - DO NOT OVERRRIDE / IMPLEMENT THESE METHODS in child classes!
+
+    public virtual bool IsPersistent { get; } = true;
+
     void Awake()
     {
         T thisInstance = this.GetComponent<T>();
@@ -139,7 +142,7 @@ public class SingletonMB<T> : MonoBehaviour where T : MonoBehaviour
         if (_instance == null)
         {
             _instance = thisInstance;
-            DontDestroyOnLoad(_instance.gameObject);
+            if (IsPersistent) DontDestroyOnLoad(_instance.gameObject);
 
         }
 

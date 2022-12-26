@@ -8,30 +8,30 @@ using System;
 public class CashierManager : SingletonMB<CashierManager>
 {
     private HashSet<Cashier> cashiers = new();
-    private Dictionary<Cashier, UnityAction<CustomerGroup>> cashierOccupiedHandlers = new();
-    private Dictionary<Cashier, UnityAction<CustomerGroup>> cashierUnoccupiedHandlers = new();
+    private Dictionary<Cashier, UnityAction<CustomerGroup>> cashierQueuedHandlers = new();
+    private Dictionary<Cashier, UnityAction<CustomerGroup>> cashierUnqueuedHandlers = new();
 
-    public UnityEvent<Cashier, CustomerGroup> OnCashierOccupied = new();
-    public UnityEvent<Cashier, CustomerGroup> OnCashierUnoccupied = new();
+    public UnityEvent<Cashier, CustomerGroup> OnCashierQueued = new();
+    public UnityEvent<Cashier, CustomerGroup> OnCashierUnqueued = new();
 
     public void RegisterCashier(Cashier cashier)
     {
         if (cashiers.Add(cashier))
         {
-            UnityAction<CustomerGroup> occupiedHandler = customerGroup =>
+            UnityAction<CustomerGroup> queuedHandler = customerGroup =>
             {
-                OnCashierOccupied.Invoke(cashier, customerGroup);
+                OnCashierQueued.Invoke(cashier, customerGroup);
             };
-            UnityAction<CustomerGroup> unoccupiedHandler = customerGroup =>
+            UnityAction<CustomerGroup> unqueuedHandler = customerGroup =>
             {
-                OnCashierUnoccupied.Invoke(cashier, customerGroup);
+                OnCashierUnqueued.Invoke(cashier, customerGroup);
             };
 
-            cashier.OnCashierOccupied.AddListener(occupiedHandler);
-            cashier.OnCashierUnoccupied.AddListener(unoccupiedHandler);
+            cashier.OnCashierQueued.AddListener(queuedHandler);
+            cashier.OnCashierUnqueued.AddListener(unqueuedHandler);
 
-            cashierOccupiedHandlers[cashier] = occupiedHandler;
-            cashierUnoccupiedHandlers[cashier] = unoccupiedHandler;
+            cashierQueuedHandlers[cashier] = queuedHandler;
+            cashierUnqueuedHandlers[cashier] = unqueuedHandler;
         }
     }
 
@@ -39,16 +39,16 @@ public class CashierManager : SingletonMB<CashierManager>
     {
         if (cashiers.Remove(cashier))
         {
-            if (cashierOccupiedHandlers.TryGetValue(cashier, out var occupiedHandler))
+            if (cashierQueuedHandlers.TryGetValue(cashier, out var queuedHandler))
             {
-                cashier.OnCashierOccupied.RemoveListener(occupiedHandler);
-                cashierOccupiedHandlers.Remove(cashier);
+                cashier.OnCashierQueued.RemoveListener(queuedHandler);
+                cashierQueuedHandlers.Remove(cashier);
             }
 
-            if (cashierUnoccupiedHandlers.TryGetValue(cashier, out var unoccupiedHandler))
+            if (cashierUnqueuedHandlers.TryGetValue(cashier, out var unqueuedHandler))
             {
-                cashier.OnCashierUnoccupied.RemoveListener(unoccupiedHandler);
-                cashierUnoccupiedHandlers.Remove(cashier);
+                cashier.OnCashierUnqueued.RemoveListener(unqueuedHandler);
+                cashierUnqueuedHandlers.Remove(cashier);
             }
         }
     }
@@ -60,7 +60,9 @@ public class CashierManager : SingletonMB<CashierManager>
 
     public Cashier GetAvailableCashierQueue()
     {
-        // should return null if no queue available, but rare ._.
-        return cashiers.Aggregate((cashierA, cashierB) => cashierA.queueCount <= cashierB.queueCount ? cashierA : cashierB);
+        var results = cashiers.Where(cashier => cashier.CouldQueue());
+
+        if (results.Count() > 0) return results.Aggregate((cashierA, cashierB) => cashierA.queueCount <= cashierB.queueCount ? cashierA : cashierB);
+        return null;
     }
 }

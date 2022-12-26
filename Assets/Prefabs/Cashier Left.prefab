@@ -61,7 +61,6 @@ MonoBehaviour:
   stopDirection: 1
   isSeat: 0
   seatHeight: 0.5
-  occupyObject: {fileID: 0}
 --- !u!1 &636777769631158291
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +122,6 @@ MonoBehaviour:
   stopDirection: 1
   isSeat: 0
   seatHeight: 0.5
-  occupyObject: {fileID: 0}
 --- !u!1 &3547340070058744759
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +183,6 @@ MonoBehaviour:
   stopDirection: 1
   isSeat: 0
   seatHeight: 0.5
-  occupyObject: {fileID: 0}
 --- !u!1 &3547340070340812287
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,18 +248,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc87f2a808b44eb28ff371614a1a028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: {fileID: 6671735470457212517}
   queueLocations:
+  - {fileID: 6671735470457212517}
   - {fileID: 7427667515013658253}
   - {fileID: 4338339966657260147}
   - {fileID: 7553825067775439136}
   - {fileID: 5127452014600903086}
   - {fileID: 567885413561461218}
   - {fileID: 7882889893361897919}
-  OnCashierOccupied:
+  OnCashierQueued:
     m_PersistentCalls:
       m_Calls: []
-  OnCashierUnoccupied:
+  OnCashierUnqueued:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &6671735470457212517
@@ -280,7 +277,6 @@ MonoBehaviour:
   stopDirection: 0
   isSeat: 0
   seatHeight: 0.5
-  occupyObject: {fileID: 0}
 --- !u!1 &4264491418062386453
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +338,6 @@ MonoBehaviour:
   stopDirection: 1
   isSeat: 0
   seatHeight: 0.5
-  occupyObject: {fileID: 0}
 --- !u!1 &5785409947549256657
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +399,6 @@ MonoBehaviour:
   stopDirection: 1
   isSeat: 0
   seatHeight: 0.5
-  occupyObject: {fileID: 0}
 --- !u!1 &6987980468616986605
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,4 +460,3 @@ MonoBehaviour:
   stopDirection: 1
   isSeat: 0
   seatHeight: 0.5
-  occupyObject: {fileID: 0}

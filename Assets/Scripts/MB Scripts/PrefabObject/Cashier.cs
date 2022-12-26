@@ -5,20 +5,36 @@ using UnityEngine.Events;
 
 public class Cashier : MonoBehaviour
 {
-    public CustomerGroup customerGroup { get; private set; }
-    public HashSet<CustomerGroup> queueCustomerGroups { get; private set; } = new();
+    public List<CustomerGroup> queueCustomerGroups { get; private set; } = new();
 
-    public PointOfInterest location;
     public List<PointOfInterest> queueLocations;
 
-    public UnityEvent<CustomerGroup> OnCashierOccupied = new();
-    public UnityEvent<CustomerGroup> OnCashierUnoccupied = new();
+    public UnityEvent<CustomerGroup> OnCashierQueued = new();
+    public UnityEvent<CustomerGroup> OnCashierUnqueued = new();
+
+    public CustomerGroup customerGroup
+    {
+        get
+        {
+            if (queueCustomerGroups.Count > 0) return queueCustomerGroups[0];
+            return null;
+        }
+    }
+
+    public PointOfInterest location
+    {
+        get
+        {
+            if (queueLocations.Count > 0) return queueLocations[0];
+            return null;
+        }
+    }
 
     public bool occupied
     {
         get
         {
-            return customerGroup != null;
+            return queueCustomerGroups.Count > 0;
         }
     }
 
@@ -40,37 +56,40 @@ public class Cashier : MonoBehaviour
         CashierManager.I.UnregisterCashier(this);
     }
 
-    public void OccupyCustomerGroup(CustomerGroup customerGroup)
+    public int QueueCustomerGroup(CustomerGroup customerGroup)
     {
-        if (this.customerGroup == null)
+        if (!this.queueCustomerGroups.Contains(customerGroup))
         {
-            this.customerGroup = customerGroup;
-            OnCashierOccupied.Invoke(customerGroup);
-        }
-    }
-
-    public void UnoccupyCustomerGroup(CustomerGroup customerGroup)
-    {
-        if (this.customerGroup == customerGroup)
+            this.queueCustomerGroups.Add(customerGroup);
+            OnCashierQueued.Invoke(customerGroup);
+            return this.queueCustomerGroups.Count - 1;
+        } else
         {
-            var temp = this.customerGroup;
-            this.customerGroup = null;
-            OnCashierUnoccupied.Invoke(temp);
+            return this.queueCustomerGroups.IndexOf(customerGroup);
         }
-    }
-
-    public void QueueCustomerGroup(CustomerGroup customerGroup)
-    {
-        this.queueCustomerGroups.Add(customerGroup);
     }
 
     public void UnqueueCustomerGroup(CustomerGroup customerGroup)
     {
-        this.queueCustomerGroups.Remove(customerGroup);
+        if (this.queueCustomerGroups.Contains(customerGroup))
+        {
+            this.queueCustomerGroups.Remove(customerGroup);
+            OnCashierUnqueued.Invoke(customerGroup);
+        }
     }
 
     public bool CouldOccupy()
     {
-        return !occupied && queueCount == 0;
+        return !occupied;
+    }
+
+    public bool CouldQueue()
+    {
+        return queueCount < queueLocations.Count;
+    }
+
+    public bool IsOnly(CustomerGroup customerGroup)
+    {
+        return queueCount == 1 && queueCustomerGroups[0] == customerGroup;
     }
 }

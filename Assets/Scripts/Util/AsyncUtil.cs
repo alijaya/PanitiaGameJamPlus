@@ -46,7 +46,9 @@ public static class AsyncUtil
 
         // just kill the tween if cancelled, if possible?
         // not sure if this will be buggy or not lol
-        unreg = ct.Register(() => tween?.Kill());
+        unreg = ct.Register(() => {
+            if (tween.IsActive()) tween.Kill();
+        });
 
         return utcs.Task;
     }
