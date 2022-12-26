@@ -15,7 +15,7 @@ namespace Core.Dish {
         public void Setup(TrayItemSO trayItem) {
             Reset();
 
-            var icon = trayItem.GetItemIconColor();
+            var icon = trayItem.GetSprite();
             var itemName = trayItem.GetItemName();
 
             if (icon) {

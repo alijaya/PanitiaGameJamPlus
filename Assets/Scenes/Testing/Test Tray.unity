@@ -2001,6 +2001,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2331254332249768648, guid: f71280ec1f5ef5943a6cd4c5eee36c05, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331254332249768648, guid: f71280ec1f5ef5943a6cd4c5eee36c05, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6019299949219064234, guid: f71280ec1f5ef5943a6cd4c5eee36c05, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -8050,7 +8058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3725453695518164559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.35, y: -0.64, z: 0}
+  m_LocalPosition: {x: -5.46, y: -0.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8106,12 +8114,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3725453695518164559}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38a65fe7872a7400eab20bda10ac6c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lastLocalPosition: {x: 0, y: 0, z: 0}
+  _lastLocalPosition: {x: -5.46, y: -1.82, z: 0}
 --- !u!114 &3725453695518164566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8168,6 +8176,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 837688737183162521, guid: 42d25ed7baad89941a33a40b217f43f0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837688737183162521, guid: 42d25ed7baad89941a33a40b217f43f0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8679157112683219963, guid: 42d25ed7baad89941a33a40b217f43f0, type: 3}
       propertyPath: m_RootOrder
       value: 10

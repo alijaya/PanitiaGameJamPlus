@@ -2,16 +2,14 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Core.Dish {
-    public abstract class TrayItemSO : ScriptableObject {
-        [PreviewField]
-        [SerializeField] private Sprite itemIcon;
-        [PreviewField]
-        [SerializeField] private Sprite itemIconColor;
-
+    public abstract class TrayItemSO : ScriptableObject
+    {
         [SerializeField] private string itemName;
-        
-        public Sprite GetItemIcon() => itemIcon;
-        public Sprite GetItemIconColor() => itemIconColor;
+
+        [PreviewField]
+        [SerializeField] private Sprite sprite;
+
         public string GetItemName() => itemName;
+        public Sprite GetSprite() => sprite;
     }    
 }

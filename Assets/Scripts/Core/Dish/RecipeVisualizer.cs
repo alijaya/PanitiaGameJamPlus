@@ -49,7 +49,7 @@ namespace Core.Dish {
 
         private void RefreshUI() {
             for (var i = 0; i < itemImages.Length -1; i++) {
-                itemImages[i].sprite = _current[i].GetItemIcon();
+                itemImages[i].sprite = _current[i].GetSprite();
             }
         }
     }
