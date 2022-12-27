@@ -942,13 +942,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoStart: 0
   waveSequence: {fileID: 11400000, guid: 6e50fa821a33646f4b8bda7c6862d65b, type: 2}
-  customerTypes:
-  - {fileID: 11400000, guid: 7c5c6996792a34889bbd560da51e7dc2, type: 2}
-  - {fileID: 11400000, guid: e61579a2d1d3d4099a403bd07132be26, type: 2}
-  - {fileID: 11400000, guid: 657e841258bb74ee0b28e902ff8c0759, type: 2}
-  - {fileID: 11400000, guid: 9a87a9fe7ccf248d8be17d49443acd1b, type: 2}
-  - {fileID: 11400000, guid: 8b572c94ba5a54c09b5a3d330b3771b6, type: 2}
-  door: {fileID: 41601306}
   timeLeftVariable: {fileID: 11400000, guid: 1809e5ed8f1668c4c8e5d31e8dee42e6, type: 2}
   shiftDuration: 90
   onShiftEnd:
@@ -2602,7 +2595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
       propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RemoveDish
+      value: TryRemoveDish
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
       propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -3239,7 +3232,7 @@ RectTransform:
   m_Children:
   - {fileID: 2031982063}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3443,7 +3436,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 41601306}
-  waveManager: {fileID: 164617288}
+  possibleDishes:
+  - {fileID: 11400000, guid: 8796d8943a6e51446bde2bf8a46f25e9, type: 2}
+  - {fileID: 11400000, guid: 367001c4cd1f43c408a9bac07dbc0be7, type: 2}
+  - {fileID: 11400000, guid: aeb73d3d3fe83634da6829bdda8d805c, type: 2}
 --- !u!4 &974174902
 Transform:
   m_ObjectHideFlags: 0
@@ -3738,7 +3734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7518261941221069451, guid: 08a612482f571411a8ffb5ad3d0f09e4, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7518261941221069451, guid: 08a612482f571411a8ffb5ad3d0f09e4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4259,7 +4255,7 @@ Transform:
   - {fileID: 1421638351}
   - {fileID: 1647873535}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542162557
 GameObject:
@@ -5184,6 +5180,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2852427331378147847, guid: f52cada5b231b45479d58e3346d678c1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.9999998
+      objectReference: {fileID: 0}
     - target: {fileID: 3398124073146253347, guid: f52cada5b231b45479d58e3346d678c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -6053,7 +6053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3725453694816239249, guid: 42c48c3c885634ca883c57d909ba2f7e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3725453694816239249, guid: 42c48c3c885634ca883c57d909ba2f7e, type: 3}
       propertyPath: m_LocalPosition.x

@@ -23,15 +23,16 @@ MonoBehaviour:
       data:
         startTime: 0
         endTime: 70
-        count: 10
+        count: 5
         triggerOnStart: 1
         triggerOnEnd: 1
         random: 1
         eatType: 1
-        customerCounts: 0200000004000000
+        customerCounts: 02000000020000000200000004000000
         customerTypes:
         - {fileID: 11400000, guid: e61579a2d1d3d4099a403bd07132be26, type: 2}
         - {fileID: 11400000, guid: 657e841258bb74ee0b28e902ff8c0759, type: 2}
+        - {fileID: 11400000, guid: 7c5c6996792a34889bbd560da51e7dc2, type: 2}
     - rid: 1433981470651187201
       type: {class: WaveSpawnCustomer, ns: , asm: Assembly-CSharp}
       data:
@@ -44,4 +45,5 @@ MonoBehaviour:
         eatType: 2
         customerCounts: 
         customerTypes:
-        - {fileID: 11400000, guid: 657e841258bb74ee0b28e902ff8c0759, type: 2}
+        - {fileID: 11400000, guid: 9a87a9fe7ccf248d8be17d49443acd1b, type: 2}
+        - {fileID: 11400000, guid: 8b572c94ba5a54c09b5a3d330b3771b6, type: 2}

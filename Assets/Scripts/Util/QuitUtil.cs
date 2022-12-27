@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -6,6 +7,14 @@ using UnityEditor;
 public static class QuitUtil
 {
     public static bool isQuitting;
+
+    public static bool isDestroying
+    {
+        get
+        {
+            return !SceneManager.GetActiveScene().isLoaded || isQuitting;
+        }
+    }
 
 #if UNITY_EDITOR
     [InitializeOnEnterPlayMode]

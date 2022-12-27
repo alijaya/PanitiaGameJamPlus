@@ -8,7 +8,7 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager>
 {
     public Transform door;
 
-    public WaveManager waveManager;
+    public List<Core.Dish.DishItemSO> possibleDishes;
 
     protected override void SingletonAwakened()
     {
@@ -20,7 +20,13 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager>
         GlobalRef.I.totalSales.Value = 0;
         GlobalRef.I.totalCustomerServed.Value = 0;
         GlobalRef.I.PlayBGM_Gameplay();
-        waveManager.StartWave();
+        WaveManager.I.StartWave();
     }
 
+    public List<Core.Dish.DishItemSO> GenerateDishes(int count)
+    {
+        List<Core.Dish.DishItemSO> result = new();
+        for (var i = 0; i < count; i++) result.Add(possibleDishes.GetRandom());
+        return result;
+    }
 }

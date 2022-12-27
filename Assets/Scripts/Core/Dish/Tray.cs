@@ -68,17 +68,32 @@ namespace Core.Dish {
         //    return traySlots.Any();
         //}
 
-        public void RemoveDish(DishItemSO dishItem) {
-            slots.Remove(dishItem);
-            OnSlotChanged?.Invoke();
+        public bool RemoveDish(DishItemSO dishItem) {
+            if (slots.Remove(dishItem))
+            {
+                OnSlotChanged?.Invoke();
+                return true;
+            } else
+            {
+                return false;
+            }
         }
 
-        public void RemoveDish(int slotIndex) {
+        public bool RemoveDish(int slotIndex) {
             if (slotIndex < slots.Count)
             {
                 slots.RemoveAt(slotIndex);
                 OnSlotChanged?.Invoke();
+                return true;
+            } else
+            {
+                return false;
             }
+        }
+
+        public void TryRemoveDish(int slotIndex)
+        {
+            RemoveDish(slotIndex);
         }
     }
 }

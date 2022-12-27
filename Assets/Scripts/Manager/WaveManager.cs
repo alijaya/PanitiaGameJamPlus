@@ -6,13 +6,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = System.Random;
 
-public class WaveManager : MonoBehaviour {
+public class WaveManager : SingletonSceneMB<WaveManager> {
     public bool autoStart = false;
 
     public WaveSequenceSO waveSequence;
-
-    public List<CustomerTypeSO> customerTypes;
-    public Transform door;
 
     [SerializeField] private FloatVariable timeLeftVariable;
     [SerializeField] private float shiftDuration = 90f;
@@ -22,7 +19,7 @@ public class WaveManager : MonoBehaviour {
     private float _timerCounter;
     private bool _timerRunning;
 
-    private void Start()
+    protected override void SingletonStarted()
     {
         if (autoStart) StartWave();
     }
@@ -45,10 +42,16 @@ public class WaveManager : MonoBehaviour {
             waveSequence.Tick(shiftDuration - _timerCounter);
         }
         else {
-            _timerRunning = false;
             _timerCounter = 0;
             timeLeftVariable.Value = _timerCounter;
-            EndShift();
+
+            // wait until there's no CustomerGroup
+            // ga performant, bodo amat
+            if (FindObjectOfType<CustomerGroup>() == null)
+            {
+                _timerRunning = false;
+                EndShift();
+            }
         }
     }
 

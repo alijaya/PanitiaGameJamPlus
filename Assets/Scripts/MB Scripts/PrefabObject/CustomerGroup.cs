@@ -96,7 +96,7 @@ public class CustomerGroup : MonoBehaviour
         this.customerType = customerType;
         this.spawnPoint = spawnPoint;
         this.dineIn = dineIn;
-        this.count = count;
+        this.count = dineIn ? count : 1;
     }
 
     // Start is called before the first frame update
@@ -149,11 +149,14 @@ public class CustomerGroup : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(customerType.OrderDuration), cancellationToken: ct);
 
         UniTask task;
+        Core.Dish.DishRequester dishRequester;
         Core.Words.WordObject wordObject;
 
         // ordering
         // create fake order, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers, transform, ct);
+        //(task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers, transform, ct);
+        (task, dishRequester) = Core.Dish.DishRequester.SpawnAsync(RestaurantManager.I.GenerateDishes(count), customerType.TextGenerator, customerType.TextModifiers, transform, ct);
+        dishRequester.wordObject.SetCompleteCheck((ct) => Chef.I.GoToPOI(seat.serveLocation, ct));
         PlayCountdown();
         state = CustomerState.Order;
         await task;
@@ -169,6 +172,7 @@ public class CustomerGroup : MonoBehaviour
         // arriving at cashier
         // create fake paying, and wait for interaction
         (task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers, transform, ct);
+        wordObject.SetCompleteCheck((ct) => Chef.I.GoToPOI(cashier.serveLocation, ct));
         PlayCountdown();
         state = CustomerState.Pay;
         await task;
@@ -311,11 +315,15 @@ public class CustomerGroup : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(customerType.OrderDuration), cancellationToken: ct);
 
         UniTask task;
+        Core.Dish.DishRequester dishRequester;
         Core.Words.WordObject wordObject;
 
         // ordering
         // create fake order, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers ,transform, ct);
+        //(task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers ,transform, ct);
+        (task, dishRequester) = Core.Dish.DishRequester.SpawnAsync(RestaurantManager.I.GenerateDishes(count), customerType.TextGenerator, customerType.TextModifiers, transform, ct);
+
+        dishRequester.wordObject.SetCompleteCheck((ct) => Chef.I.GoToPOI(cashier.serveLocation, ct));
         PlayCountdown();
         state = CustomerState.Order;
         await task;
@@ -324,6 +332,7 @@ public class CustomerGroup : MonoBehaviour
 
         // create fake paying, and wait for interaction
         (task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers, transform, ct);
+        wordObject.SetCompleteCheck((ct) => Chef.I.GoToPOI(cashier.serveLocation, ct));
         PlayCountdown();
         state = CustomerState.Pay;
         await task;

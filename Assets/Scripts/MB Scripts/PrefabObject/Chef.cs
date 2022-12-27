@@ -7,15 +7,22 @@ using System.Threading;
 using System.Threading.Tasks;
 
 [RequireComponent(typeof(PathFinder))]
-public class Chef : MonoBehaviour {
+public class Chef : SingletonSceneMB<Chef> {
 
     private PathFinder pathfinder;
+    private MovementController movement;
+    private CustomCoordinate coordinate;
 
     private AsyncQueue asyncQueue = new();
 
-    private void Awake() {
+    protected override void SingletonAwakened()
+    {
         pathfinder = GetComponent<PathFinder>();
+        movement = GetComponent<MovementController>();
+        coordinate = GetComponent<CustomCoordinate>();
     }
+
+    // TODO: damn butuh di refactor, ini kopas dari Customer
 
     public async UniTask GoToWorld(Transform target, CancellationToken ct = default)
     {
@@ -35,6 +42,83 @@ public class Chef : MonoBehaviour {
     public async UniTask GoTo(Vector3 target, CancellationToken ct = default)
     {
         await asyncQueue.Queue(() => pathfinder.GoTo(target, ct), ct);
+    }
+
+    // This is in World Coordinate
+    public void SetToWorld(Transform target)
+    {
+        coordinate.SetToWorld(target);
+    }
+
+    // This is in World Coordinate
+    public void SetToWorld(Vector3 target)
+    {
+        coordinate.SetToWorld(target);
+    }
+
+    // This is in Game Coordinate
+    public void SetTo(CustomCoordinate target)
+    {
+        coordinate.SetTo(target);
+    }
+
+    // This is in Game Coordinate
+    public void SetTo(Vector3 target)
+    {
+        coordinate.SetTo(target);
+    }
+
+    public async UniTask Seat(float height, CancellationToken ct = default)
+    {
+        var curPos = coordinate.position;
+        curPos.z = height;
+        await movement.GoTo(curPos, ct);
+    }
+
+    public async UniTask Unseat(CancellationToken ct = default)
+    {
+        var curPos = coordinate.position;
+        curPos.z = 0;
+        await movement.GoTo(curPos, ct);
+    }
+
+    // This is in World Coordinate
+    public async UniTask GoToPOI(PointOfInterest poi, CancellationToken ct = default)
+    {
+        await asyncQueue.Queue(async () =>
+        {
+            await Unseat(ct);
+            await pathfinder.GoTo(poi.GetComponent<CustomCoordinate>(), ct);
+            if (poi.stopDirection == PointOfInterest.StopDirection.Left)
+            {
+                await SetFaceLeft();
+            }
+            else if (poi.stopDirection == PointOfInterest.StopDirection.Right)
+            {
+                await SetFaceRight();
+            }
+            if (poi.isSeat) await Seat(poi.seatHeight, ct);
+        }, ct);
+    }
+
+    public async UniTask SetFaceLeft(bool animated = true)
+    {
+        await movement.SetFaceLeft(animated);
+    }
+
+    public async UniTask SetFaceRight(bool animated = true)
+    {
+        await movement.SetFaceRight(animated);
+    }
+
+    public async UniTask SetFacing(float deltaX, bool animated = true)
+    {
+        await movement.SetFacing(deltaX, animated);
+    }
+
+    public async UniTask SetFacing(bool left, bool animated = true)
+    {
+        await movement.SetFacing(left, animated);
     }
 
     public async UniTask WaitForSeconds(float seconds, CancellationToken ct = default) {

@@ -72,6 +72,8 @@ namespace Core.Words
         [FoldoutGroup("Word Complete")]
         public UniTaskFunc CompleteCheck;
 
+        private Func<CancellationToken, UniTask> _CompleteCheck;
+
         [FoldoutGroup("Word Complete")]
         public UnityEvent OnWordCompleted;
 
@@ -175,6 +177,11 @@ namespace Core.Words
             GenerateText();
         }
 
+        public void SetCompleteCheck(Func<CancellationToken, UniTask> check)
+        {
+            _CompleteCheck = check;
+        }
+
         public void GenerateTextRandomDifficulty()
         {
             GenerateText();
@@ -246,7 +253,10 @@ namespace Core.Words
             var success = true;
             // wait for async, it could be cancelled tho
             // for example the text dissappear before the chef reach it
-            if (CompleteCheck.target != null)
+            if (_CompleteCheck != null) // check the programmatically set
+            {
+                success = !await _CompleteCheck(completeCheckCancel.Token).SuppressCancellationThrow();
+            } else if (CompleteCheck.target != null) // check from inspector set
             {
                 success = ! await CompleteCheck.Invoke(completeCheckCancel.Token).SuppressCancellationThrow();
             }

@@ -7,6 +7,7 @@ public class Cashier : MonoBehaviour
 {
     public List<CustomerGroup> queueCustomerGroups { get; private set; } = new();
 
+    public PointOfInterest serveLocation;
     public List<PointOfInterest> queueLocations;
 
     public UnityEvent<CustomerGroup> OnCashierQueued = new();

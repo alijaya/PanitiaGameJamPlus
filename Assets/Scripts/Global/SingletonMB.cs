@@ -40,7 +40,7 @@ public class SingletonMB<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
-            if (_instance == null && !QuitUtil.isQuitting)
+            if (_instance == null && !QuitUtil.isDestroying)
             {
                 //if (IsDestroyed) return null;
 

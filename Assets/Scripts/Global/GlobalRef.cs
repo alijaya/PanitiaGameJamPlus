@@ -41,6 +41,9 @@ public class GlobalRef : SingletonSO<GlobalRef>
     [AssetSelector]
     public Core.Words.WordObject WordObjectPrefab;
 
+    [AssetSelector]
+    public Core.Dish.DishRequester DishRequesterPrefab;
+
     public void CleanUpWords()
     {
         Words.Clear();

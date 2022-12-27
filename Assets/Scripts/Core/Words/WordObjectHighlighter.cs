@@ -48,7 +48,7 @@ namespace Core.Words {
         }
 
         public void HandleStateChanged(WordObject.WordObjectState state) {
-            if (!this || !isActiveAndEnabled || QuitUtil.isQuitting) return;
+            if (!this || !isActiveAndEnabled || QuitUtil.isDestroying) return;
 
             var word = wordObject.Text;
             var position = wordObject.Position;

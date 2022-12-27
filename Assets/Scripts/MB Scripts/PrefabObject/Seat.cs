@@ -8,6 +8,7 @@ public class Seat : MonoBehaviour
     public CustomerGroup customerGroup { get; private set; }
     public CustomerGroup waitCustomerGroup { get; private set; }
 
+    public PointOfInterest serveLocation;
     public List<PointOfInterest> locations;
     public List<PointOfInterest> waitLocations;
 

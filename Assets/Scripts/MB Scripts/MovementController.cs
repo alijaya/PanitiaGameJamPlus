@@ -45,7 +45,7 @@ public class MovementController : MonoBehaviour
     private void OnDisable()
     {
         // don't do anything if quitting, this cause a headache
-        if (QuitUtil.isQuitting) return;
+        if (QuitUtil.isDestroying) return;
 
         // stop mid way
         movementTween?.Kill();

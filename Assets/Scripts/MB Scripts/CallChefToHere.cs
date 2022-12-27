@@ -6,15 +6,8 @@ using System.Threading;
 
 public class CallChefToHere : MonoBehaviour
 {
-    private Chef chef;
-
-    private void Awake()
-    {
-        chef = FindObjectOfType<Chef>();
-    }
-
     public async UniTask Go(CancellationToken ct = default)
     {
-        await chef.GoToWorld(transform, ct);
+        await Chef.I.GoToWorld(transform, ct);
     }
 }

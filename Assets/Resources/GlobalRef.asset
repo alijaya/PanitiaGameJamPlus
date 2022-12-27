@@ -56,3 +56,4 @@ MonoBehaviour:
   scorePopup: {fileID: 0}
   defaultWordBank: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
   WordObjectPrefab: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+  DishRequesterPrefab: {fileID: 7823128467837763667, guid: ae2022d99c76d44fc80b559fe324c495, type: 3}
