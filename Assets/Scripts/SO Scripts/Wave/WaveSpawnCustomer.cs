@@ -23,6 +23,6 @@ public class WaveSpawnCustomer : AbstractWaveDurationTrigger
         var customerCount = customerCounts.GetRandom();
         var dineIn = new[] { Random.value < 0.5, true, false }[(int) eatType];
 
-        CustomerGroup.Spawn(customerType, dineIn, customerCount, SingletonDoor.I.transform);
+        CustomerGroup.Spawn(customerType, dineIn, customerCount, RestaurantManager.I.door);
     }
 }

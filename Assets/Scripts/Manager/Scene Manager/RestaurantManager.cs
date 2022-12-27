@@ -4,18 +4,18 @@ using UnityEngine;
 using System.Linq;
 using UnityAtoms.BaseAtoms;
 
-public class RestaurantManager : MonoBehaviour
+public class RestaurantManager : SingletonSceneMB<RestaurantManager>
 {
     public Transform door;
 
     public WaveManager waveManager;
 
-    private void Awake()
+    protected override void SingletonAwakened()
     {
         GlobalRef.I.CleanUpWords();
     }
 
-    private void Start()
+    protected override void SingletonStarted()
     {
         GlobalRef.I.totalSales.Value = 0;
         GlobalRef.I.totalCustomerServed.Value = 0;
@@ -23,8 +23,4 @@ public class RestaurantManager : MonoBehaviour
         waveManager.StartWave();
     }
 
-    private void Update()
-    {
-
-    }
 }

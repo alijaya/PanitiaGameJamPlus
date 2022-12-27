@@ -16,12 +16,9 @@ public class WaveManager : MonoBehaviour {
 
     [SerializeField] private FloatVariable timeLeftVariable;
     [SerializeField] private float shiftDuration = 90f;
-    [SerializeField] private float closingTime = 10f; // waktu sebelum tutup ( tidak spawn customer lagi)
-    [SerializeField] private int customerPerShift = 10;
 
     [SerializeField] private UnityEvent onShiftEnd;
 
-    private float _warmupDuration = 5f; // minimal delay to spawn other customer
     private float _timerCounter;
     private bool _timerRunning;
 
@@ -44,7 +41,6 @@ public class WaveManager : MonoBehaviour {
         if (_timerCounter > 0) {
             _timerCounter -= Time.deltaTime;
             timeLeftVariable.Value = _timerCounter;
-            if (_timerCounter < closingTime) return;
 
             waveSequence.Tick(shiftDuration - _timerCounter);
         }

@@ -74,6 +74,11 @@ public class CustomCoordinate : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Update();
+    }
+
     private void Update()
     {
         // If parent changed

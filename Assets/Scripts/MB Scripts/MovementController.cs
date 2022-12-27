@@ -80,7 +80,11 @@ public class MovementController : MonoBehaviour
     {
         Stop();
 
-        movementTween = DOTween.To(() => coordinate.position, v => coordinate.position = v, target, speed).SetSpeedBased().SetEase(Ease.Linear).SetLink(gameObject);
+        movementTween = DOTween.To(
+            () => coordinate.position,
+            v => coordinate.position = v,
+            target, speed)
+            .SetSpeedBased().SetEase(Ease.Linear).SetLink(gameObject);
 
         SetFacing(target.x - transform.position.x).Forget();
         StartBobbing().Forget();

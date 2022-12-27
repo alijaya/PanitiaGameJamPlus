@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingletonDoor : SingletonMB<SingletonDoor>
+public class SingletonSceneMB<T> : SingletonMB<T> where T : MonoBehaviour
 {
     public override bool IsPersistent { get; } = false;
 }
