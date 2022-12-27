@@ -144,6 +144,7 @@ MonoBehaviour:
   onDishAvailable:
     m_PersistentCalls:
       m_Calls: []
+  itemUI2: {fileID: 0}
 --- !u!1 &1897874243228722804
 GameObject:
   m_ObjectHideFlags: 0

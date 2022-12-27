@@ -11,7 +11,7 @@ namespace Core.Dish {
 
         public override void AddDish() {
             if (currentStackSize <= 0) return;
-            if (ItemTray.I.TryAddItemToTray(dishItem)) currentStackSize--;
+            if (Tray.I.AddDish(dishItem)) currentStackSize--;
             onDishAvailable?.Invoke(stackSize > 0);
             RefreshUI();
         }

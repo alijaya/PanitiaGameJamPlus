@@ -24,17 +24,18 @@ namespace Core.Dish {
 
         public void AttemptToFill() {
             var usedTraySlots = new List<TraySlot>();
-            foreach (var dish in requestedDishes) {
-                ItemTray.I.HasDish(dish, out var traySlots);
-                traySlots = traySlots.Except(usedTraySlots).ToArray();
+            // TODO: Refactor
+            //foreach (var dish in requestedDishes) {
+            //    Tray.I.HasDish(dish, out var traySlots);
+            //    traySlots = traySlots.Except(usedTraySlots).ToArray();
 
-                if (!traySlots.Any()) return;
+            //    if (!traySlots.Any()) return;
                 
-                usedTraySlots.Add(traySlots[0]);
-            }
+            //    usedTraySlots.Add(traySlots[0]);
+            //}
 
             foreach (var traySlot in usedTraySlots) {
-                ItemTray.I.TakeDish(traySlot.SlotIndex);
+                Tray.I.RemoveDish(traySlot.SlotIndex);
             }
             onRequestFullFilled?.Invoke();
         }

@@ -9,7 +9,7 @@ namespace Core.Dish {
         [PreviewField]
         [SerializeField] private Sprite sprite;
 
-        public string GetItemName() => itemName;
+        public string GetItemName() => string.IsNullOrEmpty(itemName) ? name : itemName;
         public Sprite GetSprite() => sprite;
     }    
 }

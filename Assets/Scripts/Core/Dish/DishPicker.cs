@@ -10,12 +10,14 @@ namespace Core.Dish {
         protected TrayItemUI itemUI;
         protected int currentStackSize = -1;
 
+        public TrayItemUI2 itemUI2;
+
         protected void Awake() {
             itemUI = GetComponentInChildren<TrayItemUI>();
         }
 
         public virtual void AddDish() {
-            if (dishItem) ItemTray.I.TryAddItemToTray(dishItem);
+            if (dishItem) Tray.I.AddDish(dishItem);
         }
 
         public virtual void PickDish() {
@@ -33,19 +35,32 @@ namespace Core.Dish {
             return dishItem != null;
         }
 
-        protected void OnValidate() {
-            RefreshUI();
-        }
+        //protected void OnValidate() {
+        //    RefreshUI();
+        //}
 
-        protected void RefreshUI() {
-            if (!itemUI) return;
-            if (!dishItem) {
-                itemUI.Reset();
-                return;
+        protected void RefreshUI()
+        {
+            if (dishItem)
+            {
+                name = dishItem.GetItemName() == "" ? dishItem.name : dishItem.GetItemName();
             }
-            name = dishItem.GetItemName() == "" ? dishItem.name : dishItem.GetItemName();
-            itemUI.Setup(dishItem);
-            itemUI.SetStack(currentStackSize);
+            if (itemUI)
+            {
+                if (dishItem)
+                {
+                    itemUI.Setup(dishItem);
+                    itemUI.SetStack(currentStackSize);
+                } else
+                {
+                    itemUI.Reset();
+                }
+            }
+
+            if (itemUI2)
+            {
+                itemUI2.Setup(dishItem);
+            }
         }
     }
 }

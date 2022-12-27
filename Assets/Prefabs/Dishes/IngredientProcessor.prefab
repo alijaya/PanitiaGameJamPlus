@@ -379,6 +379,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  itemUI2: {fileID: 0}
 --- !u!1 &4876018454067488304
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +764,7 @@ MonoBehaviour:
   - {fileID: 1965070368405682304}
   - {fileID: 4876018453527496119}
   burnedDish: {fileID: 11400000, guid: da5fe66d4f7fd3d4a97900f7636bb1b9, type: 2}
-  onAllSlotUsed:
+  isSlotAvailable:
     m_PersistentCalls:
       m_Calls: []
   onOutputPicked:
@@ -1046,6 +1047,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  itemUI2: {fileID: 0}
 --- !u!1 &8062470735593372263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,7 +1145,7 @@ PrefabInstance:
     - target: {fileID: 4388023199189578431, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8cae319770d2a614581ce56e4f18ea2a, type: 3}
+      objectReference: {fileID: 21300000, guid: 52d960886b69f884bb050076d275bb2c, type: 3}
     - target: {fileID: 4388023199189578431, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1202,7 +1204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859062243068958606, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Name
-      value: Ing_Panzerroti_UC
+      value: Panzerroti - Raw
       objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: ingredientItem
@@ -1375,7 +1377,7 @@ PrefabInstance:
     - target: {fileID: 4388023199189578431, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 69cbc0495cac79240839059f422430c6, type: 3}
+      objectReference: {fileID: 21300000, guid: 73db172df953b264ca053945b097e81b, type: 3}
     - target: {fileID: 4388023199189578431, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1434,7 +1436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6859062243068958606, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: m_Name
-      value: Arancini
+      value: Arancini - Raw
       objectReference: {fileID: 0}
     - target: {fileID: 7916231942627018984, guid: 8fb158225e445874c8bcf8362c6e10ac, type: 3}
       propertyPath: ingredientItem

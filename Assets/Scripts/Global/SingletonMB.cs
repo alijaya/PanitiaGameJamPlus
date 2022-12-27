@@ -148,9 +148,9 @@ public class SingletonMB<T> : MonoBehaviour where T : MonoBehaviour
 
         else if (thisInstance != _instance)
         {
-            PrintWarn(string.Format(
-                "Found a duplicated instance of a Singleton with type {0} in the GameObject {1}",
-                this.GetType(), this.gameObject.name));
+            //PrintWarn(string.Format(
+            //    "Found a duplicated instance of a Singleton with type {0} in the GameObject {1}",
+            //    this.GetType(), this.gameObject.name));
 
             NotifyInstanceRepeated();
 
@@ -160,9 +160,9 @@ public class SingletonMB<T> : MonoBehaviour where T : MonoBehaviour
 
         if (!IsAwakened)
         {
-            PrintLog(string.Format(
-                "Awake() Singleton with type {0} in the GameObject {1}",
-                this.GetType(), this.gameObject.name));
+            //PrintLog(string.Format(
+            //    "Awake() Singleton with type {0} in the GameObject {1}",
+            //    this.GetType(), this.gameObject.name));
 
             SingletonAwakened();
             IsAwakened = true;
@@ -175,9 +175,9 @@ public class SingletonMB<T> : MonoBehaviour where T : MonoBehaviour
         // do not start it twice
         if (IsStarted) return;
 
-        PrintLog(string.Format(
-            "Start() Singleton with type {0} in the GameObject {1}",
-            this.GetType(), this.gameObject.name));
+        //PrintLog(string.Format(
+        //    "Start() Singleton with type {0} in the GameObject {1}",
+        //    this.GetType(), this.gameObject.name));
 
         SingletonStarted();
         IsStarted = true;
@@ -201,49 +201,49 @@ public class SingletonMB<T> : MonoBehaviour where T : MonoBehaviour
         IsAwakened = false;
         IsStarted = false;
 
-        PrintLog(string.Format(
-            "Destroy() Singleton with type {0} in the GameObject {1}",
-            this.GetType(), this.gameObject.name));
+        //PrintLog(string.Format(
+        //    "Destroy() Singleton with type {0} in the GameObject {1}",
+        //    this.GetType(), this.gameObject.name));
         SingletonDestroyed();
     }
 
     #endregion
 
-    #region Debug Methods (available in child classes)
-    [Header("Debug")]
-    /// <summary>
-    ///  Set this to true either by code or in the inspector to print trace log messages
-    /// </summary>
-    public bool PrintTrace = false;
+    //#region Debug Methods (available in child classes)
+    //[Header("Debug")]
+    ///// <summary>
+    /////  Set this to true either by code or in the inspector to print trace log messages
+    ///// </summary>
+    //public bool PrintTrace = false;
 
-    protected void PrintLog(string str, params object[] args)
-    {
-        Print(UnityEngine.Debug.Log, PrintTrace, str, args);
-    }
+    //protected void PrintLog(string str, params object[] args)
+    //{
+    //    Print(UnityEngine.Debug.Log, PrintTrace, str, args);
+    //}
 
-    protected void PrintWarn(string str, params object[] args)
-    {
-        Print(UnityEngine.Debug.LogWarning, PrintTrace, str, args);
-    }
+    //protected void PrintWarn(string str, params object[] args)
+    //{
+    //    Print(UnityEngine.Debug.LogWarning, PrintTrace, str, args);
+    //}
 
-    protected void PrintError(string str, params object[] args)
-    {
-        Print(UnityEngine.Debug.LogError, PrintTrace, str, args);
-    }
+    //protected void PrintError(string str, params object[] args)
+    //{
+    //    Print(UnityEngine.Debug.LogError, PrintTrace, str, args);
+    //}
 
-    private void Print(Action<string> call, bool doPrint, string str, params object[] args)
-    {
-        if (doPrint)
-        {
-            call(string.Format(
-                "<b>[{0}][{1}] {2} </b>",
-                Time.frameCount,
-                this.GetType().Name.ToUpper(),
-                string.Format(str, args)
-                )
-                 );
-        }
-    }
+    //private void Print(Action<string> call, bool doPrint, string str, params object[] args)
+    //{
+    //    if (doPrint)
+    //    {
+    //        call(string.Format(
+    //            "<b>[{0}][{1}] {2} </b>",
+    //            Time.frameCount,
+    //            this.GetType().Name.ToUpper(),
+    //            string.Format(str, args)
+    //            )
+    //             );
+    //    }
+    //}
 
-    #endregion
+    //#endregion
 }

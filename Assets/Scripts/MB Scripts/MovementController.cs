@@ -80,6 +80,8 @@ public class MovementController : MonoBehaviour
     {
         Stop();
 
+        ct.ThrowIfCancellationRequested();
+
         movementTween = DOTween.To(
             () => coordinate.position,
             v => coordinate.position = v,

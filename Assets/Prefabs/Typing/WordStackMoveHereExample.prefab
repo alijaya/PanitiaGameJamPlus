@@ -61,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8679157112683219965, guid: 42d25ed7baad89941a33a40b217f43f0, type: 3}
       propertyPath: m_Name
-      value: WordStackMoveHere
+      value: WordStackMoveHereExample
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42d25ed7baad89941a33a40b217f43f0, type: 3}
