@@ -2565,6 +2565,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1663322578}
     m_Modifications:
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: TextGenerator
+      value: 1433981510732742659
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: managedReferences[1433981510732742659]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: managedReferences[1433981510732742659].Text
+      value: del
+      objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
       propertyPath: TextGenerator
       value: 1433981488034480219
@@ -4667,7 +4679,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: -604539715
   m_SortingOrder: 0
   m_TargetDisplay: 0

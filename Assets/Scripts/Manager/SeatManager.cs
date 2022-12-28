@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using System.Linq;
 using System;
 
-public class SeatManager : SingletonMB<SeatManager>
+public class SeatManager : SingletonSceneMB<SeatManager>
 {
     private HashSet<Seat> seats = new ();
     private Dictionary<Seat, UnityAction<CustomerGroup>> seatOccupiedHandlers = new ();

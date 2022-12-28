@@ -214,6 +214,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2104185265}
     m_Modifications:
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: TextGenerator
+      value: 1433981510732742695
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: managedReferences[1433981510732742695]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: managedReferences[1433981510732742695].Text
+      value: quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 7ea7aaad8206d4b418e33d12fd76980e, type: 2}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToScene_MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GlobalRef, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
       propertyPath: TextGenerator
       value: 1433981125436112897
@@ -566,6 +606,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2104185265}
     m_Modifications:
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: TextGenerator
+      value: 1433981510732742694
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: managedReferences[1433981510732742694]
+      value: Assembly-CSharp Core.Words.Generator.ConstantTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: managedReferences[1433981510732742694].Text
+      value: retry
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 7ea7aaad8206d4b418e33d12fd76980e, type: 2}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToScene_Gameplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GlobalRef, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
       propertyPath: TextGenerator
       value: 1433981125436112897

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using System.Linq;
 using System;
 
-public class CashierManager : SingletonMB<CashierManager>
+public class CashierManager : SingletonSceneMB<CashierManager>
 {
     private HashSet<Cashier> cashiers = new();
     private Dictionary<Cashier, UnityAction<CustomerGroup>> cashierQueuedHandlers = new();
