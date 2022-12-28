@@ -25,7 +25,9 @@ public class CustomerGroup : MonoBehaviour
         public static readonly string Leave = "Leave";
     };
 
+    // TODO: need to refactor supaya ga static
     public static float delaySpawn = 0.3f; // seconds
+    public static float customerUIHeight = 2f; // unit
 
     public CustomerTypeSO customerType;
     public bool dineIn = false; // true: dine in, false: take out
@@ -55,6 +57,22 @@ public class CustomerGroup : MonoBehaviour
         }
     }
 
+    public float waitDuration
+    {
+        get
+        {
+            return customerType?.WaitDuration ?? -1;
+        }
+    }
+
+    public float patience
+    {
+        get
+        {
+            return waitDuration > 0 ? countdown / waitDuration : 0;
+        }
+    }
+
     public UnityEvent OnTimeout;
 
     private CancellationTokenSource countdownCancel;
@@ -62,6 +80,8 @@ public class CustomerGroup : MonoBehaviour
     private Seat waitingSeat;
     private Cashier cashier;
     private int queueNumber;
+
+    private CustomerUI customerUI;
 
     static public CustomerGroup Spawn(CustomerTypeSO customerType, Transform spawnPoint)
     {
@@ -102,7 +122,15 @@ public class CustomerGroup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!customerType) return;
+        if (!customerType)
+        {
+            // error :(
+            Destroy(gameObject);
+            return;
+        }
+
+        // Spawn CustomerUI
+        customerUI = Instantiate(GlobalRef.I.CustomerUIPrefab, transform);
 
         if (!dineIn) count = 1; // force 1 customer if takeout
         for (var i = 0; i < count; i++)
@@ -146,17 +174,14 @@ public class CustomerGroup : MonoBehaviour
         // should play some animation and popup, but well later
         PauseCountdown();
         state = CustomerState.Think;
+        customerUI.ShowThink();
         await UniTask.Delay(TimeSpan.FromSeconds(customerType.OrderDuration), cancellationToken: ct);
+        customerUI.HideThink();
 
         UniTask task;
-        Core.Dish.DishRequester dishRequester;
-        Core.Words.WordObject wordObject;
 
         // ordering
-        // create fake order, and wait for interaction
-        //(task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers, transform, ct);
-        (task, dishRequester) = Core.Dish.DishRequester.SpawnAsync(RestaurantManager.I.GenerateDishes(count), customerType.TextGenerator, customerType.TextModifiers, transform, ct);
-        dishRequester.wordObject.SetCompleteCheck((ct) => Chef.I.GoToPOI(seat.serveLocation, ct));
+        task = customerUI.RequestDish(this, seat.serveLocation, ct);
         PlayCountdown();
         state = CustomerState.Order;
         await task;
@@ -164,18 +189,21 @@ public class CustomerGroup : MonoBehaviour
         // actually eating
         PauseCountdown();
         state = CustomerState.Eat;
+        customerUI.ShowThink();
         await UniTask.Delay(TimeSpan.FromSeconds(customerType.EatDuration), cancellationToken: ct);
+        customerUI.HideThink();
 
         // finish eating, go to cashier
         await FindCashier(ct);
 
         // arriving at cashier
-        // create fake paying, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers, transform, ct);
-        wordObject.SetCompleteCheck((ct) => Chef.I.GoToPOI(cashier.serveLocation, ct));
+        //task = customerUI.RequestCome(this, cashier.serveLocation, ct);
         PlayCountdown();
         state = CustomerState.Pay;
-        await task;
+        customerUI.ShowPay();
+        //await task;
+        await RestaurantManager.I.OnCashierTriggered.ToUniTask(ct);
+        customerUI.HidePay();
 
         // done, leave, don't need to await
         //Debug.Log("happy");
@@ -277,27 +305,6 @@ public class CustomerGroup : MonoBehaviour
                 return availableSeat;
             }
         }
-
-        //var utcs = new UniTaskCompletionSource<Seat>();
-
-        //void seatUnoccupiedHandler(Seat seat, CustomerGroup lastCustomerGroup)
-        //{
-        //    if (seat == waitingSeat || seat.CouldSeat(this))
-        //    {
-        //        // if it's the same seat, then we go there first
-        //        // or if it's empty seat without anything waiting, then we go there
-
-        //        // unbook the waitingSeat
-        //        waitingSeat.UnwaitCustomerGroup(this);
-        //        waitingSeat = null;
-        //        SeatManager.I.OnSeatUnoccupied.RemoveListener(seatUnoccupiedHandler);
-        //        utcs.TrySetResult(seat);
-        //    }
-        //}
-
-        //SeatManager.I.OnSeatUnoccupied.AddListener(seatUnoccupiedHandler);
-
-        //return await utcs.Task;
     }
 
     // not sure mending pake State Machine atau kagak... 👀
@@ -312,30 +319,26 @@ public class CustomerGroup : MonoBehaviour
         // should play some animation and popup, but well later
         PauseCountdown();
         state = CustomerState.Think;
+        customerUI.ShowThink();
         await UniTask.Delay(TimeSpan.FromSeconds(customerType.OrderDuration), cancellationToken: ct);
+        customerUI.HideThink();
 
         UniTask task;
-        Core.Dish.DishRequester dishRequester;
-        Core.Words.WordObject wordObject;
 
         // ordering
-        // create fake order, and wait for interaction
-        //(task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers ,transform, ct);
-        (task, dishRequester) = Core.Dish.DishRequester.SpawnAsync(RestaurantManager.I.GenerateDishes(count), customerType.TextGenerator, customerType.TextModifiers, transform, ct);
-
-        dishRequester.wordObject.SetCompleteCheck((ct) => Chef.I.GoToPOI(cashier.serveLocation, ct));
+        task = customerUI.RequestDish(this, cashier.serveLocation, ct);
         PlayCountdown();
         state = CustomerState.Order;
         await task;
 
         // no eating, directly paying
-
-        // create fake paying, and wait for interaction
-        (task, wordObject) = Core.Words.WordObject.SpawnAsync(customerType.TextGenerator, customerType.TextModifiers, transform, ct);
-        wordObject.SetCompleteCheck((ct) => Chef.I.GoToPOI(cashier.serveLocation, ct));
+        //task = customerUI.RequestCome(this, cashier.serveLocation, ct);
         PlayCountdown();
         state = CustomerState.Pay;
-        await task;
+        customerUI.ShowPay();
+        //await task;
+        await RestaurantManager.I.OnCashierTriggered.ToUniTask(ct);
+        customerUI.HidePay();
 
         // done, leave, don't need to await
         //Debug.Log("happy");
@@ -367,6 +370,8 @@ public class CustomerGroup : MonoBehaviour
         // let's wait until there's a cashier available
         // play timer
         PlayCountdown();
+        // hide patience display
+        customerUI.HidePatience();
         state = CustomerState.WaitForCashier;
         cashier = await WaitUntilGetAvailableCashier(ct);
 
@@ -425,6 +430,7 @@ public class CustomerGroup : MonoBehaviour
     {
         PauseCountdown();
         state = CustomerState.Leave;
+        customerUI.HideAll();
 
         bool cancelled = false;
 
@@ -477,10 +483,11 @@ public class CustomerGroup : MonoBehaviour
     {
         //var center = customers.Aggregate(Vector3.zero, (acc, customer) => acc + customer.transform.position) / customers.Count;
         var center = firstCustomer.transform.position;
-        transform.position = center;
+        transform.position = center + new Vector3(0, customerUIHeight, 0);
         if (countdownEnabled && !isTimeout)
         {
             countdown -= Time.deltaTime;
+            customerUI.RefreshPatience(this);
             if (isTimeout)
             {
                 PauseCountdown();
@@ -494,11 +501,13 @@ public class CustomerGroup : MonoBehaviour
         // if it's more than it should be, then don't play
         if (isTimeout) return;
         countdownEnabled = true;
+        customerUI.ShowPatience();
     }
 
     public void PauseCountdown()
     {
         countdownEnabled = false;
+        customerUI.HidePatience();
     }
 
     public void ResetCountdown()

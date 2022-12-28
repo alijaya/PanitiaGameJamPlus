@@ -5,11 +5,17 @@ using UnityEngine.UI;
 
 namespace Core.Dish
 {
+    [RequireComponent(typeof(DishRequester))]
     public class DishRequesterUI : MonoBehaviour
     {
-        public DishRequester dishRequester;
+        private DishRequester dishRequester;
 
         public List<Image> slots;
+
+        private void Awake()
+        {
+            dishRequester = GetComponent<DishRequester>();
+        }
 
         private void OnEnable()
         {

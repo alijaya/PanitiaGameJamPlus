@@ -29,6 +29,7 @@ namespace Core.Words {
         private void OnEnable()
         {
             wordObject.OnStateChanged.AddListener(HandleStateChanged);
+            HandleStateChanged(wordObject.State);
         }
 
         private void OnDisable()

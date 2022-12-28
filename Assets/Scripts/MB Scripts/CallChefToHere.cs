@@ -8,6 +8,13 @@ public class CallChefToHere : MonoBehaviour
 {
     public async UniTask Go(CancellationToken ct = default)
     {
-        await Chef.I.GoToWorld(transform, ct);
+        var poi = GetComponent<PointOfInterest>();
+        if (poi)
+        {
+            await Chef.I.GoToPOI(poi, ct);
+        } else
+        {
+            await Chef.I.GoToWorld(transform, ct);
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace Core.Dish {
             this.requestedDishes = requestedDishes;
         }
 
-        private void Start()
+        private void OnEnable()
         {
             completes = new();
             for (var i = 0; i < requestedDishes.Count; i++) completes.Add(false);
@@ -50,33 +50,5 @@ namespace Core.Dish {
                 OnRequestCompleted?.Invoke();
             }
         }
-
-        public static DishRequester Spawn(List<DishItemSO> requestedDishes, Core.Words.Generator.ITextGenerator generator, List<Core.Words.Modifier.ITextModifier> modifiers, Transform parent)
-        {
-            var result = GameObject.Instantiate(GlobalRef.I.DishRequesterPrefab, parent);
-            result.Setup(requestedDishes);
-
-            // eugh... maybe refactor nanti?
-            var wordObject = result.wordObject;
-            wordObject.TextGenerator = generator;
-            if (modifiers != null) wordObject.TextModifiers = modifiers;
-
-            return result;
-        }
-
-        public static (UniTask, DishRequester) SpawnAsync(List<DishItemSO> requestedDishes, Core.Words.Generator.ITextGenerator generator, List<Core.Words.Modifier.ITextModifier> modifiers, Transform parent, CancellationToken ct = default)
-        {
-            var result = Spawn(requestedDishes, generator, modifiers, parent);
-
-            async UniTask task()
-            {
-                await result.OnRequestCompleted.ToUniTask(ct).SuppressCancellationThrow();
-                // suppress cancellation so will always destroy this
-                if (result) Destroy(result.gameObject);
-            }
-
-            return (task(), result);
-        }
-
     }
 }

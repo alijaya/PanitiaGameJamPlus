@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityAtoms.BaseAtoms;
+using UnityEngine.Events;
 
 public class RestaurantManager : SingletonSceneMB<RestaurantManager>
 {
     public Transform door;
 
     public List<Core.Dish.DishItemSO> possibleDishes;
+
+    public UnityEvent OnCashierTriggered;
 
     protected override void SingletonAwakened()
     {
@@ -28,5 +31,10 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager>
         List<Core.Dish.DishItemSO> result = new();
         for (var i = 0; i < count; i++) result.Add(possibleDishes.GetRandom());
         return result;
+    }
+
+    public void TriggerCashier()
+    {
+        OnCashierTriggered?.Invoke();
     }
 }

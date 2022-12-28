@@ -42,7 +42,7 @@ public class GlobalRef : SingletonSO<GlobalRef>
     public Core.Words.WordObject WordObjectPrefab;
 
     [AssetSelector]
-    public Core.Dish.DishRequester DishRequesterPrefab;
+    public CustomerUI CustomerUIPrefab;
 
     public void CleanUpWords()
     {
