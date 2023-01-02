@@ -1,12 +1,14 @@
-// External functions - fallbacks at end of document
-EXTERNAL SetPerson1(personName)
-EXTERNAL SetPerson2(personName)
+INCLUDE global.ink
 
 /* Story writing starts here */
 
 // Initialize actors
 ~ SetPerson1("Chef")
 ~ SetPerson2("Karen")
+
+// Initialize first camera
+~ OverrideCamera(false)
+~ SwitchCamera("Main")
 
 Chef: Hello there!
 
@@ -16,8 +18,12 @@ Chef: How are <i>you</i> today?
 
 Karen: I'm <big>good</big>, thanks.
 
+~ SwitchCamera("Karen")
+
 # flip: right
 Karen: Now <size=1.5em>leave</size> me alone.
+
+~ SwitchCamera("Main")
 
 Chef: Well, goodbye then.
 
@@ -31,11 +37,3 @@ NA
 NA
 
 /* Story writing ends here */
-
-// Fallbacks for external functions below
-
-=== function SetPerson1(personName)
-~ return "person1"
-
-=== function SetPerson2(personName)
-~ return "person2"

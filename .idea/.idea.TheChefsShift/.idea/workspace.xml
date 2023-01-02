@@ -5,23 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d552cb8c-c358-4bc8-9f0e-f1f3e2a0e082" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_12_2022_02_29_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_06_37_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_2022_06_37_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Character_-_chef_-_animation2.psb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/White.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_12_2022_02_29_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Font/FredokaOne-Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Font/FredokaOne-Regular SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Prefabs/DialogueBox.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Prefabs/DialogueBox.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Scenes/dialogue-normal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Scenes/dialogue-normal.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Scripts/StoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Scripts/StoryManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/testStory2.ink" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/testStory2.ink.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/testStory2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/testStory2.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_Text.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_Text.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +31,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Ink/Demos/Basic Demo/Scripts/BasicInkExample.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextInfoDebugTool.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Unity Projects/TheChefsShift/Assets/_dialogue-test/Scenes/dialogue-normal.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.inkle.ink-unity-integration@1.1.5/InkLibs/InkRuntime/Story.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity-atoms.unity-atoms-base-atoms@4.4.5/Runtime/Events/IntEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity-atoms.unity-atoms-base-atoms@4.4.5/Runtime/Pairs/IntPair.cs" root0="SKIP_HIGHLIGHTING" />
@@ -53,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Util/PrivateFieldSetter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Packages/com.unity.textmeshpro/Scripts/Runtime/AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_Text.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_TextUtilities.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/fb/aa6f266f/Int32.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/fc/239520fa/Action`1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -128,7 +124,10 @@
       <workItem from="1671089141350" duration="9797000" />
       <workItem from="1671149687495" duration="677000" />
       <workItem from="1671668739805" duration="20452000" />
-      <workItem from="1671790208669" duration="400000" />
+      <workItem from="1671790208669" duration="2080000" />
+      <workItem from="1671814779706" duration="2155000" />
+      <workItem from="1671857616753" duration="4918000" />
+      <workItem from="1672646450792" duration="1066000" />
     </task>
     <task id="LOCAL-00001" summary="update gitignore buat Odin">
       <created>1669883809269</created>
@@ -158,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671192937428</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="updated dialogue, added custom tag in TMP_Text.cs">
+      <created>1671790749892</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671790749892</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +183,31 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/ali" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/dialogue-test" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
@@ -184,6 +215,7 @@
     <MESSAGE value="asset buat tes animasi" />
     <MESSAGE value="popup + particle + outline testing" />
     <MESSAGE value="updated dialogue" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated dialogue" />
+    <MESSAGE value="updated dialogue, added custom tag in TMP_Text.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated dialogue, added custom tag in TMP_Text.cs" />
   </component>
 </project>

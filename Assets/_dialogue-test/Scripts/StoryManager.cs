@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime.Tasks.Unity.Timeline;
+using Cinemachine;
 using DG.Tweening;
 using Ink.Runtime;
 using Sirenix.OdinInspector;
@@ -29,6 +30,11 @@ public class StoryManager : MonoBehaviour
     [Title("Animation")]
     [SerializeField] private float textSpeed = 15f;
     [SerializeField] private Ease easeType = Ease.OutCubic;
+
+    [Title("Camera")]
+    [SerializeField] private Transform envCameraParent;
+    [DisableInEditorMode]
+    [SerializeField] private List<CinemachineVirtualCamera> cameras;
     
     [Title("Debugging")][Space]
     
@@ -38,6 +44,7 @@ public class StoryManager : MonoBehaviour
     [SerializeField] private GameObject person1Sprite;
     [SerializeField] private GameObject person1DialogueBox;
     [SerializeField] private CanvasGroup person1CanvasGroup;
+    [SerializeField] private CinemachineVirtualCamera person1Camera;
     [SerializeField] private TextMeshProUGUI person1Name;
     [SerializeField] private TextMeshProUGUI person1Dialogue;
     
@@ -47,6 +54,7 @@ public class StoryManager : MonoBehaviour
     [SerializeField] private GameObject person2Sprite;
     [SerializeField] private GameObject person2DialogueBox;
     [SerializeField] private CanvasGroup person2CanvasGroup;
+    [SerializeField] private CinemachineVirtualCamera person2Camera;
     [SerializeField] private TextMeshProUGUI person2Name;
     [SerializeField] private TextMeshProUGUI person2Dialogue;
 
@@ -57,6 +65,8 @@ public class StoryManager : MonoBehaviour
     private Sequence _bobSequence;
     
     private bool _enableSequence = false;
+
+    private bool _isOverridingCamera = false;
     
     private void Awake()
     {
@@ -77,6 +87,19 @@ public class StoryManager : MonoBehaviour
             SetPerson2(personName);
         });
         
+        _inkStory.BindExternalFunction ("SwitchCamera", (string cameraName) => {
+            SwitchCamera(cameraName);
+        });
+        
+        _inkStory.BindExternalFunction ("OverrideCamera", (bool trigger) => {
+            OverrideCamera(trigger);
+        });
+
+        foreach (Transform child in envCameraParent)
+        {
+            cameras.Add(child.GetComponent<CinemachineVirtualCamera>());
+        }
+        
         ClickContinueStory();
     }
 
@@ -92,8 +115,12 @@ public class StoryManager : MonoBehaviour
                 person1Sprite = character.GetComponentInChildren<SpriteRenderer>().gameObject;
                 person1DialogueBox = character.transform.Find("DialogueBox").gameObject;
                 person1CanvasGroup = person1DialogueBox.GetComponent<CanvasGroup>();
+                person1Camera = person1DialogueBox.transform.Find("VCam").GetComponent<CinemachineVirtualCamera>();
                 person1Name = person1DialogueBox.transform.Find("Name").GetComponent<TextMeshProUGUI>();
                 person1Dialogue = person1DialogueBox.transform.Find("Dialogue").GetComponent<TextMeshProUGUI>();
+
+                person1Camera.name = personName;
+                cameras.Add(person1Camera);
                 return;
             }
         }
@@ -111,11 +138,28 @@ public class StoryManager : MonoBehaviour
                 person2Sprite = character.GetComponentInChildren<SpriteRenderer>().gameObject;
                 person2DialogueBox = character.transform.Find("DialogueBox").gameObject;
                 person2CanvasGroup = person2DialogueBox.GetComponent<CanvasGroup>();
+                person2Camera = person2DialogueBox.transform.Find("VCam").GetComponent<CinemachineVirtualCamera>();
                 person2Name = person2DialogueBox.transform.Find("Name").GetComponent<TextMeshProUGUI>();
                 person2Dialogue = person2DialogueBox.transform.Find("Dialogue").GetComponent<TextMeshProUGUI>();
+
+                person2Camera.name = personName;
+                cameras.Add(person2Camera);
                 return;
             }
         }
+    }
+
+    private void SwitchCamera(string cameraName)
+    {
+        foreach (CinemachineVirtualCamera vcam in cameras)
+        {
+            vcam.Priority = vcam.name == cameraName ? 40 : 20;
+        }
+    }
+
+    private void OverrideCamera(bool trigger)
+    {
+        _isOverridingCamera = trigger;
     }
 
     private string[] ParseDialogue(string dialogue)
@@ -136,7 +180,7 @@ public class StoryManager : MonoBehaviour
             // _inkStory.ResetState();
             // text = _inkStory.Continue();
             // UpdateDialogue(text);
-            Debug.Log("Story already ended.");
+            EndStory();
         }
     }
 
@@ -176,10 +220,24 @@ public class StoryManager : MonoBehaviour
             return;
         }
 
-        if (personName != null) personName.text = splitText[0];
+        if (personName != null)
+        {
+            personName.text = splitText[0];
+            if (_isOverridingCamera) SwitchCamera(personName.text);
+        }
+        
+        dialogue.richText = false;
+
+        string[] words = splitText[1].Split();
+
+        foreach (string word in words)
+        {
+            Debug.Log(word);
+        }
+        
+        dialogue.richText = true;
 
         canvasGroup.alpha = 1f;
-
         StartCoroutine(OutputDialogue(splitText[1], dialogue, personGo));
     }
 
@@ -421,5 +479,10 @@ public class StoryManager : MonoBehaviour
         _bobSequence.Kill();
         person1Parent.transform.localEulerAngles = Vector3.zero;
         person2Parent.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+    }
+
+    private void EndStory()
+    {
+        Debug.Log("End story and start gameplay");
     }
 }
