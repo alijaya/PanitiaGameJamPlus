@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7163216251810700188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 52aa8ae5-3d26-4e8e-b12d-a8662408dfff
+  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  input: {fileID: 11400000, guid: 1d5fd013a3890e34c9ec835292aa7567, type: 2}
+  output: {fileID: 0}
+  children:
+  - eaa30707-f34b-481f-8ec3-e0ad7f16e70b
+  - 6efb4037-5451-4fe6-b099-a3d455984528
+  ancestors:
+  - be3258d2-7da1-427d-b1e4-d0e6b3257c95
+  - 3d1ce8e7-1e0b-4362-b510-ebe4951187c7
+  rect:
+    serializedVersion: 2
+    x: 1046
+    y: 297
+    width: 200
+    height: 100
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,3 +52,106 @@ MonoBehaviour:
         output: {fileID: 11400000, guid: 3e5dd0ce7df17ce43ae4e94e761a38a2, type: 2}
       - ingredient: {fileID: 11400000, guid: ea2bed0861ec2764390d3e47f4525043, type: 2}
         output: {fileID: 11400000, guid: 75c060e820477b84baf76a355c89fe87, type: 2}
+  nodes:
+  - {fileID: 2665795261602095825}
+  - {fileID: 7642444334118602200}
+  - {fileID: -7163216251810700188}
+  - {fileID: 7844473459688914863}
+  - {fileID: 8606910666682449048}
+--- !u!114 &2665795261602095825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: be3258d2-7da1-427d-b1e4-d0e6b3257c95
+  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  input: {fileID: 11400000, guid: b0ba8eab550d66c4aa59bb2b57471bc7, type: 2}
+  output: {fileID: 0}
+  children:
+  - 3d1ce8e7-1e0b-4362-b510-ebe4951187c7
+  ancestors: []
+  rect:
+    serializedVersion: 2
+    x: 446
+    y: 297
+    width: 200
+    height: 100
+--- !u!114 &7642444334118602200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 3d1ce8e7-1e0b-4362-b510-ebe4951187c7
+  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  input: {fileID: 11400000, guid: e0ea911b08d364544b523502ce640e8c, type: 2}
+  output: {fileID: 0}
+  children:
+  - 52aa8ae5-3d26-4e8e-b12d-a8662408dfff
+  ancestors:
+  - be3258d2-7da1-427d-b1e4-d0e6b3257c95
+  rect:
+    serializedVersion: 2
+    x: 746
+    y: 297
+    width: 200
+    height: 100
+--- !u!114 &7844473459688914863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: eaa30707-f34b-481f-8ec3-e0ad7f16e70b
+  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  input: {fileID: 11400000, guid: bb0f4263ae787dd49b9c5ccfd7261106, type: 2}
+  output: {fileID: 11400000, guid: 3e5dd0ce7df17ce43ae4e94e761a38a2, type: 2}
+  children: []
+  ancestors:
+  - be3258d2-7da1-427d-b1e4-d0e6b3257c95
+  - 3d1ce8e7-1e0b-4362-b510-ebe4951187c7
+  - 52aa8ae5-3d26-4e8e-b12d-a8662408dfff
+  rect:
+    serializedVersion: 2
+    x: 1342
+    y: 296
+    width: 200
+    height: 100
+--- !u!114 &8606910666682449048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 6efb4037-5451-4fe6-b099-a3d455984528
+  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  input: {fileID: 11400000, guid: ea2bed0861ec2764390d3e47f4525043, type: 2}
+  output: {fileID: 11400000, guid: 75c060e820477b84baf76a355c89fe87, type: 2}
+  children: []
+  ancestors:
+  - be3258d2-7da1-427d-b1e4-d0e6b3257c95
+  - 3d1ce8e7-1e0b-4362-b510-ebe4951187c7
+  - 52aa8ae5-3d26-4e8e-b12d-a8662408dfff
+  rect:
+    serializedVersion: 2
+    x: 1343
+    y: 424
+    width: 200
+    height: 100

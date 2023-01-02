@@ -19,42 +19,43 @@ namespace Core.Dish {
         public event Action<TrayItemSO> IngredientCombined;
         
         private List<IngredientItemSO> _inputtedIngredients = new ();
-
-        private int _ingredientOrder = -1;
         private IngredientItemSO[] _expectedIngredient;
-        
+        private RecipeNode _currentNode;
         private CancellationTokenSource _completeCheckCancel;
 
         private void Start() {
-            _expectedIngredient = new[] { recipe.GetBaseIngredient() };
+            _expectedIngredient = recipe.GetBaseIngredients().ToArray();
         }
 
         public bool IsBaseIngredient(IngredientItemSO ingredientItem) {
-            return recipe.GetBaseIngredient() == ingredientItem;
+            return recipe.GetBaseIngredients().Contains(ingredientItem);
         }
 
         public void AddIngredient(IngredientItemSO ingredientItem) {
             if (_expectedIngredient.Contains(ingredientItem)) {
-                IngredientAdded?.Invoke(ingredientItem);
-                if (_ingredientOrder < 0) {
+                //IngredientAdded?.Invoke(ingredientItem);
+                if (_currentNode == null) {
+                    _currentNode = recipe.GetBaseNode(ingredientItem);
                     NextIngredient();
                     onRecipeStarted?.Invoke();
                     return;
                 }
-
-                if (recipe.GetRecipe().Check(_ingredientOrder, ingredientItem, out var output)) {
-                    IngredientCombined?.Invoke(output);
-                    if (recipe.GetRecipeStep()-1 == _ingredientOrder) {
-                        CompleteRecipe(output).Forget();
-                        return;
-                    }
+                _currentNode = recipe.GetAllChildren(_currentNode).FirstOrDefault(x => x.input == ingredientItem);
+                if (!_currentNode) {
+                    Reset();
+                    return;
                 }
+                //IngredientCombined?.Invoke(_currentNode.output);
+
+                if (_currentNode.children.Count == 0) {
+                    CompleteRecipe(_currentNode.output).Forget();
+                    return;
+                }
+                        
                 NextIngredient();
             }
             else {
-                //reset
                 Reset();
-                IngredientAdded?.Invoke(null);
                 if (IsBaseIngredient(ingredientItem)) {
                     AddIngredient(ingredientItem);
                 }
@@ -62,14 +63,13 @@ namespace Core.Dish {
         }
         
         private void NextIngredient() {
-            _ingredientOrder++;
-            _expectedIngredient = recipe.GetIngredientsAt(_ingredientOrder).ToArray();
+            _expectedIngredient = recipe.GetAllChildren(_currentNode).Select(x => x.input).ToArray();
             ValidateRecipe?.Invoke(_expectedIngredient);
         }
 
         private void Reset() {
-            _ingredientOrder = -1;
-            _expectedIngredient = new[] { recipe.GetBaseIngredient() };
+            _currentNode = null;
+            _expectedIngredient = recipe.GetBaseIngredients().ToArray();
             ValidateRecipe?.Invoke(_expectedIngredient);
         }
 

@@ -1,0 +1,169 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7247188065793479085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 3ed6a9dc-a605-4280-b259-57a318b713b6
+  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  input: {fileID: 11400000, guid: 9280ed634b9b1634086e3e26a5a006f5, type: 2}
+  output: {fileID: 0}
+  children:
+  - 50f3fcc8-c3fb-4fc1-a327-e7c14834f83d
+  - 11cd52e6-3f0f-4b87-a108-c9bd0665bd2a
+  ancestors: []
+  rect:
+    serializedVersion: 2
+    x: 350
+    y: 399
+    width: 200
+    height: 100
+--- !u!114 &-88769207544235443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 5c695244-c619-48ae-9f24-35b524dfe27e
+  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  input: {fileID: 11400000, guid: 492c5af6fd818b645b719977db410f16, type: 2}
+  output: {fileID: 11400000, guid: 83c032004d4b0ad4d958566f5d432742, type: 2}
+  children: []
+  ancestors:
+  - f1a07d97-b513-48cd-9f74-11804df0bc10
+  rect:
+    serializedVersion: 2
+    x: 701
+    y: 201
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1e6a848cf7443e98cfb935126bfd33, type: 3}
+  m_Name: Recipe_Pastas
+  m_EditorClassIdentifier: 
+  baseIngredient: {fileID: 11400000, guid: 9280ed634b9b1634086e3e26a5a006f5, type: 2}
+  recipe:
+    and:
+    - or:
+      - ingredient: {fileID: 11400000, guid: 9a27105ccc48da24b844662489e30cd4, type: 2}
+        output: {fileID: 11400000, guid: f5723098ec751d44aaf4391b3e2c6141, type: 2}
+      - ingredient: {fileID: 11400000, guid: 492c5af6fd818b645b719977db410f16, type: 2}
+        output: {fileID: 11400000, guid: cb01cbf6fc43e924489031475a9702e3, type: 2}
+  nodes:
+  - {fileID: -7247188065793479085}
+  - {fileID: 1287415232749743706}
+  - {fileID: 6651564977121433589}
+  - {fileID: 8802593483050021475}
+  - {fileID: 2262178034310217208}
+  - {fileID: -88769207544235443}
+--- !u!114 &1287415232749743706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 50f3fcc8-c3fb-4fc1-a327-e7c14834f83d
+  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  input: {fileID: 11400000, guid: 492c5af6fd818b645b719977db410f16, type: 2}
+  output: {fileID: 11400000, guid: cb01cbf6fc43e924489031475a9702e3, type: 2}
+  children: []
+  ancestors:
+  - 3ed6a9dc-a605-4280-b259-57a318b713b6
+  rect:
+    serializedVersion: 2
+    x: 699
+    y: 335
+    width: 200
+    height: 100
+--- !u!114 &2262178034310217208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: d45b42a2-ca32-42ec-a3bb-4d40dadd3353
+  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  input: {fileID: 11400000, guid: 9a27105ccc48da24b844662489e30cd4, type: 2}
+  output: {fileID: 11400000, guid: cdd0e0a631b71444fbbd71be4f54bbe5, type: 2}
+  children: []
+  ancestors:
+  - f1a07d97-b513-48cd-9f74-11804df0bc10
+  rect:
+    serializedVersion: 2
+    x: 700
+    y: 67
+    width: 200
+    height: 100
+--- !u!114 &6651564977121433589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 11cd52e6-3f0f-4b87-a108-c9bd0665bd2a
+  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  input: {fileID: 11400000, guid: 9a27105ccc48da24b844662489e30cd4, type: 2}
+  output: {fileID: 11400000, guid: f5723098ec751d44aaf4391b3e2c6141, type: 2}
+  children: []
+  ancestors:
+  - 3ed6a9dc-a605-4280-b259-57a318b713b6
+  rect:
+    serializedVersion: 2
+    x: 700
+    y: 464
+    width: 200
+    height: 100
+--- !u!114 &8802593483050021475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: f1a07d97-b513-48cd-9f74-11804df0bc10
+  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  input: {fileID: 11400000, guid: eed70c03338e8764a9f9a53f9f919d65, type: 2}
+  output: {fileID: 0}
+  children:
+  - d45b42a2-ca32-42ec-a3bb-4d40dadd3353
+  - 5c695244-c619-48ae-9f24-35b524dfe27e
+  ancestors: []
+  rect:
+    serializedVersion: 2
+    x: 348
+    y: 150
+    width: 200
+    height: 100
