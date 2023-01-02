@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d552cb8c-c358-4bc8-9f0e-f1f3e2a0e082" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_12_2022_02_29_PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="d552cb8c-c358-4bc8-9f0e-f1f3e2a0e082" name="Changes" comment="added TMP Examples &amp; Extras, dialogue update">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Font/FredokaOne-Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Font/FredokaOne-Regular SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Prefabs/DialogueBox.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Prefabs/DialogueBox.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Scenes/dialogue-normal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Scenes/dialogue-normal.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Scripts/StoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Scripts/StoryManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/global.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/global.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_Text.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_Text.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +42,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.6.4/Samples~/Customization/Text/TextTrackMixerBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/ImageEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Util/PrivateFieldSetter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.uiextensions@9fadad0f72/Runtime/Scripts/Primitives/UISquircle.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Packages/com.unity.textmeshpro/Scripts/Runtime/AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_Text.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Packages/com.unity.textmeshpro/Scripts/Runtime/TMP_TextUtilities.cs" root0="SKIP_HIGHLIGHTING" />
@@ -127,7 +124,7 @@
       <workItem from="1671790208669" duration="2080000" />
       <workItem from="1671814779706" duration="2155000" />
       <workItem from="1671857616753" duration="4918000" />
-      <workItem from="1672646450792" duration="1066000" />
+      <workItem from="1672646450792" duration="11910000" />
     </task>
     <task id="LOCAL-00001" summary="update gitignore buat Odin">
       <created>1669883809269</created>
@@ -164,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671790749892</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added TMP Examples &amp; Extras, dialogue update">
+      <created>1672648061938</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1672648061938</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +220,7 @@
     <MESSAGE value="popup + particle + outline testing" />
     <MESSAGE value="updated dialogue" />
     <MESSAGE value="updated dialogue, added custom tag in TMP_Text.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated dialogue, added custom tag in TMP_Text.cs" />
+    <MESSAGE value="added TMP Examples &amp; Extras, dialogue update" />
+    <option name="LAST_COMMIT_MESSAGE" value="added TMP Examples &amp; Extras, dialogue update" />
   </component>
 </project>
