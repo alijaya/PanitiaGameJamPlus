@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7163216251810700188
+--- !u!114 &-5256570551604594318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,21 +9,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 52aa8ae5-3d26-4e8e-b12d-a8662408dfff
-  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
-  input: {fileID: 11400000, guid: 1d5fd013a3890e34c9ec835292aa7567, type: 2}
-  output: {fileID: 0}
-  children:
-  - eaa30707-f34b-481f-8ec3-e0ad7f16e70b
-  - 6efb4037-5451-4fe6-b099-a3d455984528
+  m_Script: {fileID: 11500000, guid: 9218f56d94614891bf18f4fe9349ebb1, type: 3}
+  m_Name: 82634ea2-9db7-41a9-a053-36f8bef0ac45
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: bb0f4263ae787dd49b9c5ccfd7261106, type: 2}
+  output: {fileID: 11400000, guid: 3e5dd0ce7df17ce43ae4e94e761a38a2, type: 2}
+  children: []
   ancestors:
-  - be3258d2-7da1-427d-b1e4-d0e6b3257c95
-  - 3d1ce8e7-1e0b-4362-b510-ebe4951187c7
+  - 771bd88a-b5e0-465c-b1a0-5e134542cce7
+  - 84fdcabf-d047-4d47-b0f0-b55895977949
+  - 08fd11c1-66ca-4892-bb0b-aec0d0b58dc7
   rect:
     serializedVersion: 2
-    x: 1046
-    y: 297
+    x: 1096
+    y: 48
+    width: 200
+    height: 100
+--- !u!114 &-1090311839052221042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9218f56d94614891bf18f4fe9349ebb1, type: 3}
+  m_Name: 771bd88a-b5e0-465c-b1a0-5e134542cce7
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: e0ea911b08d364544b523502ce640e8c, type: 2}
+  output: {fileID: 0}
+  children:
+  - 08fd11c1-66ca-4892-bb0b-aec0d0b58dc7
+  ancestors:
+  - 84fdcabf-d047-4d47-b0f0-b55895977949
+  rect:
+    serializedVersion: 2
+    x: 492
+    y: 203
     width: 200
     height: 100
 --- !u!114 &11400000
@@ -38,27 +61,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1e6a848cf7443e98cfb935126bfd33, type: 3}
   m_Name: Recipe_Pizzas
   m_EditorClassIdentifier: 
-  baseIngredient: {fileID: 11400000, guid: b0ba8eab550d66c4aa59bb2b57471bc7, type: 2}
-  recipe:
-    and:
-    - or:
-      - ingredient: {fileID: 11400000, guid: e0ea911b08d364544b523502ce640e8c, type: 2}
-        output: {fileID: 11400000, guid: b5a79eb0cef90274b8ec87ef76bb4ccd, type: 2}
-    - or:
-      - ingredient: {fileID: 11400000, guid: 1d5fd013a3890e34c9ec835292aa7567, type: 2}
-        output: {fileID: 11400000, guid: 4a4115a782ce0d9499a2b248482148af, type: 2}
-    - or:
-      - ingredient: {fileID: 11400000, guid: bb0f4263ae787dd49b9c5ccfd7261106, type: 2}
-        output: {fileID: 11400000, guid: 3e5dd0ce7df17ce43ae4e94e761a38a2, type: 2}
-      - ingredient: {fileID: 11400000, guid: ea2bed0861ec2764390d3e47f4525043, type: 2}
-        output: {fileID: 11400000, guid: 75c060e820477b84baf76a355c89fe87, type: 2}
   nodes:
-  - {fileID: 2665795261602095825}
-  - {fileID: 7642444334118602200}
-  - {fileID: -7163216251810700188}
-  - {fileID: 7844473459688914863}
-  - {fileID: 8606910666682449048}
---- !u!114 &2665795261602095825
+  - {fileID: 4269150450733671532}
+  - {fileID: -1090311839052221042}
+  - {fileID: 6143701620058886305}
+  - {fileID: -5256570551604594318}
+  - {fileID: 4347176407645222850}
+--- !u!114 &4269150450733671532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,21 +76,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: be3258d2-7da1-427d-b1e4-d0e6b3257c95
-  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  m_Script: {fileID: 11500000, guid: 9218f56d94614891bf18f4fe9349ebb1, type: 3}
+  m_Name: 84fdcabf-d047-4d47-b0f0-b55895977949
+  m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: b0ba8eab550d66c4aa59bb2b57471bc7, type: 2}
   output: {fileID: 0}
   children:
-  - 3d1ce8e7-1e0b-4362-b510-ebe4951187c7
+  - 771bd88a-b5e0-465c-b1a0-5e134542cce7
   ancestors: []
   rect:
     serializedVersion: 2
-    x: 446
-    y: 297
+    x: 177
+    y: 203
     width: 200
     height: 100
---- !u!114 &7642444334118602200
+--- !u!114 &4347176407645222850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,68 +99,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 3d1ce8e7-1e0b-4362-b510-ebe4951187c7
-  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
-  input: {fileID: 11400000, guid: e0ea911b08d364544b523502ce640e8c, type: 2}
-  output: {fileID: 0}
-  children:
-  - 52aa8ae5-3d26-4e8e-b12d-a8662408dfff
-  ancestors:
-  - be3258d2-7da1-427d-b1e4-d0e6b3257c95
-  rect:
-    serializedVersion: 2
-    x: 746
-    y: 297
-    width: 200
-    height: 100
---- !u!114 &7844473459688914863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: eaa30707-f34b-481f-8ec3-e0ad7f16e70b
-  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
-  input: {fileID: 11400000, guid: bb0f4263ae787dd49b9c5ccfd7261106, type: 2}
-  output: {fileID: 11400000, guid: 3e5dd0ce7df17ce43ae4e94e761a38a2, type: 2}
-  children: []
-  ancestors:
-  - be3258d2-7da1-427d-b1e4-d0e6b3257c95
-  - 3d1ce8e7-1e0b-4362-b510-ebe4951187c7
-  - 52aa8ae5-3d26-4e8e-b12d-a8662408dfff
-  rect:
-    serializedVersion: 2
-    x: 1342
-    y: 296
-    width: 200
-    height: 100
---- !u!114 &8606910666682449048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 6efb4037-5451-4fe6-b099-a3d455984528
-  m_EditorClassIdentifier: Assembly-CSharp:Core.Dish:RecipeNode
+  m_Script: {fileID: 11500000, guid: 9218f56d94614891bf18f4fe9349ebb1, type: 3}
+  m_Name: 963de9d8-0850-40f7-aded-b3f7b2c70eea
+  m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: ea2bed0861ec2764390d3e47f4525043, type: 2}
   output: {fileID: 11400000, guid: 75c060e820477b84baf76a355c89fe87, type: 2}
   children: []
   ancestors:
-  - be3258d2-7da1-427d-b1e4-d0e6b3257c95
-  - 3d1ce8e7-1e0b-4362-b510-ebe4951187c7
-  - 52aa8ae5-3d26-4e8e-b12d-a8662408dfff
+  - 771bd88a-b5e0-465c-b1a0-5e134542cce7
+  - 84fdcabf-d047-4d47-b0f0-b55895977949
+  - 08fd11c1-66ca-4892-bb0b-aec0d0b58dc7
   rect:
     serializedVersion: 2
-    x: 1343
-    y: 424
+    x: 1097
+    y: 302
+    width: 200
+    height: 100
+--- !u!114 &6143701620058886305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9218f56d94614891bf18f4fe9349ebb1, type: 3}
+  m_Name: 08fd11c1-66ca-4892-bb0b-aec0d0b58dc7
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: 1d5fd013a3890e34c9ec835292aa7567, type: 2}
+  output: {fileID: 0}
+  children:
+  - 82634ea2-9db7-41a9-a053-36f8bef0ac45
+  - 963de9d8-0850-40f7-aded-b3f7b2c70eea
+  ancestors:
+  - 771bd88a-b5e0-465c-b1a0-5e134542cce7
+  - 771bd88a-b5e0-465c-b1a0-5e134542cce7
+  rect:
+    serializedVersion: 2
+    x: 772
+    y: 207
     width: 200
     height: 100

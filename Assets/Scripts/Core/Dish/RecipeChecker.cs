@@ -40,15 +40,15 @@ namespace Core.Dish {
                     onRecipeStarted?.Invoke();
                     return;
                 }
-                _currentNode = recipe.GetAllChildren(_currentNode).FirstOrDefault(x => x.input == ingredientItem);
+                _currentNode = recipe.GetAllChildren(_currentNode).FirstOrDefault(x => x.GetInput() == ingredientItem);
                 if (!_currentNode) {
                     Reset();
                     return;
                 }
                 //IngredientCombined?.Invoke(_currentNode.output);
 
-                if (_currentNode.children.Count == 0) {
-                    CompleteRecipe(_currentNode.output).Forget();
+                if (_currentNode.IsOutputNode()) {
+                    CompleteRecipe(_currentNode.GetOutput()).Forget();
                     return;
                 }
                         
@@ -63,7 +63,7 @@ namespace Core.Dish {
         }
         
         private void NextIngredient() {
-            _expectedIngredient = recipe.GetAllChildren(_currentNode).Select(x => x.input).ToArray();
+            _expectedIngredient = recipe.GetAllChildren(_currentNode).Select(x => x.GetInput()).ToArray();
             ValidateRecipe?.Invoke(_expectedIngredient);
         }
 

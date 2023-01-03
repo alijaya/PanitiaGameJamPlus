@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,14 +8,20 @@ namespace Core.Dish {
     [CreateAssetMenu(fileName = "New Dish Recipe", menuName = "Dish/Recipe", order = 0)]
     public class DishRecipeSO : ScriptableObject, ISerializationCallbackReceiver {
         [SerializeField] private List<RecipeNode> nodes = new();
-        private readonly Dictionary<RecipeNode, IEnumerable<RecipeNode>> _childrenLookup = new();
+        //private readonly Dictionary<RecipeNode, IEnumerable<RecipeNode>> _childrenLookup = new();
+        private readonly Dictionary<string, RecipeNode> _nodeLookup = new();
+
+        public IEnumerable<IngredientItemSO> GetBaseIngredients() {
+            return GetAllNodes().Where(x => x.GetAncestors().Count == 0).Select(x => x.GetInput());
+        }
 
         #region Nodes
 
         private void OnValidate() {
-            _childrenLookup.Clear();
-            foreach (var node in nodes) {
-                _childrenLookup[node] = nodes.Where(x => node.children.Contains(x.name));
+            _nodeLookup.Clear();
+            foreach (var node in GetAllNodes()) {
+                _nodeLookup[node.name] = node;
+                //_childrenLookup[node] = nodes.Where(x => node.GetChildren().Contains(x.name));
             }
         }
 
@@ -24,41 +29,65 @@ namespace Core.Dish {
             return nodes;
         }
         public IEnumerable<RecipeNode> GetAllChildren(RecipeNode parentNode) {
-            return _childrenLookup.TryGetValue(parentNode, out var children) ? children : null;
+            return from childID in parentNode.GetChildren() where _nodeLookup.ContainsKey(childID) select _nodeLookup[childID];
         }
         public RecipeNode GetBaseNode(IngredientItemSO baseIngredient) {
-            return GetAllNodes().FirstOrDefault(x => x.ancestors.Count == 0 && x.input == baseIngredient);
+            return GetAllNodes().FirstOrDefault(x => x.GetAncestors().Count == 0 && x.GetInput() == baseIngredient);
         }
+        
+        
+        
+#if UNITY_EDITOR
         public void CreateNode(RecipeNode parentNode) {
+            var newNode = MakeNode(parentNode);
+            Undo.RegisterCreatedObjectUndo(newNode, "Created Recipe Node");
+            Undo.RecordObject(this, "Added Recipe Node");
+            AddNode(newNode);
+        }
+
+        public void DeleteNode(RecipeNode nodeToDelete) {
+            Undo.RecordObject(this, "Deleted Recipe Node");
+            nodes.Remove(nodeToDelete);
+            
+            OnValidate();
+            CleanChildren(nodeToDelete);
+            Undo.DestroyObjectImmediate(nodeToDelete);
+        }
+
+        private RecipeNode MakeNode(RecipeNode parent) {
             var newNode = CreateInstance<RecipeNode>();
             newNode.name = Guid.NewGuid().ToString();
-            Undo.RegisterCreatedObjectUndo(newNode, "Created Recipe Node");
-            
-            if (parentNode) {
-                parentNode.children.Add(newNode.name); 
-                newNode.ancestors.AddRange(parentNode.ancestors);
-                newNode.ancestors.Add(parentNode.name);
-
-                var offset = new Vector2(newNode.rect.width * 1.5f, 0);
-                newNode.rect.position = parentNode.rect.position + offset;
+            if (parent) {
+                parent.AddChild(newNode.name);
+                newNode.GetAncestors().AddRange(parent.GetAncestors());
+                newNode.GetAncestors().Add(parent.name);
+                
+                var offset = new Vector2(newNode.GetRect().width * 1.5f, 0);
+                newNode.SetPosition(parent.GetRect().position + offset);
             }
-            
+
+            return newNode;
+        }
+
+        private void AddNode(RecipeNode newNode) {
             nodes.Add(newNode);
             OnValidate();
         }
 
-        public void DeleteNode(RecipeNode nodeToDelete) {
-            nodes.Remove(nodeToDelete);
-            OnValidate();
+        private void CleanChildren(RecipeNode deletedNode) {
             foreach (var node in GetAllNodes()) {
-                node.children.Remove(nodeToDelete.name);
+                node.RemoveChild(deletedNode.name);
             }
-            Undo.DestroyObjectImmediate(nodeToDelete);
         }
         
+#endif
+        
+        
         public void OnBeforeSerialize() {
+            #if UNITY_EDITOR
             if (nodes.Count == 0) {
-                CreateNode(null);
+                var newNode = MakeNode(null);
+                AddNode(newNode);
             }
             
             if (AssetDatabase.GetAssetPath(this) != "") {
@@ -68,6 +97,7 @@ namespace Core.Dish {
                     }
                 }
             }
+            #endif
         }
 
         public void OnAfterDeserialize() {
@@ -75,70 +105,5 @@ namespace Core.Dish {
         }
 
         #endregion
-        public IEnumerable<IngredientItemSO> GetBaseIngredients() {
-            return GetAllNodes().Where(x => x.ancestors.Count == 0).Select(x => x.input);
-        }
-
-    }
-    
-    public class RecipeNode: ScriptableObject {
-        public IngredientItemSO input;
-        public TrayItemSO output;
-        [HideInInspector] public List<string> children = new ();
-        [HideInInspector] public List<string> ancestors = new();
-        
-        [HideInInspector] public Rect rect = new Rect(0,0, 200,100);
-    }
-
-    [System.Serializable]
-    public class Recipe {
-        [SerializeField] private Disjunction[] and;
-        public bool Check(int ingredientOrder, IngredientItemSO ingredientItem, out TrayItemSO finalOutput) {
-            return and[ingredientOrder].Check(ingredientItem, out finalOutput);
-        }
-
-        public IEnumerable<IngredientItemSO> GetIngredientsAt(int ingredientOrder) {
-            return and[ingredientOrder].GetIngredients();
-        }
-
-        public int GetRecipeStep() => and.Length;
-
-
-        [System.Serializable]
-        private class Disjunction {
-            [SerializeField] private Predicate[] or;
-
-            public bool Check(IngredientItemSO ingredientItem, out TrayItemSO finalOutput) {
-                foreach (var predicate in or) {
-                    if (predicate.Check(ingredientItem, out finalOutput)) return true;
-                }
-                finalOutput = null;
-                return false;
-            }
-
-            public IEnumerable<IngredientItemSO> GetIngredients() {
-                return or.Select(predicate => predicate.GetIngredient());
-            }
-        }
-        [System.Serializable]
-        private class Predicate {
-            [SerializeField] private IngredientItemSO ingredient;
-            [SerializeField] private TrayItemSO output;
-
-            public bool Check(IngredientItemSO ingredientItem, out TrayItemSO finalOutput) {
-                if (ingredientItem == ingredient) {
-                    finalOutput = output;
-                    return true;
-                }
-
-                finalOutput = null;
-                return false;
-                
-            }
-
-            public IngredientItemSO GetIngredient() => ingredient;
-        }    
-        
-        
     }
 }
