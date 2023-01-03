@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 492c5af6fd818b645b719977db410f16, type: 2}
   output: {fileID: 11400000, guid: cb01cbf6fc43e924489031475a9702e3, type: 2}
+  finalDish: {fileID: 11400000, guid: cb01cbf6fc43e924489031475a9702e3, type: 2}
   children: []
   ancestors:
   - 8a252063-4810-4364-b274-e9df494fabb2
@@ -21,7 +22,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 680
-    y: 511
+    y: 512
     width: 200
     height: 100
 --- !u!114 &-3155639084055627474
@@ -38,6 +39,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 9280ed634b9b1634086e3e26a5a006f5, type: 2}
   output: {fileID: 0}
+  finalDish: {fileID: 0}
   children:
   - 7dc66fcd-cb79-471a-ab49-36ca67ac834c
   - 2e6bbc08-34f8-4b6f-9adc-4aedd9fe6ab5
@@ -63,6 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 9a27105ccc48da24b844662489e30cd4, type: 2}
   output: {fileID: 11400000, guid: cdd0e0a631b71444fbbd71be4f54bbe5, type: 2}
+  finalDish: {fileID: 11400000, guid: cdd0e0a631b71444fbbd71be4f54bbe5, type: 2}
   children: []
   ancestors:
   - 8a252063-4810-4364-b274-e9df494fabb2
@@ -105,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 9a27105ccc48da24b844662489e30cd4, type: 2}
   output: {fileID: 11400000, guid: f5723098ec751d44aaf4391b3e2c6141, type: 2}
+  finalDish: {fileID: 11400000, guid: f5723098ec751d44aaf4391b3e2c6141, type: 2}
   children: []
   ancestors:
   - 8a252063-4810-4364-b274-e9df494fabb2
@@ -129,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 492c5af6fd818b645b719977db410f16, type: 2}
   output: {fileID: 11400000, guid: 83c032004d4b0ad4d958566f5d432742, type: 2}
+  finalDish: {fileID: 11400000, guid: 83c032004d4b0ad4d958566f5d432742, type: 2}
   children: []
   ancestors:
   - 8a252063-4810-4364-b274-e9df494fabb2
@@ -152,6 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: eed70c03338e8764a9f9a53f9f919d65, type: 2}
   output: {fileID: 0}
+  finalDish: {fileID: 0}
   children:
   - a438e172-a826-4de8-b133-6d57c9f43665
   - 122a44bd-70b3-4bc6-9ec2-aa758f13f460
