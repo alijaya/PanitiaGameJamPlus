@@ -1,11 +1,14 @@
 
 using UnityEngine;
 using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 namespace Core.Dish {
     public class DishPicker : MonoBehaviour {
         [SerializeField] protected DishItemSO dishItem;
         [SerializeField] protected UnityEvent<bool> onDishAvailable;
+
+        private IngredientItemSO previewItem;
 
         protected TrayItemUI itemUI;
         protected int currentStackSize = -1;
@@ -14,6 +17,12 @@ namespace Core.Dish {
 
         protected void Awake() {
             itemUI = GetComponentInChildren<TrayItemUI>();
+        }
+
+        private void OnEnable()
+        {
+            onDishAvailable?.Invoke(dishItem);
+            RefreshUI();
         }
 
         public virtual void AddDish() {
@@ -27,7 +36,15 @@ namespace Core.Dish {
 
         public void SetupDish(DishItemSO dishItem) {
             this.dishItem = dishItem;
+            this.previewItem = null;
             onDishAvailable?.Invoke(dishItem);
+            RefreshUI();
+        }
+
+        public void SetupPreview(IngredientItemSO previewItem)
+        {
+            this.dishItem = null;
+            this.previewItem = previewItem;
             RefreshUI();
         }
 
@@ -39,11 +56,12 @@ namespace Core.Dish {
         //    RefreshUI();
         //}
 
+        [Button]
         protected void RefreshUI()
         {
             if (dishItem)
             {
-                name = dishItem.GetItemName() == "" ? dishItem.name : dishItem.GetItemName();
+                name = dishItem.GetItemName();
             }
             if (itemUI)
             {
@@ -59,7 +77,7 @@ namespace Core.Dish {
 
             if (itemUI2)
             {
-                itemUI2.Setup(dishItem);
+                itemUI2.Setup(dishItem ? dishItem : previewItem);
             }
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using Util;
 
 namespace Core.Dish {
-    public class IngredientProcessor : MonoBehaviour,IIngredientReceiver {
+    public class IngredientProcessor : IngredientReceiver {
         [SerializeField] private DishProcessSO[] processes;
         [SerializeField] private DishPicker[] collectorSlots;
         
@@ -44,9 +44,10 @@ namespace Core.Dish {
                 (dishProcessSo, new CustomTimer(stagesTime.ToArray()));
             _runningProcesses[collector].Value.Stop();
             _pendingProcesses.Enqueue(collector);
-            
-            collector.SetupDish(null);
-            collector.GetComponentInChildren<TrayItemUI>().Setup(dishProcessSo.GetInput());
+
+            //collector.SetupDish(null);
+            //collector.GetComponentInChildren<TrayItemUI>().Setup(dishProcessSo.GetInput());
+            collector.SetupPreview(dishProcessSo.GetInput());
         }
 
         public void ContinueProcess() {
@@ -55,7 +56,7 @@ namespace Core.Dish {
             }
         }
         
-        public void AddIngredient(IngredientItemSO ingredientItem) {
+        public override void AddIngredient(IngredientItemSO ingredientItem) {
             var freeSlot = collectorSlots.FirstOrDefault(x => !_runningProcesses.ContainsKey(x));
             if (!freeSlot) {
                 Debug.LogWarning("No slot for this ingredient");
@@ -68,6 +69,9 @@ namespace Core.Dish {
             
             StartProcess(freeSlot,process);
             isSlotAvailable?.Invoke(IsSlotAvailable());
+
+            // Ali: kenapa di pending? kenapa ga langsung start?
+            ContinueProcess();
         }
         public void AddIngredient(TrayItemSO trayItem) {
             if (trayItem is IngredientItemSO ingredientItem) {
@@ -82,7 +86,7 @@ namespace Core.Dish {
         private bool IsSlotAvailable() {
             return !collectorSlots.All(x => _runningProcesses.ContainsKey(x));
         }
-        public bool IsBaseIngredient(IngredientItemSO ingredientItem) {
+        public override bool IsBaseIngredient(IngredientItemSO ingredientItem) {
             return processes.Any(x => x.GetInput() == ingredientItem);
         }
 

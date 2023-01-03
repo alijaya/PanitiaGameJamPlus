@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace Core.Dish {
-    public class RecipeChecker : MonoBehaviour,IIngredientReceiver {
+    public class RecipeChecker : IngredientReceiver {
         [SerializeField] private DishRecipeSO recipe;
         public UnityEvent onRecipeStarted;
 
@@ -27,11 +27,11 @@ namespace Core.Dish {
             _expectedIngredient = recipe.GetBaseIngredients().ToArray();
         }
 
-        public bool IsBaseIngredient(IngredientItemSO ingredientItem) {
+        public override bool IsBaseIngredient(IngredientItemSO ingredientItem) {
             return recipe.GetBaseIngredients().Contains(ingredientItem);
         }
 
-        public void AddIngredient(IngredientItemSO ingredientItem) {
+        public override void AddIngredient(IngredientItemSO ingredientItem) {
             if (_expectedIngredient.Contains(ingredientItem)) {
                 //IngredientAdded?.Invoke(ingredientItem);
                 if (_currentNode == null) {

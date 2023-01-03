@@ -11,6 +11,9 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager>
 
     public List<Core.Dish.DishItemSO> possibleDishes;
 
+    [SerializeReference]
+    public Core.Words.Generator.ITextGenerator defaultGenerator;
+
     public UnityEvent OnCashierTriggered;
 
     protected override void SingletonAwakened()

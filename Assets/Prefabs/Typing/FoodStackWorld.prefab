@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 1715250873648579264}
   - component: {fileID: 6044385951267678928}
   m_Layer: 0
-  m_Name: FoodWorld
+  m_Name: FoodStackWorld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,6 +448,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StackWorld
       objectReference: {fileID: 0}
+    - target: {fileID: 3396825655313366370, guid: 5f3225ced9acd4af7878b9a01ca1b297, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5336633613655676091, guid: 5f3225ced9acd4af7878b9a01ca1b297, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -523,7 +527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1373986160369422707, guid: 18e7832ba36194143905c5cec2a972c1, type: 3}
       propertyPath: TextGenerator
-      value: 1044190880895336512
+      value: 1044190880895336549
       objectReference: {fileID: 0}
     - target: {fileID: 1373986160369422707, guid: 18e7832ba36194143905c5cec2a972c1, type: 3}
       propertyPath: CompleteCheck._target
@@ -544,6 +548,10 @@ PrefabInstance:
     - target: {fileID: 1373986160369422707, guid: 18e7832ba36194143905c5cec2a972c1, type: 3}
       propertyPath: managedReferences[1044190880895336512]
       value: Assembly-CSharp Core.Words.Generator.WordBankTextGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373986160369422707, guid: 18e7832ba36194143905c5cec2a972c1, type: 3}
+      propertyPath: managedReferences[1044190880895336549]
+      value: Assembly-CSharp Core.Words.Generator.RestaurantTextGenerator
       objectReference: {fileID: 0}
     - target: {fileID: 1373986160369422707, guid: 18e7832ba36194143905c5cec2a972c1, type: 3}
       propertyPath: CompleteCheck._args.Array.data[0].argType
