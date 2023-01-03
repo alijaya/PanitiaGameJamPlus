@@ -18,14 +18,6 @@ namespace Core.Dish {
         private void Awake() {
             _receiver = GetComponentInParent<IIngredientReceiver>();
             _isBaseIngredient = _receiver.IsBaseIngredient(ingredientItem);
-            if (!_isBaseIngredient && _receiver is RecipeChecker checker) {
-                checker.ValidateRecipe += OnValidateRecipe;
-            }
-        }
-        private void OnDestroy() {
-            if (!_isBaseIngredient && _receiver is RecipeChecker checker) {
-                checker.ValidateRecipe += OnValidateRecipe;
-            }
         }
 
         private void Start() {
@@ -34,7 +26,8 @@ namespace Core.Dish {
             }
         }
 
-        private void OnValidateRecipe(IEnumerable<IngredientItemSO> ingredients) {
+        public void ValidateRecipe(IEnumerable<IngredientItemSO> ingredients) {
+            if (_isBaseIngredient) return;
             if (ingredients.Contains(ingredientItem)) {
                 onRecipeAvailable?.Invoke();
             }

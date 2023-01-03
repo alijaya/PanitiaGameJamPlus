@@ -14,16 +14,15 @@ namespace Core.Dish {
         public UniTaskFunc completeCheck;
         public UnityEvent<TrayItemSO> onRecipeImmediateComplete;
         public UnityEvent<TrayItemSO> onRecipeComplete;
-        public event Action<IEnumerable<IngredientItemSO>> ValidateRecipe;
         public event Action<TrayItemSO> IngredientAdded;
         public event Action<TrayItemSO> IngredientCombined;
         
         private List<IngredientItemSO> _inputtedIngredients = new ();
         private IngredientItemSO[] _expectedIngredient;
+        private IngredientAdder[] _adders;
+        
         private RecipeNode _currentNode;
         private CancellationTokenSource _completeCheckCancel;
-
-        private IngredientAdder[] _adders;
 
         private void Awake() {
             _adders = GetComponentsInChildren<IngredientAdder>();
@@ -72,7 +71,7 @@ namespace Core.Dish {
         }
         private void NextIngredient() {
             _expectedIngredient = recipe.GetAllChildren(_currentNode).Select(x => x.GetInput()).ToArray();
-            ValidateRecipe?.Invoke(_expectedIngredient);
+            ValidateRecipe();
         }
 
         private void CheckIngredients(List<DishItemSO> possibleDish) {
@@ -82,10 +81,16 @@ namespace Core.Dish {
             }
         }
 
+        private void ValidateRecipe() {
+            foreach (var adder in _adders) {
+                adder.ValidateRecipe(_expectedIngredient);
+            }
+        }
+
         private void Reset() {
             _currentNode = null;
             _expectedIngredient = recipe.GetBaseIngredients().ToArray();
-            ValidateRecipe?.Invoke(_expectedIngredient);
+            ValidateRecipe();
         }
 
         private async UniTask CompleteRecipe(TrayItemSO output) {
