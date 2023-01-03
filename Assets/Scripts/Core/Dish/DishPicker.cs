@@ -1,4 +1,5 @@
-
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,7 +7,7 @@ namespace Core.Dish {
     public class DishPicker : MonoBehaviour {
         [SerializeField] protected DishItemSO dishItem;
         [SerializeField] protected UnityEvent<bool> onDishAvailable;
-
+        
         protected TrayItemUI itemUI;
         protected int currentStackSize = -1;
 
@@ -14,6 +15,15 @@ namespace Core.Dish {
 
         protected void Awake() {
             itemUI = GetComponentInChildren<TrayItemUI>();
+            if (dishItem) RestaurantManager.I.OnPossibleDishesUpdated += SetActivePossibleDish;
+        }
+
+        protected void OnDestroy() {
+            if (dishItem) RestaurantManager.I.OnPossibleDishesUpdated -= SetActivePossibleDish;
+        }
+
+        private void SetActivePossibleDish(List<DishItemSO> possibleDishes) {
+            gameObject.SetActive(possibleDishes.Contains(dishItem));
         }
 
         public virtual void AddDish() {

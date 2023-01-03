@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,6 +19,17 @@ namespace Core.Dish {
         private readonly Dictionary<DishPicker, KeyValuePair<DishProcessSO,CustomTimer>> _runningProcesses = new ();
 
         private readonly Queue<DishPicker> _pendingProcesses = new();
+        
+        private IngredientAdder[] _adders;
+
+        private void Awake() {
+            _adders = GetComponentsInChildren<IngredientAdder>();
+            RestaurantManager.I.OnPossibleDishesUpdated += CheckIngredients;
+        }
+
+        private void OnDestroy() {
+            RestaurantManager.I.OnPossibleDishesUpdated -= CheckIngredients;
+        }
 
         private void Update() {
             var keys = new List<DishPicker>(_runningProcesses.Keys);
@@ -48,13 +60,11 @@ namespace Core.Dish {
             collector.SetupDish(null);
             collector.GetComponentInChildren<TrayItemUI>().Setup(dishProcessSo.GetInput());
         }
-
         public void ContinueProcess() {
             if (_pendingProcesses.TryDequeue(out var collector)) {
                 _runningProcesses[collector].Value.Continue();
             }
         }
-        
         public void AddIngredient(IngredientItemSO ingredientItem) {
             var freeSlot = collectorSlots.FirstOrDefault(x => !_runningProcesses.ContainsKey(x));
             if (!freeSlot) {
@@ -79,11 +89,29 @@ namespace Core.Dish {
             _runningProcesses.Remove(collector);
             isSlotAvailable?.Invoke(IsSlotAvailable());
         }
+        public bool IsBaseIngredient(IngredientItemSO ingredientItem) {
+            return processes.Any(x => x.GetInput() == ingredientItem);
+        }
+        
         private bool IsSlotAvailable() {
             return !collectorSlots.All(x => _runningProcesses.ContainsKey(x));
         }
-        public bool IsBaseIngredient(IngredientItemSO ingredientItem) {
-            return processes.Any(x => x.GetInput() == ingredientItem);
+
+        private void CheckIngredients(List<DishItemSO> possibleDish) {
+            // ^1 is burned dish, ^2 is final stage
+            // TODO- refactor Dish Process SO, exclude burned dish from stages (?)
+            var possibleIngredients = (
+                from process in processes 
+                where possibleDish.Contains(process.GetStages()[^2].output)
+                select process.GetInput()
+                ).ToArray();
+            foreach (var slot in collectorSlots) {
+                slot.gameObject.SetActive(possibleIngredients.Length != 0);
+            }
+            
+            foreach (var adder in _adders) {
+                adder.gameObject.SetActive(possibleIngredients.Contains(adder.GetIngredient()));
+            }
         }
 
     }

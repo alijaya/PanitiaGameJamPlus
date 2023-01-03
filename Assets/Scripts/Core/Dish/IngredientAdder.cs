@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;  
 using UnityEngine;
@@ -6,7 +7,6 @@ using UnityEngine.Events;
 namespace Core.Dish {
     public class IngredientAdder : MonoBehaviour {
         [SerializeField] private IngredientItemSO ingredientItem;
-
         [SerializeField] private UnityEvent<IngredientItemSO> onIngredientAdded;
 
         [SerializeField] private UnityEvent onRecipeAvailable;
@@ -22,7 +22,6 @@ namespace Core.Dish {
                 checker.ValidateRecipe += OnValidateRecipe;
             }
         }
-
         private void OnDestroy() {
             if (!_isBaseIngredient && _receiver is RecipeChecker checker) {
                 checker.ValidateRecipe += OnValidateRecipe;
@@ -36,11 +35,11 @@ namespace Core.Dish {
         }
 
         private void OnValidateRecipe(IEnumerable<IngredientItemSO> ingredients) {
-            if (!ingredients.Contains(ingredientItem)) {
-                onRecipeNotAvailable?.Invoke();
+            if (ingredients.Contains(ingredientItem)) {
+                onRecipeAvailable?.Invoke();
             }
             else {
-                onRecipeAvailable?.Invoke();
+                onRecipeNotAvailable?.Invoke();
             }
         }
 
@@ -48,11 +47,14 @@ namespace Core.Dish {
             _receiver.AddIngredient(ingredientItem);
         }
 
+        public IngredientItemSO GetIngredient() => ingredientItem;
+
         private void OnValidate() {
             if (ingredientItem) {
                 name = ingredientItem.GetItemName() == "" ? ingredientItem.name : ingredientItem.GetItemName();
                 GetComponentInChildren<TrayItemUI>().Setup(ingredientItem);
             }
         }
+
     }
 }

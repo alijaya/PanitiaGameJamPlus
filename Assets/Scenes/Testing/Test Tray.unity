@@ -2003,10 +2003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: {fileID: 2027302237}
   possibleDishes:
-  - {fileID: 11400000, guid: 2d233090b33db2248abeb312a047b45e, type: 2}
-  - {fileID: 11400000, guid: 367001c4cd1f43c408a9bac07dbc0be7, type: 2}
-  - {fileID: 11400000, guid: aeb73d3d3fe83634da6829bdda8d805c, type: 2}
-  - {fileID: 11400000, guid: 5d53dea4c3f86e84482b4fb983c213f5, type: 2}
+  - {fileID: 11400000, guid: 7ea7789fbd143454e91352832bcc30e6, type: 2}
   OnCashierTriggered:
     m_PersistentCalls:
       m_Calls: []
@@ -3399,12 +3396,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientItem: {fileID: 11400000, guid: b8798a95887c3a745ac6e2a7ef136f31, type: 2}
   onIngredientAdded:
-    m_PersistentCalls:
-      m_Calls: []
-  onIngredientAvailable:
-    m_PersistentCalls:
-      m_Calls: []
-  onIngredientNotAvailable:
     m_PersistentCalls:
       m_Calls: []
   onRecipeAvailable:
@@ -8389,11 +8380,19 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1360441197, guid: 18dd0a2d0ac03b74db60d8fc95eedb7c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1472787176, guid: 18dd0a2d0ac03b74db60d8fc95eedb7c, type: 3}
       propertyPath: recipe
       value: 
       objectReference: {fileID: 11400000, guid: 67d3a42765394794d8eb9d0d60331608, type: 2}
     - target: {fileID: 1755499942, guid: 18dd0a2d0ac03b74db60d8fc95eedb7c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802456957, guid: 18dd0a2d0ac03b74db60d8fc95eedb7c, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -8528,6 +8527,10 @@ PrefabInstance:
     - target: {fileID: 1456131211623103787, guid: 18dd0a2d0ac03b74db60d8fc95eedb7c, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699549374378620468, guid: 18dd0a2d0ac03b74db60d8fc95eedb7c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2874260766036497973, guid: 18dd0a2d0ac03b74db60d8fc95eedb7c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -8906,7 +8909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 3725453694720659602}
-  speed: 10
+  speed: 1
   rotateSpeed: 2
   bobRotate: 10
   bobSpeed: 40

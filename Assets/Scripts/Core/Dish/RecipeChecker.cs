@@ -23,14 +23,23 @@ namespace Core.Dish {
         private RecipeNode _currentNode;
         private CancellationTokenSource _completeCheckCancel;
 
+        private IngredientAdder[] _adders;
+
+        private void Awake() {
+            _adders = GetComponentsInChildren<IngredientAdder>();
+            RestaurantManager.I.OnPossibleDishesUpdated += CheckIngredients;
+        }
+
+        private void OnDestroy() {
+            RestaurantManager.I.OnPossibleDishesUpdated -= CheckIngredients;
+        }
+
         private void Start() {
             _expectedIngredient = recipe.GetBaseIngredients().ToArray();
         }
-
         public bool IsBaseIngredient(IngredientItemSO ingredientItem) {
             return recipe.GetBaseIngredients().Contains(ingredientItem);
         }
-
         public void AddIngredient(IngredientItemSO ingredientItem) {
             if (_expectedIngredient.Contains(ingredientItem)) {
                 //IngredientAdded?.Invoke(ingredientItem);
@@ -61,10 +70,16 @@ namespace Core.Dish {
                 }
             }
         }
-        
         private void NextIngredient() {
             _expectedIngredient = recipe.GetAllChildren(_currentNode).Select(x => x.GetInput()).ToArray();
             ValidateRecipe?.Invoke(_expectedIngredient);
+        }
+
+        private void CheckIngredients(List<DishItemSO> possibleDish) {
+            var possibleIngredients = recipe.GetPossibleIngredients(possibleDish).ToArray();
+            foreach (var adder in _adders) {
+                adder.gameObject.SetActive(possibleIngredients.Contains(adder.GetIngredient()));
+            }
         }
 
         private void Reset() {

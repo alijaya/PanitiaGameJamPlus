@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,9 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager>
     public List<Core.Dish.DishItemSO> possibleDishes;
 
     public UnityEvent OnCashierTriggered;
+    //public UnityEvent<List<Core.Dish.DishItemSO>> onPossibleDishesUpdated;
+
+    public event Action<List<Core.Dish.DishItemSO>> OnPossibleDishesUpdated;
 
     protected override void SingletonAwakened()
     {
@@ -24,6 +28,7 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager>
         GlobalRef.I.totalCustomerServed.Value = 0;
         GlobalRef.I.PlayBGM_Gameplay();
         WaveManager.I.StartWave();
+        UpdatePossibleDishes(GlobalRef.I.LevelProgression.GetCurrentLevel().possibleDish);
     }
 
     public List<Core.Dish.DishItemSO> GenerateDishes(int count)
@@ -33,8 +38,24 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager>
         return result;
     }
 
+    public void UpdatePossibleDishes(IEnumerable<Core.Dish.DishItemSO> newPossibleDishes) {
+        possibleDishes = newPossibleDishes.ToList();
+        OnPossibleDishesUpdated?.Invoke(possibleDishes);
+    }
+
     public void TriggerCashier()
     {
         OnCashierTriggered?.Invoke();
+    }
+
+    private void OnValidate() {
+        OnPossibleDishesUpdated?.Invoke(possibleDishes);
+    }
+
+    private void Update() {
+        // Testing to move to level selection scene 
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            GlobalRef.I.GoToScene_LevelSelection();
+        }
     }
 }

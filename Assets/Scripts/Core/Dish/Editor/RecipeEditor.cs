@@ -162,6 +162,11 @@ namespace Core.Dish.Editor {
             node.SetInput(EditorGUILayout.ObjectField(node.GetInput(), typeof(IngredientItemSO), false) as IngredientItemSO);
             if (node.IsOutputNode()) {
                 node.SetOutput(EditorGUILayout.ObjectField(node.GetOutput(), typeof(TrayItemSO), false) as TrayItemSO);
+
+                if (node.GetOutput() is not DishItemSO) {
+                    node.SetFinalDish(EditorGUILayout.ObjectField(node.GetFinalDish(), typeof(DishItemSO), false) as DishItemSO);
+                }
+                
             }
 
             GUILayout.BeginHorizontal();
