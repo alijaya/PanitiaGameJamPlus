@@ -8,38 +8,48 @@ using System;
 public class AsyncQueue
 {
 
-    private int queueHeadIndex = 0;
-    private int queueTailIndex = 0;
+    //private int queueHeadIndex = 0;
+    //private int queueTailIndex = 0;
 
     //private AsyncLazy lastTask;
 
+    private UniTask lastTask = UniTask.CompletedTask;
+
+    // can not cancel ._.
     public async UniTask Queue(Func<UniTask> task, CancellationToken ct = default)
     {
-        // get the waiting number
-        var currentIndex = queueTailIndex++;
+        //// get the waiting number
+        //var currentIndex = queueTailIndex++;
 
-        // if queueHeadIndex is not currentIndex, it means it still processes another request
-        var cancel = await UniTask.WaitUntil(() => queueHeadIndex == currentIndex, PlayerLoopTiming.Update, ct).SuppressCancellationThrow(); // wait until we process this request
+        //// if queueHeadIndex is not currentIndex, it means it still processes another request
+        //var cancel = await UniTask.WaitUntil(() => queueHeadIndex == currentIndex, PlayerLoopTiming.Update, ct).SuppressCancellationThrow(); // wait until we process this request
 
-        // actual stuff To Do
-        if (!cancel) await task().SuppressCancellationThrow();
-        queueHeadIndex++; // advance the process number
+        //// actual stuff To Do
+        //if (!cancel) await task().SuppressCancellationThrow();
+        //queueHeadIndex++; // advance the process number
 
-        if (queueHeadIndex == queueTailIndex)
-        {
-            // if this is the last task, well reset it, so we don't get big number
-            queueHeadIndex = 0;
-            queueTailIndex = 0;
-        }
-
-        //try
+        //if (queueHeadIndex == queueTailIndex)
         //{
-        //    if (lastTask != null) await lastTask;
-        //} catch { }
+        //    // if this is the last task, well reset it, so we don't get big number
+        //    queueHeadIndex = 0;
+        //    queueTailIndex = 0;
+        //}
 
-        //lastTask = UniTask.Lazy(task);
+        // push task
+        var curTask = lastTask;
+        var lastTaskSource = new UniTaskCompletionSource();
+        lastTask = lastTaskSource.Task;
 
-        //await lastTask;
+        // should not have error here
+        await curTask;
+
+        try
+        {
+            await task();
+        } finally
+        {
+            lastTaskSource.TrySetResult();
+        }
     }
 
 }
