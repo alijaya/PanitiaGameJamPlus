@@ -51,6 +51,10 @@ namespace Core.Words {
             wordUIGameObject = wordUI;
         }
 
+        public void SetReceiveInput(bool value) {
+            wordUIGameObject.GetComponent<WordObject>().ReceiveInput = value;
+        }
+
         public void RemoveStack() {
             if (_wordStack.TryDequeue(out var stack)) {
                 var sequence = DOTween.Sequence();
