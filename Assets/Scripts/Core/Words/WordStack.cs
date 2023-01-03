@@ -13,7 +13,7 @@ namespace Core.Words {
         // TODO, using Object Pool
         // private ObjectPool<Transform> _wordPool;
         
-        private readonly Vector3 _offset = new(-.1f, .1f, 0);
+        private readonly Vector3 _offset = new(0, .1f, 0);
         private const float MaxRotation = 30f;
 
         private void Start() {
