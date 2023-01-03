@@ -26,9 +26,7 @@ namespace Core.Dish.Editor {
 
         [MenuItem("Window/Recipe Editor")]
         private static void ShowWindow() {
-            var window = GetWindow<RecipeEditor>();
-            window.titleContent = new GUIContent("Recipe Editor");
-            window.Show();
+            GetWindow(typeof(RecipeEditor), false, "Recipe Editor");
         }
 
         [OnOpenAsset(1)]
@@ -88,25 +86,21 @@ namespace Core.Dish.Editor {
                 EditorGUILayout.EndScrollView();
                 
                 if (_createdNode != null) {
-                    Undo.RecordObject(_selectedRecipe, "Add Recipe Node");
                     _selectedRecipe.CreateNode(_createdNode);
                     _createdNode = null;
                 }
 
                 if (_deletedNode != null) {
-                    Undo.RecordObject(_selectedRecipe, "Delete Recipe Node");
                     _selectedRecipe.DeleteNode(_deletedNode);
                     _deletedNode = null;
                 }
-                
-                
             }
         }
 
         private void DrawConnections(RecipeNode node) {
-            var startPosition = new Vector3(node.rect.xMax, node.rect.center.y);
+            var startPosition = new Vector3(node.GetRect().xMax, node.GetRect().center.y);
             foreach (var childNode in _selectedRecipe.GetAllChildren(node)) {
-                var endPosition = new Vector3(childNode.rect.xMin, childNode.rect.center.y);
+                var endPosition = new Vector3(childNode.GetRect().xMin, childNode.GetRect().center.y);
                 var controlOffset = endPosition - startPosition;
                 controlOffset.y = 0;
                 controlOffset.x *= 0.8f;
@@ -124,7 +118,7 @@ namespace Core.Dish.Editor {
                 case EventType.MouseDown when !_draggingNode:
                     _draggingNode = GetNodeAtPoint(e.mousePosition);
                     if (_draggingNode) {
-                        _draggingOffset = _draggingNode.rect.position - e.mousePosition;
+                        _draggingOffset = _draggingNode.GetRect().position - e.mousePosition;
                         Selection.activeObject = _draggingNode;
                     }
                     else {
@@ -134,8 +128,7 @@ namespace Core.Dish.Editor {
                     }
                     break;
                 case EventType.MouseDrag when _draggingNode:
-                    Undo.RecordObject(_selectedRecipe, "Move Recipe Node");
-                    _draggingNode.rect.position = e.mousePosition + _draggingOffset;
+                    _draggingNode.SetPosition(e.mousePosition + _draggingOffset);
                     GUI.changed = true;
                     break;
                 case EventType.MouseDrag when _draggingCanvas:
@@ -153,7 +146,7 @@ namespace Core.Dish.Editor {
             RecipeNode GetNodeAtPoint(Vector2 point) {
                 RecipeNode foundNode = null;
                 foreach (var node in _selectedRecipe.GetAllNodes()) {
-                    if (node.rect.Contains(_scrollPosition + point)) {
+                    if (node.GetRect().Contains(_scrollPosition + point)) {
                         foundNode = node;    
                     }
                 }
@@ -163,16 +156,12 @@ namespace Core.Dish.Editor {
         }
 
         private void DrawNode(RecipeNode node) {
-            GUILayout.BeginArea(node.rect, _nodeStyle);
+            GUILayout.BeginArea(node.GetRect(), _nodeStyle);
             EditorGUI.BeginChangeCheck();
 
-            var newInput = EditorGUILayout.ObjectField(node.input, typeof(IngredientItemSO), false) as IngredientItemSO;
-            //var newOutput = EditorGUILayout.ObjectField(node.output, typeof(TrayItemSO), false) as TrayItemSO;
-
-            if (EditorGUI.EndChangeCheck()) {
-                Undo.RecordObject(_selectedRecipe, "Update Recipe");
-                node.input = newInput;
-                //node.output = newOutput;
+            node.SetInput(EditorGUILayout.ObjectField(node.GetInput(), typeof(IngredientItemSO), false) as IngredientItemSO);
+            if (node.IsOutputNode()) {
+                node.SetOutput(EditorGUILayout.ObjectField(node.GetOutput(), typeof(TrayItemSO), false) as TrayItemSO);
             }
 
             GUILayout.BeginHorizontal();
@@ -200,28 +189,22 @@ namespace Core.Dish.Editor {
                 if (GUILayout.Button("cancel")) {
                     _linkingParentNode = null;
                 }
-            } else if (_linkingParentNode.children.Contains(node.name)) {
+            } else if (_linkingParentNode.GetChildren().Contains(node.name)) {
                 if (GUILayout.Button("unlink")) {
-                    Undo.RecordObject(_selectedRecipe, "Remove Recipe Link");
-
-                    node.ancestors.Remove(_linkingParentNode.name);
-                    
-                    _linkingParentNode.children.Remove(node.name);
+                    node.RemoveAncestor(_linkingParentNode.name);
+                    _linkingParentNode.RemoveChild(node.name);
                     _linkingParentNode = null;
                 }
             }
             else {
-                if (node.children.Contains(_linkingParentNode.name)) return;
-                if (_linkingParentNode.ancestors.Contains(node.name)) return;
+                if (node.GetChildren().Contains(_linkingParentNode.name)) return;
+                if (_linkingParentNode.GetAncestors().Contains(node.name)) return;
                 if (GUILayout.Button("child")) {
-                    Undo.RecordObject(_selectedRecipe, "Add Recipe Link");
-
-                    foreach (var ancestor in _linkingParentNode.ancestors.Where(ancestor => !node.ancestors.Contains(ancestor))) {
-                        node.ancestors.Add(ancestor);
+                    foreach (var ancestor in _linkingParentNode.GetAncestors().Where(ancestor => !node.GetAncestors().Contains(ancestor))) {
+                        node.AddAncestor(ancestor);
                     }
-                    
-                    node.ancestors.Add(_linkingParentNode.name);
-                    _linkingParentNode.children.Add(node.name);
+                    node.AddAncestor(_linkingParentNode.name);
+                    _linkingParentNode.AddChild(node.name);
                     _linkingParentNode = null;
                 }
             }

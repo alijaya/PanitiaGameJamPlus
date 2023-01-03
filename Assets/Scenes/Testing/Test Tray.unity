@@ -1328,7 +1328,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254931246}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3329b45b7d32c3545953f8d769d1039e, type: 3}
   m_Name: 
@@ -1764,7 +1764,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416379506}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2087563f2b9564d0c8b3bf9ae7a9e901, type: 3}
   m_Name: 
@@ -7864,6 +7864,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1472787176, guid: 18dd0a2d0ac03b74db60d8fc95eedb7c, type: 3}
+      propertyPath: recipe
+      value: 
+      objectReference: {fileID: 11400000, guid: 67d3a42765394794d8eb9d0d60331608, type: 2}
     - target: {fileID: 1755499942, guid: 18dd0a2d0ac03b74db60d8fc95eedb7c, type: 3}
       propertyPath: m_IsActive
       value: 1
