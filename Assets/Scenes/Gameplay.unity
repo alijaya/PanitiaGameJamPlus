@@ -968,7 +968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoStart: 0
-  waveSequence: {fileID: 11400000, guid: 6e50fa821a33646f4b8bda7c6862d65b, type: 2}
+  waveSequence: {fileID: 11400000, guid: 31f7717f6f4564cf8b9169ab0a2071f9, type: 2}
   timeLeftVariable: {fileID: 11400000, guid: 1809e5ed8f1668c4c8e5d31e8dee42e6, type: 2}
   shiftDuration: 90
   onShiftEnd:
@@ -2723,6 +2723,34 @@ PrefabInstance:
     - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
       propertyPath: managedReferences[1433981510732742659].Text
       value: del
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1042095539}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TryRemoveDish
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Core.Dish.Tray, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 403458255327236982, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
+      propertyPath: OnWordCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1246376770050158775, guid: 47325d3b39e2b4cfab93e0b1341915ce, type: 3}
       propertyPath: TextGenerator
