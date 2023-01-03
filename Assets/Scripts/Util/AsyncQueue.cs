@@ -40,7 +40,7 @@ public class AsyncQueue
         var lastTaskSource = new UniTaskCompletionSource();
         lastTask = lastTaskSource.Task;
 
-        // should not have error here
+        // should not have error here, always wait until completion
         await curTask;
 
         try
