@@ -29,11 +29,17 @@ namespace Core.Dish {
                 _receiver = GetComponentInParent<IngredientReceiver>();
             }
             _isBaseIngredient = _receiver.IsBaseIngredient(ingredientItem);
+            _receiver.RegisterAdder(this);
         }
 
         private void OnEnable()
         {
             RefreshUI();
+        }
+
+        private void OnDestroy()
+        {
+            _receiver.UnregisterAdder(this);
         }
 
         private void Start() {

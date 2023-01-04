@@ -19,15 +19,12 @@ namespace Core.Dish {
         private readonly Dictionary<DishPicker, KeyValuePair<DishProcessSO,CustomTimer>> _runningProcesses = new ();
 
         private readonly Queue<DishPicker> _pendingProcesses = new();
-        
-        private IngredientAdder[] _adders;
 
-        private void Awake() {
-            _adders = GetComponentsInChildren<IngredientAdder>();
+        private void OnEnable() {
             RestaurantManager.I.OnPossibleDishesUpdated += CheckIngredients;
         }
 
-        private void OnDestroy() {
+        private void OnDisable() {
             RestaurantManager.I.OnPossibleDishesUpdated -= CheckIngredients;
         }
 
