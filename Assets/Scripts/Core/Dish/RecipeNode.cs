@@ -7,6 +7,7 @@ namespace Core.Dish {
     public class RecipeNode: ScriptableObject {
         [SerializeField] private IngredientItemSO input;
         [SerializeField] private TrayItemSO output;
+        [HideInInspector] [SerializeField] private DishItemSO finalDish;
         [HideInInspector] [FormerlySerializedAs("_children")] [SerializeField] private List<string> children = new ();
         [HideInInspector] [FormerlySerializedAs("_ancestors")] [SerializeField] private List<string> ancestors = new();
         
@@ -14,7 +15,7 @@ namespace Core.Dish {
 
         public IngredientItemSO GetInput() => input;
         public TrayItemSO GetOutput() => output;
-
+        public DishItemSO GetFinalDish() => finalDish;
         public Rect GetRect() => rect;
 
         public bool IsOutputNode() {
@@ -66,6 +67,18 @@ namespace Core.Dish {
             if (output == newOutput) return;
             Undo.RecordObject(this, "Update Output");
             output = newOutput;
+
+            if (output is DishItemSO dishItem) {
+                finalDish = dishItem;
+            }
+            
+            EditorUtility.SetDirty(this);
+        }
+
+        public void SetFinalDish(DishItemSO newFinalDish) {
+            if (finalDish == newFinalDish) return;
+            Undo.RecordObject(this, "Update Final Dish");
+            finalDish = newFinalDish;
             EditorUtility.SetDirty(this);
         }
 

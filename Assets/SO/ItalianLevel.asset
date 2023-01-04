@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81e8961e47a4c27a165d87eaa551885, type: 3}
+  m_Name: ItalianLevel
+  m_EditorClassIdentifier: 
+  progressions:
+  - traySize: 3
+    possibleDish:
+    - {fileID: 11400000, guid: 5d53dea4c3f86e84482b4fb983c213f5, type: 2}
+    goalThreshold: 
+    shiftDuration: 90
+  - traySize: 3
+    possibleDish:
+    - {fileID: 11400000, guid: 5d53dea4c3f86e84482b4fb983c213f5, type: 2}
+    - {fileID: 11400000, guid: 7ea7789fbd143454e91352832bcc30e6, type: 2}
+    goalThreshold: 
+    shiftDuration: 90
+  - traySize: 3
+    possibleDish:
+    - {fileID: 11400000, guid: 5d53dea4c3f86e84482b4fb983c213f5, type: 2}
+    - {fileID: 11400000, guid: 7ea7789fbd143454e91352832bcc30e6, type: 2}
+    - {fileID: 11400000, guid: 2d233090b33db2248abeb312a047b45e, type: 2}
+    goalThreshold: 
+    shiftDuration: 90
+  - traySize: 3
+    possibleDish:
+    - {fileID: 11400000, guid: 5d53dea4c3f86e84482b4fb983c213f5, type: 2}
+    - {fileID: 11400000, guid: 7ea7789fbd143454e91352832bcc30e6, type: 2}
+    - {fileID: 11400000, guid: 2d233090b33db2248abeb312a047b45e, type: 2}
+    - {fileID: 11400000, guid: cb0fd4bb4e8fab640a79f19f8f6b7a63, type: 2}
+    goalThreshold: 
+    shiftDuration: 90

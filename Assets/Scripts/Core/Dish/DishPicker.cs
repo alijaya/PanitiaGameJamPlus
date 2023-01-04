@@ -1,4 +1,5 @@
-
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Sirenix.OdinInspector;
@@ -17,6 +18,15 @@ namespace Core.Dish {
 
         protected void Awake() {
             itemUI = GetComponentInChildren<TrayItemUI>();
+            if (dishItem) RestaurantManager.I.OnPossibleDishesUpdated += SetActivePossibleDish;
+        }
+
+        protected void OnDestroy() {
+            if (dishItem) RestaurantManager.I.OnPossibleDishesUpdated -= SetActivePossibleDish;
+        }
+
+        private void SetActivePossibleDish(List<DishItemSO> possibleDishes) {
+            gameObject.SetActive(possibleDishes.Contains(dishItem));
         }
 
         private void OnEnable()

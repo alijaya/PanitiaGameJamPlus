@@ -8,21 +8,41 @@ namespace Core.Dish {
     [CreateAssetMenu(fileName = "New Dish Recipe", menuName = "Dish/Recipe", order = 0)]
     public class DishRecipeSO : ScriptableObject, ISerializationCallbackReceiver {
         [SerializeField] private List<RecipeNode> nodes = new();
-        //private readonly Dictionary<RecipeNode, IEnumerable<RecipeNode>> _childrenLookup = new();
         private readonly Dictionary<string, RecipeNode> _nodeLookup = new();
+        private readonly Dictionary<DishItemSO, HashSet<IngredientItemSO>> _finalDishIngredientsLookup = new();
 
         public IEnumerable<IngredientItemSO> GetBaseIngredients() {
             return GetAllNodes().Where(x => x.GetAncestors().Count == 0).Select(x => x.GetInput());
         }
 
+        private IEnumerable<IngredientItemSO> GetIngredients(RecipeNode finalNode) {
+            return finalNode.GetAncestors().Where(ancestor => _nodeLookup.ContainsKey(ancestor)).Select(ancestor => _nodeLookup[ancestor].GetInput());
+        }
+
+        public IEnumerable<IngredientItemSO> GetPossibleIngredients(IEnumerable<DishItemSO> possibleDishes) {
+            var possibleIngredients = new HashSet<IngredientItemSO>();
+            foreach (var possibleDish in possibleDishes) {
+                if (!_finalDishIngredientsLookup.ContainsKey(possibleDish)) continue;
+                possibleIngredients.UnionWith(_finalDishIngredientsLookup[possibleDish]);
+            }
+
+            return possibleIngredients;
+        }
         #region Nodes
 
         private void OnValidate() {
             _nodeLookup.Clear();
+            _finalDishIngredientsLookup.Clear();
             foreach (var node in GetAllNodes()) {
                 _nodeLookup[node.name] = node;
-                //_childrenLookup[node] = nodes.Where(x => node.GetChildren().Contains(x.name));
+
+                if (node.GetFinalDish()) {
+                    var ingredients = GetIngredients(node).ToHashSet();
+                    ingredients.Add(node.GetInput());
+                    _finalDishIngredientsLookup[node.GetFinalDish()] = ingredients;
+                }
             }
+            
         }
 
         public IEnumerable<RecipeNode> GetAllNodes() {

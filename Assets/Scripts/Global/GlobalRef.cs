@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core.LevelManagement;
 using UnityEngine;
 using UnityAtoms.BaseAtoms;
 using Eflatun.SceneReference;
@@ -17,8 +18,12 @@ public class GlobalRef : SingletonSO<GlobalRef>
     public GameObjectValueList PrevHighlightedWords;
 
     public SceneReference Scene_MainMenu;
+    public SceneReference Scene_LevelSelection;
     public SceneReference Scene_Gameplay;
+    public SceneReference Scene_GameplayTesting;
     public SceneReference Scene_Report;
+
+    public LevelProgression LevelProgression;
 
     public AudioClip BGM_MainMenu;
     public AudioClip BGM_Gameplay;
@@ -55,9 +60,18 @@ public class GlobalRef : SingletonSO<GlobalRef>
         SceneManager.LoadScene(Scene_MainMenu.Name);
     }
 
+    public void GoToScene_LevelSelection() {
+        SceneManager.LoadScene(Scene_LevelSelection.Name);
+    }
+
     public void GoToScene_Gameplay()
     {
         SceneManager.LoadScene(Scene_Gameplay.Name);
+    }
+
+    public void GoToScene_Gameplay(int level) {
+        LevelProgression.SetLevel(level);
+        SceneManager.LoadScene(Scene_GameplayTesting.Name);
     }
 
     public void GoToScene_Report()

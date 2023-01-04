@@ -442,6 +442,22 @@ MonoBehaviour:
   onDishAvailable:
     m_PersistentCalls:
       m_Calls: []
+  onIncludedPossibleDish:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5624367058956198509}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  itemUI2: {fileID: 0}
   stackSize: 4
 --- !u!1001 &4037140634953714715
 PrefabInstance:
@@ -541,6 +557,14 @@ PrefabInstance:
     - target: {fileID: 3961943111589265302, guid: cf8770a97051b7447aa311363b28e1ac, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550778301622818574, guid: cf8770a97051b7447aa311363b28e1ac, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550778301622818574, guid: cf8770a97051b7447aa311363b28e1ac, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 5950695266418180153, guid: cf8770a97051b7447aa311363b28e1ac, type: 3}
       propertyPath: m_Sprite

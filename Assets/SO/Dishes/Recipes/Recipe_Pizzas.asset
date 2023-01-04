@@ -40,6 +40,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: bb0f4263ae787dd49b9c5ccfd7261106, type: 2}
   output: {fileID: 11400000, guid: 3e5dd0ce7df17ce43ae4e94e761a38a2, type: 2}
+  finalDish: {fileID: 11400000, guid: 7ea7789fbd143454e91352832bcc30e6, type: 2}
   children: []
   ancestors:
   - 771bd88a-b5e0-465c-b1a0-5e134542cce7
@@ -65,6 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: e0ea911b08d364544b523502ce640e8c, type: 2}
   output: {fileID: 0}
+  finalDish: {fileID: 0}
   children:
   - 08fd11c1-66ca-4892-bb0b-aec0d0b58dc7
   ancestors:
@@ -130,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: b0ba8eab550d66c4aa59bb2b57471bc7, type: 2}
   output: {fileID: 0}
+  finalDish: {fileID: 0}
   children:
   - 771bd88a-b5e0-465c-b1a0-5e134542cce7
   ancestors: []
@@ -153,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: ea2bed0861ec2764390d3e47f4525043, type: 2}
   output: {fileID: 11400000, guid: 75c060e820477b84baf76a355c89fe87, type: 2}
+  finalDish: {fileID: 11400000, guid: 5d53dea4c3f86e84482b4fb983c213f5, type: 2}
   children: []
   ancestors:
   - 771bd88a-b5e0-465c-b1a0-5e134542cce7
@@ -178,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 1d5fd013a3890e34c9ec835292aa7567, type: 2}
   output: {fileID: 0}
+  finalDish: {fileID: 0}
   children:
   - 82634ea2-9db7-41a9-a053-36f8bef0ac45
   - 963de9d8-0850-40f7-aded-b3f7b2c70eea
@@ -186,8 +191,8 @@ MonoBehaviour:
   - 771bd88a-b5e0-465c-b1a0-5e134542cce7
   rect:
     serializedVersion: 2
-    x: 772
-    y: 207
+    x: 777
+    y: 203
     width: 200
     height: 100
 --- !u!114 &7642444334118602200

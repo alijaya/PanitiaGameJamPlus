@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;  
 using UnityEngine;
@@ -7,7 +8,6 @@ using Sirenix.OdinInspector;
 namespace Core.Dish {
     public class IngredientAdder : MonoBehaviour {
         [SerializeField] private IngredientItemSO ingredientItem;
-
         [SerializeField] private UnityEvent<IngredientItemSO> onIngredientAdded;
 
         [SerializeField] private UnityEvent onRecipeAvailable;
@@ -29,20 +29,11 @@ namespace Core.Dish {
                 _receiver = GetComponentInParent<IngredientReceiver>();
             }
             _isBaseIngredient = _receiver.IsBaseIngredient(ingredientItem);
-            if (!_isBaseIngredient && _receiver is RecipeChecker checker) {
-                checker.ValidateRecipe += OnValidateRecipe;
-            }
         }
 
         private void OnEnable()
         {
             RefreshUI();
-        }
-
-        private void OnDestroy() {
-            if (!_isBaseIngredient && _receiver is RecipeChecker checker) {
-                checker.ValidateRecipe += OnValidateRecipe;
-            }
         }
 
         private void Start() {
@@ -51,12 +42,13 @@ namespace Core.Dish {
             }
         }
 
-        private void OnValidateRecipe(IEnumerable<IngredientItemSO> ingredients) {
-            if (!ingredients.Contains(ingredientItem)) {
-                onRecipeNotAvailable?.Invoke();
+        public void ValidateRecipe(IEnumerable<IngredientItemSO> ingredients) {
+            if (_isBaseIngredient) return;
+            if (ingredients.Contains(ingredientItem)) {
+                onRecipeAvailable?.Invoke();
             }
             else {
-                onRecipeAvailable?.Invoke();
+                onRecipeNotAvailable?.Invoke();
             }
         }
 
@@ -84,5 +76,7 @@ namespace Core.Dish {
                 itemUI2.Setup(ingredientItem);
             }
         }
+        public IngredientItemSO GetIngredient() => ingredientItem;
+
     }
 }
