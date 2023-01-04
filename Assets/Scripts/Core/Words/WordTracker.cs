@@ -123,6 +123,11 @@ namespace Core.Words
             return _wordList.All(wo => wo.Text[0] != word[0]);
         }
 
+        public bool IsWordValid(string word)
+        {
+            return _wordList.All(wo => !wo.Text.StartsWith(word) && !word.StartsWith(wo.Text));
+        }
+
         public void NotifyMatch(WordObject wordObject)
         {
             _matched.Add(wordObject);
