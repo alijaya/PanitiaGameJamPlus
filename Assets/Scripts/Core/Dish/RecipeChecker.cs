@@ -38,7 +38,6 @@ namespace Core.Dish {
         }
 
         public override bool IsBaseIngredient(IngredientItemSO ingredientItem) {
-            //Debug.Log(String.Join(", ", recipe.GetBaseIngredients()));
             return recipe.GetBaseIngredients().Contains(ingredientItem);
         }
 
@@ -81,12 +80,11 @@ namespace Core.Dish {
 
         private void CheckIngredients(List<DishItemSO> possibleDish) {
             var possibleIngredients = recipe.GetPossibleIngredients(possibleDish).ToArray();
-            Debug.Log(String.Join(", ", recipe.GetPossibleIngredients(possibleDish)));
 
             // TODO: Disable for now
-            //foreach (var adder in _adders) {
-            //    adder.gameObject.SetActive(possibleIngredients.Contains(adder.GetIngredient()));
-            //}
+            foreach (var adder in _adders) {
+                adder.gameObject.SetActive(possibleIngredients.Contains(adder.GetIngredient()));
+            }
         }
 
         private void ValidateRecipe() {
