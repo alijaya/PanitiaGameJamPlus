@@ -2,7 +2,7 @@ using Core.Dish;
 using UnityEngine;
 
 namespace Core.LevelManagement {
-    [CreateAssetMenu(fileName = "Level", menuName = "Level Management/Level", order = 0)]
+    [CreateAssetMenu(fileName = "New Level Progression", menuName = "Level Management/LevelProgression", order = 0)]
     public class LevelProgression : ScriptableObject {
         [SerializeField] private Level[] progressions;
 
@@ -18,14 +18,6 @@ namespace Core.LevelManagement {
 
         public void SetLevel(int level) {
             _currentLevel = level;
-        }
-
-        [System.Serializable]
-        public class Level {
-            public int traySize;
-            public DishItemSO[] possibleDish;
-            public int[] goalThreshold;
-            public float shiftDuration;
         }
     }
 }

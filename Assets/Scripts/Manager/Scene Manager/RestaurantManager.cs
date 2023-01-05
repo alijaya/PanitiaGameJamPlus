@@ -3,20 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Core.LevelManagement;
 using UnityAtoms.BaseAtoms;
 using UnityEngine.Events;
 
-public class RestaurantManager : SingletonSceneMB<RestaurantManager>
-{
+public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
     public Transform door;
-
-    public List<Core.Dish.DishItemSO> possibleDishes;
-
+    public Level currentLevel;
+    
+    [SerializeReference]
+    public Core.Words.Generator.ITextGenerator defaultGenerator;
     public UnityEvent OnCashierTriggered;
-    //public UnityEvent<List<Core.Dish.DishItemSO>> onPossibleDishesUpdated;
-
     public event Action<List<Core.Dish.DishItemSO>> OnPossibleDishesUpdated;
-
+    
+    private List<Core.Dish.DishItemSO> _possibleDishes;
     protected override void SingletonAwakened()
     {
         GlobalRef.I.CleanUpWords();
@@ -28,30 +28,39 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager>
         GlobalRef.I.totalCustomerServed.Value = 0;
         GlobalRef.I.PlayBGM_Gameplay();
         WaveManager.I.StartWave();
-        UpdatePossibleDishes(GlobalRef.I.LevelProgression.GetCurrentLevel().possibleDish);
+        SetupLevel();
     }
-
     public List<Core.Dish.DishItemSO> GenerateDishes(int count)
     {
         List<Core.Dish.DishItemSO> result = new();
-        for (var i = 0; i < count; i++) result.Add(possibleDishes.GetRandom());
+        for (var i = 0; i < count; i++) result.Add(_possibleDishes.GetRandom());
         return result;
     }
-
-    public void UpdatePossibleDishes(IEnumerable<Core.Dish.DishItemSO> newPossibleDishes) {
-        possibleDishes = newPossibleDishes.ToList();
-        OnPossibleDishesUpdated?.Invoke(possibleDishes);
+    private void UpdatePossibleDishes(IEnumerable<Core.Dish.DishItemSO> newPossibleDishes) {
+        _possibleDishes = newPossibleDishes.ToList();
+        OnPossibleDishesUpdated?.Invoke(_possibleDishes);
     }
-
     public void TriggerCashier()
     {
         OnCashierTriggered?.Invoke();
     }
 
-    private void OnValidate() {
-        OnPossibleDishesUpdated?.Invoke(possibleDishes);
+    private void SetupLevel() {
+        if (currentLevel == null) return;
+        UpdatePossibleDishes(currentLevel.possibleDish);
+        // setup tray slot
+        // setup shift duration
+        // setup goal threshold
     }
 
+    private void SetupNewLevel(Level newLevel) {
+        currentLevel = newLevel;
+        SetupLevel();
+    }
+    
+    private void OnValidate() {
+        SetupLevel();
+    }
     private void Update() {
         // Testing to move to level selection scene 
         if (Input.GetKeyDown(KeyCode.Escape)) {
