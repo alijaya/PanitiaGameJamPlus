@@ -51,6 +51,24 @@ namespace Core.Dish {
         public IEnumerable<RecipeNode> GetAllChildren(RecipeNode parentNode) {
             return from childID in parentNode.GetChildren() where _nodeLookup.ContainsKey(childID) select _nodeLookup[childID];
         }
+
+        public IEnumerable<RecipeNode> GetAllChildren(string parentID) {
+            return _nodeLookup.ContainsKey(parentID) ? GetAllChildren(_nodeLookup[parentID]) : null;
+        }
+
+        public IEnumerable<RecipeNode> GetAllAncestors(string childID) {
+            var ancestors = new HashSet<RecipeNode>();
+            foreach (var node in GetAllNodes()) {
+                if (node.GetChildren().Contains(childID)) {
+                    foreach (var nodeAncestor in node.GetAncestors()) {
+                        ancestors.Add(_nodeLookup[nodeAncestor]);
+                    }
+                }
+            }
+
+            return ancestors;
+        }
+
         public RecipeNode GetBaseNode(IngredientItemSO baseIngredient) {
             return GetAllNodes().FirstOrDefault(x => x.GetAncestors().Count == 0 && x.GetInput() == baseIngredient);
         }
@@ -67,10 +85,12 @@ namespace Core.Dish {
 
         public void DeleteNode(RecipeNode nodeToDelete) {
             Undo.RecordObject(this, "Deleted Recipe Node");
+            CleanAncestor(nodeToDelete);
             nodes.Remove(nodeToDelete);
             
             OnValidate();
             CleanChildren(nodeToDelete);
+            
             Undo.DestroyObjectImmediate(nodeToDelete);
         }
 
@@ -97,6 +117,21 @@ namespace Core.Dish {
         private void CleanChildren(RecipeNode deletedNode) {
             foreach (var node in GetAllNodes()) {
                 node.RemoveChild(deletedNode.name);
+            }
+        }
+
+        private void CleanAncestor(RecipeNode deletedNode) {
+            var ancestors = new List<string>();
+            ancestors.AddRange(deletedNode.GetAncestors());
+
+            foreach (var node in GetAllNodes()) {
+                var remainingAncestors = GetAllAncestors(deletedNode.name).Select(x => x.name).ToList();
+                foreach (var ancestorID in ancestors) {
+                    if (remainingAncestors.Contains(ancestorID)) continue;
+                    node.RemoveAncestor(ancestorID);
+                }
+                
+                node.RemoveAncestor(deletedNode.name);
             }
         }
         

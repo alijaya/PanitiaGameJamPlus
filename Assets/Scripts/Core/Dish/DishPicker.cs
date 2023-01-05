@@ -41,6 +41,12 @@ namespace Core.Dish {
             RefreshUI();
         }
 
+        public void SetupDish(TrayItemSO trayItem) {
+            if (trayItem is DishItemSO dishItem) {
+                SetupDish(dishItem);
+            }
+        }
+
         public bool HasDish() {
             return dishItem != null;
         }

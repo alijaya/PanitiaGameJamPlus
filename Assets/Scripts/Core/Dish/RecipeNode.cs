@@ -8,8 +8,8 @@ namespace Core.Dish {
         [SerializeField] private IngredientItemSO input;
         [SerializeField] private TrayItemSO output;
         [HideInInspector] [SerializeField] private DishItemSO finalDish;
-        [HideInInspector] [FormerlySerializedAs("_children")] [SerializeField] private List<string> children = new ();
-        [HideInInspector] [FormerlySerializedAs("_ancestors")] [SerializeField] private List<string> ancestors = new();
+        [FormerlySerializedAs("_children")] [SerializeField] private List<string> children = new ();
+        [FormerlySerializedAs("_ancestors")] [SerializeField] private List<string> ancestors = new();
         
         [HideInInspector] [FormerlySerializedAs("_rect")] [SerializeField] private Rect rect = new (0,0, 200,100);
 
@@ -33,15 +33,16 @@ namespace Core.Dish {
         }
 
         public void AddAncestor(string ancestorID) {
+            if (ancestors.Contains(ancestorID)) return;
             Undo.RecordObject(this, "Add Recipe Link");
             ancestors.Add(ancestorID);
             EditorUtility.SetDirty(this);
         }
 
         public void AddAncestor(IEnumerable<string> ancestorIDs) {
-            Undo.RecordObject(this, "Add Recipe Link");
-            ancestors.AddRange(ancestorIDs);
-            EditorUtility.SetDirty(this);
+            foreach (var ancestorID in ancestorIDs) {
+                AddAncestor(ancestorID);
+            }
         }
 
         public void RemoveChild(string childID) {

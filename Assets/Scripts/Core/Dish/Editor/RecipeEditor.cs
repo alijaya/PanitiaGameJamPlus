@@ -198,6 +198,14 @@ namespace Core.Dish.Editor {
                 if (GUILayout.Button("unlink")) {
                     node.RemoveAncestor(_linkingParentNode.name);
                     _linkingParentNode.RemoveChild(node.name);
+
+                    var remainingAncestors = _selectedRecipe.GetAllAncestors(node.name).Select(x => x.name).ToList();
+                    
+                    foreach (var ancestor in _linkingParentNode.GetAncestors()) {
+                        if (remainingAncestors.Contains(ancestor))continue;
+                        node.RemoveAncestor(ancestor);
+                    }
+
                     _linkingParentNode = null;
                 }
             }
@@ -205,10 +213,14 @@ namespace Core.Dish.Editor {
                 if (node.GetChildren().Contains(_linkingParentNode.name)) return;
                 if (_linkingParentNode.GetAncestors().Contains(node.name)) return;
                 if (GUILayout.Button("child")) {
-                    foreach (var ancestor in _linkingParentNode.GetAncestors().Where(ancestor => !node.GetAncestors().Contains(ancestor))) {
-                        node.AddAncestor(ancestor);
+                    var ancestorsToAdd = _linkingParentNode.GetAncestors()
+                        .Where(ancestor => !node.GetAncestors().Contains(ancestor)).ToList();
+                    ancestorsToAdd.Add(_linkingParentNode.name);
+                    node.AddAncestor(ancestorsToAdd);
+                    foreach (var childNode in _selectedRecipe.GetAllChildren(node)) {
+                        childNode.AddAncestor(ancestorsToAdd);
                     }
-                    node.AddAncestor(_linkingParentNode.name);
+
                     _linkingParentNode.AddChild(node.name);
                     _linkingParentNode = null;
                 }
