@@ -1,16 +1,14 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Core.LevelManagement;
-using UnityAtoms.BaseAtoms;
 using UnityEngine.Events;
 
 public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
     public Transform door;
     public Level currentLevel;
-    
+
     [SerializeReference]
     public Core.Words.Generator.ITextGenerator defaultGenerator;
     public UnityEvent OnCashierTriggered;

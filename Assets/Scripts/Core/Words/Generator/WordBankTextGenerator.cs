@@ -6,16 +6,36 @@ namespace Core.Words.Generator
 {
     public class WordBankTextGenerator : ITextGenerator
     {
+        public static int tryCount = 10;
+
         public WordBankSO WordBank;
 
         public string Generate()
         {
-            return WordBank.GetRandom();
+            string word;
+
+            for (var i = 0; i < tryCount; i++)
+            {
+                word = WordBank.GetRandom();
+                if (WordTracker.I.IsWordValid(word)) return word;
+            }
+
+            // could not do anything
+            return null;
         }
 
         public string Generate(float difficulty)
         {
-            return WordBank.GetRandomByDifficulty(difficulty);
+            string word;
+
+            for (var i = 0; i < tryCount; i++)
+            {
+                word = WordBank.GetRandomByDifficulty(difficulty);
+                if (WordTracker.I.IsWordValid(word)) return word;
+            }
+
+            // could not do anything
+            return null;
         }
     }
 }

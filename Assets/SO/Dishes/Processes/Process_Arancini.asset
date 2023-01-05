@@ -15,6 +15,6 @@ MonoBehaviour:
   ingredientInput: {fileID: 11400000, guid: b8798a95887c3a745ac6e2a7ef136f31, type: 2}
   stages:
   - output: {fileID: 11400000, guid: 2d233090b33db2248abeb312a047b45e, type: 2}
-    timeToProcess: 6
+    timeToProcess: 2
   - output: {fileID: 11400000, guid: da5fe66d4f7fd3d4a97900f7636bb1b9, type: 2}
-    timeToProcess: 5
+    timeToProcess: 4

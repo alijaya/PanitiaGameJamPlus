@@ -197,17 +197,7 @@ public class CustomerGroup : MonoBehaviour
         await FindCashier(ct);
 
         // arriving at cashier
-        //task = customerUI.RequestCome(this, cashier.serveLocation, ct);
-        PlayCountdown();
-        state = CustomerState.Pay;
-        customerUI.ShowPay();
-        //await task;
-        await RestaurantManager.I.OnCashierTriggered.ToUniTask(ct);
-        customerUI.HidePay();
-
-        // done, leave, don't need to await
-        //Debug.Log("happy");
-        LeaveBehavior(this.GetCancellationTokenOnDestroy()).Forget();
+        await PayBehavior(ct);
     }
 
     private async UniTask FindSeat(CancellationToken ct)
@@ -332,17 +322,7 @@ public class CustomerGroup : MonoBehaviour
         await task;
 
         // no eating, directly paying
-        //task = customerUI.RequestCome(this, cashier.serveLocation, ct);
-        PlayCountdown();
-        state = CustomerState.Pay;
-        customerUI.ShowPay();
-        //await task;
-        await RestaurantManager.I.OnCashierTriggered.ToUniTask(ct);
-        customerUI.HidePay();
-
-        // done, leave, don't need to await
-        //Debug.Log("happy");
-        LeaveBehavior(this.GetCancellationTokenOnDestroy()).Forget();
+        await PayBehavior(ct);
     }
 
     private async UniTask FindCashier(CancellationToken ct)
@@ -388,17 +368,17 @@ public class CustomerGroup : MonoBehaviour
 
     private async UniTask<Cashier> WaitUntilGetAvailableCashier(CancellationToken ct)
     {
+        // check udah paling depan belum
+        // check ada kasir lain kosong ga
+        // check berubah ga nomor antriannya
+        // kalau ga artinya blom ada yang berubah, well nunggu ada kasir kelar
         while (true)
         {
+            var lastQueueNumber = queueNumber;
             queueNumber = cashier.QueueCustomerGroup(this);
             if (queueNumber == 0)
             {
                 return cashier;
-            } else
-            {
-                // maju
-                var position = cashier.queueLocations[queueNumber];
-                await firstCustomer.GoToPOI(position, ct);
             }
 
             Cashier availableCashier;
@@ -406,24 +386,43 @@ public class CustomerGroup : MonoBehaviour
             // mungkin ada cashier lain yang langsung kosong?
             availableCashier = CashierManager.I.GetAvailableCashier();
 
+            if (availableCashier)
+            {
+                cashier.UnqueueCustomerGroup(this);
+                cashier = availableCashier;
+                queueNumber = cashier.QueueCustomerGroup(this);
+                return availableCashier;
+            }
+
+            // kalau bisa maju
+            if (lastQueueNumber != queueNumber)
+            {
+                var position = cashier.queueLocations[queueNumber];
+                await firstCustomer.GoToPOI(position, ct);
+                continue;
+            }
+
             if (!availableCashier)
             {
                 // kalau bener2 nggak ada, baru nunggu
-                availableCashier = (await CashierManager.I.OnCashierUnqueued.ToUniTask(ct)).Item1;
+                await CashierManager.I.OnCashierUnqueued.ToUniTask(ct);
+                continue;
             }
 
-            if (availableCashier != cashier)
-            {
-                // if it's different cashier, check if we could occupy this
-                if (availableCashier.CouldOccupy())
-                {
-                    cashier.UnqueueCustomerGroup(this);
-                    cashier = availableCashier;
-                    cashier.QueueCustomerGroup(this);
-                    return availableCashier;
-                }
-            }
         }
+    }
+
+    private async UniTask PayBehavior(CancellationToken ct)
+    {
+        PlayCountdown();
+        state = CustomerState.Pay;
+        customerUI.ShowPay();
+        await RestaurantManager.I.OnCashierTriggered.ToUniTask(ct);
+        customerUI.HidePay();
+
+        // done, leave, don't need to await
+        //Debug.Log("happy");
+        LeaveBehavior(this.GetCancellationTokenOnDestroy()).Forget();
     }
 
     private async UniTask LeaveBehavior(CancellationToken ct)

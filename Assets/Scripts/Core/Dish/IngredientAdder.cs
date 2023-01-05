@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;  
 using UnityEngine;
 using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 namespace Core.Dish {
     public class IngredientAdder : MonoBehaviour {
@@ -12,12 +13,33 @@ namespace Core.Dish {
         [SerializeField] private UnityEvent onRecipeAvailable;
         [SerializeField] private UnityEvent onRecipeNotAvailable;
 
-        private IIngredientReceiver _receiver;
+        public IngredientReceiver receiver;
+
+        private IngredientReceiver _receiver;
         private bool _isBaseIngredient;
 
+        public TrayItemUI2 itemUI2;
+
         private void Awake() {
-            _receiver = GetComponentInParent<IIngredientReceiver>();
+            if (receiver != null)
+            {
+                _receiver = receiver;
+            } else
+            {
+                _receiver = GetComponentInParent<IngredientReceiver>();
+            }
             _isBaseIngredient = _receiver.IsBaseIngredient(ingredientItem);
+            _receiver.RegisterAdder(this);
+        }
+
+        private void OnEnable()
+        {
+            RefreshUI();
+        }
+
+        private void OnDestroy()
+        {
+            _receiver.UnregisterAdder(this);
         }
 
         private void Start() {
@@ -40,14 +62,27 @@ namespace Core.Dish {
             _receiver.AddIngredient(ingredientItem);
         }
 
-        public IngredientItemSO GetIngredient() => ingredientItem;
+        //private void OnValidate() {
+        //    if (ingredientItem) {
+        //        name = ingredientItem.GetItemName() == "" ? ingredientItem.name : ingredientItem.GetItemName();
+        //        GetComponentInChildren<TrayItemUI>().Setup(ingredientItem);
+        //    }
+        //}
 
-        private void OnValidate() {
-            if (ingredientItem) {
-                name = ingredientItem.GetItemName() == "" ? ingredientItem.name : ingredientItem.GetItemName();
-                GetComponentInChildren<TrayItemUI>().Setup(ingredientItem);
+        [Button]
+        protected void RefreshUI()
+        {
+            if (ingredientItem)
+            {
+                name = ingredientItem.GetItemName();
+            }
+
+            if (itemUI2)
+            {
+                itemUI2.Setup(ingredientItem);
             }
         }
+        public IngredientItemSO GetIngredient() => ingredientItem;
 
     }
 }

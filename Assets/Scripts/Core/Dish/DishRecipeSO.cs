@@ -117,6 +117,16 @@ namespace Core.Dish {
         private void CleanChildren(RecipeNode deletedNode) {
             foreach (var node in GetAllNodes()) {
                 node.RemoveChild(deletedNode.name);
+                node.ClearAncestor();
+            }
+
+            // rebuild Ancestor
+            foreach (var node in GetAllNodes()) {
+                if (node == deletedNode) continue;
+                foreach (var child in GetAllChildren(node)) {
+                    if (child == deletedNode) continue;
+                    child.AddAncestor(node.name);
+                }
             }
         }
 

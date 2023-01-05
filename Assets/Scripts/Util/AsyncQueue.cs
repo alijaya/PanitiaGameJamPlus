@@ -7,39 +7,26 @@ using System;
 
 public class AsyncQueue
 {
+    private UniTask lastTask = UniTask.CompletedTask;
 
-    private int queueHeadIndex = 0;
-    private int queueTailIndex = 0;
-
-    //private AsyncLazy lastTask;
-
-    public async UniTask Queue(Func<UniTask> task, CancellationToken ct = default)
+    // can not cancel ._.
+    public async UniTask Queue(Func<UniTask> task)
     {
-        // get the waiting number
-        var currentIndex = queueTailIndex++;
+        // push task
+        var curTask = lastTask;
+        var lastTaskSource = new UniTaskCompletionSource();
+        lastTask = lastTaskSource.Task;
 
-        // if queueHeadIndex is not currentIndex, it means it still processes another request
-        var cancel = await UniTask.WaitUntil(() => queueHeadIndex == currentIndex, PlayerLoopTiming.Update, ct).SuppressCancellationThrow(); // wait until we process this request
+        // should not have error here, always wait until completion
+        await curTask;
 
-        // actual stuff To Do
-        if (!cancel) await task().SuppressCancellationThrow();
-        queueHeadIndex++; // advance the process number
-
-        if (queueHeadIndex == queueTailIndex)
+        try
         {
-            // if this is the last task, well reset it, so we don't get big number
-            queueHeadIndex = 0;
-            queueTailIndex = 0;
+            await task();
+        } finally
+        {
+            lastTaskSource.TrySetResult();
         }
-
-        //try
-        //{
-        //    if (lastTask != null) await lastTask;
-        //} catch { }
-
-        //lastTask = UniTask.Lazy(task);
-
-        //await lastTask;
     }
 
 }

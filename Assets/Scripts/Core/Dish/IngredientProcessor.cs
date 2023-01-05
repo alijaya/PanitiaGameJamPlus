@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using Util;
 
 namespace Core.Dish {
-    public class IngredientProcessor : MonoBehaviour,IIngredientReceiver {
+    public class IngredientProcessor : IngredientReceiver {
         [SerializeField] private DishProcessSO[] processes;
         [SerializeField] private DishPicker[] collectorSlots;
         
@@ -19,15 +19,12 @@ namespace Core.Dish {
         private readonly Dictionary<DishPicker, KeyValuePair<DishProcessSO,CustomTimer>> _runningProcesses = new ();
 
         private readonly Queue<DishPicker> _pendingProcesses = new();
-        
-        private IngredientAdder[] _adders;
 
-        private void Awake() {
-            _adders = GetComponentsInChildren<IngredientAdder>();
+        private void OnEnable() {
             RestaurantManager.I.OnPossibleDishesUpdated += CheckIngredients;
         }
 
-        private void OnDestroy() {
+        private void OnDisable() {
             RestaurantManager.I.OnPossibleDishesUpdated -= CheckIngredients;
         }
 
@@ -56,16 +53,18 @@ namespace Core.Dish {
                 (dishProcessSo, new CustomTimer(stagesTime.ToArray()));
             _runningProcesses[collector].Value.Stop();
             _pendingProcesses.Enqueue(collector);
-            
-            collector.SetupDish(null);
-            collector.GetComponentInChildren<TrayItemUI>().Setup(dishProcessSo.GetInput());
+
+            //collector.SetupDish(null);
+            //collector.GetComponentInChildren<TrayItemUI>().Setup(dishProcessSo.GetInput());
+            collector.SetupPreview(dishProcessSo.GetInput());
         }
         public void ContinueProcess() {
             if (_pendingProcesses.TryDequeue(out var collector)) {
                 _runningProcesses[collector].Value.Continue();
             }
         }
-        public void AddIngredient(IngredientItemSO ingredientItem) {
+
+        public override void AddIngredient(IngredientItemSO ingredientItem) {
             var freeSlot = collectorSlots.FirstOrDefault(x => !_runningProcesses.ContainsKey(x));
             if (!freeSlot) {
                 Debug.LogWarning("No slot for this ingredient");
@@ -78,6 +77,9 @@ namespace Core.Dish {
             
             StartProcess(freeSlot,process);
             isSlotAvailable?.Invoke(IsSlotAvailable());
+
+            // Ali: kenapa di pending? kenapa ga langsung start?
+            ContinueProcess();
         }
         public void AddIngredient(TrayItemSO trayItem) {
             if (trayItem is IngredientItemSO ingredientItem) {
@@ -89,12 +91,14 @@ namespace Core.Dish {
             _runningProcesses.Remove(collector);
             isSlotAvailable?.Invoke(IsSlotAvailable());
         }
-        public bool IsBaseIngredient(IngredientItemSO ingredientItem) {
-            return processes.Any(x => x.GetInput() == ingredientItem);
-        }
-        
+
         private bool IsSlotAvailable() {
             return !collectorSlots.All(x => _runningProcesses.ContainsKey(x));
+        }
+
+        public override bool IsBaseIngredient(IngredientItemSO ingredientItem)
+        {
+            return processes.Any(x => x.GetInput() == ingredientItem);
         }
 
         private void CheckIngredients(List<DishItemSO> possibleDish) {

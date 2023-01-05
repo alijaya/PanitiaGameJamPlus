@@ -22,12 +22,10 @@ MonoBehaviour:
   foodDifficulty: {x: 1, y: 2}
   wordDifficulty: {x: 1, y: 1}
   TextGenerator:
-    rid: 1433981377566212108
+    rid: 1044190880895336559
   TextModifiers: []
   references:
     version: 2
     RefIds:
-    - rid: 1433981377566212108
-      type: {class: WordBankTextGenerator, ns: Core.Words.Generator, asm: Assembly-CSharp}
-      data:
-        WordBank: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
+    - rid: 1044190880895336559
+      type: {class: RestaurantTextGenerator, ns: Core.Words.Generator, asm: Assembly-CSharp}

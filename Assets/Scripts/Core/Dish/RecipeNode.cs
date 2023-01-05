@@ -32,6 +32,11 @@ namespace Core.Dish {
             EditorUtility.SetDirty(this);
         }
 
+        public void ClearAncestor() {
+            ancestors.Clear();
+            EditorUtility.SetDirty(this);
+        }
+
         public void AddAncestor(string ancestorID) {
             if (ancestors.Contains(ancestorID)) return;
             Undo.RecordObject(this, "Add Recipe Link");

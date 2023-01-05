@@ -57,6 +57,14 @@ namespace Core.Dish {
             }
         }
 
+        public void AddDish(TrayItemSO trayItem)
+        {
+            if (trayItem is DishItemSO dishItem)
+            {
+                AddDish(dishItem);
+            }
+        }
+
         //public void AddIngredientToTray(IEnumerable<IngredientItemSO> ingredientItem) {
         //    var slot = _traySlots.First(slot => slot.GetDish() == null);
         //    slot.ShowIngredients(ingredientItem.ToArray());

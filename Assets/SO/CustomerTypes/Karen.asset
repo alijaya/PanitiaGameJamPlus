@@ -22,16 +22,14 @@ MonoBehaviour:
   foodDifficulty: {x: 2, y: 2}
   wordDifficulty: {x: 1.5, y: 1.5}
   TextGenerator:
-    rid: 1433981377566212103
+    rid: 1044190880895336557
   TextModifiers:
   - rid: 1433981377566212104
   references:
     version: 2
     RefIds:
-    - rid: 1433981377566212103
-      type: {class: WordBankTextGenerator, ns: Core.Words.Generator, asm: Assembly-CSharp}
-      data:
-        WordBank: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
+    - rid: 1044190880895336557
+      type: {class: RestaurantTextGenerator, ns: Core.Words.Generator, asm: Assembly-CSharp}
     - rid: 1433981377566212104
       type: {class: ChangeCaseTextModifier, ns: Core.Words.Modifier, asm: Assembly-CSharp}
       data:

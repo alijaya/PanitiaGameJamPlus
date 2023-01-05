@@ -7,8 +7,8 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace Core.Dish {
-    public class RecipeChecker : MonoBehaviour,IIngredientReceiver {
-        [SerializeField] private DishRecipeSO recipe;
+    public class RecipeChecker : IngredientReceiver {
+        public DishRecipeSO recipe;
         public UnityEvent onRecipeStarted;
 
         public UniTaskFunc completeCheck;
@@ -19,38 +19,43 @@ namespace Core.Dish {
         
         private List<IngredientItemSO> _inputtedIngredients = new ();
         private IngredientItemSO[] _expectedIngredient;
-        private IngredientAdder[] _adders;
         
         private RecipeNode _currentNode;
         private CancellationTokenSource _completeCheckCancel;
 
-        private void Awake() {
-            _adders = GetComponentsInChildren<IngredientAdder>();
+        private void OnEnable()
+        {
             RestaurantManager.I.OnPossibleDishesUpdated += CheckIngredients;
         }
 
-        private void OnDestroy() {
+        private void OnDisable()
+        {
             RestaurantManager.I.OnPossibleDishesUpdated -= CheckIngredients;
         }
 
         private void Start() {
             _expectedIngredient = recipe.GetBaseIngredients().ToArray();
         }
-        public bool IsBaseIngredient(IngredientItemSO ingredientItem) {
+
+        public override bool IsBaseIngredient(IngredientItemSO ingredientItem) {
+            //Debug.Log(String.Join(", ", recipe.GetBaseIngredients()));
             return recipe.GetBaseIngredients().Contains(ingredientItem);
         }
-        public void AddIngredient(IngredientItemSO ingredientItem) {
+
+        public override void AddIngredient(IngredientItemSO ingredientItem) {
             if (_expectedIngredient.Contains(ingredientItem)) {
                 //IngredientAdded?.Invoke(ingredientItem);
                 if (_currentNode == null) {
                     _currentNode = recipe.GetBaseNode(ingredientItem);
+                    Debug.Log(_currentNode.GetInput().GetItemName());
                     NextIngredient();
                     onRecipeStarted?.Invoke();
                     return;
                 }
                 _currentNode = recipe.GetAllChildren(_currentNode).FirstOrDefault(x => x.GetInput() == ingredientItem);
+                Debug.Log(_currentNode?.GetInput().GetItemName());
                 if (!_currentNode) {
-                    Reset();
+                    ResetState();
                     return;
                 }
                 //IngredientCombined?.Invoke(_currentNode.output);
@@ -63,7 +68,7 @@ namespace Core.Dish {
                 NextIngredient();
             }
             else {
-                Reset();
+                ResetState();
                 if (IsBaseIngredient(ingredientItem)) {
                     AddIngredient(ingredientItem);
                 }
@@ -76,9 +81,12 @@ namespace Core.Dish {
 
         private void CheckIngredients(List<DishItemSO> possibleDish) {
             var possibleIngredients = recipe.GetPossibleIngredients(possibleDish).ToArray();
-            foreach (var adder in _adders) {
-                adder.gameObject.SetActive(possibleIngredients.Contains(adder.GetIngredient()));
-            }
+            Debug.Log(String.Join(", ", recipe.GetPossibleIngredients(possibleDish)));
+
+            // TODO: Disable for now
+            //foreach (var adder in _adders) {
+            //    adder.gameObject.SetActive(possibleIngredients.Contains(adder.GetIngredient()));
+            //}
         }
 
         private void ValidateRecipe() {
@@ -87,14 +95,14 @@ namespace Core.Dish {
             }
         }
 
-        private void Reset() {
+        private void ResetState() {
             _currentNode = null;
             _expectedIngredient = recipe.GetBaseIngredients().ToArray();
             ValidateRecipe();
         }
 
         private async UniTask CompleteRecipe(TrayItemSO output) {
-            Reset();
+            ResetState();
             onRecipeImmediateComplete?.Invoke(output);
             _completeCheckCancel ??= new CancellationTokenSource();
             
