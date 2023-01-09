@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -34,8 +33,8 @@ namespace Core.Dish {
             RefreshUI();
         }
 
-        public virtual void AddDish() {
-            if (dishItem) Tray.I.AddDish(dishItem);
+        public virtual bool AddDish() {
+            return dishItem && RestaurantManager.I.ValidateItem(dishItem);
         }
 
         public virtual void PickDish() {

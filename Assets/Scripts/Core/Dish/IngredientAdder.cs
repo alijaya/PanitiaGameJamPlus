@@ -13,43 +13,28 @@ namespace Core.Dish {
         [SerializeField] private UnityEvent onRecipeAvailable;
         [SerializeField] private UnityEvent onRecipeNotAvailable;
 
-        public IngredientReceiver receiver;
-
-        private IngredientReceiver _receiver;
         private bool _isBaseIngredient;
+        public bool IsBaseIngredient {
+            get => _isBaseIngredient;
+            set {
+                if (value == false) {
+                    onRecipeNotAvailable?.Invoke();
+                }
+                _isBaseIngredient = value;
+            }
+        }
 
         public TrayItemUI2 itemUI2;
 
-        private void Awake() {
-            if (receiver != null)
-            {
-                _receiver = receiver;
-            } else
-            {
-                _receiver = GetComponentInParent<IngredientReceiver>();
-            }
-            _isBaseIngredient = _receiver.IsBaseIngredient(ingredientItem);
-            _receiver.RegisterAdder(this);
-        }
-
         private void OnEnable()
         {
+            RestaurantManager.I.RegisterAdder(this);
             RefreshUI();
         }
 
-        private void OnDestroy()
-        {
-            _receiver.UnregisterAdder(this);
-        }
-
-        private void Start() {
-            if (!_isBaseIngredient) {
-                onRecipeNotAvailable?.Invoke();
-            }
-        }
 
         public void ValidateRecipe(IEnumerable<IngredientItemSO> ingredients) {
-            if (_isBaseIngredient) return;
+            if (IsBaseIngredient) return;
             if (ingredients.Contains(ingredientItem)) {
                 onRecipeAvailable?.Invoke();
             }
@@ -59,15 +44,8 @@ namespace Core.Dish {
         }
 
         public void AddIngredient() {
-            _receiver.AddIngredient(ingredientItem);
+            RestaurantManager.I.ValidateItem(ingredientItem);
         }
-
-        //private void OnValidate() {
-        //    if (ingredientItem) {
-        //        name = ingredientItem.GetItemName() == "" ? ingredientItem.name : ingredientItem.GetItemName();
-        //        GetComponentInChildren<TrayItemUI>().Setup(ingredientItem);
-        //    }
-        //}
 
         [Button]
         protected void RefreshUI()

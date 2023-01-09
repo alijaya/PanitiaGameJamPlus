@@ -15,6 +15,10 @@ namespace Core.Dish {
             return GetAllNodes().Where(x => x.GetAncestors().Count == 0).Select(x => x.GetInput());
         }
 
+        public IEnumerable<IngredientItemSO> GetAllIngredients() {
+            return GetAllNodes().Select(node => node.GetInput());
+        }
+
         private IEnumerable<IngredientItemSO> GetIngredients(RecipeNode finalNode) {
             return finalNode.GetAncestors().Where(ancestor => _nodeLookup.ContainsKey(ancestor)).Select(ancestor => _nodeLookup[ancestor].GetInput());
         }
@@ -28,6 +32,7 @@ namespace Core.Dish {
 
             return possibleIngredients;
         }
+        
         #region Nodes
 
         private void OnValidate() {

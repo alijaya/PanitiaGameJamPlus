@@ -2,19 +2,24 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Core.Dish;
 using Core.LevelManagement;
 using UnityEngine.Events;
 
 public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
+    public event Action<List<DishItemSO>> OnPossibleDishesUpdated;
+    
     public Transform door;
     public Level currentLevel;
+    public IngredientReceiver[] ingredientReceivers;
 
     [SerializeReference]
     public Core.Words.Generator.ITextGenerator defaultGenerator;
     public UnityEvent OnCashierTriggered;
-    public event Action<List<Core.Dish.DishItemSO>> OnPossibleDishesUpdated;
-    
-    private List<Core.Dish.DishItemSO> _possibleDishes;
+
+    private List<DishItemSO> _possibleDishes;
+
+    private readonly Dictionary<IngredientReceiver, List<IngredientAdder>> _addersLookup = new();
     protected override void SingletonAwakened()
     {
         GlobalRef.I.CleanUpWords();
@@ -28,21 +33,10 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
         WaveManager.I.StartWave();
         SetupLevel();
     }
-    public List<Core.Dish.DishItemSO> GenerateDishes(int count)
-    {
-        List<Core.Dish.DishItemSO> result = new();
-        for (var i = 0; i < count; i++) result.Add(_possibleDishes.GetRandom());
-        return result;
-    }
-    private void UpdatePossibleDishes(IEnumerable<Core.Dish.DishItemSO> newPossibleDishes) {
+    private void UpdatePossibleDishes(IEnumerable<DishItemSO> newPossibleDishes) {
         _possibleDishes = newPossibleDishes.ToList();
         OnPossibleDishesUpdated?.Invoke(_possibleDishes);
     }
-    public void TriggerCashier()
-    {
-        OnCashierTriggered?.Invoke();
-    }
-
     private void SetupLevel() {
         if (currentLevel == null) return;
         UpdatePossibleDishes(currentLevel.possibleDish);
@@ -50,12 +44,10 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
         // setup shift duration
         // setup goal threshold
     }
-
     private void SetupNewLevel(Level newLevel) {
         currentLevel = newLevel;
         SetupLevel();
     }
-    
     private void OnValidate() {
         SetupLevel();
     }
@@ -64,5 +56,39 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             GlobalRef.I.GoToScene_LevelSelection();
         }
+    }
+
+    public void TriggerCashier()
+    {
+        OnCashierTriggered?.Invoke();
+    }
+    public void RegisterAdder(IngredientAdder adder) {
+        var receiver = ingredientReceivers.FirstOrDefault(x => x.IsValidIngredient(adder.GetIngredient()));
+        if (receiver) {
+            receiver.RegisterAdder(adder);
+            adder.IsBaseIngredient = receiver.IsBaseIngredient(adder.GetIngredient());
+            
+            //_addersLookup[receiver].Add(adder);
+        }
+        
+    }
+    public bool ValidateItem(TrayItemSO trayItem) {
+        switch (trayItem) {
+            case IngredientItemSO ingredientItem:
+                var receiver = ingredientReceivers.FirstOrDefault(x => x.IsValidIngredient(ingredientItem));
+                if (!receiver) return false;
+                receiver.AddIngredient(ingredientItem);
+                return true;
+            case DishItemSO dishItem:
+                return Tray.I.AddDish(dishItem);
+        }
+
+        return false;
+    }
+    public List<DishItemSO> GenerateDishes(int count)
+    {
+        List<Core.Dish.DishItemSO> result = new();
+        for (var i = 0; i < count; i++) result.Add(_possibleDishes.GetRandom());
+        return result;
     }
 }
