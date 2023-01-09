@@ -85,6 +85,10 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
 
         return false;
     }
+
+    public void ValidateItemRecipe(TrayItemSO itemSo) {
+        ValidateItem(itemSo);
+    }
     public List<DishItemSO> GenerateDishes(int count)
     {
         List<Core.Dish.DishItemSO> result = new();
