@@ -23,13 +23,11 @@ namespace Core.Dish {
         private RecipeNode _currentNode;
         private CancellationTokenSource _completeCheckCancel;
 
-        private void OnEnable()
-        {
+        private void OnEnable() {
             RestaurantManager.I.OnPossibleDishesUpdated += CheckIngredients;
         }
 
-        private void OnDisable()
-        {
+        private void OnDisable() {
             RestaurantManager.I.OnPossibleDishesUpdated -= CheckIngredients;
         }
 
@@ -39,6 +37,10 @@ namespace Core.Dish {
 
         public override bool IsBaseIngredient(IngredientItemSO ingredientItem) {
             return recipe.GetBaseIngredients().Contains(ingredientItem);
+        }
+
+        public override bool IsValidIngredient(IngredientItemSO ingredientItem) {
+            return recipe.GetAllIngredients().Contains(ingredientItem);
         }
 
         public override void AddIngredient(IngredientItemSO ingredientItem) {
@@ -52,7 +54,7 @@ namespace Core.Dish {
                     return;
                 }
                 _currentNode = recipe.GetAllChildren(_currentNode).FirstOrDefault(x => x.GetInput() == ingredientItem);
-                Debug.Log(_currentNode?.GetInput().GetItemName());
+                
                 if (!_currentNode) {
                     ResetState();
                     return;
@@ -82,13 +84,13 @@ namespace Core.Dish {
             var possibleIngredients = recipe.GetPossibleIngredients(possibleDish).ToArray();
 
             // TODO: Disable for now
-            foreach (var adder in _adders) {
+            foreach (var adder in adders) {
                 adder.gameObject.SetActive(possibleIngredients.Contains(adder.GetIngredient()));
             }
         }
 
         private void ValidateRecipe() {
-            foreach (var adder in _adders) {
+            foreach (var adder in adders) {
                 adder.ValidateRecipe(_expectedIngredient);
             }
         }

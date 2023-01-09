@@ -101,6 +101,10 @@ namespace Core.Dish {
             return processes.Any(x => x.GetInput() == ingredientItem);
         }
 
+        public override bool IsValidIngredient(IngredientItemSO ingredientItem) {
+            return IsBaseIngredient(ingredientItem);
+        }
+
         private void CheckIngredients(List<DishItemSO> possibleDish) {
             // ^1 is burned dish, ^2 is final stage
             // TODO- refactor Dish Process SO, exclude burned dish from stages (?)
@@ -113,7 +117,7 @@ namespace Core.Dish {
                 slot.gameObject.SetActive(possibleIngredients.Length != 0);
             }
             
-            foreach (var adder in _adders) {
+            foreach (var adder in adders) {
                 adder.gameObject.SetActive(possibleIngredients.Contains(adder.GetIngredient()));
             }
         }
