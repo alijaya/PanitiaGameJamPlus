@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Ink.Runtime;
-using RS.Typing.Core;
+using Core.Words;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEditor.Rendering;

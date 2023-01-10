@@ -177,6 +177,14 @@ namespace Core.Words
             GenerateText();
         }
 
+        public void SetConstantText(string text)
+        {
+            var constantGen = new Generator.ConstantTextGenerator();
+            constantGen.Text = text;
+            TextGenerator = constantGen;
+            TextModifiers.Clear();
+        }
+
         public void SetCompleteCheck(Func<CancellationToken, UniTask> check)
         {
             _CompleteCheck = check;

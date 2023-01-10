@@ -4,7 +4,7 @@ using BehaviorDesigner.Runtime.Tasks.Unity.Timeline;
 using Cinemachine;
 using DG.Tweening;
 using Ink.Runtime;
-using RS.Typing.Core;
+using Core.Words;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEditor.Rendering;
@@ -620,7 +620,7 @@ public class StoryManager : MonoBehaviour
         {
             if (point.gameObject.name == movePoint)
             {
-                personController.GoTo(point);
+                personController.GoToWorld(point);
             }
         }
     }
@@ -709,7 +709,7 @@ public class StoryManager : MonoBehaviour
         tempWordUI.transform.SetParent(dialogueText.transform.parent);
         tempWordUI.transform.localScale = Vector3.one;
 
-        tempWordUI.GetComponent<WordObject>()._word = dialogueText.textInfo.wordInfo[wordIndex - 1].GetWord();
+        tempWordUI.GetComponent<WordObject>().SetConstantText(dialogueText.textInfo.wordInfo[wordIndex - 1].GetWord());
     }
     
     private void FadeScreen(float from, float to)

@@ -4690,14 +4690,14 @@ MonoBehaviour:
   - {fileID: 878571648}
   - {fileID: 1841129236}
   defaultGenerator:
-    rid: 1044190880895336550
+    rid: 1044191036535210001
   OnCashierTriggered:
     m_PersistentCalls:
       m_Calls: []
   references:
     version: 2
     RefIds:
-    - rid: 1044190880895336550
+    - rid: 1044191036535210001
       type: {class: WordBankTextGenerator, ns: Core.Words.Generator, asm: Assembly-CSharp}
       data:
         WordBank: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}

@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using RS.Typing.Core;
+using Core.Words;
 using UnityEngine;
 
 public class DialogueWordObject : WordObject
@@ -19,12 +19,13 @@ public class DialogueWordObject : WordObject
     //     text.text = _word;
     // }
 
-    public override void WordComplete()
-    {
-        typo = manager.currentText.ToLower();
-        Reset();
-        Setup();
+    // TODO: ummm ini apa?
+    //public override void WordComplete()
+    //{
+    //    typo = manager.currentText.ToLower();
+    //    Reset();
+    //    Setup();
             
-        KeyInput.Instance.SetEnable(true);
-    }
+    //    KeyInput.Instance.SetEnable(true);
+    //}
 }
