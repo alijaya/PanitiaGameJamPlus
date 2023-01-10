@@ -14,9 +14,6 @@ public class GlobalRef : SingletonSO<GlobalRef>
     public IntReference totalCustomerServed;
     public IntReference totalSales;
 
-    public GameObjectValueList Words;
-    public GameObjectValueList PrevHighlightedWords;
-
     public SceneReference Scene_MainMenu;
     public SceneReference Scene_LevelSelection;
     public SceneReference Scene_Gameplay;
@@ -48,12 +45,6 @@ public class GlobalRef : SingletonSO<GlobalRef>
 
     [AssetSelector]
     public CustomerUI CustomerUIPrefab;
-
-    public void CleanUpWords()
-    {
-        Words.Clear();
-        PrevHighlightedWords.Clear();
-    }
 
     public void GoToScene_MainMenu()
     {

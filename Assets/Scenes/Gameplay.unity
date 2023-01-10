@@ -4685,7 +4685,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 41601306}
-  currentLevel: {fileID: 0}
+  currentLevel: {fileID: 11400000, guid: 6ba14964c7adadd4ea1e97886b8bceab, type: 2}
+  ingredientReceivers:
+  - {fileID: 878571648}
+  - {fileID: 1841129236}
   defaultGenerator:
     rid: 1044190880895336550
   OnCashierTriggered:

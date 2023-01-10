@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba615354262bb46d7add759502baf53f, type: 3}
-  m_Name: Words
+  m_Script: {fileID: 11500000, guid: 93022965d9dc4759a444ad384e590a90, type: 3}
+  m_Name: Ing_PizzaDoughTomatoCheese
   m_EditorClassIdentifier: 
-  _developerDescription: 
-  Cleared: {fileID: 0}
-  _startCleared: 0
-  Added: {fileID: 0}
-  Removed: {fileID: 0}
-  list: []
+  itemName: Pizza - Dough Tomato Cheese
+  sprite: {fileID: 21300000, guid: 619afc78343d96c4fbd245453e9f5f20, type: 3}

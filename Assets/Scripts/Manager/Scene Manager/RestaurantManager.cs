@@ -20,9 +20,10 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
     private List<DishItemSO> _possibleDishes;
 
     private readonly Dictionary<IngredientReceiver, List<IngredientAdder>> _addersLookup = new();
+
     protected override void SingletonAwakened()
     {
-        GlobalRef.I.CleanUpWords();
+        
     }
 
     protected override void SingletonStarted()
