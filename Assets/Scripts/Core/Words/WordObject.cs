@@ -157,6 +157,11 @@ namespace Core.Words
             {
                 if (_registered) return;
                 _registered = true;
+
+                // bisa jadi pas nyala lagi, wordnya ga valid, karena clash dengan yang lain
+                // well di regenerate lagi
+                if (!WordTracker.I.IsWordValid(Text)) Setup();
+
                 WordTracker.I.RegisterWord(this);
                 WordTracker.I.OnTextInput.AddListener(TextInput);
                 WordTracker.I.OnStateChanged.AddListener(HandleWordTrackerState);

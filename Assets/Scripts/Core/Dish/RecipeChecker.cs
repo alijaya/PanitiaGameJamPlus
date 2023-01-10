@@ -54,7 +54,8 @@ namespace Core.Dish {
                     return;
                 }
                 _currentNode = recipe.GetAllChildren(_currentNode).FirstOrDefault(x => x.GetInput() == ingredientItem);
-                
+                Debug.Log(_currentNode.GetInput().GetItemName());
+
                 if (!_currentNode) {
                     ResetState();
                     return;

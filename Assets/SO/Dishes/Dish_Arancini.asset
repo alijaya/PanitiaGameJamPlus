@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Arancini
   sprite: {fileID: 21300000, guid: 1e333adc6d4c6f549979a0fc54067eaa, type: 3}
+  difficulty: 1
+  price: 10

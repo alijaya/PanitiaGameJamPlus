@@ -43,7 +43,7 @@ MonoBehaviour:
         triggerOnEnd: 1
         random: 1
         eatType: 2
-        customerCounts: 
+        customerCounts: 0100000002000000
         customerTypes:
         - {fileID: 11400000, guid: 9a87a9fe7ccf248d8be17d49443acd1b, type: 2}
         - {fileID: 11400000, guid: 8b572c94ba5a54c09b5a3d330b3771b6, type: 2}

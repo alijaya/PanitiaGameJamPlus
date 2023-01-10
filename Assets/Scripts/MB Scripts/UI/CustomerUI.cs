@@ -79,7 +79,7 @@ public class CustomerUI : MonoBehaviour
     public async UniTask RequestDish(CustomerGroup customerGroup, PointOfInterest servePOI, CancellationToken ct = default)
     {
         var count = customerGroup.count;
-        var requestedDishes = RestaurantManager.I.GenerateDishes(count);
+        var requestedDishes = customerGroup.dishes;
         var customerType = customerGroup.customerType;
         var generator = customerType.TextGenerator;
         var modifiers = customerType.TextModifiers;

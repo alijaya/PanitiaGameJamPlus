@@ -10,14 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e03a7ff8177b4f76a4a2e1f4a70820fa, type: 3}
-  m_Name: Level1
+  m_Name: LevelPizza
   m_EditorClassIdentifier: 
   traySize: 3
   possibleDish:
-  - {fileID: 11400000, guid: b79f09d65ddcbcd4e8696e0a4f9bf5a7, type: 2}
-  - {fileID: 11400000, guid: 83c032004d4b0ad4d958566f5d432742, type: 2}
-  - {fileID: 11400000, guid: cdd0e0a631b71444fbbd71be4f54bbe5, type: 2}
-  - {fileID: 11400000, guid: cb01cbf6fc43e924489031475a9702e3, type: 2}
-  - {fileID: 11400000, guid: f5723098ec751d44aaf4391b3e2c6141, type: 2}
+  - {fileID: 11400000, guid: 5d53dea4c3f86e84482b4fb983c213f5, type: 2}
+  - {fileID: 11400000, guid: 7ea7789fbd143454e91352832bcc30e6, type: 2}
   goalThreshold: 
   shiftDuration: 90

@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Espresso
   sprite: {fileID: 21300000, guid: 2df6f126547f64b44a28ed8ed3ba9a13, type: 3}
+  difficulty: 1
+  price: 5

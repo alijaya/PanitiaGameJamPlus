@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Pizza Pepperoni
   sprite: {fileID: 21300000, guid: 843d0e9911a2e924ebd951c26eb965a3, type: 3}
+  difficulty: 1
+  price: 20

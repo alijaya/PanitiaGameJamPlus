@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using System;
 using System.Linq;
+using Core.Dish;
 
 public class CustomerGroup : MonoBehaviour
 {
@@ -38,6 +39,15 @@ public class CustomerGroup : MonoBehaviour
     public string state { get; private set; } = CustomerState.None;
 
     public List<Customer> customers { get; private set; } = new List<Customer>();
+    public List<DishItemSO> dishes { get; private set; } = new List<DishItemSO>();
+
+    public int totalDishPrice
+    {
+        get
+        {
+            return dishes.Aggregate(0, (total, dish) => total + dish.price);
+        }
+    }
 
     public Customer firstCustomer
     {
@@ -116,7 +126,7 @@ public class CustomerGroup : MonoBehaviour
         this.customerType = customerType;
         this.spawnPoint = spawnPoint;
         this.dineIn = dineIn;
-        this.count = dineIn ? count : 1;
+        this.count = count > 0 ? count : 1;
     }
 
     // Start is called before the first frame update
@@ -132,8 +142,8 @@ public class CustomerGroup : MonoBehaviour
         // Spawn CustomerUI
         customerUI = Instantiate(GlobalRef.I.CustomerUIPrefab, transform);
 
-        if (!dineIn) count = 1; // force 1 customer if takeout
-        for (var i = 0; i < count; i++)
+        var customerCount = dineIn ? count: 1; // force 1 customer if takeout
+        for (var i = 0; i < customerCount; i++)
         {
             var customer = Instantiate(customerType.prefabs.GetRandom());
             customer.Setup(this);
@@ -178,13 +188,8 @@ public class CustomerGroup : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(customerType.OrderDuration), cancellationToken: ct);
         customerUI.HideThink();
 
-        UniTask task;
-
         // ordering
-        task = customerUI.RequestDish(this, seat.serveLocation, ct);
-        PlayCountdown();
-        state = CustomerState.Order;
-        await task;
+        await OrderBehavior(seat.serveLocation, ct);
 
         // actually eating
         PauseCountdown();
@@ -313,13 +318,8 @@ public class CustomerGroup : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(customerType.OrderDuration), cancellationToken: ct);
         customerUI.HideThink();
 
-        UniTask task;
-
         // ordering
-        task = customerUI.RequestDish(this, cashier.serveLocation, ct);
-        PlayCountdown();
-        state = CustomerState.Order;
-        await task;
+        await OrderBehavior(cashier.serveLocation, ct);
 
         // no eating, directly paying
         await PayBehavior(ct);
@@ -412,6 +412,17 @@ public class CustomerGroup : MonoBehaviour
         }
     }
 
+    private async UniTask OrderBehavior(PointOfInterest serveLocation, CancellationToken ct)
+    {
+        dishes = RestaurantManager.I.GenerateDishes(count);
+        Debug.Log(count);
+        Debug.Log(String.Join(", ", dishes));
+        var task = customerUI.RequestDish(this, serveLocation, ct);
+        PlayCountdown();
+        state = CustomerState.Order;
+        await task;
+    }
+
     private async UniTask PayBehavior(CancellationToken ct)
     {
         PlayCountdown();
@@ -419,6 +430,7 @@ public class CustomerGroup : MonoBehaviour
         customerUI.ShowPay();
         await RestaurantManager.I.OnCashierTriggered.ToUniTask(ct);
         customerUI.HidePay();
+        RestaurantManager.I.HandleCustomerPay(this);
 
         // done, leave, don't need to await
         //Debug.Log("happy");

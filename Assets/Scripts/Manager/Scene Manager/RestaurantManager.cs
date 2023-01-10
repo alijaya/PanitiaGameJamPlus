@@ -34,10 +34,12 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
         WaveManager.I.StartWave();
         SetupLevel();
     }
+
     private void UpdatePossibleDishes(IEnumerable<DishItemSO> newPossibleDishes) {
         _possibleDishes = newPossibleDishes.ToList();
         OnPossibleDishesUpdated?.Invoke(_possibleDishes);
     }
+
     private void SetupLevel() {
         if (currentLevel == null) return;
         UpdatePossibleDishes(currentLevel.possibleDish);
@@ -45,13 +47,16 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
         // setup shift duration
         // setup goal threshold
     }
+
     private void SetupNewLevel(Level newLevel) {
         currentLevel = newLevel;
         SetupLevel();
     }
+
     private void OnValidate() {
         SetupLevel();
     }
+
     private void Update() {
         // Testing to move to level selection scene 
         if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -59,10 +64,17 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
         }
     }
 
+    public void HandleCustomerPay(CustomerGroup customerGroup)
+    {
+        GlobalRef.I.totalSales.Value += customerGroup.totalDishPrice;
+        GlobalRef.I.totalCustomerServed.Value ++;
+    }
+
     public void TriggerCashier()
     {
         OnCashierTriggered?.Invoke();
     }
+
     public void RegisterAdder(IngredientAdder adder) {
         var receiver = ingredientReceivers.FirstOrDefault(x => x.IsValidIngredient(adder.GetIngredient()));
         if (receiver) {
@@ -73,6 +85,7 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
         }
         
     }
+
     public bool ValidateItem(TrayItemSO trayItem) {
         switch (trayItem) {
             case IngredientItemSO ingredientItem:
@@ -90,6 +103,7 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
     public void ValidateItemRecipe(TrayItemSO itemSo) {
         ValidateItem(itemSo);
     }
+
     public List<DishItemSO> GenerateDishes(int count)
     {
         List<Core.Dish.DishItemSO> result = new();
