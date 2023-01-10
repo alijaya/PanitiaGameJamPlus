@@ -4,6 +4,7 @@ using BehaviorDesigner.Runtime.Tasks.Unity.Timeline;
 using Cinemachine;
 using DG.Tweening;
 using Ink.Runtime;
+using RS.Typing.Core;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEditor.Rendering;
@@ -71,6 +72,28 @@ public class StoryManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera person2Camera;
     [SerializeField] private TextMeshProUGUI person2Name;
     [SerializeField] private TextMeshProUGUI person2Dialogue;
+    
+    [Header(("Person 3"))]
+    [SerializeField] public string person3NameText = "person3";
+    [SerializeField] private GameObject person3Parent;
+    [SerializeField] private MovementController person3Controller;
+    [SerializeField] private GameObject person3Sprite;
+    [SerializeField] private GameObject person3DialogueBox;
+    [SerializeField] private CanvasGroup person3CanvasGroup;
+    [SerializeField] private CinemachineVirtualCamera person3Camera;
+    [SerializeField] private TextMeshProUGUI person3Name;
+    [SerializeField] private TextMeshProUGUI person3Dialogue;
+    
+    [Header(("Person 4"))]
+    [SerializeField] public string person4NameText = "person4";
+    [SerializeField] private GameObject person4Parent;
+    [SerializeField] private MovementController person4Controller;
+    [SerializeField] private GameObject person4Sprite;
+    [SerializeField] private GameObject person4DialogueBox;
+    [SerializeField] private CanvasGroup person4CanvasGroup;
+    [SerializeField] private CinemachineVirtualCamera person4Camera;
+    [SerializeField] private TextMeshProUGUI person4Name;
+    [SerializeField] private TextMeshProUGUI person4Dialogue;
 
     private Tween _typeWriterTween;
     private Tween _screenFadeTween;
@@ -82,6 +105,8 @@ public class StoryManager : MonoBehaviour
     private bool _enableSequence = false;
 
     private bool _isOverridingCamera = false;
+    
+    private GameObject tempWordUI;
     
     private void Awake()
     {
@@ -299,17 +324,20 @@ public class StoryManager : MonoBehaviour
 
         canvasGroup.alpha = 1f;
 
-        StartCoroutine(RunTag(personGo, personController));
-        
         personGo.transform.localEulerAngles = new Vector3(personGo.transform.localEulerAngles.x, personGo.transform.localEulerAngles.y, personGo.transform.localEulerAngles.z);
         dialogue.text = splitText[1];
         
+        StartCoroutine(RunTag(personGo, personController, dialogue));
+        
         if (splitText[0] == "NA")
+        {
             ClickContinueStory();
+        }
     }
 
-    private IEnumerator RunTag(GameObject personGo, MovementController personController)
+    private IEnumerator RunTag(GameObject personGo, MovementController personController, TextMeshProUGUI dialogue)
     {
+        yield return new WaitForEndOfFrame();
         foreach (string textTag in _inkStory.currentTags)
         {
             Debug.Log("tag: " + textTag);
@@ -352,6 +380,12 @@ public class StoryManager : MonoBehaviour
             {
                 string value = textTag.Remove(0, 6);
                 Move(personController, value);
+            }
+            else if (textTag[..3] == "inp")
+            {
+                int value = int.Parse(textTag.Remove(0, 7));
+                Debug.Log("Value: " + value);
+                InstantiateWordUI(dialogue, value);
             }
         
             // if (textTag[..3] == "mov")
@@ -569,12 +603,15 @@ public class StoryManager : MonoBehaviour
 
     private Tween Flip(Transform objectTransform, bool isFacingLeft)
     {
+        objectTransform.parent.Find("DialogueBox").localPosition = isFacingLeft ? new Vector3(-4f, 4f, 0f) : new Vector3(4f, 4f, 0f);
         return DOTween.To(() => objectTransform.localEulerAngles.y, (value) =>
         {
             var rot = objectTransform.localEulerAngles;
             rot.y = value;
             objectTransform.localEulerAngles = rot;
         }, (isFacingLeft ? (objectTransform.localEulerAngles.y - 180f) : (objectTransform.localEulerAngles.y + 180f)), 0.3f);
+
+        
     }
 
     private void Move(MovementController personController, string movePoint)
@@ -628,6 +665,53 @@ public class StoryManager : MonoBehaviour
     //     person2Parent.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
     // }
 
+    public void InstantiateWordUI(TextMeshProUGUI dialogueText, int wordIndex)
+    {
+        if (tempWordUI != null) Destroy(tempWordUI);
+        
+        Vector3 targetPosition = Vector3.zero;
+        
+        TMP_WordInfo wordInfo = dialogueText.textInfo.wordInfo[wordIndex - 1];
+        
+        List<Vector3> wordPositions = new List<Vector3>();
+        
+        Vector3 bottomLeft = Vector3.zero;
+        Vector3 topLeft = Vector3.zero;
+        Vector3 bottomRight = Vector3.zero;
+        Vector3 topRight = Vector3.zero;
+
+        float maxAscender = -Mathf.Infinity;
+        float minDescender = Mathf.Infinity;
+        
+        TMP_CharacterInfo firstCharInfo = dialogueText.textInfo.characterInfo[dialogueText.textInfo.wordInfo[wordIndex - 1].firstCharacterIndex];
+        TMP_CharacterInfo lastCharInfo = dialogueText.textInfo.characterInfo[dialogueText.textInfo.wordInfo[wordIndex - 1].lastCharacterIndex];
+
+        bottomLeft = dialogueText.transform.TransformPoint(new Vector3(firstCharInfo.bottomLeft.x, firstCharInfo.descender, 0f));
+        topLeft = dialogueText.transform.TransformPoint(new Vector3(firstCharInfo.topLeft.x, firstCharInfo.ascender, 0f));
+        bottomRight = dialogueText.transform.TransformPoint(new Vector3(lastCharInfo.bottomRight.x, lastCharInfo.descender, 0f));
+        topRight = dialogueText.transform.TransformPoint(new Vector3(lastCharInfo.topRight.x, lastCharInfo.ascender, 0f));
+
+        wordPositions.Add(bottomLeft);
+        wordPositions.Add(topLeft);
+        wordPositions.Add(bottomRight);
+        wordPositions.Add(topRight);
+
+        foreach (Vector3 position in wordPositions)
+        {
+            Debug.Log(position);
+            targetPosition += position;
+        }
+
+        targetPosition = targetPosition / wordPositions.Count;
+
+        tempWordUI = Instantiate(wordUI, targetPosition, Quaternion.identity, null);
+        // instance.transform.parent = dialogueText.transform.parent;
+        tempWordUI.transform.SetParent(dialogueText.transform.parent);
+        tempWordUI.transform.localScale = Vector3.one;
+
+        tempWordUI.GetComponent<WordObject>()._word = dialogueText.textInfo.wordInfo[wordIndex - 1].GetWord();
+    }
+    
     private void FadeScreen(float from, float to)
     {
         _screenFadeTween.Kill();

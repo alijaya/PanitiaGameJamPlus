@@ -12,26 +12,28 @@ INCLUDE global.ink
 
 /* Story writing starts here */
 
-# move: SpeakingPoint1
+# move: SpeakingPoint1 # input: 1
 Chef: Hello there!
 
 # move: SpeakingPoint2
 Karen: Hi there!
 
-Chef: How are <i>you</i> today?
+# input: 3
+Chef: How are you today?
 
 Karen: I'm <big>good</big>, thanks.
 
-~ SwitchCamera("Karen")
+// ~ SwitchCamera("Karen")
 
 # flip: right
 Karen: Now <size=1.5em>leave</size> me alone.
 
-~ SwitchCamera("Chef")
+// ~ SwitchCamera("Chef")
 
+# input: 2
 Chef: Well, goodbye then.
 
-~ SwitchCamera("Main")
+// ~ SwitchCamera("Main")
 
 # flip: left
 Karen: Farewell.

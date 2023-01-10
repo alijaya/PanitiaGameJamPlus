@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d552cb8c-c358-4bc8-9f0e-f1f3e2a0e082" name="Changes" comment="added TMP Examples &amp; Extras, dialogue update">
+    <list default="true" id="d552cb8c-c358-4bc8-9f0e-f1f3e2a0e082" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheChefsShift/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Font/FredokaOne-Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Font/FredokaOne-Regular SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Prefabs/DialogueBox.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Prefabs/DialogueBox.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Scenes/dialogue-normal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Scenes/dialogue-normal.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Scripts/StoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Scripts/StoryManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/global.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/global.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.ink" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.ink" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_dialogue-test/Stories/testStory.json" afterDir="false" />
     </list>
@@ -28,7 +28,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Ink/Demos/Basic Demo/Scripts/BasicInkExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextInfoDebugTool.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Unity Projects/TheChefsShift/Assets/_dialogue-test/Scenes/dialogue-normal.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.inkle.ink-unity-integration@1.1.5/InkLibs/InkRuntime/Story.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity-atoms.unity-atoms-base-atoms@4.4.5/Runtime/Events/IntEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity-atoms.unity-atoms-base-atoms@4.4.5/Runtime/Pairs/IntPair.cs" root0="SKIP_HIGHLIGHTING" />
@@ -124,7 +123,10 @@
       <workItem from="1671790208669" duration="2080000" />
       <workItem from="1671814779706" duration="2155000" />
       <workItem from="1671857616753" duration="4918000" />
-      <workItem from="1672646450792" duration="11910000" />
+      <workItem from="1672646450792" duration="12549000" />
+      <workItem from="1672735963514" duration="5315000" />
+      <workItem from="1672832433924" duration="5220000" />
+      <workItem from="1673345045146" duration="2178000" />
     </task>
     <task id="LOCAL-00001" summary="update gitignore buat Odin">
       <created>1669883809269</created>
@@ -168,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672648061938</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added screen fade, move character">
+      <created>1672663957060</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1672663957060</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,6 +230,7 @@
     <MESSAGE value="updated dialogue" />
     <MESSAGE value="updated dialogue, added custom tag in TMP_Text.cs" />
     <MESSAGE value="added TMP Examples &amp; Extras, dialogue update" />
-    <option name="LAST_COMMIT_MESSAGE" value="added TMP Examples &amp; Extras, dialogue update" />
+    <MESSAGE value="added screen fade, move character" />
+    <option name="LAST_COMMIT_MESSAGE" value="added screen fade, move character" />
   </component>
 </project>
