@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 namespace Core.Dish
 {
@@ -10,7 +11,7 @@ namespace Core.Dish
     {
         private DishRequester dishRequester;
 
-        public List<Image> slots;
+        public List<DishRequesterSlotUI> slots;
 
         private void Awake()
         {
@@ -27,21 +28,26 @@ namespace Core.Dish
             dishRequester.OnDishesChanged.RemoveListener(RefreshUI);
         }
 
+        [Button]
         public void RefreshUI()
         {
             for (var i = 0; i < slots.Count; i++)
             {
                 var slot = slots[i];
-                slot.gameObject.SetActive(false);
                 if (i < dishRequester.requestedDishes.Count)
                 {
                     var dish = dishRequester.requestedDishes[i];
                     var complete = dishRequester.completes[i];
                     if (!complete)
                     {
-                        slot.gameObject.SetActive(true);
-                        slot.sprite = dish.GetSprite();
+                        slot.SetDish(dish);
+                    } else
+                    {
+                        slot.ClearDish();
                     }
+                } else
+                {
+                    slot.ClearDish();
                 }
             }
         }

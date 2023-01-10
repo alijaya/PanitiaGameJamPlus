@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f31b21cd308e453d8098a487c560a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _value: 0.984
+  _value: 1
   spriteStates:
   - {fileID: 8510913917132991249}
   - {fileID: 3325849831426366011}

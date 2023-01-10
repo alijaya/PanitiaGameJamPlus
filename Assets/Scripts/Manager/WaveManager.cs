@@ -5,10 +5,12 @@ using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = System.Random;
+using Sirenix.OdinInspector;
 
 public class WaveManager : SingletonSceneMB<WaveManager> {
     public bool autoStart = false;
 
+    [InlineEditor]
     public WaveSequenceSO waveSequence;
 
     [SerializeField] private FloatVariable timeLeftVariable;

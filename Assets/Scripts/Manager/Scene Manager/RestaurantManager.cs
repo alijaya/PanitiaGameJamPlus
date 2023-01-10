@@ -5,11 +5,13 @@ using System.Linq;
 using Core.Dish;
 using Core.LevelManagement;
 using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
     public event Action<List<DishItemSO>> OnPossibleDishesUpdated;
     
     public Transform door;
+    [InlineEditor]
     public Level currentLevel;
     public IngredientReceiver[] ingredientReceivers;
 

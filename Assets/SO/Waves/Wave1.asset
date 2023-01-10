@@ -38,7 +38,7 @@ MonoBehaviour:
       data:
         startTime: 0
         endTime: 70
-        count: 10
+        count: 5
         triggerOnStart: 1
         triggerOnEnd: 1
         random: 1
