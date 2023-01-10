@@ -67,6 +67,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5172286794915946489}
+  - component: {fileID: 1754882762148208865}
   - component: {fileID: 3338025330531803389}
   m_Layer: 0
   m_Name: Potted Grass
@@ -91,6 +92,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1754882762148208865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6078921358648447886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a65fe7872a7400eab20bda10ac6c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lastLocalPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &3338025330531803389
 SpriteRenderer:
   m_ObjectHideFlags: 0

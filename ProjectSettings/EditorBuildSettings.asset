@@ -14,4 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Report.unity
     guid: 4b4473a1b21534c09bef23f949826b28
+  - enabled: 1
+    path: Assets/Scenes/Testing/Scene B.unity
+    guid: 14142c17eb1bf40b399eb4c3eb5d22d9
+  - enabled: 1
+    path: Assets/Scenes/Testing/Scene A.unity
+    guid: 1f8b5df646ec44a3a86d0eb8b7cce50c
+  - enabled: 1
+    path: Assets/Scenes/SceneSelection.unity
+    guid: 279c68b4f059c8a4bb54562d28f34683
+  - enabled: 1
+    path: Assets/Scenes/Testing/Test Tray.unity
+    guid: 58177abc80bd61143a3976be0f517cb6
   m_configObjects: {}

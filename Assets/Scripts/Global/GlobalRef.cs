@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core.LevelManagement;
 using UnityEngine;
 using UnityAtoms.BaseAtoms;
 using Eflatun.SceneReference;
 using UnityEngine.SceneManagement;
-using RS.Typing.Core;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu]
 public class GlobalRef : SingletonSO<GlobalRef>
@@ -13,12 +14,13 @@ public class GlobalRef : SingletonSO<GlobalRef>
     public IntReference totalCustomerServed;
     public IntReference totalSales;
 
-    public GameObjectValueList Words;
-    public GameObjectValueList PrevHighlightedWords;
-
     public SceneReference Scene_MainMenu;
+    public SceneReference Scene_LevelSelection;
     public SceneReference Scene_Gameplay;
+    public SceneReference Scene_GameplayTesting;
     public SceneReference Scene_Report;
+
+    public LevelProgression LevelProgression;
 
     public AudioClip BGM_MainMenu;
     public AudioClip BGM_Gameplay;
@@ -32,21 +34,35 @@ public class GlobalRef : SingletonSO<GlobalRef>
     public AudioClip SFX_CustomerHappy;
     public AudioClip SFX_CustomerAngry;
     public AudioClip SFX_Shot;
+    
+    // popup-test
+    public GameObject scorePopup;
 
-    public void CleanUpWords()
-    {
-        Words.Clear();
-        PrevHighlightedWords.Clear();
-    }
+    public WordBankSO defaultWordBank;
+
+    [AssetSelector]
+    public Core.Words.WordObject WordObjectPrefab;
+
+    [AssetSelector]
+    public CustomerUI CustomerUIPrefab;
 
     public void GoToScene_MainMenu()
     {
         SceneManager.LoadScene(Scene_MainMenu.Name);
     }
 
+    public void GoToScene_LevelSelection() {
+        SceneManager.LoadScene(Scene_LevelSelection.Name);
+    }
+
     public void GoToScene_Gameplay()
     {
         SceneManager.LoadScene(Scene_Gameplay.Name);
+    }
+
+    public void GoToScene_Gameplay(int level) {
+        LevelProgression.SetLevel(level);
+        SceneManager.LoadScene(Scene_GameplayTesting.Name);
     }
 
     public void GoToScene_Report()

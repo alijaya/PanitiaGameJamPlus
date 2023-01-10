@@ -35,12 +35,19 @@ MonoBehaviour:
   Scene_MainMenu:
     sceneAsset: {fileID: 102900000, guid: 1201be10b9d6446588b6cfdb1f89def5, type: 3}
     sceneAssetGuidHex: 1201be10b9d6446588b6cfdb1f89def5
+  Scene_LevelSelection:
+    sceneAsset: {fileID: 102900000, guid: 279c68b4f059c8a4bb54562d28f34683, type: 3}
+    sceneAssetGuidHex: 279c68b4f059c8a4bb54562d28f34683
   Scene_Gameplay:
     sceneAsset: {fileID: 102900000, guid: b21f591c420a386478ebcb6619b363c6, type: 3}
     sceneAssetGuidHex: b21f591c420a386478ebcb6619b363c6
+  Scene_GameplayTesting:
+    sceneAsset: {fileID: 102900000, guid: 58177abc80bd61143a3976be0f517cb6, type: 3}
+    sceneAssetGuidHex: 58177abc80bd61143a3976be0f517cb6
   Scene_Report:
     sceneAsset: {fileID: 102900000, guid: 4b4473a1b21534c09bef23f949826b28, type: 3}
     sceneAssetGuidHex: 4b4473a1b21534c09bef23f949826b28
+  LevelProgression: {fileID: 11400000, guid: 1094591903a389f4b9803363e8fc5a89, type: 2}
   BGM_MainMenu: {fileID: 8300000, guid: bec8346a5bb788d44be8e393c69733d9, type: 3}
   BGM_Gameplay: {fileID: 8300000, guid: 08cd93b79564fd942bc7c09ceaaf0e35, type: 3}
   BGM_Report: {fileID: 8300000, guid: 60cb5da74afe2cb41a53e4503456a622, type: 3}
@@ -53,3 +60,7 @@ MonoBehaviour:
   SFX_CustomerHappy: {fileID: 8300000, guid: 280c4c6b10c5b485da40a194b4dcff9e, type: 3}
   SFX_CustomerAngry: {fileID: 8300000, guid: 5647801369aa0417989acb1f09ecdcbe, type: 3}
   SFX_Shot: {fileID: 8300000, guid: b291860d4cb614026a6ed3376e57f787, type: 3}
+  scorePopup: {fileID: 0}
+  defaultWordBank: {fileID: 4156628897070989640, guid: 26100efda40f8473c8a584c11d377c90, type: 3}
+  WordObjectPrefab: {fileID: 1246376770050158775, guid: c186a9b166bd8481e94818204de72dad, type: 3}
+  CustomerUIPrefab: {fileID: 9156454702836336631, guid: ae2022d99c76d44fc80b559fe324c495, type: 3}

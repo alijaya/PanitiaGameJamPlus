@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03a7ff8177b4f76a4a2e1f4a70820fa, type: 3}
+  m_Name: Level4
+  m_EditorClassIdentifier: 
+  traySize: 3
+  possibleDish:
+  - {fileID: 11400000, guid: b79f09d65ddcbcd4e8696e0a4f9bf5a7, type: 2}
+  - {fileID: 11400000, guid: 83c032004d4b0ad4d958566f5d432742, type: 2}
+  - {fileID: 11400000, guid: cdd0e0a631b71444fbbd71be4f54bbe5, type: 2}
+  - {fileID: 11400000, guid: 2d233090b33db2248abeb312a047b45e, type: 2}
+  - {fileID: 11400000, guid: ede095d857672484f81a22320be9026c, type: 2}
+  - {fileID: 11400000, guid: cb0fd4bb4e8fab640a79f19f8f6b7a63, type: 2}
+  goalThreshold: 
+  shiftDuration: 90

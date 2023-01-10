@@ -1,112 +1,163 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using RS.Typing.Core;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using System;
 
-[RequireComponent(typeof(ObjectPathFinder), typeof(MovementController))]
+[RequireComponent(typeof(PathFinder), typeof(MovementController), typeof(CustomCoordinate))]
 public class Customer : MonoBehaviour
 {
-    public Transform door { get; private set; }
-    public PointOfInterest targetPosition { get; private set; }
-
-    public float seatingDuration = .5f;
-
-    public GameObject orderUI;
-
-    private ObjectPathFinder pathfinder;
+    private PathFinder pathfinder;
     private MovementController movement;
-    private SpriteRenderer sprite;
+    private CustomCoordinate coordinate;
 
-    public bool IsSeating { get; private set; } = false;
-    public bool IsArrived { get; private set; } = false;
+    public CustomerGroup customerGroup { get; private set; }
 
     private void Awake()
     {
-        pathfinder = GetComponent<ObjectPathFinder>();
+        pathfinder = GetComponent<PathFinder>();
         movement = GetComponent<MovementController>();
-        sprite = movement.sprite;
+        coordinate = GetComponent<CustomCoordinate>();
     }
 
-    public void Setup(Transform door, PointOfInterest targetPosition)
+    public void Setup(CustomerGroup customerGroup)
     {
-        this.door = door;
-        this.targetPosition = targetPosition;
-
-        orderUI.gameObject.SetActive(false);
-        movement.SetFaceLeft(false);
-        transform.position = door.position;
-
-        targetPosition.occupyObject = gameObject;
-
-        GlobalRef.I.PlaySFX_CustomerEnter();
-        pathfinder.OnReached.AddListener(OnReachSeating);
-        pathfinder.GoTo(this.targetPosition.transform);
+        this.customerGroup = customerGroup;
+        movement.speed = customerGroup.customerType.WalkSpeed;
     }
 
-    public void SetOrder(IEnumerable<ItemSO> items) {
-        var order = orderUI.GetComponent<Order>();
-        order.Setup(items);
-    }
+    #region movement
 
-    public void Leave()
+    // This is in World Coordinate
+    public void SetToWorld(Transform target)
     {
-        if (IsArrived)
-        {
-            orderUI.gameObject.SetActive(false);
-
-            IsArrived = false;
-            this.targetPosition.occupyObject = null;
-            UnSeat();
-            pathfinder.OnReached.AddListener(OnReachDoor);
-            pathfinder.GoTo(this.door);
-        }
+        coordinate.SetToWorld(target);
     }
 
-    private void OnReachSeating()
+    // This is in World Coordinate
+    public void SetToWorld(Vector3 target)
     {
-        pathfinder.OnReached.RemoveListener(OnReachSeating);
-        switch(targetPosition.stopDirection)
-        {
-            case PointOfInterest.StopDirection.Left:
-                movement.SetFaceLeft();
-                break;
-            case PointOfInterest.StopDirection.Right:
-                movement.SetFaceRight();
-                break;
-            default:
-                break;
-
-        }
-
-        IsArrived = true;
-        if (targetPosition.isChair)
-        {
-            Seat();
-        }
-        GlobalRef.I.PlaySFX_CustomerOrder();
-        orderUI.gameObject.SetActive(true);
+        coordinate.SetToWorld(target);
     }
 
-    private void OnReachDoor()
+    // This is in Game Coordinate
+    public void SetTo(CustomCoordinate target)
     {
-        pathfinder.OnReached.RemoveListener(OnReachDoor);
-        Destroy(gameObject);
+        coordinate.SetTo(target);
     }
 
-    public void Seat() { 
-        if (!IsSeating)
-        {
-            IsSeating = true;
-            sprite.transform.DOLocalMoveY(targetPosition.seatHeight, seatingDuration);
-        }
-    }
-
-    public void UnSeat()
+    // This is in Game Coordinate
+    public void SetTo(Vector3 target)
     {
-        if (IsSeating)
-        {
-            IsSeating = false;
-            sprite.transform.DOLocalMoveY(0, seatingDuration);
-        }
+        coordinate.SetTo(target);
     }
+
+    public async UniTask Seat(float height, CancellationToken ct = default)
+    {
+        var curPos = coordinate.position;
+        curPos.z = height;
+        await movement.GoTo(curPos, ct);
+    }
+
+    public async UniTask Unseat(CancellationToken ct = default)
+    {
+        var curPos = coordinate.position;
+        curPos.z = 0;
+        await movement.GoTo(curPos, ct);
+    }
+
+    // This is in World Coordinate
+    public async UniTask GoToPOI(PointOfInterest poi, CancellationToken ct = default)
+    {
+        await Unseat(ct);
+        await pathfinder.GoTo(poi.GetComponent<CustomCoordinate>(), ct);
+        if (poi.stopDirection == PointOfInterest.StopDirection.Left)
+        {
+            await SetFaceLeft();
+        } else if (poi.stopDirection == PointOfInterest.StopDirection.Right)
+        {
+            await SetFaceRight();
+        }
+        if (poi.isSeat) await Seat(poi.seatHeight, ct);
+    }
+
+    // This is in World Coordinate
+    public async UniTask GoToWorld(Transform target, CancellationToken ct = default)
+    {
+        await Unseat(ct);
+        await pathfinder.GoToWorld(target, ct);
+    }
+
+    // This is in World Coordinate
+    public async UniTask GoToWorld(Vector3 target, CancellationToken ct = default)
+    {
+        await Unseat(ct);
+        await pathfinder.GoToWorld(target, ct);
+    }
+
+    // This is in Game Coordinate
+    public async UniTask GoTo(CustomCoordinate target, CancellationToken ct = default)
+    {
+        await Unseat(ct);
+        await pathfinder.GoTo(target, ct);
+    }
+
+    // This is in Game Coordinate
+    public async UniTask GoTo(Vector3 target, CancellationToken ct = default)
+    {
+        await Unseat(ct);
+        await pathfinder.GoTo(target, ct);
+    }
+
+    // This is in World Coordinate
+    public async UniTask GoToWorldDirect(Transform target, CancellationToken ct = default)
+    {
+        await movement.GoToWorld(target, ct);
+    }
+
+    // This is in World Coordinate
+    public async UniTask GoToWorldDirect(Vector3 target, CancellationToken ct = default)
+    {
+        await movement.GoToWorld(target, ct);
+    }
+
+    // This is in Game Coordinate
+    public async UniTask GoToDirect(CustomCoordinate target, CancellationToken ct = default)
+    {
+        await movement.GoTo(target, ct);
+    }
+
+    // This is in Game Coordinate
+    public async UniTask GoToDirect(Vector3 target, CancellationToken ct = default)
+    {
+        await movement.GoTo(target, ct);
+    }
+
+    public void StopMoving()
+    {
+        movement.Stop();
+    }
+
+    public async UniTask SetFaceLeft(bool animated = true)
+    {
+        await movement.SetFaceLeft(animated);
+    }
+
+    public async UniTask SetFaceRight(bool animated = true)
+    {
+        await movement.SetFaceRight(animated);
+    }
+
+    public async UniTask SetFacing(float deltaX, bool animated = true)
+    {
+        await movement.SetFacing(deltaX, animated);
+    }
+
+    public async UniTask SetFacing(bool left, bool animated = true)
+    {
+        await movement.SetFacing(left, animated);
+    }
+
+    #endregion
 }

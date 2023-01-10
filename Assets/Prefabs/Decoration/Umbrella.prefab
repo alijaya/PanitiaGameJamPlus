@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1075041663509726405}
+  - component: {fileID: 7649128956278309283}
   - component: {fileID: 6046849465833182679}
   m_Layer: 0
   m_Name: Umbrella
@@ -33,6 +34,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7649128956278309283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3860672856012412386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a65fe7872a7400eab20bda10ac6c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lastLocalPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &6046849465833182679
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -84,7 +98,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &6832840281845970444
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,5 +155,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.5}
+  m_Size: {x: 0.6, y: 0.3}
   m_EdgeRadius: 0

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69ad08e5f7b24182ac2f7de57c44644, type: 3}
+  m_Name: Grandpa
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 9041412637505748383, guid: 2c18bc83069a9435f98d49cce6cde29f, type: 3}
+  walkSpeed: 0.5
+  waitDuration: 2
+  orderDuration: 2
+  eatDuration: 2
+  bonusTip: 1.5
+  foodDifficulty: {x: 2, y: 2}
+  wordDifficulty: {x: 1, y: 1}
+  TextGenerator:
+    rid: 1044190880895336556
+  TextModifiers: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1044190880895336556
+      type: {class: RestaurantTextGenerator, ns: Core.Words.Generator, asm: Assembly-CSharp}

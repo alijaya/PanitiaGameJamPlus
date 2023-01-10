@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b5f8c04be6a4c70b99e40a727ef696, type: 3}
+  m_Name: GameBalance
+  m_EditorClassIdentifier: 
+  difficulty:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 8d42b88d69e4f4e749fa0d6ca4c4b6ec, type: 2}
+    _variableInstancer: {fileID: 0}
+  walkSpeed:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 328af762bab5e4ef4a3a8c6a06b44d8a, type: 2}
+    _variableInstancer: {fileID: 0}
+  waitDuration:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: c9430d027836b4f8e88008dd3ecf3353, type: 2}
+    _variableInstancer: {fileID: 0}
+  orderDuration:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 6bebf207e631c45ae9dcc7cb53122737, type: 2}
+    _variableInstancer: {fileID: 0}
+  eatDuration:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 9fd1c65a064674f129e82788a1dcc8c3, type: 2}
+    _variableInstancer: {fileID: 0}
+  bonusTip:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 1bcfebef829664977b3554a5bc33056c, type: 2}
+    _variableInstancer: {fileID: 0}
+  foodDifficulty:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 480a02a8b6a5242ab8151a1de0650665, type: 2}
+    _variableInstancer: {fileID: 0}
+  wordDifficulty:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 449731c8eeb104cf798ffefce2e08c97, type: 2}
+    _variableInstancer: {fileID: 0}
