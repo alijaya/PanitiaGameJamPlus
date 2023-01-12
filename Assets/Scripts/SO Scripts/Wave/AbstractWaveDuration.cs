@@ -46,6 +46,11 @@ public abstract class AbstractWaveDuration : IWave
 
     }
 
+    public float GetEndTime()
+    {
+        return endTime;
+    }
+
     public abstract void TriggerStart();
     public abstract void InDuration(float currentTime);
     public abstract void TriggerEnd();

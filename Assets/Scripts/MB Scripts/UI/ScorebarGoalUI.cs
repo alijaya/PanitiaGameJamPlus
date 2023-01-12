@@ -109,6 +109,6 @@ public class ScorebarGoalUI : MonoBehaviour
 
         if (indicator) indicator.alpha = _achieved ? achievedFade : unachievedFade;
 
-        if (textUI) textUI.text = "$ " + _value;
+        if (textUI) textUI.text = _value.ToString();
     }
 }

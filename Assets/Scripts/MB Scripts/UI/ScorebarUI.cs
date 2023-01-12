@@ -90,7 +90,7 @@ public class ScorebarUI : MonoBehaviour
     {
         if (!this) return;
 
-        if (textUI) textUI.text = "$ " + _value;
+        if (textUI) textUI.text = _value.ToString();
 
         if (fillObject)
         {

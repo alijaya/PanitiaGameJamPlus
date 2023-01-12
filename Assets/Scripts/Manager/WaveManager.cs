@@ -13,12 +13,9 @@ public class WaveManager : SingletonSceneMB<WaveManager> {
     [InlineEditor]
     public WaveSequenceSO waveSequence;
 
-    [SerializeField] private FloatVariable timeLeftVariable;
-    [SerializeField] private float shiftDuration = 90f;
-
     [SerializeField] private UnityEvent onShiftEnd;
 
-    private float _timerCounter;
+    private float shiftDuration;
     private bool _timerRunning;
 
     protected override void SingletonStarted()
@@ -26,26 +23,30 @@ public class WaveManager : SingletonSceneMB<WaveManager> {
         if (autoStart) StartWave();
     }
 
-    public void StartWave() {
-        //ItemTray.Instance.ClearTray();
+    public void StartWave(WaveSequenceSO waveSequence)
+    {
+        this.waveSequence = waveSequence;
+        StartWave();
+    }
 
+    public void StartWave() {
         waveSequence.Setup();
 
-        _timerCounter = shiftDuration;
+        shiftDuration = waveSequence.GetEndTime();
+        GlobalRef.I.timeElapsed.Value = 0;
+        GlobalRef.I.shiftDuration.Value = shiftDuration;
         _timerRunning = true;
     }
 
     private void Update() {
         if (!_timerRunning) return;
-        if (_timerCounter > 0) {
-            _timerCounter -= Time.deltaTime;
-            timeLeftVariable.Value = _timerCounter;
+        if (GlobalRef.I.timeElapsed.Value < shiftDuration) {
+            GlobalRef.I.timeElapsed.Value += Time.deltaTime;
 
-            waveSequence.Tick(shiftDuration - _timerCounter);
+            waveSequence.Tick(GlobalRef.I.timeElapsed.Value);
         }
         else {
-            _timerCounter = 0;
-            timeLeftVariable.Value = _timerCounter;
+            GlobalRef.I.timeElapsed.Value = shiftDuration;
 
             // wait until there's no CustomerGroup
             // ga performant, bodo amat

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class WaveSequenceSO : ScriptableObject {
     [SerializeReference]
@@ -19,5 +20,10 @@ public class WaveSequenceSO : ScriptableObject {
         {
             wave.Tick(currentTime);
         }
+    }
+
+    public float GetEndTime()
+    {
+        return waves.Max(w => w.GetEndTime());
     }
 }

@@ -19,5 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cdd0e0a631b71444fbbd71be4f54bbe5, type: 2}
   - {fileID: 11400000, guid: cb01cbf6fc43e924489031475a9702e3, type: 2}
   - {fileID: 11400000, guid: f5723098ec751d44aaf4391b3e2c6141, type: 2}
-  goalThreshold: 
-  shiftDuration: 90
+  goals: 65000000ca0000002f010000
+  maxGoal: 400
+  waveSequence: {fileID: 11400000, guid: 6e50fa821a33646f4b8bda7c6862d65b, type: 2}

@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65a15e7b82684756b07e19aa782e1cc, type: 3}
   m_Name: GlobalRef
   m_EditorClassIdentifier: 
-  timeLeft:
+  timeElapsed:
     _usage: 2
     _value: 0
     _constant: {fileID: 0}
     _variable: {fileID: 11400000, guid: 1809e5ed8f1668c4c8e5d31e8dee42e6, type: 2}
+    _variableInstancer: {fileID: 0}
+  shiftDuration:
+    _usage: 2
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 11400000, guid: bbd2afb60c5e740b3b21786ff419dc89, type: 2}
     _variableInstancer: {fileID: 0}
   totalCustomerServed:
     _usage: 2
@@ -30,8 +36,6 @@ MonoBehaviour:
     _constant: {fileID: 0}
     _variable: {fileID: 11400000, guid: 5f706da51548efa4a81548c6fa68c402, type: 2}
     _variableInstancer: {fileID: 0}
-  Words: {fileID: 11400000, guid: ef79dbe6266574edf869b8c42c5de832, type: 2}
-  PrevHighlightedWords: {fileID: 11400000, guid: 5302c34a494f94fa194a998fc7488051, type: 2}
   Scene_MainMenu:
     sceneAsset: {fileID: 102900000, guid: 1201be10b9d6446588b6cfdb1f89def5, type: 3}
     sceneAssetGuidHex: 1201be10b9d6446588b6cfdb1f89def5

@@ -19,9 +19,9 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
     public Core.Words.Generator.ITextGenerator defaultGenerator;
     public UnityEvent OnCashierTriggered;
 
-    private List<DishItemSO> _possibleDishes;
+    public ScorebarUI scorebarUI;
 
-    private readonly Dictionary<IngredientReceiver, List<IngredientAdder>> _addersLookup = new();
+    private List<DishItemSO> _possibleDishes;
 
     protected override void SingletonAwakened()
     {
@@ -30,10 +30,6 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
 
     protected override void SingletonStarted()
     {
-        GlobalRef.I.totalSales.Value = 0;
-        GlobalRef.I.totalCustomerServed.Value = 0;
-        GlobalRef.I.PlayBGM_Gameplay();
-        WaveManager.I.StartWave();
         SetupLevel();
     }
 
@@ -44,18 +40,24 @@ public class RestaurantManager : SingletonSceneMB<RestaurantManager> {
 
     private void SetupLevel() {
         if (currentLevel == null) return;
+        GlobalRef.I.totalSales.Value = 0;
+        GlobalRef.I.totalCustomerServed.Value = 0;
+
+        if (scorebarUI)
+        {
+            scorebarUI.Goals = currentLevel.goals;
+            scorebarUI.MaxGoal = currentLevel.maxGoal;
+        }
         UpdatePossibleDishes(currentLevel.possibleDish);
+
+        GlobalRef.I.PlayBGM_Gameplay();
+        WaveManager.I.StartWave();
         // setup tray slot
         // setup shift duration
-        // setup goal threshold
     }
 
     private void SetupNewLevel(Level newLevel) {
         currentLevel = newLevel;
-        SetupLevel();
-    }
-
-    private void OnValidate() {
         SetupLevel();
     }
 

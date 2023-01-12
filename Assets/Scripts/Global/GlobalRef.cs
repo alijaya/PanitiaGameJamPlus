@@ -10,7 +10,8 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu]
 public class GlobalRef : SingletonSO<GlobalRef>
 {
-    public FloatReference timeLeft;
+    public FloatReference timeElapsed;
+    public FloatReference shiftDuration;
     public IntReference totalCustomerServed;
     public IntReference totalSales;
 

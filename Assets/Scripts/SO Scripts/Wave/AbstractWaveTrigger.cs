@@ -22,5 +22,10 @@ public abstract class AbstractWaveTrigger : IWave
         }
     }
 
+    public float GetEndTime()
+    {
+        return time;
+    }
+
     public abstract void Trigger();
 }
